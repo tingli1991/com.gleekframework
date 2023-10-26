@@ -20,5 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.SwaggerSdk\Com.GleekFramework.SwaggerSdk.csproj" />
   </ItemGroup>
 </Project>

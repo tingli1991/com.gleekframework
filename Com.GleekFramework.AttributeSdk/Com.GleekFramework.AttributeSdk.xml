@@ -104,6 +104,37 @@
             Web主题拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseGleekConsumerHostDefaults(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用默认的消费者Web主机
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseGleekWebHostDefaults``1(Microsoft.Extensions.Hosting.IHostBuilder,System.String)">
+            <summary>
+            使用默认的Web主机
+            </summary>
+            <typeparam name="E">错误消息模型</typeparam>
+            <param name="builder"></param>
+            <param name="docTitle">文档的标题</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            使用心跳检测
+            </summary>
+            <param name="builder"></param>
+            <param name="text">输出的内容(默认为：ok)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用终结点配置
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加全局异常

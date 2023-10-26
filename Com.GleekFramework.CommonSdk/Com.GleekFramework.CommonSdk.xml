@@ -814,6 +814,22 @@
             字符串基础拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.TrimStart(System.String,System.String)">
+            <summary>
+            去掉开始的字符串
+            </summary>
+            <param name="input"></param>
+            <param name="trimStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.TrimEnd(System.String,System.String)">
+            <summary>
+            去掉结尾的字符串
+            </summary>
+            <param name="input"></param>
+            <param name="trimStr"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ToObject``1(System.String)">
             <summary>
             字符串转换成对象

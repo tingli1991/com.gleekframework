@@ -7,23 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ±¾µØÕ»²âÊÔ¿ØÖÆÆ÷
     /// </summary>
     [Route("stack")]
     public class StackController : BaseController
     {
         /// <summary>
-        /// ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Á÷Ë®ºÅÉú³ÉÆ÷
         /// </summary>
         public SnowflakeService SnowflakeService { get; set; }
 
         /// <summary>
-        /// ï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
+        /// ¿Í»§¶Ë·þÎñ
         /// </summary>
         public StackClientService StackClientService { get; set; }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Éú²ú²âÊÔ
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -33,10 +33,10 @@ namespace Com.GleekFramework.AppSvc.Controllers
             {
                 //var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
-                var param = new StudentParam() { Id = i, Name = $"ï¿½ï¿½ï¿½ï¿½_{i}" };
-                var headers = new Dictionary<string, string>() { { "test_header_key", "ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" }, { "test-header-key", "ï¿½ï¿½È·ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" } };
+                var param = new StudentParam() { Id = i, Name = $"ÕÅÈý_{i}" };
+                var headers = new Dictionary<string, string>() { { "test_header_key", "²»·ûºÏ¹æÔòµÄÍ·²¿¼üÖµ¶Ô" }, { "test-header-key", "ÕýÈ·µÄÍ·²¿¼üÖµ¶Ô" } };
                 var response = StackClientService.PublishAsync(MessageType.CUSTOMER_TEST_STACK_NAME, param, serialNo, headers);
-                //Console.WriteLine($"ï¿½ï¿½Ï¢ï¿½ï¿½Ê¼Ê±ï¿½ä£º{beginTime:yyyy-MM-dd HH:mm:ss}ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                //Console.WriteLine($"ÏûÏ¢¿ªÊ¼Ê±¼ä£º{beginTime:yyyy-MM-dd HH:mm:ss}£¬ÏûÏ¢´¦ÀíºÄÊ±£º{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
             }
             await Task.CompletedTask;
         }

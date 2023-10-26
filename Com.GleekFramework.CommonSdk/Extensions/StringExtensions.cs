@@ -9,6 +9,46 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class StringExtensions
     {
         /// <summary>
+        /// 去掉开始的字符串
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="trimStr"></param>
+        /// <returns></returns>
+        public static string TrimStart(this string input, string trimStr)
+        {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(trimStr))
+            {
+                return input;
+            }
+
+            if (input.StartsWith(trimStr))
+            {
+                input = input.Substring(trimStr.Length);
+            }
+            return input;
+        }
+
+        /// <summary>
+        /// 去掉结尾的字符串
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="trimStr"></param>
+        /// <returns></returns>
+        public static string TrimEnd(this string input, string trimStr)
+        {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(trimStr))
+            {
+                return input;
+            }
+
+            if (input.EndsWith(trimStr))
+            {
+                input = input.Substring(0, input.Length - trimStr.Length);
+            }
+            return input;
+        }
+
+        /// <summary>
         /// 字符串转换成对象
         /// </summary>
         /// <typeparam name="T">返回的泛型对象</typeparam>

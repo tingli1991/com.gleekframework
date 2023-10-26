@@ -104,6 +104,11 @@
             环境变量常量参数
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PORT">
+            <summary>
+            主机的端口配置
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.ENV">
             <summary>
             环境
@@ -122,6 +127,11 @@
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.NOCOS_URL">
             <summary>
             Nacos地址
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.SWAGGER_SWITCH">
+            <summary>
+            Swagger开关
             </summary>
         </member>
         <member name="T:Com.GleekFramework.ConfigSdk.DependencyExtensions">
@@ -282,6 +292,18 @@
             <summary>
             环境变量缓存
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetSwaggerSwitch">
+            <summary>
+            获取swagger开关配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetHost">
+            <summary>
+            获取主机的端口地址
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetVersion(System.String)">
             <summary>

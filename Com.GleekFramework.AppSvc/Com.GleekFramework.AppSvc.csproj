@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.Models\Com.GleekFramework.Models.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.Models\Com.GleekFramework.Models.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.NacosSdk\Com.GleekFramework.NacosSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.QueueSdk\Com.GleekFramework.QueueSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.SwaggerSdk\Com.GleekFramework.SwaggerSdk.csproj" />

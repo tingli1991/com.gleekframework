@@ -8,33 +8,33 @@ using Microsoft.AspNetCore.Mvc;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// Kafkaï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// Kafka²âÊÔ¿ØÖÆÆ÷
     /// </summary>
     [Route("kafka")]
     public class KafkaController : BaseController
     {
         /// <summary>
-        /// ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Á÷Ë®ºÅÉú³ÉÆ÷
         /// </summary>
         public SnowflakeService SnowflakeService { get; set; }
 
         /// <summary>
-        /// Httpï¿½Í»ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Http¿Í»§¶Ë¹¤³§Àà
         /// </summary>
         public IHttpClientFactory HttpClientFactory { get; set; }
 
         /// <summary>
-        /// Httpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// HttpÇëÇóÉÏÏÂÎÄ
         /// </summary>
         public IHttpContextAccessor HttpContextAccessor { get; set; }
 
         /// <summary>
-        /// Kafkaï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
+        /// Kafka¿Í»§¶Ë·þÎñ
         /// </summary>
         public KafkaClientService KafkaClientService { get; set; }
 
         /// <summary>
-        /// ï¿½Ó¿Ú²ï¿½ï¿½ï¿½
+        /// ½Ó¿Ú²âÊÔ
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -47,18 +47,18 @@ namespace Com.GleekFramework.AppSvc.Controllers
                 var param = new StudentParam()
                 {
                     Id = i,
-                    Name = $"ï¿½ï¿½ï¿½ï¿½_{i}"
+                    Name = $"ÕÅÈý_{i}"
                 };
 
                 var headers = new Dictionary<string, string>()
                 {
-                    { "test-header-key", "ï¿½ï¿½È·ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" },
-                    { "test_header_key", "ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" }
+                    { "test-header-key", "ÕýÈ·µÄÍ·²¿¼üÖµ¶Ô" },
+                    { "test_header_key", "²»·ûºÏ¹æÔòµÄÍ·²¿¼üÖµ¶Ô" }
                 };
 
                 var dataList = new List<StudentParam>() { param };
                 var response = KafkaClientService.PublishManyAsync(RabbitConfig.KafkaDefaultClientHosts, KafkaTopicConstant.DEFAULT_TOPIC, MessageType.CUSTOMER_TEST_KAFKA_NAME, dataList, serialNo, headers);
-                Console.WriteLine($"ï¿½ï¿½Ï¢ï¿½ï¿½Ê¼Ê±ï¿½ä£º{beginTime:yyyy-MM-dd HH:mm:ss}ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                Console.WriteLine($"ÏûÏ¢¿ªÊ¼Ê±¼ä£º{beginTime:yyyy-MM-dd HH:mm:ss}£¬ÏûÏ¢´¦ÀíºÄÊ±£º{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
             }
             await Task.CompletedTask;
         }

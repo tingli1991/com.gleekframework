@@ -1,10 +1,11 @@
-﻿using Com.GleekFramework.AutofacSdk;
+﻿using Com.GleekFramework.AttributeSdk;
+using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.KafkaSdk;
 using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.RabbitMQSdk;
 
-namespace Com.GleekFramework.ConsoleUnit
+namespace Com.GleekFramework.ConsumerSvc
 {
     /// <summary>
     /// 主程序
@@ -35,6 +36,7 @@ namespace Com.GleekFramework.ConsoleUnit
             .UseConfig()
             .UseNacosConf()
             .UseWindowsService()
-            .UseConfigAttribute();
+            .UseConfigAttribute()
+            .UseGleekConsumerHostDefaults();
     }
 }

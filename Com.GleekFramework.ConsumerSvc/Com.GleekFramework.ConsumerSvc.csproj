@@ -20,6 +20,7 @@
   </ItemGroup>
   
     <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.AttributeSdk\Com.GleekFramework.AttributeSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.Models\Com.GleekFramework.Models.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.NacosSdk\Com.GleekFramework.NacosSdk.csproj" />

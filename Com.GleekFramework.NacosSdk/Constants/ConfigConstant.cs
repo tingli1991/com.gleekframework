@@ -5,6 +5,17 @@
     /// </summary>
     public static partial class ConfigConstant
     {
+
+        /// <summary>
+        /// 需要去掉的开始字符
+        /// </summary>
+        public const string REMOVESTARTSTR = "public";
+
+        /// <summary>
+        /// 默认分组名称
+        /// </summary>
+        public const string DEFAULT_GROUP = "DEFAULT_GROUP";
+
         /// <summary>
         /// Nacos配置文件名称
         /// </summary>

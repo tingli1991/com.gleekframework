@@ -58,9 +58,9 @@ namespace Com.GleekFramework.NacosSdk
             return new ServiceClientOptions()
             {
                 GroupName = groupName,
-                NamespaceId = namespaceId,
                 Clusters = serviceOptions.Clusters,
-                ServiceName = serviceOptions.ServiceName
+                ServiceName = serviceOptions.ServiceName,
+                NamespaceId = namespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
         }
 
@@ -82,15 +82,15 @@ namespace Com.GleekFramework.NacosSdk
                 Ephemeral = true,
                 Token = token,
                 ServiceName = serviceName,
-                GroupName = nacosConf.GroupName,
-                NamespaceId = nacosConf.NamespaceId,
-                ClusterName = serviceConf.ClusterName
+                ClusterName = serviceConf.ClusterName,
+                GroupName = nacosConf.GroupName ?? ConfigConstant.DEFAULT_GROUP,
+                NamespaceId = nacosConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
 
             if (serviceConf.PrivateService)
             {
-                param.GroupName = serviceConf.GroupName;
-                param.NamespaceId = serviceConf.NamespaceId;
+                param.GroupName = serviceConf.GroupName ?? ConfigConstant.DEFAULT_GROUP;
+                param.NamespaceId = serviceConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR);
             }
             return param;
         }
@@ -114,15 +114,15 @@ namespace Com.GleekFramework.NacosSdk
                 Port = addressInfo.Port,
                 ServiceName = serviceName,
                 Weight = serviceConf.Weight,
-                GroupName = nacosConf.GroupName,
-                NamespaceId = nacosConf.NamespaceId,
-                ClusterName = serviceConf.ClusterName
+                ClusterName = serviceConf.ClusterName,
+                GroupName = nacosConf.GroupName ?? ConfigConstant.DEFAULT_GROUP,
+                NamespaceId = nacosConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
 
             if (serviceConf.PrivateService)
             {
-                param.GroupName = serviceConf.GroupName;
-                param.NamespaceId = serviceConf.NamespaceId;
+                param.GroupName = serviceConf.GroupName ?? ConfigConstant.DEFAULT_GROUP;
+                param.NamespaceId = serviceConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR);
             }
             return param;
         }
@@ -149,15 +149,15 @@ namespace Com.GleekFramework.NacosSdk
                 Token = token,
                 ServiceName = serverName,
                 Weight = serviceConf.Weight,
-                GroupName = nacosConf.GroupName,
-                NamespaceId = nacosConf.NamespaceId,
-                ClusterName = serviceConf.ClusterName
+                ClusterName = serviceConf.ClusterName,
+                GroupName = nacosConf.GroupName ?? ConfigConstant.DEFAULT_GROUP,
+                NamespaceId = nacosConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
 
             if (serviceConf.PrivateService)
             {
-                param.GroupName = serviceConf.GroupName;
-                param.NamespaceId = serviceConf.NamespaceId;
+                param.GroupName = serviceConf.GroupName ?? ConfigConstant.DEFAULT_GROUP;
+                param.NamespaceId = serviceConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR);
             }
             return param;
         }
@@ -173,22 +173,22 @@ namespace Com.GleekFramework.NacosSdk
             var nodeSettings = new ConfigOptionSettings()
             {
                 DataId = configNode.DataId,
-                GroupName = nacosConf.GroupName,
                 ConfigName = configNode.ConfigName,
-                NamespaceId = nacosConf.NamespaceId,
-                ConfigPath = configNode.ConfigPath
+                ConfigPath = configNode.ConfigPath,
+                GroupName = nacosConf.GroupName ?? ConfigConstant.DEFAULT_GROUP,
+                NamespaceId = nacosConf.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
 
             if (!string.IsNullOrEmpty(configNode.NamespaceId))
             {
                 //绑定节点自己的命名空间
-                nodeSettings.NamespaceId = configNode.NamespaceId;
+                nodeSettings.NamespaceId = configNode.NamespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR);
             }
 
             if (!string.IsNullOrEmpty(configNode.GroupName))
             {
                 //绑定节点自己的分组名称
-                nodeSettings.GroupName = configNode.GroupName;
+                nodeSettings.GroupName = configNode.GroupName ?? ConfigConstant.DEFAULT_GROUP;
             }
             return nodeSettings;
         }

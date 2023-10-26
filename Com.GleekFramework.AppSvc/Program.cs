@@ -1,31 +1,33 @@
+using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.HttpSdk;
+using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.QueueSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ³ÌÐòÀà
     /// </summary>
     public static class Program
     {
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// ³ÌÐòÖ÷º¯Êý
         /// </summary>
         /// <param name="args"></param>
         public static async Task Main(string[] args)
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeStack((config) => 24)//ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Õ»(ï¿½È½ï¿½ï¿½Ô³ï¿½)
-                 .SubscribeQueue((config) => 24)//ï¿½ï¿½ï¿½Ä±ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½(ï¿½È½ï¿½ï¿½ï¿½ï¿½)
+                 .SubscribeStack((config) => 24)//¶©ÔÄ±¾µØÕ»(ÏÈ½øÏÔ³ö)
+                 .SubscribeQueue((config) => 24)//¶©ÔÄ±¾µØ¶ÓÁÐ(ÏÈ½øºó³ö)
                  .RunAsync();
         }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½
+        /// ´´½¨ÏµÍ³Ö÷»ú
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
@@ -36,11 +38,6 @@ namespace Com.GleekFramework.AppSvc
             .UseNacosConf()
             .UseHttpClient()
             .UseConfigAttribute()
-            .ConfigureWebHostDefaults(builder =>
-            {
-                builder
-                .UseStartup<Startup>()
-                .UseUrls(AppConfig.Configuration.GetValue("Host"));
-            });
+            .UseGleekWebHostDefaults<MessageCode>();
     }
 }

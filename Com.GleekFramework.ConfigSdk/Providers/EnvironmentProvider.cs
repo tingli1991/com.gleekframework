@@ -43,6 +43,18 @@ namespace Com.GleekFramework.ConfigSdk
         private static readonly Dictionary<string, string> CacheDic = new Dictionary<string, string>();
 
         /// <summary>
+        /// 获取swagger开关配置
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSwaggerSwitch() => GetEnvironmentVariable(EnvironmentConstant.SWAGGER_SWITCH);
+
+        /// <summary>
+        /// 获取主机的端口地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHost() => $"http://*:{GetEnvironmentVariable(EnvironmentConstant.PORT) ?? "8080"}";
+
+        /// <summary>
         /// 获取版本号
         /// </summary>
         /// <param name="prefix">前缀</param>

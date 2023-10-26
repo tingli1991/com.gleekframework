@@ -8,32 +8,32 @@ using System.ComponentModel.DataAnnotations;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ÌìÆøÔ¤±¨¿ØÖÆÆ÷
     /// </summary>
     [Route("weather-forecast")]
     public class WeatherForecastController : BaseController
     {
         /// <summary>
-        /// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        /// ×¢ÈëÅäÖÃÐÅÏ¢
         /// </summary>
         [Config(Models.ConfigConstant.SummariesKey)]
         public static string[] Summaries { get; set; }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// ²âÊÔÅäÖÃ
         /// </summary>
         [Config(Models.ConfigConstant.ConfigOptionsKey)]
         public static ConfigOptions ConfitOptions { get; set; }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
+        /// ²âÊÔÒÀÀµ×¢Èë
         /// </summary>
         public DependencyService DependencyService { get; set; }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// ÐÂÔö·½·¨
         /// </summary>
-        /// <param name="param">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+        /// <param name="param">ÇëÇó²ÎÊý</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<ContractResult> AddAsync(WeatherForecastParam param)
@@ -42,9 +42,9 @@ namespace Com.GleekFramework.AppSvc.Controllers
         }
 
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
+        /// »ñÈ¡ÌìÆøÔ¤±¨
         /// </summary>
-        /// <param name="id">id(ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½Ö¶Î±ï¿½ï¿½ï¿½)</param>
+        /// <param name="id">id(ÓÃÓÚ²âÊÔ×Ö¶Î±ØÌî)</param>
         /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<WeatherForecastModel>> GetAsync([Required] int id)

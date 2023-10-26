@@ -9,33 +9,33 @@ using Microsoft.AspNetCore.Mvc;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// RabbitMQï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// RabbitMQ²âÊÔ¿ØÖÆÆ÷
     /// </summary>
     [Route("rabbit")]
     public class RabbitController : BaseController
     {
         /// <summary>
-        /// ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Á÷Ë®ºÅÉú³ÉÆ÷
         /// </summary>
         public SnowflakeService SnowflakeService { get; set; }
 
         /// <summary>
-        /// Httpï¿½Í»ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Http¿Í»§¶Ë¹¤³§Àà
         /// </summary>
         public IHttpClientFactory HttpClientFactory { get; set; }
 
         /// <summary>
-        /// Httpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// HttpÇëÇóÉÏÏÂÎÄ
         /// </summary>
         public IHttpContextAccessor HttpContextAccessor { get; set; }
 
         /// <summary>
-        /// RPCï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
+        /// RPC¿Í»§¶Ë·þÎñ
         /// </summary>
         public RabbitRpcClientService RabbitRpcClientService { get; set; }
 
         /// <summary>
-        /// RPCï¿½ï¿½ï¿½ï¿½
+        /// RPC²âÊÔ
         /// </summary>
         /// <returns></returns>
         [HttpPost("rpc")]
@@ -45,11 +45,11 @@ namespace Com.GleekFramework.AppSvc.Controllers
             {
                 var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
-                var param = new StudentParam() { Id = i, Name = $"ï¿½ï¿½ï¿½ï¿½_{i}" };
-                var headers = new Dictionary<string, string>() { { "test_header_key", "ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" }, { "test-header-key", "ï¿½ï¿½È·ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½" } };
+                var param = new StudentParam() { Id = i, Name = $"ÕÅÈý_{i}" };
+                var headers = new Dictionary<string, string>() { { "test_header_key", "²»·ûºÏ¹æÔòµÄÍ·²¿¼üÖµ¶Ô" }, { "test-header-key", "ÕýÈ·µÄÍ·²¿¼üÖµ¶Ô" } };
                 var response = RabbitRpcClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
-                //var response1 = RabbitRpcClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, "com.gleekframework.customer.queue.rpc", MessageType.CUSTOMER_QUERY_RPC_NAME, param, serialNo, headers);
-                Console.WriteLine($"ï¿½ï¿½Ï¢ï¿½ï¿½Ê¼Ê±ï¿½ä£º{beginTime:yyyy-MM-dd HH:mm:ss}ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                //var response1 = RabbitRpcClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, "com.geekframework.customer.queue.rpc", MessageType.CUSTOMER_QUERY_RPC_NAME, param, serialNo, headers);
+                Console.WriteLine($"ÏûÏ¢¿ªÊ¼Ê±¼ä£º{beginTime:yyyy-MM-dd HH:mm:ss}£¬ÏûÏ¢´¦ÀíºÄÊ±£º{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
             }
             await Task.CompletedTask;
         }

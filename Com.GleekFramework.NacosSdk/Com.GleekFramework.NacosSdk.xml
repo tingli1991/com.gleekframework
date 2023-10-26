@@ -42,6 +42,16 @@
             配置常量
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.NacosSdk.ConfigConstant.REMOVESTARTSTR">
+            <summary>
+            需要去掉的开始字符
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.NacosSdk.ConfigConstant.DEFAULT_GROUP">
+            <summary>
+            默认分组名称
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.NacosSdk.ConfigConstant.NACOS_CONFIG_FILENAME">
             <summary>
             Nacos配置文件名称

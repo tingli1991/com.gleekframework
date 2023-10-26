@@ -63,18 +63,18 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Com.GleekFramework.ConsoleUnit.Program">
+        <member name="T:Com.GleekFramework.ConsumerSvc.Program">
             <summary>
             主程序
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ConsoleUnit.Program.Main(System.String[])">
+        <member name="M:Com.GleekFramework.ConsumerSvc.Program.Main(System.String[])">
             <summary>
             程序主函数
             </summary>
             <param name="args"></param>
         </member>
-        <member name="M:Com.GleekFramework.ConsoleUnit.Program.CreateDefaultHostBuilder(System.String[])">
+        <member name="M:Com.GleekFramework.ConsumerSvc.Program.CreateDefaultHostBuilder(System.String[])">
             <summary>
             创建系统主机
             </summary>
