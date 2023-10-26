@@ -1,0 +1,1426 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.RedisSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.RedisSdk.CacheConstant">
+            <summary>
+            缓存常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.CacheConstant.EXPIRESECONDS">
+            <summary>
+            系统默认的缓存时间(单位：秒)
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.CacheConstant.DEFAULT_CONNECTION_NAME">
+            <summary>
+            默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.HashScriptConstant">
+            <summary>
+            Lua脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.HashScriptConstant.Hset">
+            <summary>
+            HsetExpire脚本脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.HashScriptConstant.HsetNx">
+            <summary>
+            HsetExpire脚本脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.HashScriptConstant.Increment">
+            <summary>
+            Hash原子性递增
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.ListScriptConstant">
+            <summary>
+            集合类型的Lua脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.ListScriptConstant.LPUSH">
+            <summary>
+            将一个或多个值插入到列表头部
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.ListScriptConstant.RPUSH">
+            <summary>
+            将一个或多个值插入到列表尾部
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisSortedScriptConstant">
+            <summary>
+            有序集合数据类型Lua脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.RedisSortedScriptConstant.Increment">
+            <summary>
+            Hash原子性递增
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.RedisSortedScriptConstant.ZADD">
+            <summary>
+            向有序集合添加一个或多个成员，或者更新已存在成员的分数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.SetScriptConstant">
+            <summary>
+            集合数据类型Lua脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.SetScriptConstant.SADD">
+            <summary>
+            将一个或多个成员元素加入到集合中
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.StringScriptConstant">
+            <summary>
+            Lua脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.StringScriptConstant.Increment">
+            <summary>
+            String类型原子性递增
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.StringScriptConstant.Decrement">
+            <summary>
+            String类型原子性递减
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.ScriptExtensions">
+            <summary>
+            Lua脚本拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.ScriptExtensions.ExecuteScript``1(CSRedis.CSRedisClient,System.String,System.String,System.Object[])">
+            <summary>
+            执行lua脚本
+            </summary>
+            <param name="client">客户端</param>
+            <param name="script">lua脚本</param>
+            <param name="key">缓存键值</param>
+            <param name="args">lua脚本参数列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.ScriptExtensions.ExecuteScriptAsync``1(CSRedis.CSRedisClient,System.String,System.String,System.Object[])">
+            <summary>
+            执行lua脚本
+            </summary>
+            <param name="client">客户端</param>
+            <param name="script">lua脚本</param>
+            <param name="key">缓存键值</param>
+            <param name="args">lua脚本参数列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.HostingExtensions">
+            <summary>
+            Redis仓储拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.HostingExtensions.UseCsRedis(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+            <summary>
+            使用CsRedis
+            </summary>
+            <param name="builder"></param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.HostingExtensions.UseCsRedis(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用CsRedis
+            </summary>
+            <param name="builder"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.HostingExtensions.UseCsRedis(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用CsRedis
+            </summary>
+            <param name="services"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisProvider">
+            <summary>
+            Redis仓储实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.RedisProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.RedisProvider.ClientCache">
+            <summary>
+            客户字典缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisProvider.GetClientSingle(System.String)">
+            <summary>
+            获取客户端单例
+            </summary>
+            <param name="connectionName">连接字符串名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisProvider.RegisterClientPool(Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            注册客户端对象池
+            </summary>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接字符串名称</param>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.ScriptProvider">
+            <summary>
+            Lua脚本执行实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.ScriptProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.ScriptProvider.ClientCache">
+            <summary>
+            Lua脚本字典缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.ScriptProvider.ExecuteScript``1(CSRedis.CSRedisClient,System.String,System.String,System.Object[])">
+            <summary>
+            执行lua脚本
+            </summary>
+            <param name="client">客户端</param>
+            <param name="script">lua脚本</param>
+            <param name="key">缓存键值</param>
+            <param name="args">lua脚本参数列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.ScriptProvider.ExecuteScriptAsync``1(CSRedis.CSRedisClient,System.String,System.String,System.Object[])">
+            <summary>
+            执行lua脚本
+            </summary>
+            <param name="client">客户端</param>
+            <param name="script">lua脚本</param>
+            <param name="key">缓存键值</param>
+            <param name="args">lua脚本参数列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.ScriptProvider.GetSha(CSRedis.CSRedisClient,System.String)">
+            <summary>
+            获取lua脚本的sha值
+            </summary>
+            <param name="client">redis客户端</param>
+            <param name="script">lua脚本</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.MemoryCacheRepository">
+            <summary>
+            内存缓存对象
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.MemoryCacheRepository.cache">
+            <summary>
+            内存缓存对象
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.Remove(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.RemoveAsync(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.Get``1(System.String)">
+            <summary>
+            获取缓存数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.GetAsync``1(System.String)">
+            <summary>
+            获取缓存数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.Set``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.SetAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.GetOrCreate``1(System.String,``0,System.Int32)">
+            <summary>
+            获取并创建(没值的时候才会创建)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.MemoryCacheRepository.GetOrCreateAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            获取并创建(没值的时候才会创建)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisHashRepository">
+            <summary>
+            Redis哈希仓储类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Exists(System.String,System.String)">
+            <summary>
+            检查缓存Key是否存在
+            </summary>
+            <param name="key"></param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.ExistsAsync(System.String,System.String)">
+            <summary>
+            检查缓存Key是否存在
+            </summary>
+            <param name="key"></param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Delete(System.String,System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Delete(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="fields">缓存字段集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.DeleteAsync(System.String,System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.DeleteAsync(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="fields">字段集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.GetAll``1(System.String)">
+            <summary>
+            获取Hash表的所有字段值
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.GetAllAsync``1(System.String)">
+            <summary>
+            获取Hash表的所有字段值
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Get``1(System.String,System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.GetAsync``1(System.String,System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Set``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Set``1(System.String,System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetAsync``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetAsync``1(System.String,System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetNx``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetNx``1(System.String,System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetNxAsync``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.SetNxAsync``1(System.String,System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Increment(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Increment(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.IncrementAsync(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.IncrementAsync(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Decrement(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.Decrement(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.DecrementAsync(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisHashRepository.DecrementAsync(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="field">字段</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisListRepository">
+            <summary>
+            Redis列表仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.GetCountAsync(System.String)">
+            <summary>
+            获取列表的长度
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.Get``1(System.String,System.Int64)">
+            <summary>
+            获取列表的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="index">索引值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.GetAsync``1(System.String,System.Int64)">
+            <summary>
+            获取列表的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="index">索引值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.GetRangeAsync``1(System.String,System.Int64,System.Int64)">
+            <summary>
+            获取列表中指定区间内的元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="start">起始位置</param>
+            <param name="stop">结束位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.LPopAsync``1(System.String)">
+            <summary>
+            删除并返回List的头部元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RPopAsync``1(System.String)">
+            <summary>
+            删除并返回List的尾部元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RemAsync``1(System.String,System.Int64,``0)">
+            <summary>
+            从List中删除指定数量的元素(根据参数 count 的值，移除列表中与参数 value 相等的元素)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="count">移除的数量，大于0时从表头删除数量count，小于0时从表尾删除数量-count，等于0移除所有</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.SetAsync``1(System.String,System.Int64,``0)">
+            <summary>
+            通过索引设置列表元素的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.LPushAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表头部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="expireSeconds">过期时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.LPushAsync``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表头部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.LPushAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表头部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.LPushAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表头部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RPushAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表尾部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="expireSeconds">过期时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RPushAsync``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表尾部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RPushAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表尾部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisListRepository.RPushAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个值插入到列表尾部
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisRepository">
+            <summary>
+            Redis仓储基类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RedisSdk.RedisRepository.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RedisSdk.RedisRepository.Client">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RedisSdk.RedisRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.DeserializeObject``1(System.Func{System.Byte[]})">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.DeserializeObjectAsync``1(System.Func{System.Threading.Tasks.Task{System.Byte[]}})">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SerializeBinary``1(``0,System.Func{System.Byte[],System.Boolean})">
+            <summary>
+            序列化方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value">对象值</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SerializeBinaryAsync``1(``0,System.Func{System.Byte[],System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            序列化方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value">对象值</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SerializeBinaryAsync``2(``0,System.Func{System.Byte[],System.Threading.Tasks.Task{``1}})">
+            <summary>
+            序列化方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <param name="value">对象值</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.Exists(System.String)">
+            <summary>
+            检查缓存Key是否存在
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.ExistsAsync(System.String)">
+            <summary>
+            检查缓存Key是否存在
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.Delete(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="keys">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.DeleteAsync(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.DeleteAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="keys">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.GetExpireSeconds(System.Int32,System.Int32)">
+            <summary>
+            获取随机过期时间
+            </summary>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SetExpire(System.String,System.Int32)">
+            <summary>
+            设置过期时间
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SetExpire(System.String,System.Int32,System.Int32)">
+            <summary>
+            设置过期时间
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SetExpireAsync(System.String,System.Int32)">
+            <summary>
+            设置过期时间
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisRepository.SetExpireAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            设置过期时间
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisSetRepository">
+            <summary>
+            Redis无序集合仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.RemAsync``1(System.String,``0[])">
+            <summary>
+            移除集合中一个或多个成员
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.PopAsync``1(System.String)">
+            <summary>
+            移除并返回集合中的一个随机元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.RandMemberAsync``1(System.String,System.Int32)">
+            <summary>
+            返回集合中一个或多个随机数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="count">
+            成员数量
+             如果count为正数且小于集合基数，那么命令返回一个包含count个元素的数组，数组中的元素各不相同。
+             如果count大于等于集合基数，那么返回整个集合
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.GetCountAsync(System.String)">
+            <summary>
+            获取集合的成员数
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.GetAllAsync``1(System.String)">
+            <summary>
+            获取集合的所有成员
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.DiffAsync``1(System.String[])">
+            <summary>
+            计算多个集合的差集
+            </summary>
+            <param name="keys">键集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.IntersectAsync``1(System.String[])">
+            <summary>
+            计算多个集合的交集
+            </summary>
+            <param name="keys">键集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.UnionAsync``1(System.String[])">
+            <summary>
+            计算多个集合的并集
+            </summary>
+            <param name="keys">键集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.SisMemberAsync``1(System.String,``0)">
+            <summary>
+            判断成员元素是否是集合的成员
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.AddAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            将一个或多个成员元素加入到集合中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="expireSeconds">过期时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.AddAsync``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个成员元素加入到集合中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.AddAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            将一个或多个成员元素加入到集合中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSetRepository.AddAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个成员元素加入到集合中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisSortedSetRepository">
+            <summary>
+            Redis有序集合仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.RemAsync(System.String,System.String[])">
+            <summary>
+            移除有序集合中的一个或多个成员
+            </summary>
+            <param name="key">键</param>
+            <param name="members"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.RemRangeByScoreAsync(System.String,System.Decimal,System.Decimal)">
+            <summary>
+            移除有序集合中给定的分数区间的所有成员
+            </summary>
+            <param name="key">键</param>
+            <param name="min">分数最小值</param>
+            <param name="max">分数最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetRevRangeAsync(System.String,System.Int64,System.Int64)">
+            <summary>
+            返回有序集中指定区间内的成员，通过索引，分数从高到底
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="start">开始位置，0表示第一个元素，-1表示最后一个元素</param>
+            <param name="stop">结束位置，0表示第一个元素，-1表示最后一个元素</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetRangeByScoreAsync``1(System.String,System.Int64,System.Int64)">
+            <summary>
+            返回有序集中指定分数区间内的成员，分数从高到低排序
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="min">分数最小值</param>
+            <param name="max">分数最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetCountAsync(System.String)">
+            <summary>
+            获取有序集合的成员数
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetCountAsync(System.String,System.Decimal,System.Decimal)">
+            <summary>
+            计算有序集合中指定分数区间的成员数量
+            </summary>
+            <param name="key">键</param>
+            <param name="min">分数最小值</param>
+            <param name="max">区间结束位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetMemberIndexAsync(System.String,System.String)">
+            <summary>
+            返回成员的索引
+            </summary>
+            <param name="key">键</param>
+            <param name="member">成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetRangeByScoreAsync(System.String,System.Decimal,System.Decimal,System.Nullable{System.Int64},System.Int64)">
+            <summary>
+            通过分数返回有序集合指定区间内的成员
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="min">分数最小值</param>
+            <param name="max">分数最大值</param>
+            <param name="count">返回多少成员</param>
+            <param name="offset">返回条件偏移位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.GetRangeAsync(System.String,System.Int64,System.Int64)">
+            <summary>
+            通过索引区间返回有序集合成指定区间内的成员
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="start">起始位置</param>
+            <param name="stop">结束位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.AddAsync(System.String,System.String,System.Int32)">
+            <summary>
+            向有序集合添加一个或多个成员，或者更新已存在成员的分数
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="expireSeconds">过期时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.AddAsync(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            向有序集合添加一个或多个成员，或者更新已存在成员的分数
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值集</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.AddAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.Decimal},System.Int32,System.Int32)">
+            <summary>
+            将一个或多个成员元素及其分数值加入到有序集当中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.AddAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.Decimal},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将一个或多个成员元素及其分数值加入到有序集当中
+               如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
+               当key存在但不是列表类型时，返回一个错误
+            </summary>
+            <param name="key">键</param>
+            <param name="values">值集合</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.Increment(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.Increment(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.IncrementAsync(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.IncrementAsync(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.Decrement(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.Decrement(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.DecrementAsync(System.String,System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisSortedSetRepository.DecrementAsync(System.String,System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="member">成员</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisStringRepository">
+            <summary>
+            Redis字符串类型仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.GetAsync``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Set``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Set``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetAsync``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetNx``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetNx``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetNxAsync``1(System.String,``0,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.SetNxAsync``1(System.String,``0,System.Int32,System.Int32)">
+            <summary>
+            设置缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Increment(System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Increment(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.IncrementAsync(System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.IncrementAsync(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递增
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Decrement(System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.Decrement(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.DecrementAsync(System.String,System.Int64,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisStringRepository.DecrementAsync(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            原子递减
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="value">缓存值</param>
+            <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
+            <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

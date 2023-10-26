@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.AppSvc</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.KafkaController">
+            <summary>
+            Kafka���Կ�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.SnowflakeService">
+            <summary>
+            ��ˮ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.HttpClientFactory">
+            <summary>
+            Http�ͻ��˹�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.HttpContextAccessor">
+            <summary>
+            Http����������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.KafkaClientService">
+            <summary>
+            Kafka�ͻ��˷���
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.KafkaController.TestAsync">
+            <summary>
+            �ӿڲ���
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.QueueController">
+            <summary>
+            ���ض��в��Կ�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.QueueController.SnowflakeService">
+            <summary>
+            ��ˮ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.QueueController.QueueClientService">
+            <summary>
+            �ͻ��˷���
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.QueueController.TestAsync">
+            <summary>
+            ��������
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RabbitController">
+            <summary>
+            RabbitMQ���Կ�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.SnowflakeService">
+            <summary>
+            ��ˮ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.HttpClientFactory">
+            <summary>
+            Http�ͻ��˹�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.HttpContextAccessor">
+            <summary>
+            Http����������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.RabbitRpcClientService">
+            <summary>
+            RPC�ͻ��˷���
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RabbitController.RpcAsync">
+            <summary>
+            RPC����
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.StackController">
+            <summary>
+            ����ջ���Կ�����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.StackController.SnowflakeService">
+            <summary>
+            ��ˮ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.StackController.StackClientService">
+            <summary>
+            �ͻ��˷���
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.StackController.TestAsync">
+            <summary>
+            ��������
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController">
+            <summary>
+            ����Ԥ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.Summaries">
+            <summary>
+            ע��������Ϣ
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.ConfitOptions">
+            <summary>
+            ��������
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.DependencyService">
+            <summary>
+            ��������ע��
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.AddAsync(Com.GleekFramework.Models.WeatherForecastParam)">
+            <summary>
+            ��������
+            </summary>
+            <param name="param">�������</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.GetAsync(System.Int32)">
+            <summary>
+            ��ȡ����Ԥ��
+            </summary>
+            <param name="id">id(���ڲ����ֶα���)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.QueueCustomerHandler">
+            <summary>
+            自定义队列消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.QueueCustomerHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.QueueCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.QueueDefaultHandler">
+            <summary>
+            默认队列消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.QueueDefaultHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.QueueDefaultHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.StackCustomerHandler">
+            <summary>
+            自定义栈消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.StackCustomerHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.StackCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.StackDefaultHandler">
+            <summary>
+            默认栈消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.StackDefaultHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.StackDefaultHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Program">
+            <summary>
+            ������
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Program.Main(System.String[])">
+            <summary>
+            ����������
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Program.CreateDefaultHostBuilder(System.String[])">
+            <summary>
+            ����ϵͳ����
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Startup">
+            <summary>
+            程序激动类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Startup.Configuration">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configuration">当前注入的配置文件对象</param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Hosting.IHost)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="host"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,355 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.ConsumerSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CoustomAttribute">
+            <summary>
+            自定义特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CoustomAttribute.Order">
+            <summary>
+            顺序/排序
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomActionAttribute">
+            <summary>
+            自定义行为特性
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionAttribute.OnActionExecutingAsync(Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext)">
+            <summary>
+            方法执行之前
+            </summary>
+            <param name="context">上下文</param>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionAttribute.OnActionExecutedAsync(Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext)">
+            <summary>
+            方法执行之后运行
+            </summary>
+            <param name="context">消息内容</param>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomAuthorizeAttribute">
+            <summary>
+            自定义授权特性
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomAuthorizeAttribute.OnAuthorizationAsync(Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext)">
+            <summary>
+            异步调用授权方法
+            </summary>
+            <param name="context">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext">
+            <summary>
+            方法调用之后的上下文
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.Handler">
+            <summary>
+            处理方法的实例对象
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.Result">
+            <summary>
+            调用之前的返回结果
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.MessageBody">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.ActionArguments">
+            <summary>
+            行为参数字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.CreateCustomActionExecutedContext(Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext,Com.GleekFramework.ContractSdk.ContractResult)">
+            <summary>
+            创建自定义行为上下对象
+            </summary>
+            <param name="actionExecutingContext">处理方法的实例对象</param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext.CreateCustomActionExecutedContext(System.Object,Com.GleekFramework.ContractSdk.MessageBody,Com.GleekFramework.ContractSdk.ContractResult,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            创建自定义行为上下对象
+            </summary>
+            <param name="handler">处理方法的实例对象</param>
+            <param name="messageBody">消息内容</param>
+            <param name="result"></param>
+            <param name="actionArguments">行为参数字典</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext">
+            <summary>
+            自定义行为上下文
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext.Handler">
+            <summary>
+            处理方法的实例对象
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext.MessageBody">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext.ActionArguments">
+            <summary>
+            行为参数字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext.CreateActionExecutingContext(Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext)">
+            <summary>
+            创建自定义行为上下对象
+            </summary>
+            <param name="context">授权的上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext.CreateActionExecutingContext(System.Object,Com.GleekFramework.ContractSdk.MessageBody,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            创建自定义行为上下对象
+            </summary>
+            <param name="handler">处理方法的实例对象</param>
+            <param name="messageBody">消息内容</param>
+            <param name="actionArguments">行为参数字典</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext">
+            <summary>
+            自定义授权上下文
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext.Handler">
+            <summary>
+            处理方法的实例对象
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext.MessageBody">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext.ActionArguments">
+            <summary>
+            行为参数字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext.CreateCustomAuthorizationContext(System.Object,Com.GleekFramework.ContractSdk.MessageBody,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            创建自定义行为上下对象
+            </summary>
+            <param name="handler">处理方法的实例对象</param>
+            <param name="messageBody">消息内容</param>
+            <param name="actionArguments">行为参数字典</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CoustomAttributeExtensions">
+            <summary>
+            关于自定义特性的扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomAttributeExtensions.GetCoustomAttribute``1(System.Object)">
+            <summary>
+            获取自定义特性实例对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomAttributeExtensions.GetCoustomAttributeList``1(System.Object)">
+            <summary>
+            获取自定义特性实例对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CoustomExecuteExtensions">
+            <summary>
+            消费者执行拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomExecuteExtensions.ExecuteAsync(Com.GleekFramework.ConsumerSdk.IHandler,Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="handler">对象实例</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomActionAttributeExtensions">
+            <summary>
+            自定义行为扩展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionAttributeExtensions.OnActionExecutingAsync(System.Collections.Generic.IEnumerable{Com.GleekFramework.ConsumerSdk.CustomActionAttribute},Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext)">
+            <summary>
+            触发方法调用之前的执行结果
+            </summary>
+            <param name="coustomAttributeList">自定义特性列表</param>
+            <param name="context">上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomActionAttributeExtensions.OnActionExecutedAsync(System.Collections.Generic.IEnumerable{Com.GleekFramework.ConsumerSdk.CustomActionAttribute},Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext)">
+            <summary>
+            触发方法调用之前的结果
+            </summary>
+            <param name="coustomAttributeList"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CustomAuthorizeAttributeExtensions">
+            <summary>
+            授权特性扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CustomAuthorizeAttributeExtensions.OnAuthorizationAsync(System.Collections.Generic.IEnumerable{Com.GleekFramework.ConsumerSdk.CustomAuthorizeAttribute},Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext)">
+            <summary>
+            异步调用授权方法
+            </summary>
+            <param name="coustomAttributeList"></param>
+            <param name="context">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.HandlerFactory">
+            <summary>
+            消息处理工厂类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConsumerSdk.HandlerFactory.lock">
+            <summary>
+            并发所
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConsumerSdk.HandlerFactory.MessageHandlerServiceList">
+            <summary>
+            消息处理类字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.HandlerFactory.GetInstance``1(System.String)">
+            <summary>
+            获取实例
+            </summary>
+            <param name="actionKey">消息类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.HandlerFactory.GetHandlerServiceList``1">
+            <summary>
+            获取消息类型列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.HandlerFactory.GetTopicServiceList``1">
+            <summary>
+            获取事件服务列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.HandlerFactory.GetHandlerServiceList(System.Type)">
+            <summary>
+            获取消息类型列表
+            </summary>
+            <param name="type">消息类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.IHandler">
+            <summary>
+            消费者消费消息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.IHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.IHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行业务动作的方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.ITopicHandler">
+            <summary>
+            主题分组处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.ITopicHandler.Order">
+            <summary>
+            定义排序编号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.ITopicHandler.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.TopicServiceModel`1">
+            <summary>
+            主题分组服务模型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.TopicServiceModel`1.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConsumerSdk.TopicServiceModel`1.ServiceList">
+            <summary>
+            消息处理服务列表
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CoustomAttributeProvider">
+            <summary>
+            消费者特性实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConsumerSdk.CoustomAttributeProvider.lock">
+            <summary>
+            锁同步
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConsumerSdk.CoustomAttributeProvider.AttributeCache">
+            <summary>
+            消息处理缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomAttributeProvider.GetCoustomAttribute``1(System.Object)">
+            <summary>
+            获取自定义特性实例对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomAttributeProvider.GetCoustomAttributeList``1(System.Object)">
+            <summary>
+            获取自定义特性实例对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConsumerSdk.CoustomExecuteProvider">
+            <summary>
+            消费者具体执行的实现
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConsumerSdk.CoustomExecuteProvider.ExecuteAsync(Com.GleekFramework.ConsumerSdk.IHandler,Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="handler">对象实例</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,25 @@
+{
+  "Switch": true,
+  "ListenInterval": 15000,
+  "GroupName": "geek-fromework-demo",
+  "NamespaceId": "6d541c58-b3d0-4cfc-9916-0ae3d2f16a47",
+  "ServerAddresses": [
+    "http://127.0.0.1:8848"
+  ],
+  "ConfigSettings": {
+    "RelativePath": true,
+    "ConfigPath": "Config/",
+    "ConfitOptions": [
+      {
+        "ConfigName": "share.json",
+        "GroupName": "DEFAULT_GROUP",
+        "DataId": "geek-share-appsettings.json"
+      },
+      {
+        "PrivatePath": true,
+        "ConfigName": "appsettings.json",
+        "DataId": "geek-fromework-demo-appsettings.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.ContractSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.ContractSdk.MessageBody">
+            <summary>
+            接受消息的内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.ActionKey">
+            <summary>
+            消息类型(方法名称)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.SerialNo">
+            <summary>
+            业务流水号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.Headers">
+            <summary>
+            请求头信息
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.MessageBody`1">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody`1.Data">
+            <summary>
+            数据详情
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.GlobalMessageCode">
+            <summary>
+            全局消息错误码
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.FAIL">
+            <summary>
+            业务处理失败
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SUCCESS">
+            <summary>
+             业务处理成功
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_ERROR">
+            <summary>
+            请求参数错误
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SIGN_ERROR">
+            <summary>
+            签名失败
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_VALIDATE_FAIL">
+            <summary>
+            参数验证失败
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_REQUIRED">
+            <summary>
+            参数必填
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ERROR">
+            <summary>
+             未知错误(系统异常)
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.MessageExtensions">
+            <summary>
+            消息类型拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.MessageExtensions.GetData``1(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            获取消息内容
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.MessageExtensions.GetDataAsync``1(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            获取消息内容
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.ResultExtensions">
+            <summary>
+            通用返回模型
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.IsSuceccful(Com.GleekFramework.ContractSdk.ContractResult)">
+            <summary>
+            检查是否成功
+            </summary>
+            <param name="source">数据源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError(Com.GleekFramework.ContractSdk.ContractResult,System.Enum,System.String)">
+            <summary>
+            设置错误信息
+            </summary>
+            <param name="source"></param>
+            <param name="error">错误码</param>
+            <param name="serialNo">流水号</param>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful(Com.GleekFramework.ContractSdk.ContractResult,System.String)">
+            <summary>
+            设置成功返回信息
+            </summary>
+            <param name="source"></param>
+            <param name="serialNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful``1(Com.GleekFramework.ContractSdk.ContractResult{``0},``0,System.String)">
+            <summary>
+            设置成功返回信息
+            </summary>
+            <param name="source">数据源</param>
+            <param name="data"></param>
+            <param name="serialNo"></param>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.CacheModel`1">
+            <summary>
+            集合数据缓存模型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.CacheModel`1.HasValue">
+            <summary>
+            是否有值
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.CacheModel`1.Data">
+            <summary>
+            数据内容
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.SnowflakeProvider">
+            <summary>
+            雪花算法实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.Sequence">
+            <summary>
+            自增开始位置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider._random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.PersonCode">
+            <summary>
+            机器码
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.RefSequence">
+            <summary>
+            重新计数的时间点
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetSerialNo(System.Int32)">
+            <summary>
+            获取流水号
+            </summary>
+            <param name="suffix">流水号前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.NextSnowflakeNo(System.Int32)">
+            <summary>
+            生成雪花编号
+            </summary>
+            <param name="suffix">流水号前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetCurrentTimeSpan">
+            <summary>
+            生成当前时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.ContractResult">
+            <summary>
+            协议返回结果
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult.Success">
+            <summary>
+            业务处理结果(true 表示成功  false 表示失败)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult.Code">
+            <summary>
+            错误状态码
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult.SerialNo">
+            <summary>
+            业务流水号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult.Message">
+            <summary>
+            错误信息，成功将返回空
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.ContractResult`1">
+            <summary>
+            返回结果契约
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ContractResult`1.Data">
+            <summary>
+            数据详情
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.PageDataResult`1">
+            <summary>
+            分页数据
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageSize">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.TotalCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageList">
+            <summary>
+            分页列表
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.HasNext">
+            <summary>
+            是否包含下一页
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.HasPrevious">
+            <summary>
+            是否包含上一页
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageCount">
+            <summary>
+            分页总页数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.PageResult`1">
+            <summary>
+            分页返回结果
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.MaxId">
+            <summary>
+            最大ID
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.PageSize">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.PageList">
+            <summary>
+            分页列表
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.SnowflakeService">
+            <summary>
+            雪花算法实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetSerialNo(System.Int32)">
+            <summary>
+            获取流水号
+            </summary>
+            <param name="suffix">流水号前缀</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

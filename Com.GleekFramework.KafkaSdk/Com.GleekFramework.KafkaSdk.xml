@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.KafkaSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.KafkaSdk.KafkaConstant">
+            <summary>
+            Kafka常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.KafkaConstant.FetchMaxBytes">
+            <summary>
+            消费端拉取消息数据的大小
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.KafkaConstant.MessageMaxBytes">
+            <summary>
+            最大消息字节数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.CallbackExtensions">
+            <summary>
+            回调处理类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.CallbackExtensions.MessageCallbackAsync(Confluent.Kafka.ConsumeResult{System.String,System.String})">
+            <summary>
+            消息订阅事件
+            </summary>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.MessageExtensions">
+            <summary>
+            消息拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.MessageExtensions.ToMessageBodyAsync(Confluent.Kafka.ConsumeResult{System.String,System.String})">
+            <summary>
+            转换成消息内容
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.MessageExtensions.ToMessageBody(Confluent.Kafka.ConsumeResult{System.String,System.String})">
+            <summary>
+            转换成消息内容
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.HostingExtensions">
+            <summary>
+            消费者拓展类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.HostingExtensions.MessageCount">
+            <summary>
+            消息数量
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.HostingExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.HostingExtensions.Cts">
+            <summary>
+            多线程控制器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.SubscribeKafka(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.KafkaSdk.KafkaConsumerOptions})">
+            <summary>
+            订阅Kafka
+            </summary>
+            <param name="host"></param>
+            <param name="callback">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.Subscribe(Com.GleekFramework.KafkaSdk.KafkaConsumerOptions)">
+            <summary>
+            订阅消费者
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.PullMessageBodyAsync(System.String,System.String,System.String,System.Boolean,System.Boolean,Confluent.Kafka.AutoOffsetReset)">
+            <summary>
+            拉取消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="groupId">分组Id</param>
+            <param name="topic">主题</param>
+            <param name="awaitTask">是否需要等待Task任务完成</param>
+            <param name="autoAck">是否启用自动提交偏移量</param>
+            <param name="autoOffset">偏移方式</param>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.ConsumeMessage(Confluent.Kafka.IConsumer{System.String,System.String})">
+            <summary>
+            消费消息
+            </summary>
+            <param name="consumer">消费者对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.CallbackMessageAsync(Confluent.Kafka.IConsumer{System.String,System.String},Confluent.Kafka.ConsumeResult{System.String,System.String},System.Boolean,System.Boolean)">
+            <summary>
+            回调消息处理方法
+            </summary>
+            <param name="consumer">消费者对象</param>
+            <param name="messageBody">消息内容</param>
+            <param name="awaitTask">是否需要等待Task任务完成</param>
+            <param name="autoAck">是否开启自动应答模式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.IKafkaHandler">
+            <summary>
+            Kafka消息处理基础类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions">
+            <summary>
+            Kafka消费配置选项
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions.GroupId">
+            <summary>
+            分组Id
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions.AutoAck">
+            <summary>
+            自动应答开关(默认开启)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions.AwaitTask">
+            <summary>
+            是否需要等待Task任务完成
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions.HostOptions">
+            <summary>
+            主机配置选项集
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerOptions.AutoOffset">
+            <summary>
+            便宜方向（默认：最新的）
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.KafkaConsumerHostOptions">
+            <summary>
+            Kafka消费订阅的主机配置信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerHostOptions.Host">
+            <summary>
+            主机地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaConsumerHostOptions.Topics">
+            <summary>
+            主题列表
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.ConsumerProvider">
+            <summary>
+            Kafka实现服务
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.ConsumerProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.ConsumerProvider.ConsumerCache">
+            <summary>
+            消费者缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.ConsumerProvider.UnSubscribe">
+            <summary>
+            取消订阅
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.ConsumerProvider.GetConsumerSingle(System.String,System.String,System.String,System.Boolean,Confluent.Kafka.AutoOffsetReset)">
+            <summary>
+            获取消费对象实例
+            </summary>
+            <param name="hosts">主机地址</param>
+            <param name="groupId">分组Id</param>
+            <param name="topic">主题</param>
+            <param name="autoAck">是否开启自动应答(默认：开启)</param>
+            <param name="autoOffset">偏移方向</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.ProducerProvider">
+            <summary>
+            生产者实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.ProducerProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.ProducerProvider.ProducerCache">
+            <summary>
+            kafka tcp producer
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.ProducerProvider.GetProducerSingle(System.String)">
+            <summary>
+            获取生产者客户端对象
+            </summary>
+            <param name="host">主机地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.KafkaClientService">
+            <summary>
+            Kafka客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaClientService.EnvironmentService">
+            <summary>
+            环境变量服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部信息</param>
+            <param name="key">分区键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机地址</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">数据包</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部信息</param>
+            <param name="key">分区键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaClientService.PublishManyAsync``1(System.String,System.String,System.Enum,System.Collections.Generic.IEnumerable{``0},System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机地址</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">数据包</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部信息</param>
+            <param name="key">分区键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaClientService.PublishAsync``1(System.String,System.String,``0,System.String,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="topic">主题</param>
+            <param name="key">分区键</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaClientService.PublishManyAsync``1(System.String,System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.String)">
+            <summary>
+            批量发送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host"></param>
+            <param name="topic"></param>
+            <param name="data"></param>
+            <param name="serialNo">业务流水号</param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

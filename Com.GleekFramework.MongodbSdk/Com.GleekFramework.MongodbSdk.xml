@@ -1,0 +1,446 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.MongodbSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongodbClient">
+            <summary>
+            自定义客户端
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MongodbClient.DataBaseName">
+            <summary>
+            数据库名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MongodbClient.ConnectionString">
+            <summary>
+            链接字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbClient.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbClient.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString">链接字符串</param>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoConstant">
+            <summary>
+            Mongodb常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongoConstant.DEFAULT_CONNECTION_NAME">
+            <summary>
+            默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoConstant.GetInsertManyOptions(System.Boolean)">
+            <summary>
+            批量新增默认选项
+            </summary>
+            <param name="isOrdered">是否有序的插入</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MEntity">
+            <summary>
+            Mongo基础实体类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoFindExtensions">
+            <summary>
+            查询拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoFindExtensions.OrderBy``2(MongoDB.Driver.IFindFluent{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            排序(升序)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TP"></typeparam>
+            <param name="find"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoFindExtensions.OrderByDescending``2(MongoDB.Driver.IFindFluent{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            排序(降序)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TP"></typeparam>
+            <param name="find"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoFindExtensions.Select``2(MongoDB.Driver.IFindFluent{``0,``1},MongoDB.Driver.ProjectionDefinition{``0,MongoDB.Bson.BsonDocument})">
+            <summary>
+            查询对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TP"></typeparam>
+            <param name="find"></param>
+            <param name="projection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoFindExtensions.Select``3(MongoDB.Driver.IFindFluent{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
+            <summary>
+            查询对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProjection"></typeparam>
+            <typeparam name="TNP"></typeparam>
+            <param name="find"></param>
+            <param name="projection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoProviderExtensions">
+            <summary>
+            Mongo实现类拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoProviderExtensions.GetCollection``1(Com.GleekFramework.MongodbSdk.MongodbClient)">
+            <summary>
+            获取Mongo类型集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="client">客户端</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoProviderExtensions.GetTableName``1">
+            <summary>
+            获取表名称
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.HostingExtensions">
+            <summary>
+            Mongo拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+            <summary>
+            使用Mongodb
+            </summary>
+            <param name="builder"></param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用Mongodb
+            </summary>
+            <param name="builder"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用Mongodb
+            </summary>
+            <param name="services"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.IMEntity">
+            <summary>
+            Mongo基础实体
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.IMEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoClientProvider">
+            <summary>
+            Mongdb客户端实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongoClientProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongoClientProvider.ClientCache">
+            <summary>
+            客户字典缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoClientProvider.GetClientSingle(System.String)">
+            <summary>
+            获取客户端单例
+            </summary>
+            <param name="connectionName">连接字符串名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoClientProvider.RegisterClientPool(Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            注册客户端对象池
+            </summary>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接字符串名称</param>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoProvider">
+            <summary>
+            Mongo数据库实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongoProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongoProvider.DatabaseCache">
+            <summary>
+            客户字典缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoProvider.GetDatabaseSingle(Com.GleekFramework.MongodbSdk.MongodbClient)">
+            <summary>
+            获取数据库单例对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MongodbSdk.MongoRepository`1">
+            <summary>
+            Mongo仓储类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.Map``1(`0)">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="R">目标数据类型</typeparam>
+            <param name="source">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.Map``1(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="R">目标数据类型</typeparam>
+            <param name="sourceList">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.MapAsync``1(System.Threading.Tasks.Task{`0})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="R">目标数据类型</typeparam>
+            <param name="source">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.MapAsync``1(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="R">目标数据类型</typeparam>
+            <param name="sourceList">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MongoRepository`1.Collection">
+            <summary>
+            Mongo的类型集合
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MongoRepository`1.Client">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MongodbSdk.MongoRepository`1.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取文档的数量
+            </summary>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            查询条件
+            </summary>
+            <param name="filter">筛选条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.InsertOne(`0)">
+            <summary>
+            插入单条数据
+            </summary>
+            <param name="docment">文档对象</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.InsertOneAsync(`0)">
+            <summary>
+            插入单条数据
+            </summary>
+            <param name="docment">文档对象</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.InsertMany(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            批量新增
+            </summary>
+            <param name="docments">文档对象列表</param>
+            <param name="isOrdered">是否有序的插入(默认：false)</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.InsertManyAsync(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            批量新增
+            </summary>
+            <param name="docments">文档对象列表</param>
+            <param name="isOrdered">是否有序的插入(默认：false)</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.UpdateOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},MongoDB.Driver.UpdateDefinition{`0})">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="update">更新对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.UpdateOneAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},MongoDB.Driver.UpdateDefinition{`0})">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="update">更新对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.UpdateMany(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},MongoDB.Driver.UpdateDefinition{`0})">
+            <summary>
+            批量更新
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="update">更新对象</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.UpdateManyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},MongoDB.Driver.UpdateDefinition{`0})">
+            <summary>
+            批量更新
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="update">更新对象</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.DeleteMany(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除
+            </summary>
+            <param name="filter">过滤条件</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.DeleteManyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除
+            </summary>
+            <param name="filter">过滤条件</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetFirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetFirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetFirstOrDefault``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetFirstOrDefaultAsync``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <param name="filter">过滤条件</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetList``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetList``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetListAsync``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongoRepository`1.GetListAsync``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="R">返回模型</typeparam>
+            <param name="filter">过滤条件</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

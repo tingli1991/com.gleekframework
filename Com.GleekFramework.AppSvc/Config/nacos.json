@@ -1,0 +1,27 @@
+{
+  "Switch": true,
+  "UserName": "nacos",
+  "ListenInterval": 15000,
+  "Password": "ChinaNet910111",
+  "GroupName": "geek-fromework",
+  "NamespaceId": "9b5db58b-436b-4db4-a824-dda6a563cce3",
+  "ServerAddresses": [
+    "http://192.168.100.25:8848/"
+  ],
+  "ConfigSettings": {
+    "RelativePath": true,
+    "ConfigPath": "Config/",
+    "ConfitOptions": [
+      {
+        "ConfigName": "share.json",
+        "GroupName": "DEFAULT_GROUP",
+        "DataId": "geek-fromework-share.json"
+      },
+      {
+        "PrivatePath": true,
+        "ConfigName": "application.json",
+        "DataId": "geek-fromework-application.json"
+      }
+    ]
+  }
+}

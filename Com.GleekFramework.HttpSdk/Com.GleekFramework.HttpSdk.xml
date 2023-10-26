@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.HttpSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.HttpSdk.CircuitException">
+            <summary>
+            自定义熔断异常
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.CircuitException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.CircuitException.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.ContentTypeConstant">
+            <summary>
+            常用的ContentType常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.TEXT">
+            <summary>
+            文本类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.HTML">
+            <summary>
+            HTML文本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.JSON">
+            <summary>
+            JSON类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.XML">
+            <summary>
+            XML类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.JAVASCRIPT">
+            <summary>
+            JAVASCRIPT脚本
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.MULTIPART_FORM_DATA">
+            <summary>
+            多部分表单数据
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.ContentTypeConstant.FORM_DATA">
+            <summary>
+            表单数据
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HttpConstant">
+            <summary>
+            Http常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.HttpConstant.WHITE_CONTAINS_STR">
+            <summary>
+            头部信息包含的白名单字符(通配)
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.HttpConstant.HEADER_SERIAL_NO_KEY">
+            <summary>
+            头部信息的流水编号
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.HttpConstant.CONTENT_TYPE_HEADER_NAME">
+            <summary>
+            默认的内容类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.HttpSdk.HttpConstant.DEFAULT_CLIENT_NAME">
+            <summary>
+            默认的Http客户端名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.ClientFactoryExtensions">
+            <summary>
+            Http客户端工厂拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.GetAsync``1(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Get请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.DeleteAsync``1(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Delete请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.PostAsync``2(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Post请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">返回模型</typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="data">请求数据</param>
+            <param name="headers">头部信息</param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.PutAsync``2(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Put请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">返回模型</typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="data">请求数据</param>
+            <param name="headers">头部信息</param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.PatchAsync``2(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Patch请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">返回模型</typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="data">请求数据</param>
+            <param name="headers">头部信息</param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.ReadAsStringAsync``1(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            读取响应内容
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.CreateClient(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            创建客户端对象
+            </summary>
+            <param name="factory"></param>
+            <param name="context"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.ContextExtensions">
+            <summary>
+            Http上下文拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ContextExtensions.GetResponseBody(Microsoft.AspNetCore.Http.HttpResponse)">
+            <summary>
+            获取响应内容
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ContextExtensions.GetRequestBody(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            获取请求参数
+            </summary>
+            <param name="request">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HeaderExtensions">
+            <summary>
+            头部信息拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.GetSerialNo(Microsoft.AspNetCore.Http.IHeaderDictionary)">
+            <summary>
+            获取业务流水号
+            </summary>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.GetSerialNo(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String)">
+            <summary>
+            获取业务流水号
+            </summary>
+            <param name="context">http上下文</param>
+            <param name="serialNo">流水号</param>
+            <returns>流水编号</returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.GetSerialNo(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            获取业务流水号
+            </summary>
+            <param name="headers">头部信息</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.SetContentType(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            设置ContentType
+            </summary>
+            <param name="headers">头部信息</param>
+            <param name="contentType">类型字符串</param>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.GetContentType(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            获取ContentType
+            </summary>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.AddHeaders(System.Net.Http.Headers.HttpHeaders,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            添加头部信息
+            </summary>
+            <param name="requestHaaders"></param>
+            <param name="headers"></param>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HeaderExtensions.ToHeaders(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            转换头部信息
+            </summary>
+            <param name="httpContext">http上下文</param>
+            <returns>屏蔽完非中横线和大写字母的头部信息结果</returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.SerializeExtensions">
+            <summary>
+            序列化拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.SerializeExtensions.ToStringContent``1(``0)">
+            <summary>
+            序列化请求参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="paramters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HostingExtensions">
+            <summary>
+            主机拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HostingExtensions.UseHttpClient(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32)">
+            <summary>
+            使用HttpClient
+            </summary>
+            <param name="builder"></param>
+            <param name="timeOutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HostingExtensions.UseHttpClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Int32)">
+            <summary>
+            使用Polly服务
+            </summary>
+            <param name="services"></param>
+            <param name="timeOutSeconds">超时时间(单位：秒)</param>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HttpClientService">
+            <summary>
+            Http客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientService.HttpClientFactory">
+            <summary>
+            Http客户端工厂类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.GetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Get请求
+            </summary>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.GetAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Get请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.DeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Delete请求
+            </summary>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.DeleteAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Delete请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PostAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Post请求
+            </summary>
+            <typeparam name="R"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PostAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Post请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PutAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Put请求
+            </summary>
+            <typeparam name="R"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PutAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Put请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PatchAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Patch请求
+            </summary>
+            <typeparam name="R"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpClientService.PatchAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Patch请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HttpContractService">
+            <summary>
+            Http客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpContractService.HttpClientFactory">
+            <summary>
+            Http客户端工厂类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpContractService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.GetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Get请求
+            </summary>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.GetAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Get请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.DeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Delete请求
+            </summary>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.DeleteAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发起Delete请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">接口地址</param>
+            <param name="param">请求参数</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PostAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Post请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PostAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Post请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">响应模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PutAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Put请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PutAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Put请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">响应模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PatchAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Patch请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PatchAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送Patch请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">响应模型</typeparam>
+            <param name="url"></param>
+            <param name="data"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

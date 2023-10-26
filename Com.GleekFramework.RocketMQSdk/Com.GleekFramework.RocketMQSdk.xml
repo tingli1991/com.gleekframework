@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.RocketMQSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketMQConstant">
+            <summary>
+            常量类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.RocketMQConstant.DEFAULT_TAGES">
+            <summary>
+            默认的Tags
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.CallbackExtensions">
+            <summary>
+            消费者回调拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.CallbackExtensions.MessageCallbackAsync(Aliyun.MQ.Model.Message)">
+            <summary>
+            消息订阅事件
+            </summary>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.MessageExtensions">
+            <summary>
+            消息拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.MessageExtensions.ToMessageBodyAsync(Aliyun.MQ.Model.Message)">
+            <summary>
+            转换成消息内容
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.MessageExtensions.ToMessageBody(Aliyun.MQ.Model.Message)">
+            <summary>
+            转换成消息内容
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions">
+            <summary>
+            账号主题拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+            <summary>
+            添加账号配置信息
+            </summary>
+            <param name="builder"></param>
+            <param name="options">账号配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+            <summary>
+            添加账号配置信息
+            </summary>
+            <param name="configuration"></param>
+            <param name="options">账号配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions">
+            <summary>
+            RocketMQ消费者主机拓展
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.MessageCount">
+            <summary>
+            消息数量
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Cts">
+            <summary>
+            多线程控制器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.SubscribeRocketMQ(Microsoft.Extensions.Hosting.IHost,Com.GleekFramework.RocketMQSdk.RocketConsumerOptions)">
+            <summary>
+            订阅RocketMQ
+            </summary>
+            <param name="host">主机</param>
+            <param name="options">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Subscribe(Com.GleekFramework.RocketMQSdk.RocketConsumerOptions)">
+            <summary>
+            订阅消费者
+            </summary>
+            <param name="options">配置选项</param>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.PullMessageBodyAsync(System.String,System.String,System.String,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            拉去消息内容并消费
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="groupId">分组Id</param>
+            <param name="topic">分组Id</param>
+            <param name="batchSize">批量消费的消息条数（上限：16条）</param>
+            <param name="waitSeconds">长轮询时间时间秒（最多可设置为30秒）</param>
+            <param name="awaitTask">是否需要等待Task任务完成</param>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.ConsumeMessageList(Aliyun.MQ.MQConsumer,System.Boolean,System.UInt32,System.UInt32)">
+            <summary>
+            消费消息数据
+            </summary>
+            <param name="consumer">消费者对象</param>
+            <param name="awaitTask">是否需要等待Task任务完成</param>
+            <param name="batchSize">批量消费的消息条数（上限：16条）</param>
+            <param name="waitSeconds">长轮询时间时间秒（最多可设置为30秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.CallbackMessageAsync(System.Boolean,Aliyun.MQ.MQConsumer,System.Collections.Generic.List{Aliyun.MQ.Model.Message})">
+            <summary>
+            消息处理方法
+            </summary>
+            <param name="awaitTask">是否需要等待Task任务完成</param>
+            <param name="consumer">消费者对象</param>
+            <param name="messageInfoList">消息列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.IRocketHandler">
+            <summary>
+            RocketMQ消息处理类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketAccessOptions">
+            <summary>
+            Rocket基础配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketAccessOptions.SecretKey">
+            <summary>
+            AccessKey Secret阿里云身份验证，在阿里云用户信息管理控制台创建。
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketAccessOptions.AccessKey">
+            <summary>
+            AccessKey ID阿里云身份验证，在阿里云用户信息管理控制台创建。
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketAccessOptions.InstanceId">
+            <summary>
+            若实例有命名空间，则实例ID必须传入；若实例无命名空间，则实例ID传入null空值或字符串空值。实例的命名空间可以在消息队列RocketMQ版控制台的实例详情页面查看。
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketConsumerHostOptions">
+            <summary>
+            Rocket订阅的主机信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerHostOptions.Host">
+            <summary>
+            主机地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerHostOptions.Topics">
+            <summary>
+            主题列表
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions">
+            <summary>
+            Rocket消费者配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions.GroupId">
+            <summary>
+            分组Id
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions.BatchSize">
+            <summary>
+            批量消费的消息条数（上限：16条）
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions.WaitSeconds">
+            <summary>
+            长轮询时间时间秒（最多可设置为30秒）
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions.AwaitTask">
+            <summary>
+            是否需要等待Task任务完成
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketConsumerOptions.HostOptions">
+            <summary>
+            主机配置选项集
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.ConsumerProvider">
+            <summary>
+            消费者的实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerProvider.GetCacheKey(System.String,System.String,System.String)">
+            <summary>
+            获取键
+            </summary>
+            <param name="instanceId">实例Id</param>
+            <param name="topic">主题</param>
+            <param name="groupId">分组Id</param>
+            <returns></returns>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerProvider.CacheList">
+            <summary>
+            消费者者字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerProvider.GetConsumerSingle(System.String,System.String,System.String)">
+            <summary>
+            获取生产者单例
+            </summary>
+            <param name="host"></param>
+            <param name="topic"></param>
+            <param name="groupId">分组Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.MQClientProvider">
+            <summary>
+            客户端实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.MQClientProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.MQClientProvider.CacheList">
+            <summary>
+            客户端消息
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.MQClientProvider.GetCacheKey(System.String,System.String,System.String)">
+            <summary>
+            获取键
+            </summary>
+            <param name="accessKey"></param>
+            <param name="secretKey"></param>
+            <param name="endpoint">终结点地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.MQClientProvider.GetClientSingle(System.String)">
+            <summary>
+            获取客户端信息
+            </summary>
+            <param name="endpoint">总结点地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.ProducerProvider">
+            <summary>
+            生产者实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ProducerProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ProducerProvider.GetCacheKey(System.String,System.String)">
+            <summary>
+            获取键
+            </summary>
+            <param name="instanceId">实例Id</param>
+            <param name="topic">主题</param>
+            <returns></returns>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.ProducerProvider.CacheList">
+            <summary>
+            消费者者字典
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.ProducerProvider.GetProducerSingle(System.String,System.String)">
+            <summary>
+            获取生产者单例
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="topic">主题名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketAccessProvider">
+            <summary>
+            Rocket账号基础信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketAccessProvider.AccessOptions">
+            <summary>
+            账号配置信息
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketAccessProvider.SetAccessOptions(Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+            <summary>
+            添加账号配置信息
+            </summary>
+            <param name="accessOptions">账号配置参数</param>
+        </member>
+        <member name="T:Com.GleekFramework.RocketMQSdk.RocketClientService">
+            <summary>
+            RocketMQ客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RocketMQSdk.RocketClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RocketMQSdk.RocketClientService.EnvironmentService">
+            <summary>
+            环境变量服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">业务流水号</param>
+            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
+                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
+                注意：不设置也不会影响消息正常收发。
+            </param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
+                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
+                注意：不设置也不会影响消息正常收发。
+            </param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync(System.String,System.String,System.Enum,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="deliverTimeMillis">指定一个时刻，在这个时刻之后消息才能被消费（单位：毫秒时间戳）</param>
+            <param name="serialNo">流水编号</param>
+            <param name="key">分区键</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机地址</param>
+            <param name="topic">主题</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">数据包</param>
+            <param name="deliverTimeMillis">指定一个时刻，在这个时刻之后消息才能被消费（单位：毫秒时间戳）</param>
+            <param name="serialNo">流水编号</param>
+            <param name="key">分区键</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,``0,System.String,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
+                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
+                注意：不设置也不会影响消息正常收发。
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,``0,System.Int64,System.String,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="deliverTimeMillis">指定一个时刻，在这个时刻之后消息才能被消费（单位：毫秒时间戳）</param>
+            <param name="serialNo">业务流水号</param>
+            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
+                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
+                注意：不设置也不会影响消息正常收发。
+            </param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

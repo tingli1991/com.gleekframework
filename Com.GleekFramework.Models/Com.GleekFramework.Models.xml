@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.Models</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.Models.RabbitConfig">
+            <summary>
+            Rabbit配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.RabbitConfig.RabbitDefaultClientHosts">
+            <summary>
+            默认的虚拟主机客户端配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.RabbitConfig.KafkaDefaultClientHosts">
+            <summary>
+            默认的虚拟主机客户端配置
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.ConfigConstant">
+            <summary>
+            配置常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.SummariesKey">
+            <summary>
+            静态数组配置键
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.ConfigOptionsKey">
+            <summary>
+            静态测试配置模型键
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.KafkaConnectionOptionsKey">
+            <summary>
+            Kafka连接订阅配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.RabbitConnectionOptionsKey">
+            <summary>
+            Rabbit连接订阅配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.KafkaDefaultClientHostsKey">
+            <summary>
+            默认客户端配置名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.ConfigConstant.RabbitDefaultClientHostsKey">
+            <summary>
+            默认客户端配置名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.KafkaTopicConstant">
+            <summary>
+            Kafka主题常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.KafkaTopicConstant.DEFAULT_TOPIC">
+            <summary>
+            测试主题
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.RabbitQueueConstant">
+            <summary>
+            Rabbit队列常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.RabbitQueueConstant.RpcCustomerQueue">
+            <summary>
+            自定义RPC队列名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.MessageCode">
+            <summary>
+            错误信息枚举
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageCode.PARAM_REQUIRED_DATE">
+            <summary>
+            请输入时间
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.MessageType">
+            <summary>
+            功能定义
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageType.TEST_QUERY_RPC_NAME">
+            <summary>
+            队列测试方法
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_QUERY_RPC_NAME">
+            <summary>
+            队列测试方法
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_TEST_KAFKA_NAME">
+            <summary>
+            自定义Kafka测试类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_TEST_QUEUE_NAME">
+            <summary>
+            自定义Queue测试类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_TEST_STACK_NAME">
+            <summary>
+            自定义Stack测试类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.WeatherForecastModel">
+            <summary>
+            ����Ԥ��
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastModel.Date">
+            <summary>
+            ʱ��
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastModel.TemperatureC">
+            <summary>
+            �¶�(���϶�)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastModel.Summary">
+            <summary>
+            ����
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastModel.TemperatureF">
+            <summary>
+            �¶�(���϶�)
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.ConfigOptions">
+            <summary>
+            静态测试配置模型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ConfigOptions.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ConfigOptions.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ConfigOptions.Arrays">
+            <summary>
+            字符串集合
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.StudentParam">
+            <summary>
+            学员信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.StudentParam.Id">
+            <summary>
+            学员Id
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.StudentParam.Name">
+            <summary>
+            学员名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.WeatherForecastParam">
+            <summary>
+            请求参数
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastParam.Date">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastParam.TemperatureC">
+            <summary>
+            温度(摄氏度)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastParam.Summary">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.WeatherForecastParam.TemperatureF">
+            <summary>
+            温度(华氏度)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,524 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.RabbitMQSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitConstant">
+            <summary>
+            常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RabbitConstant.DEFAULT_RPC_QUEUE_NAME">
+            <summary>
+            RPC模式默认的队列名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RabbitConstant.DEFAULT_TOPIC_EXCHANGE_NAME">
+            <summary>
+            默认的主题交换机
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RabbitConstant.DEFAULT_ROUTING_EXCHANGE_NAME">
+            <summary>
+            默认的路由交换机
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RabbitConstant.DEFAULT_SUBSCRIBE_EXCHANGE_NAME">
+            <summary>
+            默认的发布订阅模式交换机
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.CallbackExtensions">
+            <summary>
+            回调处理类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.CallbackExtensions.ConsumerShutdownEventAsync(RabbitMQ.Client.ShutdownEventArgs,System.Object)">
+            <summary>
+            关机事件
+            </summary>
+            <param name="eventArgs"></param>
+            <param name="sender"></param>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.CallbackExtensions.MessageExecuteAsync``1(RabbitMQ.Client.Events.BasicDeliverEventArgs)">
+            <summary>
+            消息执行函数
+            </summary>
+            <param name="eventArgs">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitHandler">
+            <summary>
+            Rocket队列处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHandler.AutoAck">
+            <summary>
+            是否自动应答
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            处理方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitRpcHandler">
+            <summary>
+            RPC模式处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitRpcHandler.QueueName">
+            <summary>
+            队列名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeHandler">
+            <summary>
+            发布订阅模式处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeHandler.ExchangeName">
+            <summary>
+            交换机名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitWorkHandler">
+            <summary>
+            工作模式处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitWorkHandler.QueueName">
+            <summary>
+            队列名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions">
+            <summary>
+            工作模式消费拓展主机
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.MessageCount">
+            <summary>
+            消息数量
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.SubscribeRabbitMQ(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions})">
+            <summary>
+            订阅RabbitMQ
+            </summary>
+            <param name="host">主机</param>
+            <param name="callback">主机配置列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.ReceivedMessageAsync``1(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IModel,System.Boolean,System.Boolean,System.Func{System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult},System.Threading.Tasks.Task})">
+            <summary>
+            接受消息回调处理方法
+            </summary>
+            <param name="eventArgs">回调事件参数</param>
+            <param name="channel">通道回</param>
+            <param name="awaitTask">是否同步等待任务结果</param>
+            <param name="autoAck">是否自动应答</param>
+            <param name="callback">业务回调处理</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitConnectionOptions">
+            <summary>
+            RabbitMQ客户端配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConnectionOptions.VirtualHost">
+            <summary>
+            虚拟主机
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions">
+            <summary>
+            RabbitMQ消费者配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions.AwaitTask">
+            <summary>
+            是否需要等待Task任务完成
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions.VirtualHost">
+            <summary>
+            虚拟主机
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions.Hosts">
+            <summary>
+            主机配置
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitHostOptions">
+            <summary>
+            主机配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHostOptions.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHostOptions.Host">
+            <summary>
+            主机地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHostOptions.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitHostOptions.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.ConnectionProvider">
+            <summary>
+            连接对象实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.ChannelList">
+            <summary>
+            通道列表
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.CacheList">
+            <summary>
+            缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetChannel(System.String)">
+            <summary>
+            获取连接通道
+            </summary>
+            <param name="host">主机配置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetConnection(System.String)">
+            <summary>
+            获取连接对象
+            </summary>
+            <param name="host">主机配置</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider">
+            <summary>
+            应答队列声明实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.CacheList">
+            <summary>
+            缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.QueueDeclare(RabbitMQ.Client.IModel,System.String)">
+            <summary>
+            声明应答的队列名称
+            </summary>
+            <param name="channel">通道</param>
+            <param name="queueName">生产的队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider">
+            <summary>
+            RPC模式消费者
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.AwaitCallbackTask">
+            <summary>
+            等待回调的任务列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.Subscribe(Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions)">
+            <summary>
+            订阅消费者
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.PullMessageBodyAsync(System.Boolean,System.Object,Com.GleekFramework.RabbitMQSdk.RabbitConnectionOptions)">
+            <summary>
+            拉取并处理消息
+            </summary>
+            <param name="awaitTask">是否同步等待任务结果</param>
+            <param name="options">处理服务</param>
+            <param name="hostOptions">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.ClientCallbackAsync(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IModel,System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult})">
+            <summary>
+            回调客户端
+            </summary>
+            <param name="eventArgs">消息内容</param>
+            <param name="channel">通道</param>
+            <param name="response">返回结果</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.SubscribeConsumerProvider">
+            <summary>
+            发布订阅模式实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.SubscribeConsumerProvider.Subscribe(Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions)">
+            <summary>
+            订阅消费者
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.SubscribeConsumerProvider.PullMessageBodyAsync(System.Boolean,System.Object,Com.GleekFramework.RabbitMQSdk.RabbitConnectionOptions)">
+            <summary>
+            拉取并处理消息
+            </summary>
+            <param name="virtualHost">虚拟主机</param>
+            <param name="awaitTask">是否同步等待任务结果</param>
+            <param name="options">处理服务</param>
+            <param name="hostOptions">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.WorkConsumerProvider">
+            <summary>
+            工作模式消费者
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkConsumerProvider.Subscribe(Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions)">
+            <summary>
+            订阅消费者
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkConsumerProvider.PullMessageBodyAsync(System.Boolean,System.Object,Com.GleekFramework.RabbitMQSdk.RabbitConnectionOptions)">
+            <summary>
+            拉取并处理消息
+            </summary>
+            <param name="awaitTask">是否同步等待任务结果</param>
+            <param name="options">处理服务</param>
+            <param name="hostOptions">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService">
+            <summary>
+            Rpc客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.CallbackTask">
+            <summary>
+            等待回调的任务列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync(System.String,System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(System.String,System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">参数</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="queueName">队列名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="queueName">队列名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">参数</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(System.String,``0,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(System.String,System.String,``0,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="queueName">队列名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(RabbitMQ.Client.IModel,System.String,System.String,``0,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="channel"></param>
+            <param name="queueName"></param>
+            <param name="replyQueueName">回调的队列名称</param>
+            <param name="data">数据</param>
+            <param name="serialNo">流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.ReceivedMessage(RabbitMQ.Client.Events.BasicDeliverEventArgs)">
+            <summary>
+            接受消息回调处理方法
+            </summary>
+            <param name="eventArgs">回调事件参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeClientService">
+            <summary>
+            发布订阅客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">参数</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitSubscribeClientService.PublishAsync``1(System.String,System.String,``0,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RabbitMQSdk.RabbitWorkClientService">
+            <summary>
+            Rpc客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitWorkClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitWorkClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="queueName">队列名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitWorkClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            推送消息
+            </summary>
+            <param name="host">主机地址</param>
+            <param name="queueName">队列名称</param>
+            <param name="type">消息类型(方法名称)</param>
+            <param name="data">参数</param>
+            <param name="serialNo">流水编号</param>
+            <param name="headers">头部喜喜</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitWorkClientService.PublishAsync``1(System.String,System.String,``0,System.String)">
+            <summary>
+            推送消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="host">主机</param>
+            <param name="queueName">队列名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">业务流水号</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.KafkaSdk.MessageExtensions">
+            <summary>
+            消息拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.KafkaSdk.MessageExtensions.ToMessageBody(RabbitMQ.Client.Events.BasicDeliverEventArgs)">
+            <summary>
+            转换成消息内容
+            </summary>
+            <param name="eventArgs"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

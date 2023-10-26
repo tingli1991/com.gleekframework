@@ -1,0 +1,22 @@
+{
+  "AllowedHosts": "*",
+  "Summaries": [
+    "Freezingss",
+    "Bracing"
+  ],
+  "ConfigOptions": {
+    "Id": 11111,
+    "Name": "张三",
+    "Arrays": [
+      "1",
+      "你好"
+    ]
+  },
+  "Logging": {
+    "LogLevel": {
+      "Microsoft": "Warning",
+      "Default": "Warning",
+      "Microsoft.Hosting.Lifetime": "Warning"
+    }
+  }
+}

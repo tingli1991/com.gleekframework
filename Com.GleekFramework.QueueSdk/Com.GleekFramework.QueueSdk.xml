@@ -1,0 +1,590 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.QueueSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.QueueSdk.QueueConstant">
+            <summary>
+            队列常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.QueueConstant.DEFAULT_QUEUE_TOPIC">
+            <summary>
+            默认的队列主题名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.StackConstant">
+            <summary>
+            栈常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.StackConstant.DEFAULT_STACK_TOPIC">
+            <summary>
+            默认的栈主题
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.PartitionedExtensions">
+            <summary>
+            分区拓展类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedExtensions.PartitionIncrementKey">
+            <summary>
+            分区递增Id位置
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedExtensions.GetPartitionIncrementKey``1(``0)">
+            <summary>
+            获取分区键
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedExtensions.GetPartitionIndex``1(``0,System.Int32,System.Object)">
+            <summary>
+            获取分区索引位置
+            </summary>
+            <param name="source"></param>
+            <param name="partitionCount"></param>
+            <param name="partitionKey"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.QueueHandler">
+            <summary>
+            队列消息处理接口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.QueueHandler.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.QueueHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.QueueHandler.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            实现方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.StackHandler">
+            <summary>
+            栈消息处理接口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.StackHandler.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.StackHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.StackHandler.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            实现方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.HostingExtensions">
+            <summary>
+            队列主机拓展
+            </summary>
+            <summary>
+            队列主机拓展
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.HostingExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost)">
+            <summary>
+            订阅Queue
+            </summary>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
+            <summary>
+            订阅Queue
+            </summary>
+            <param name="host"></param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(System.Threading.CancellationToken)">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost)">
+            <summary>
+            订阅Stack
+            </summary>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
+            <summary>
+            订阅Stack
+            </summary>
+            <param name="host"></param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(System.Threading.CancellationToken)">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.PartitionedQueue`1">
+            <summary>
+            分区队列
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedQueue`1.PartitionCount">
+            <summary>
+            分区数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedQueue`1.SurplusMessageCount">
+            <summary>
+            剩余的消息数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedQueue`1.PartitionerQueues">
+            <summary>
+            分区队列集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.#ctor">
+            <summary>
+            默认构造函数
+             分区数量按照计算机的核心数量*2
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="partitionCount">分区数量</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.PublishAsync(`0,System.Object)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="messageBody">消息</param>
+            <param name="partitionKey">分区键</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.PublishAsync(System.Collections.Generic.IEnumerable{`0},System.Object)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="messageBodys">消息</param>
+            <param name="partitionKey">分区键</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.ConsumerAsync(System.Int32)">
+            <summary>
+            消费
+            </summary>
+            <param name="partitionIndex">分区索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueue`1.Subscribe(System.Action{System.Int32,`0},System.Threading.CancellationToken)">
+            <summary>
+            订阅消费
+            </summary>
+            <param name="callback">消息回调函数</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.PartitionedStack`1">
+            <summary>
+            分区栈
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedStack`1.PartitionCount">
+            <summary>
+            分区数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedStack`1.SurplusMessageCount">
+            <summary>
+            剩余的消息数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedStack`1.PartitionerStacks">
+            <summary>
+            分区栈集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.#ctor">
+            <summary>
+            默认构造函数
+             分区数量按照计算机的核心数量*2
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="partitionCount">分区数量</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.PublishAsync(`0,System.Object)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="messageBody">消息</param>
+            <param name="partitionKey">分区键</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.PublishAsync(System.Collections.Generic.IEnumerable{`0},System.Object)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="messageBodys">消息</param>
+            <param name="partitionKey">分区键</param>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.ConsumerAsync(System.Int32)">
+            <summary>
+            消费
+            </summary>
+            <param name="partitionIndex">分区索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStack`1.Subscribe(System.Action{System.Int32,`0},System.Threading.CancellationToken)">
+            <summary>
+            订阅消费
+            </summary>
+            <param name="callback">消息回调函数</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.PartitionedQueueProvider">
+            <summary>
+            分区队列实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.lock">
+            <summary>
+            分布式锁
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PartitionCount">
+            <summary>
+            当前系统设置的分区数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PartitionedCacheList">
+            <summary>
+            主题分区消息队列
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.GetSurplusMessageCountAsync">
+            <summary>
+            获取所有的剩余消息数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PublishAsync(System.String,Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PublishAsync(System.String,System.Collections.Generic.IEnumerable{Com.GleekFramework.ContractSdk.MessageBody})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBodys">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PublishAsync``1(System.String,Com.GleekFramework.ContractSdk.MessageBody{``0})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.PublishAsync``1(System.String,System.Collections.Generic.IEnumerable{Com.GleekFramework.ContractSdk.MessageBody{``0}})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBodys">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.Subscribe(System.String,System.Action{System.String,System.Int32,Com.GleekFramework.ContractSdk.MessageBody},System.Threading.CancellationToken)">
+            <summary>
+            订阅消费
+            </summary>
+            <param name="topic">主题名称</param>
+            <param name="callback">消息回调函数</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedQueueProvider.GetPartitionedQueueSigle(System.String)">
+            <summary>
+            获取分区队列单列
+            </summary>
+            <param name="topic">主题名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.PartitionedStackProvider">
+            <summary>
+            分区栈实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedStackProvider.lock">
+            <summary>
+            分布式锁
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PartitionCount">
+            <summary>
+            当前系统设置的分区数量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PartitionedCacheList">
+            <summary>
+            主题分区消息栈
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.GetSurplusMessageCountAsync">
+            <summary>
+            获取所有的剩余消息数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PublishAsync(System.String,Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PublishAsync(System.String,System.Collections.Generic.IEnumerable{Com.GleekFramework.ContractSdk.MessageBody})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBodys">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PublishAsync``1(System.String,Com.GleekFramework.ContractSdk.MessageBody{``0})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.PublishAsync``1(System.String,System.Collections.Generic.IEnumerable{Com.GleekFramework.ContractSdk.MessageBody{``0}})">
+            <summary>
+            发布消息
+            </summary>
+            <param name="topic">主题</param>
+            <param name="messageBodys">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.Subscribe(System.String,System.Action{System.String,System.Int32,Com.GleekFramework.ContractSdk.MessageBody},System.Threading.CancellationToken)">
+            <summary>
+            订阅消费
+            </summary>
+            <param name="topic">主题名称</param>
+            <param name="callback">消息回调函数</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.PartitionedStackProvider.GetPartitionedStackSigle(System.String)">
+            <summary>
+            获取分区栈单列
+            </summary>
+            <param name="topic">主题名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.QueueClientService">
+            <summary>
+            队列客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.QueueClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishAsync``1(System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishAsync``1(System.Enum,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishAsync``1(System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishAsync``1(System.Enum,System.String,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishManyAsync``1(System.Enum,System.Collections.Generic.IEnumerable{``0},System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.QueueClientService.PublishManyAsync``1(System.Enum,System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.QueueSdk.StackClientService">
+            <summary>
+            队列客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.StackClientService.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishAsync``1(System.Enum,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishAsync``1(System.Enum,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishAsync``1(System.Enum,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishAsync``1(System.Enum,System.String,``0,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishManyAsync``1(System.Enum,System.Collections.Generic.IEnumerable{``0},System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.StackClientService.PublishManyAsync``1(System.Enum,System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发布消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">方法名称</param>
+            <param name="topic">主题</param>
+            <param name="data">消息内容</param>
+            <param name="serialNo">流水号</param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

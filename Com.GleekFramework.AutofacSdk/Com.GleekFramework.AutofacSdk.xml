@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.AutofacSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.AutofacSdk.AutofacConstant">
+            <summary>
+            Autofac基础常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AutofacSdk.AutofacConstant.BASEAUTOFAC_TYPE">
+            <summary>
+            用于实现属性注入的基础接口类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AutofacSdk.AutofacConstant.CONTROLLERBASE_TYPE">
+            <summary>
+            基础控制器属性注入的基础接口类型
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.AutofacProviderExtensions">
+            <summary>
+            服务实现拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacProviderExtensions.GetService``1(System.Type)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.ServiceExtensions">
+            <summary>
+            服务注入拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.ServiceExtensions.GetServiceList``1(``0,System.Func{System.Type,System.Boolean})">
+            <summary>
+            获取服务列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">父级对象模型</param>
+            <param name="filter">过滤条件</param>
+            <returns>继承于父类的所有服务</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.ServiceExtensions.GetServiceList``1(System.Type,System.Func{System.Type,System.Boolean})">
+            <summary>
+            获取服务列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">父级对象模型</param>
+            <param name="filter">过滤条件</param>
+            <returns>继承于父类的所有服务</returns>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.CustomServiceProviderFactory">
+            <summary>
+            自定义服务注入工厂
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AutofacSdk.CustomServiceProviderFactory._configurationAction">
+            <summary>
+            容器生成器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.CustomServiceProviderFactory.#ctor(System.Action{Autofac.ContainerBuilder})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configurationAction"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.CustomServiceProviderFactory.CreateBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            创建容器生成器
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.CustomServiceProviderFactory.CreateServiceProvider(Autofac.ContainerBuilder)">
+            <summary>
+            创建ServiceProvider容器实现类
+            </summary>
+            <param name="containerBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.HostingExtensions">
+            <summary>
+            主机拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用默认的IOC注入方式
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac``1(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用Autofac
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac``1(Autofac.ContainerBuilder)">
+            <summary>
+            使用属性注入
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.AddControllerActivator(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注入控制器
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.IBaseAutofac">
+            <summary>
+            依赖注入接口，IOC都要实现这个接口
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.DefaultModule">
+            <summary>
+            默认注入
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.DefaultModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            加载
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.DefaultModule.RegisterAutofacBase(Autofac.ContainerBuilder)">
+            <summary>
+            注入所有的AutofacBase子类
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.DefaultModule.RegisterController(Autofac.ContainerBuilder)">
+            <summary>
+            注册控制器的依赖关系
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.AutofacProvider">
+            <summary>
+            Autofac容器实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AutofacSdk.AutofacProvider.Container">
+            <summary>
+            容器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AutofacSdk.AutofacProvider.Services">
+            <summary>
+            Ioc容器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacProvider.GetService``1">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacProvider.GetService``1(System.Type)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacProvider.GetService(System.Type)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

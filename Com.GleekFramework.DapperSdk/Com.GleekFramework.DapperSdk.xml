@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.DapperSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.DapperSdk.DapperConstant">
+            <summary>
+            Dapper常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_TIMEOUT_SECONDS">
+            <summary>
+            数据库访问超市时间的秒数
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_MSSQL_CONNECTION_NAME">
+            <summary>
+            MSSQL默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_MYSQL_CONNECTION_NAME">
+            <summary>
+            MYSQL默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_PGSQL_CONNECTION_NAME">
+            <summary>
+            PGSQL默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_SQLLITE_CONNECTION_NAME">
+            <summary>
+            SQLLITE默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.DapperConstant.DEFAULT_ORACLE_CONNECTION_NAME">
+            <summary>
+            ORACLEE默认的链接字符串名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.HostingExtensions">
+            <summary>
+            Dapper仓储拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+            <summary>
+            使用Dapper
+            </summary>
+            <param name="builder"></param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用Dapper
+            </summary>
+            <param name="builder"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            使用Dapper
+            </summary>
+            <param name="services"></param>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接名称列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.MapperHostingExtensions">
+            <summary>
+            字段映射工具拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.MapperHostingExtensions.UseDapperColumnMap(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+            <summary>
+            使用Dapper字段映射
+            </summary>
+            <param name="builder"></param>
+            <param name="assemblyNameList">命名空间名称列表</param>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.ColumnTypeMapper">
+            <summary>
+            列的类型映射
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.ColumnTypeMapper.#ctor(System.Type)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.FallbackTypeMapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.FallbackTypeMapper._mappers">
+            <summary>
+            映射关系
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.FallbackTypeMapper.#ctor(System.Collections.Generic.IEnumerable{Dapper.SqlMapper.ITypeMap})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="mappers"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.FallbackTypeMapper.FindConstructor(System.String[],System.Type[])">
+            <summary>
+            
+            </summary>
+            <param name="names"></param>
+            <param name="types"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.FallbackTypeMapper.GetConstructorParameter(System.Reflection.ConstructorInfo,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="constructor"></param>
+            <param name="columnName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.FallbackTypeMapper.GetMember(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="columnName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.FallbackTypeMapper.FindExplicitConstructor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.RepositoryProvider">
+            <summary>
+            Dapper仓储实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.RepositoryProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.RepositoryProvider.ConnectionStrCache">
+            <summary>
+            连接字符串字典缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.RepositoryProvider.GetConnectionString(System.String)">
+            <summary>
+            获取连接字符串
+            </summary>
+            <param name="connectionName">连接字符串名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.RepositoryProvider.RegisterConnectionStrings(Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            注册数据库连接字符串
+            </summary>
+            <param name="configuration">配置对象</param>
+            <param name="connectionNames">连接字符串名称</param>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.DapperRepository">
+            <summary>
+            Dapper基础仓库
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.DapperRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetConnection">
+            <summary>
+            获取并打开连接字符串对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.DapperRepository.ConnectionString">
+            <summary>
+            获取连接字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Open``1(System.Func{System.Data.IDbConnection,``0})">
+            <summary>
+            执行方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.OpenAsync``1(System.Func{System.Data.IDbConnection,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            执行方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefault``1(System.String,System.Object,System.Nullable{System.Int32})">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数对象</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefaultAsync``1(System.String,System.Object,System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数对象</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetList``1(System.String,System.Object,System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数对象</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetListAsync``1(System.String,System.Object,System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数对象</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Execute(System.String,System.Object,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="param"></param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.ExecuteAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="param"></param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="paramters"></param>
+            <param name="pageSize">分页大小</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.ExecuteAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="paramters"></param>
+            <param name="pageSize">分页大小</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.ExecuteScalar``1(System.String,System.Object,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <typeparam name="T">指定返回的对象</typeparam>
+            <param name="sql">sql脚本</param>
+            <param name="param">sql脚本对应的参数</param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.ExecuteScalarAsync``1(System.String,System.Object,System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <typeparam name="T">指定返回的对象</typeparam>
+            <param name="sql">sql脚本</param>
+            <param name="param">sql脚本对应的参数</param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.MsSqlRepository">
+            <summary>
+            MsSql仓储服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.MsSqlRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.MsSqlRepository.GetConnection">
+            <summary>
+            获取连接对象
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.MySqlRepository">
+            <summary>
+            MySql仓储服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.MySqlRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.MySqlRepository.GetConnection">
+            <summary>
+            获取连接对象
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.SQLiteRepository">
+            <summary>
+            PgSQL数据仓储
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.SQLiteRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SQLiteRepository.GetConnection">
+            <summary>
+            获取连接对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.PgSqlRepository">
+            <summary>
+            PgSQL数据仓储
+            连接字符串格式：User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=postgres;
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.PgSqlRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.PgSqlRepository.GetConnection">
+            <summary>
+            获取连接对象
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.OracleRepository">
+            <summary>
+            Oracle数据仓储
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.OracleRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.OracleRepository.GetConnection">
+            <summary>
+            获取连接对象
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

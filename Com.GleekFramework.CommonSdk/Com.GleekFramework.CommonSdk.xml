@@ -1,0 +1,1709 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.CommonSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.CommonSdk.ActionAttribute">
+            <summary>
+            行为特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.ActionAttribute.Key">
+            <summary>
+            行为名称键
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActionAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="key">键</param>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DependencyConstant">
+            <summary>
+            依赖常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.DependencyConstant.ExcludeLibraryTypeList">
+            <summary>
+            排查的库类型列表
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.DependencyConstant.ExcludeLibraryNameList">
+            <summary>
+            排查的库名称列表
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.VersionCompare">
+            <summary>
+            版本对比方式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.EQ">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.NQ">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.LT">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.GT">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.LTE">
+            <summary>
+            小于或等于
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.VersionCompare.GTE">
+            <summary>
+            大于或等于
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ActivatorExtensions">
+            <summary>
+            实例激活拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorExtensions.CreateInstance``1(System.Type)">
+            <summary>
+            创建对象实例
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorExtensions.CreateInstance(System.Type)">
+            <summary>
+            创建对象实例
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.AssemblyExtensions">
+            <summary>
+            针对Type类型的扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.GetTypeList(System.Type)">
+            <summary>
+            获取程序集合下面的所有类型列表
+            </summary>
+            <param name="type">父级类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.GetTypeList(System.Reflection.Assembly)">
+            <summary>
+            获取程序集合下面的所有类型列表
+            </summary>
+            <param name="assembly">程序集</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.GetTypeList(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            获取程序集合下面的所有类型列表
+            </summary>
+            <param name="assemblyList">程序集列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.GetAssemblyList(System.Type)">
+            <summary>
+            获取程序集列表
+            </summary>
+            <param name="type">父级类型</param>
+            <returns>程序集列表</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.CheckIsAssignableFrom(System.Reflection.Assembly,System.Type)">
+            <summary>
+            检查当前程序集当中的类是否包含type的子类
+            </summary>
+            <param name="assembly">程序集</param>
+            <param name="type">基础类型</param>
+            <returns>true 表示是子类 false 表示不是子类</returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.AttributeExtensions">
+            <summary>
+            特性扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AttributeExtensions.GetAttributeValue``2(System.Type,System.Func{``0,``1})">
+            <summary>
+            获取特性值
+            </summary>
+            <typeparam name="TAttribute"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="type"></param>
+            <param name="valueSelector"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.Base64Extensions">
+            <summary>
+            Base64拓展类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.Base64Extensions.base64CodeArray">
+            <summary>
+            Base64代码数组
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Base64Extensions.IsBase64(System.String)">
+            <summary>
+            是否base64字符串
+            * 字符串只可能包含A-Z，a-z，0-9，+，/，=字符 
+            * 字符串长度是4的倍数
+            * =只会出现在字符串最后，可能没有或者一个等号或者两个等号
+            </summary>
+            <param name="base64Str">要判断的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Base64Extensions.ToBase64(System.String)">
+            <summary>
+            转换成Base64字符串
+            </summary>
+            <param name="text">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Base64Extensions.Base64ToString(System.String)">
+            <summary>
+            Base64转字符串
+            </summary>
+            <param name="base64"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Base64Extensions.Base64StringLen(System.String)">
+            <summary>
+            处理base64长度
+            * 字符串只可能包含A-Z，a-z，0-9，+，/，=字符 
+            * 字符串长度是4的倍数
+            * =只会出现在字符串最后，可能没有或者一个等号或者两个等号
+            </summary>
+            <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ConnectionExtensions">
+            <summary>
+            连接字符串拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.GetConnectionObjectList``1(Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+            <summary>
+            获取连接字符串对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration">配置文件对象</param>
+            <param name="keys">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.GetConnectionObjectList``1(Microsoft.Extensions.Configuration.IConfiguration,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取连接字符串对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration">配置文件对象</param>
+            <param name="keys">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.GetConnectionObject``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            获取连接字符串对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration">配置文件对象</param>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.ToConnectionObject``1(System.String)">
+            <summary>
+            转换成连接字符串对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connectionStrings">连接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.ToConnectionObject``1(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            转换成连接字符串对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dictionary">字典集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.ToConnectionStrings``1(``0)">
+            <summary>
+            转化成对象的连接字符串
+            </summary>
+            <param name="source">连接对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ConnectionExtensions.ToConnectionDictionary(System.String)">
+            <summary>
+            连接字符串
+            </summary>
+            <param name="connectionStrings">连接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DataMapperExtensions">
+            <summary>
+            数据模型映射拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``2(``0)">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="TSource">原数据类型</typeparam>
+            <typeparam name="TTarget">目标数据类型</typeparam>
+            <param name="source">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="TSource">原数据类型</typeparam>
+            <typeparam name="TTarget">目标数据类型</typeparam>
+            <param name="sources">原数据实例集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DateTimeExtensions">
+            <summary>
+            时间拓展类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.DateTimeExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToDateTime(System.Nullable{System.DateTime})">
+            <summary>
+            转换时间格式
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToDateTime(System.Decimal)">
+            <summary>
+            时间戳转为C#格式时间10位
+            </summary>
+            <param name="unixTime">Unix时间戳格式</param>
+            <returns>C#格式时间</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToDateTime(System.Double)">
+            <summary>
+            时间戳转为C#格式时间10位
+            </summary>
+            <param name="unixTime">Unix时间戳格式</param>
+            <returns>C#格式时间</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToDateTime(System.Int64)">
+            <summary>
+            时间戳转为C#格式时间
+            </summary>
+            <param name="unixTime">Unix时间戳格式</param>
+            <returns>C#格式时间</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToCstToday(System.DateTime)">
+            <summary>
+            解决Windows和linux系统市区问题
+            </summary>
+            <param name="dateTime">时间对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToCstTime(System.DateTime)">
+            <summary>
+            解决Windows和linux系统市区问题
+            </summary>
+            <param name="dateTime">时间对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToUnixTimeForSeconds(System.DateTime)">
+            <summary>
+            转换为时间戳
+            精确到秒（长度10）
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.ToUnixTimeForMilliseconds(System.DateTime)">
+            <summary>
+            转换为时间戳
+            精确到毫秒（长度13）
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.GetRandomTime(System.DateTime,System.DateTime)">
+            <summary>
+            获取两个时间段内的随机时间
+            </summary>
+            <param name="beginTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.GetRandomTime(System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            在制定的时间范围内生成随机时间
+            </summary>
+            <param name="beginTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="intervalSeconds">间隔时间(秒数)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DateTimeExtensions.GetRandomTime(System.Collections.Generic.IEnumerable{System.DateTime},System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            在指定的时间抽上面生成随机时间
+            </summary>
+            <param name="timeaxis">时间抽(开始时间到结束时间之内的时间轴有效)</param>
+            <param name="beginTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="intervalSeconds">间隔时间(秒数)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DictionaryExtensions">
+            <summary>
+            字典类型扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetValue(System.Collections.Generic.IDictionary{System.String,System.String},System.String[])">
+            <summary>
+            获取对应字典对象的值
+            </summary>
+            <param name="source"></param>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetValue``1(System.Collections.Generic.IDictionary{System.String,System.String},System.String[])">
+            <summary>
+            获取对应字典对象的值
+            </summary>
+            <param name="source"></param>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetValue``1(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            获取对应字典对象的值
+            </summary>
+            <param name="source"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetValue(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            获取对应字典对象的值
+            </summary>
+            <param name="source"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            获取配置信息
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="source"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetActionArgumentValue``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String[])">
+            <summary>
+            获取参数字段值
+            </summary>
+            <param name="actionArguments">行为参数</param>
+            <param name="fieldNames">字段名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DictionaryExtensions.GetActionArgumentValue(System.Collections.Generic.IDictionary{System.String,System.Object},System.String[])">
+            <summary>
+            获取参数字段值
+            </summary>
+            <param name="actionArguments">行为参数</param>
+            <param name="fieldNames">字段名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.EnumerableExtensions">
+            <summary>
+            集合基础拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.Add``1(System.Collections.Generic.IEnumerable{``0},``0)">
+             <summary>
+            迭代遍历选项
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="enumerable"></param>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            ForEach扩展方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            ForEach扩展方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="func"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ToPageCount``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            转换分页的大小
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceList"></param>
+            <param name="pageSize">分页大小(默认：2000条)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ToPageList``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            转换分页列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceList">数据源</param>
+            <param name="pageIndex">分页页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ToPageDictionary``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            转换分页字典列表(Key存页码,Value存分页数据)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceList">数据源</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ToPageBinaryDictionary``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            转换分页字典列表(Key存页码,Value存分页数据)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceList">数据源</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.EnumExtensions">
+            <summary>
+            枚举拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumExtensions.EqualsActionKey(System.Enum,System.String)">
+            <summary>
+            对比Action
+            </summary>
+            <param name="source">原枚举数据</param>
+            <param name="actionKey">行为键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumExtensions.GetDescription(System.Enum)">
+            <summary>
+            自定义枚举扩展
+            </summary>
+            <param name="source">定义枚举</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumExtensions.GetActionKey(System.Enum)">
+            <summary>
+            获取行为键
+            </summary>
+            <param name="source">枚举</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumExtensions.GetCustomAttribute``1(System.Enum)">
+            <summary>
+            获取自定的自定义特性值
+            </summary>
+            <typeparam name="T">特性对象</typeparam>
+            <param name="source">枚举</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.HeaderExtensions">
+            <summary>
+            头部信息拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HeaderExtensions.AddHeader(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            添加头部信息
+            </summary>
+            <param name="headers">头部信息</param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HeaderExtensions.AddHeaders(System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            追加头部信息
+            </summary>
+            <param name="source"></param>
+            <param name="headers">头部信息</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HeaderExtensions.GetUrl(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            获取地址信息
+            </summary>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.JsonFormatExtensions">
+            <summary>
+            JSON格式化拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.Format(System.String)">
+            <summary>
+            JSON格式化(压缩+格式化+缩进)
+            </summary>
+            <param name="jsonValue">JSONN字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonEscape(System.String)">
+            <summary>
+            Json转义
+            </summary>
+            <param name="jsonValue">Json格式化</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonCompressAndEscape(System.Object)">
+            <summary>
+            压缩并转义
+            </summary>
+            <param name="obj">实例对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonCompressAndEscape(System.String)">
+            <summary>
+            压缩并转义
+            </summary>
+            <param name="jsonValue">Json数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonCompress(System.String)">
+            <summary>
+            压缩JSON
+            </summary>
+            <param name="jsonValue">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonFormat(System.String)">
+            <summary>
+            JSON格式化
+            </summary>
+            <param name="jsonValue">JSONN字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonFormatExtensions.JsonIndent(System.String)">
+            <summary>
+            JSON缩进
+            </summary>
+            <param name="jsonValue">JSONN字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.LambdaExtensions">
+            <summary>
+            Lambda表达式扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.LambdaExtensions.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            拼接and关系
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.LambdaExtensions.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            拼接或者关系
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.LambdaExtensions.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.BinaryExpression})">
+            <summary>
+            合并2个表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expr1"></param>
+            <param name="expr2"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ReplaceExpressionVisitor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ReplaceExpressionVisitor._oldValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ReplaceExpressionVisitor._newValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ReplaceExpressionVisitor.#ctor(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ReplaceExpressionVisitor.Visit(System.Linq.Expressions.Expression)">
+            <summary>
+            
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.Md5Extensions">
+            <summary>
+            MD5加密拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Md5Extensions.EncryptMd5(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ObjectExtensions">
+            <summary>
+            对象拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue``1(System.Object,System.String[])">
+            <summary>
+            获取属性名称
+            </summary>
+            <param name="obj"></param>
+            <param name="fieldNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            获取一个类指定的属性值
+            </summary>
+            <param name="obj">object对象</param>
+            <param name="fieldName">属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue``1(System.Object,System.String)">
+            <summary>
+            获取一个类指定的属性值
+            </summary>
+            <param name="obj">object对象</param>
+            <param name="fieldName">属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.SetPropertyValue(System.Object,System.String,System.Object)">
+            <summary>
+            设置对象属性值
+            </summary>
+            <param name="obj"></param>
+            <param name="fieldName">字段名称</param>
+            <param name="value">字段值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.PropertyExtensions">
+            <summary>
+            属性反射拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfoList(System.Type)">
+            <summary>
+            获取Type的属性列表
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ProtobufExtensions">
+            <summary>
+            Protobuf序列化拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ProtobufExtensions.SerializeBinary``1(``0)">
+             <summary>
+            序列化成二进制
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ProtobufExtensions.DeserializeObject``1(System.Byte[])">
+            <summary>
+            反序列化为数据模型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.RadomExtensions">
+            <summary>
+            随机数基础拓展
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.RadomExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.NextLong(System.Random,System.Int64,System.Int64)">
+            <summary>
+            LONG类型随机
+            </summary>
+            <param name="random">扩展的对象</param>
+            <param name="minValue">最小值</param>
+            <param name="maxValue">最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.Next``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            从指定的列表随机获取一个值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceList">列表对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.Next``1(System.Random,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            从指定的列表随机获取一个值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_random">扩展源</param>
+            <param name="sourceList">列表对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.SerializeExtensions">
+            <summary>
+            序列化拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.SerializeExtensions.DeserializeObject``1(System.String)">
+            <summary>
+            反序列化请求参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content">Http响应内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.StringExtensions">
+            <summary>
+            字符串基础拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ToObject``1(System.String)">
+            <summary>
+            字符串转换成对象
+            </summary>
+            <typeparam name="T">返回的泛型对象</typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ToList(System.String)">
+            <summary>
+            转换成列表
+            </summary>
+            <param name="input">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ToArray(System.String)">
+            <summary>
+            转换成列表
+            </summary>
+            <param name="input">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.Substring``1(System.String,System.Int32)">
+            <summary>
+            截取字符串并返回指定类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content">需要截取的字符串</param>
+            <param name="startIndex">开始位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.Substring``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            截取字符串并返回指定类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content">需要截取的字符串</param>
+            <param name="startIndex">开始位置</param>
+            <param name="length">长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.Substring``1(System.String,System.String,System.String)">
+            <summary>
+            截取字符串中指定标签内的内容
+            </summary>
+            <param name="content">需要截取的字符串</param>
+            <param name="start">开始标签</param>
+            <param name="end">结束标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.Substring(System.String,System.String,System.String)">
+            <summary>
+            截取字符串中指定标签内的内容
+            </summary>
+            <param name="content">需要截取的字符串</param>
+            <param name="start">开始标签</param>
+            <param name="end">结束标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.HashMaxLength(System.String,System.Int32)">
+            <summary>
+            验证字符串最大长度,返回指定长度的字符串
+            </summary>
+            <param name="input">输入字符串</param>
+            <param name="maxLength">最大长度</param>
+            <returns></returns>         
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.HasMinLength(System.String,System.Int32)">
+            <summary>
+            验证字符串的最小长度,返回指定长度的字符串
+            </summary>
+            <param name="input"></param>
+            <param name="minLength"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.VersionExtensions">
+            <summary>
+            版本号扩展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MaxVervion(System.Collections.Generic.IEnumerable{System.Version})">
+            <summary>
+            获取最大版本号
+            </summary>
+            <param name="versions">版本列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MaxVervion(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取最大版本号
+            </summary>
+            <param name="versions">版本列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MinVervion(System.Collections.Generic.IEnumerable{System.Version})">
+            <summary>
+            获取最小版本号
+            </summary>
+            <param name="versions">版本列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MinVervion(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取最小版本号
+            </summary>
+            <param name="versions">版本列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MaxVervion(System.String,System.String)">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <param name="version1"></param>
+            <param name="version2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MaxVervion(System.Version,System.Version)">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <param name="version1"></param>
+            <param name="version2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MinVervion(System.String,System.String)">
+            <summary>
+            获取最小的版本号
+            </summary>
+            <param name="version1"></param>
+            <param name="version2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.MinVervion(System.Version,System.Version)">
+            <summary>
+            获取最小的版本号
+            </summary>
+            <param name="version1"></param>
+            <param name="version2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.Compare(System.Version,System.Version,Com.GleekFramework.CommonSdk.VersionCompare)">
+            <summary>
+            版本比较
+            </summary>
+            <param name="version1">旧版本</param>
+            <param name="version2">新版本</param>
+            <param name="compareWay">对比方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VersionExtensions.Compare(System.String,System.String,Com.GleekFramework.CommonSdk.VersionCompare)">
+            <summary>
+            版本比较
+            </summary>
+            <param name="version1">旧版本</param>
+            <param name="version2">新版本</param>
+            <param name="compareWay">对比方式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.HostingExtensions">
+            <summary>
+            主机拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HostingExtensions.UseSemaphoreSwitch(Microsoft.Extensions.Hosting.IHost,System.Int32,System.Int32)">
+            <summary>
+            启用信号两开关
+            </summary>
+            <param name="host"></param>
+            <param name="minProcessorCount">最小能够处理请求的线程数(初始值)</param>
+            <param name="maxProcessorCount">最大能够处理请求的线程数量(上限值)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DataMapper`2">
+            <summary>
+            数据模型映射拓展类
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TTarget"></typeparam>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.DataMapper`2.MapFunc">
+            <summary>
+            Map带返回值的委托
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapper`2.Map(`0)">
+            <summary>
+            单模型映射方法
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapper`2.MapList(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            列表模型映射
+            </summary>
+            <param name="sources"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapper`2.GetMap">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapper`2.GetClassExpression(System.Linq.Expressions.Expression,System.Type,System.Type)">
+            <summary>
+            类型是clas时赋值
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapper`2.GetListExpression(System.Linq.Expressions.Expression,System.Type,System.Type)">
+            <summary>
+            类型为集合时赋值
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ActivatorProvider">
+            <summary>
+            实例激活实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ActivatorProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ActivatorProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorProvider.CreateInstances(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            创建对象实例
+            </summary>
+            <param name="typeList">对象类型列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorProvider.CreateInstance``1(System.Type)">
+            <summary>
+            创建对象实例
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorProvider.CreateInstance(System.Type)">
+            <summary>
+            创建对象实例
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ActivatorProvider.GetInstance(System.Type)">
+            <summary>
+            获取实例
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.AssemblyProvider">
+            <summary>
+            程序集实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.AssemblyProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.AssemblyProvider.AssemblyList">
+            <summary>
+            程序集列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyProvider.GetAssemblyList(System.Type)">
+            <summary>
+            获取程序集列表
+            </summary>
+            <param name="type">父级类型</param>
+            <returns>程序集列表</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyProvider.GetAssemblyList">
+            <summary>
+            获取程序集列表
+            </summary>
+            <returns>程序集列表</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyProvider.GetAssembly(System.String)">
+            <summary>
+            获取程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyProvider.CheckIsAssignableFrom(System.Reflection.Assembly,System.Type)">
+            <summary>
+            检查当前程序集当中的类是否包含type的子类
+            </summary>
+            <param name="assembly">程序集</param>
+            <param name="type">基础类型</param>
+            <returns>true 表示是子类 false 表示不是子类</returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.AssemblyTypeProvider">
+            <summary>
+            程序集对象类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.AssemblyTypeProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.AssemblyTypeProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyTypeProvider.GetTypeList(System.Reflection.Assembly)">
+            <summary>
+            获取程序集合下面的所有类型列表
+            </summary>
+            <param name="assembly">程序集</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.DocumentProvider">
+            <summary>
+            程序集的文档实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.DocumentProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.DocumentProvider.XmlDocumentFileList">
+            <summary>
+            当前程序集的所有XML文件名称缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DocumentProvider.GetXmlDocumentFileList">
+            <summary>
+            获取当前程序集的所有XML路径列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DocumentProvider.GetExistsXmlDocumentFileList">
+            <summary>
+            获取当前程序集的所有XML路径列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.FieldAttributeProvider">
+            <summary>
+            字段自定义特性实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.FieldAttributeProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.FieldAttributeProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.FieldAttributeProvider.GetCustomAttribute``1(System.Reflection.FieldInfo)">
+            <summary>
+            获取自定义特性(包含T以及T的子类)
+            </summary>
+            <param name="fieldInfo">对象对应的字段信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.FieldAttributeProvider.GetCustomAttributeList``1(System.Reflection.FieldInfo,System.Func{System.Attribute,System.Boolean})">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="fieldInfo">对象对应的字段信息</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.FieldAttributeProvider.GetCustomAttributeList(System.Reflection.FieldInfo)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="fieldInfo">对象对应的字段信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.FieldProvider">
+            <summary>
+            字段实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.FieldProvider.lock">
+            <summary>
+            对象所
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.FieldProvider.CacheList">
+            <summary>
+            缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.FieldProvider.GetField(System.Type,System.String)">
+            <summary>
+            获取字段
+            </summary>
+            <param name="type">类型</param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.FieldProvider.GetFieldList(System.Type)">
+            <summary>
+            获取字段列表
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.LibraryProvider">
+            <summary>
+            编译库实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.LibraryProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.LibraryProvider.LibrarieNnameList">
+            <summary>
+            编译库的名称列表缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.LibraryProvider.GetLibraryNameList">
+            <summary>
+            获取编译库的名称列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.PropertyAttributeProvider">
+            <summary>
+            属性自定义特性实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.PropertyAttributeProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.PropertyAttributeProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeProvider.GetCustomAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            获取自定义特性(包含T以及T的子类)
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeProvider.GetCustomAttributeList``1(System.Reflection.PropertyInfo,System.Func{System.Attribute,System.Boolean})">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeProvider.GetCustomAttributeList(System.Reflection.PropertyInfo)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.PropertyProvider">
+            <summary>
+            反射属性实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.PropertyProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.PropertyProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyProvider.GetPropertyInfoList(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            获取类型列表的属性信息列表
+            </summary>
+            <param name="typeList">类型列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyProvider.GetPropertyInfoList(System.Type,System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            获取Type的属性列表
+            </summary>
+            <param name="type">对象类型</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyProvider.GetPropertyInfoList(System.Type)">
+            <summary>
+            获取Type的属性列表
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.SemaphoreProvider">
+            <summary>
+            信号量拓展实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.SemaphoreProvider.Switch">
+            <summary>
+            信号量开关
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.SemaphoreProvider.SemaphoreSlim">
+            <summary>
+            信号量(默认：CPU核心数量的2倍)
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.SemaphoreProvider.SetSemaphoreSwitch(System.Int32,System.Int32)">
+            <summary>
+            打开信号量开关配置
+            </summary>
+            <param name="minProcessorCount">最小能够处理请求的线程数(初始值)</param>
+            <param name="maxProcessorCount">最大能够处理请求的线程数量(上限值)</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.SemaphoreProvider.ExecuteAsync(System.Func{System.Int32,System.Threading.Tasks.Task})">
+            <summary>
+            执行信号量处理的方法
+            </summary>
+            <param name="callback">回调处理方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.SemaphoreProvider.ExecuteAsync``1(System.Func{System.Int32,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            执行信号量处理的方法
+            </summary>
+            <param name="callback">回调处理方法</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions">
+            <summary>
+            身份证号码验证
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions.Address">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions.IsCardId(System.String)">
+            <summary>
+            身份证验证
+            </summary>
+            <param name="cardId">身份证号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions.GetBrithdayTime(System.String)">
+            <summary>
+            根据身份证号获取生日
+            </summary>
+            <param name="cardId">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions.CheckIDCard15(System.String)">
+            <summary>
+            15位身份证验证
+            </summary>
+            <param name="cardId">身份证号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions.CheckIDCard18(System.String)">
+            <summary>
+            18位身份证验证
+            </summary>
+            <param name="cardId">身份证号</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.JsonVerifyExtensions">
+            <summary>
+            JSON验证拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonVerifyExtensions.IsJson(System.String)">
+            <summary>
+            检查字符串是否是JSON格式
+            </summary>
+            <param name="jsonValue">JSON字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonVerifyExtensions.IsJsonStart(System.String)">
+            <summary>
+            检查字符串是否以JSON字符开头
+            </summary>
+            <param name="jsonValue">JSON字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonVerifyExtensions.IsJsonStart(System.String@)">
+            <summary>
+            检查字符串是否以JSON字符开头
+            </summary>
+            <param name="jsonValue">JSON字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonVerifyExtensions.IsJson(System.String,System.Int32@)">
+            <summary>
+            检查字符串是否是JSON格式
+            </summary>
+            <param name="jsonValue"></param>
+            <param name="errIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonVerifyExtensions.GetValueLength(System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取值的长度（当Json值嵌套以"{"或"["开头时）
+            </summary>
+            <param name="jsonValue"></param>
+            <param name="breakOnErr"></param>
+            <param name="errIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.JsonCharState">
+            <summary>
+            字符状态
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.jsonStart">
+            <summary>
+            以 "{"开始了
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.setDicValue">
+            <summary>
+            可以设置字典值了
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.escapeChar">
+            <summary>
+            以"\"转义符号开始了
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.arrayStart">
+            <summary>
+            数组开始【仅第一开头才算】，值嵌套的以【childrenStart】来标识
+            以"[" 符号开始了
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.state">
+            <summary>
+            【0 初始状态，或 遇到“,”逗号】；【1 遇到“：”冒号】
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.keyStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.valueStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.isError">
+            <summary>
+            是否语法错误
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.JsonCharState.childrenStart">
+            <summary>
+            子级嵌套开始了
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonCharState.CheckIsError(System.Char)">
+            <summary>
+            只当成一级处理（因为GetLength会递归到每一个子项处理）
+            </summary>
+            <param name="charStr"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.JsonCharState.SetCharState(System.Char,Com.GleekFramework.CommonSdk.JsonCharState@)">
+            <summary>
+            设置字符状态(返回true则为关键词，返回false则当为普通字符处理）
+            </summary>
+            <param name="charStr"></param>
+            <param name="jsonCharState"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.VerifyExtensions">
+            <summary>
+            数据验证基础拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsStringType``1(``0)">
+            <summary>
+            是否是字符串类型
+            </summary>
+            <param name="source">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsStringType(System.Type)">
+            <summary>
+            是否是字符串类型
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsPrimitiveType``1(``0)">
+            <summary>
+            是否是基础类型
+            注意：不包括结构体
+            </summary>
+            <param name="source">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsPrimitiveType(System.Type)">
+            <summary>
+            是否是基础类型
+            注意：不包括结构体
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsIPV4(System.String)">
+            <summary>
+            检查IP地址的格式是否正确
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNull(System.Object)">
+            <summary>
+            判断是否为空
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNull(System.String)">
+            <summary>
+            判断字符串是否为空
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNotNull(System.Object)">
+            <summary>
+            判断是否为空
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsBool(System.String)">
+            <summary>
+            是否是Bool值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsInt32(System.String)">
+            <summary>
+            验证字符串是否整数
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsDouble(System.String)">
+            <summary>
+            验证字符串是否浮点数字
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsEmail(System.String)">
+            <summary>
+            验证字符串Email地址
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNumber(System.String)">
+            <summary>
+            验证是否为数字
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsDate(System.String)">
+            <summary>
+            验证字符串是否日期
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsAnsiSqlDate(System.String)">
+            <summary>
+            验证字符串是否 ANSI SQL date format
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsTxtFileName(System.String)">
+            <summary>
+            验证字符串是否TXT文件名(全名)
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsTelephone(System.String)">
+            <summary>
+            验证电话号码
+            </summary>
+            <param name="input">要验证的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsValidMobile(System.String)">
+            <summary>
+            验证手机号码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsValidPhoneAndMobile(System.String)">
+            <summary>
+            电话有效性（固话和手机 ）
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsLetterAndNumber(System.String)">
+            <summary>
+            验证是否为字母和数字
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsBetweenWithNumber(System.String,System.Int32,System.Int32)">
+            <summary>
+            判断是否在制定长度范围内的数字
+            </summary>
+            <param name="input">输入字符串</param>
+            <param name="maxLength">最大长度</param>
+            <param name="minLength">最小长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsWithdrawalPassword(System.String,System.Int32)">
+            <summary>
+            验证提现密码
+            </summary>
+            <param name="input"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsUserPassword(System.String,System.Int32,System.Int32)">
+            <summary>
+            验证用户密码
+            </summary>
+            <param name="input"></param>
+            <param name="minLength"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.ConvertExtensions">
+            <summary>
+            数据转换方法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ConvertExtensions.ToGetUrl(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            转换成Get请求的Url接口地址
+            </summary>
+            <param name="url"></param>
+            <param name="paramters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ConvertExtensions.ToGetParamters(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            转换成Get请求参数
+            </summary>
+            <param name="paramters"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.NLogSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.NLogSdk.NLogConstant">
+            <summary>
+            日志常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.NLogSdk.NLogConstant.GlobalLoggerName">
+            <summary>
+            全局JSON日志名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.NLogSdk.NLogExtensions">
+            <summary>
+            日志拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogExtensions.Format(System.DateTime,System.Boolean)">
+            <summary>
+            时间格式化,false = 精确到毫秒。
+            </summary>
+            <param name="content"></param>
+            <param name="toMillisecond"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.NLogSdk.NLogModel">
+            <summary>
+            日志输出模型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.Url">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.SerialNo">
+            <summary>
+            操作编号(全局唯一)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.Content">
+            <summary>
+            日志内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.ContentLength">
+            <summary>
+            内容长度
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.TotalMilliseconds">
+            <summary>
+            程序执行时间(单位：毫秒)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.ServiceTime">
+            <summary>
+            日志打印时间(在配置文件中配置)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.TotalSeconds">
+            <summary>
+            程序执行时间(单位：秒)
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.NLogSdk.NLogProvider">
+            <summary>
+            日志实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.NLogSdk.NLogProvider._log">
+            <summary>
+            日志记录器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Trace(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            跟踪日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Debug(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            调试日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Info(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            消息日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Warn(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            警告日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Error(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            写入异常日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Fatal(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            写入致命性错误
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogProvider.Save(NLog.LogLevel,Com.GleekFramework.NLogSdk.NLogModel)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="model"></param>
+        </member>
+        <member name="T:Com.GleekFramework.NLogSdk.NLogService">
+            <summary>
+            日志基础服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Trace(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            跟踪日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Debug(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            调试日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Info(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            消息日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Warn(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            警告日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Error(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            写入异常日志
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.NLogSdk.NLogService.Fatal(System.String,System.String,System.String,System.Int64)">
+            <summary>
+            写入致命性错误
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="serialNo">操作编号</param>
+            <param name="url">接口路径</param>
+            <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
+        </member>
+    </members>
+</doc>

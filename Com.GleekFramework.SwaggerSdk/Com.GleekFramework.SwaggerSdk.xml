@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.SwaggerSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.SwaggerSdk.SwaggerConstant">
+            <summary>
+            常量参数类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SwaggerSdk.SwaggerConstant.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SwaggerSdk.SwaggerConstant.EMAIL">
+            <summary>
+            邮件地址
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SwaggerSdk.SwaggerConstant.SWAGGERGROUPNAME">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SwaggerSdk.SwaggerConstant.HOME">
+            <summary>
+            主页地址
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SwaggerSdk.SwaggerConstant.SWAGGERENDPOINTURL">
+            <summary>
+            终结点地址
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.SwaggerSdk.HostingExtensions">
+            <summary>
+            Swagger文档拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SwaggerSdk.HostingExtensions.AddKnife4Gen(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            添加Knife4生成器
+            </summary>
+            <param name="services"></param>
+            <param name="title"></param>
+            <param name="version"></param>
+            <param name="headers">头部信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.SwaggerSdk.HostingExtensions.UseKnife4UI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用Knife4UI界面
+            </summary>
+            <param name="app"></param>
+        </member>
+    </members>
+</doc>

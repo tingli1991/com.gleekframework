@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.ConfigSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.ConfigSdk.ConfigAttribute">
+            <summary>
+            配置文件特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.ConfigAttribute.Key">
+            <summary>
+            配置文件
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.ConfigAttribute.Configuration">
+            <summary>
+            配置文件信息
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.ConfigAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="key">配置键</param>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.ConfigAttribute.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configuration">配置文件</param>
+            <param name="key">配置键</param>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.AppConfig">
+            <summary>
+            appsettings.json 配置文件
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.AppConfig.Configuration">
+            <summary>
+            配置文件信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.AppConfig.FileNames">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.AppConfig.UseAppConfig(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用appsetting.json配置文件
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.ConfigConstant">
+            <summary>
+            配置基础常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.DEFAULT_CONFIG">
+            <summary>
+            系统默认的配置存放路径
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.SHARE_CONFIG_FILENAME">
+            <summary>
+            共享JSON配置文件名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.APP_CONFIG_FILENAME">
+            <summary>
+            应用程序配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.BOOTSTRAP_CONFIG_FILENAME">
+            <summary>
+            本地配置(独立配置)
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.SUBSCRIPTION_CONFIG_FILENAME">
+            <summary>
+            订阅配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.DEFAULT_CONFIGURATION_NAME">
+            <summary>
+            默认的配置文件名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.DEFAULT_FILE_DIR">
+            <summary>
+            默认的配置文件存放路径
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.ConfigConstant.FilterAssemblyNameList">
+            <summary>
+            需要过滤掉的程序集名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.EnvironmentConstant">
+            <summary>
+            环境变量常量参数
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.ENV">
+            <summary>
+            环境
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PROJECT">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.VERSION">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.NOCOS_URL">
+            <summary>
+            Nacos地址
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.DependencyExtensions">
+            <summary>
+            配置文件依赖注入拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.DependencyExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            添加Nacos
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigExtensions">
+            <summary>
+            JSON配置文件拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetValue(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            获取Json配置
+            </summary>
+            <param name="configuration">配置文件</param>
+            <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.Get``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            获取Json配置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration">配置文件</param>
+            <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String)">
+            <summary>
+            获取Json配置
+            </summary>
+            <param name="configuration">配置文件</param>
+            <param name="type">对象类型</param>
+            <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetConfiguration``1(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取整个JSON配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetConfiguration(Microsoft.Extensions.Configuration.IConfiguration,System.Type)">
+            <summary>
+            获取整个JSON配置
+            </summary>
+            <param name="configuration">配置文件</param>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.HostingExtensions">
+            <summary>
+            配置主机
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.HostingExtensions.UseConfig(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用配置
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.ConfigPathProvider">
+            <summary>
+            配置文件路径实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.ConfigPathProvider.GetEnvironmentFileNames(System.String[])">
+            <summary>
+            获取指定环境变量下的配置文件名称
+            </summary>
+            <param name="fileNames">配置文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.DependencyProvider">
+            <summary>
+            配置文件依赖注入实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.DependencyProvider.Switch">
+            <summary>
+            开关
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.DependencyProvider.CurrentProcessorCount">
+            <summary>
+            当前进程数量
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ConfigSdk.DependencyProvider.LastExecuteTime">
+            <summary>
+            最后一次执行事件
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.DependencyProvider.ParallelOptions">
+            <summary>
+            启用的并行数量
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.DependencyProvider.RefreshConfigAttribute">
+            <summary>
+            注册(或刷新)配置特性对照的配置值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.DependencyProvider.GetConfigurationValue(Com.GleekFramework.ConfigSdk.ConfigAttribute,System.Type)">
+            <summary>
+            获取配置值
+            </summary>
+            <param name="configAttribute"></param>
+            <param name="propertyType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.EnvironmentProvider">
+            <summary>
+            环境变量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnv">
+            <summary>
+            获取环境值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetProject">
+            <summary>
+            获取项目名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetVersion">
+            <summary>
+            获取版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetNacosUrl">
+            <summary>
+            获取Nacos项目主机地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentProvider.CacheDic">
+            <summary>
+            环境变量缓存
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetVersion(System.String)">
+            <summary>
+            获取版本号
+            </summary>
+            <param name="prefix">前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable(System.String)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigProvider">
+            <summary>
+            JSON配置文件实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.JsonConfigProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.JsonConfigProvider.JsonConfigCache">
+            <summary>
+            Json配置缓存信息
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.JsonConfigProvider.ConfigurationBuilderCache">
+            <summary>
+            Json配置缓存信息
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigProvider.GetConfiguration(System.String)">
+            <summary>
+            从缓存中获取配置对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigProvider.GetJsonConfiguration(System.String,System.String[])">
+            <summary>
+            获取JSON配置信息
+            </summary>
+            <param name="configurationName">配置文件名称</param>
+            <param name="fileNames">文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigProvider.CreateConfigurationRoot(System.String,System.String[])">
+            <summary>
+            创建JSON配置信息
+            </summary>
+            <param name="configurationName">配置文件名称</param>
+            <param name="fileNames">文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigProvider.CreateConfigurationRoot(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String[])">
+            <summary>
+            构建配置文件对象
+            </summary>
+            <param name="configBuilder"></param>
+            <param name="fileNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigProvider.GetConfigurationBuilder(System.String)">
+            <summary>
+            获取配置生成器
+            </summary>
+            <param name="configurationName">配置文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.DependencyService">
+            <summary>
+            配置文件依赖注入实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.DependencyService.RefreshConfigAttribute">
+            <summary>
+            注册(或刷新)配置特性对照的配置值
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.EnvironmentService">
+            <summary>
+            环境变量拓展方法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetVersion(System.String)">
+            <summary>
+            获取版本号
+            </summary>
+            <param name="prefix">前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetEnv">
+            <summary>
+            获取环境值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetProject">
+            <summary>
+            获取项目名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetVersion">
+            <summary>
+            获取版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetNacosUrl">
+            <summary>
+            获取Nacos项目主机地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigService">
+            <summary>
+            JSON配置基础能力提供者
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigService.GetConfiguration(System.String)">
+            <summary>
+            获取JSON配置信息
+            </summary>
+            <param name="configurationName">配置文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigWatcher">
+            <summary>
+            文件文件监听
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigWatcher.OnChangeConfigCallback(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            配置文件发生变动事件
+            </summary>
+            <param name="configuration"></param>
+            <param name="configurationName">配置文件名称</param>
+            <param name="fileNames">文件名称</param>
+        </member>
+    </members>
+</doc>

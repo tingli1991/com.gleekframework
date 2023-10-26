@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.AssemblySdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.AssemblySdk.AssemblyService">
+            <summary>
+            程序集实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.AssemblyService.GetAssemblyList">
+            <summary>
+            获取程序集列表
+            </summary>
+            <returns>程序集列表</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.AssemblyService.GetAssemblyList(System.Type)">
+            <summary>
+            获取程序集列表
+            </summary>
+            <param name="type">父级类型</param>
+            <returns>程序集列表</returns>
+        </member>
+        <member name="T:Com.GleekFramework.AssemblySdk.DocumentService">
+            <summary>
+            程序集的文档实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.DocumentService.GetXmlDocumentFileList">
+            <summary>
+            获取当前程序集的所有XML路径列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AssemblySdk.LibraryService">
+            <summary>
+            编译库实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.LibraryService.GetCompileLibrarieNnameList">
+            <summary>
+            获取编译库的名称列表
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

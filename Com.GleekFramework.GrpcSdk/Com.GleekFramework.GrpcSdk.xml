@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.GrpcSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.GrpcSdk.HostingExtensions">
+            <summary>
+            主机拓展类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.GrpcSdk.IBaseGrpcService">
+            <summary>
+            Grpc基础服务接口
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.GrpcSdk.Providers.HttpClientProvider">
+            <summary>
+            Http客户端实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.GrpcSdk.Providers.HttpClientProvider.lock">
+            <summary>
+            线程对象锁
+            </summary>
+        </member>
+    </members>
+</doc>
