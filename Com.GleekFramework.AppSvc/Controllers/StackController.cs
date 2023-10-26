@@ -31,12 +31,10 @@ namespace Com.GleekFramework.AppSvc.Controllers
         {
             for (int i = 0; i < 1000000; i++)
             {
-                //var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
                 var param = new StudentParam() { Id = i, Name = $"张三_{i}" };
                 var headers = new Dictionary<string, string>() { { "test_header_key", "不符合规则的头部键值对" }, { "test-header-key", "正确的头部键值对" } };
-                var response = StackClientService.PublishAsync(MessageType.CUSTOMER_TEST_STACK_NAME, param, serialNo, headers);
-                //Console.WriteLine($"消息开始时间：{beginTime:yyyy-MM-dd HH:mm:ss}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                await StackClientService.PublishAsync(MessageType.CUSTOMER_TEST_STACK_NAME, param, serialNo, headers);
             }
             await Task.CompletedTask;
         }
