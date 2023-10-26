@@ -86,12 +86,12 @@ namespace Com.GleekFramework.QueueSdk
         /// </summary>
         /// <param name="partitionIndex">分区索引</param>
         /// <returns></returns>
-        public Task<T> ConsumerAsync(int partitionIndex)
+        private T ConsumerAsync(int partitionIndex)
         {
             var concurrentQueue = PartitionerStacks[partitionIndex];
             concurrentQueue.TryPop(out T message);
             SurplusMessageCount = PartitionerStacks.Values.Sum(e => e.Count);
-            return Task.FromResult(message);
+            return message;
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Com.GleekFramework.QueueSdk
                         {
                             try
                             {
-                                var messageBody = await ConsumerAsync(partitionIndex);
+                                var messageBody = ConsumerAsync(partitionIndex);
                                 if (messageBody == null)
                                 {
                                     await Task.Delay(1000);

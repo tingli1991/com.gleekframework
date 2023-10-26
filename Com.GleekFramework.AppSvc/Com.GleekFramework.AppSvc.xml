@@ -231,5 +231,22 @@
             <param name="args"></param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AppSvc.Startup">
+            <summary>
+            程序激动类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置服务
+            </summary>
+            <param name="app"></param>
+        </member>
     </members>
 </doc>

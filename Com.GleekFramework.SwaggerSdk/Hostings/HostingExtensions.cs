@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ConfigSdk;
 using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,10 +73,18 @@ namespace Com.GleekFramework.SwaggerSdk
         /// <param name="app"></param>
         public static IApplicationBuilder UseKnife4UI(this IApplicationBuilder app)
         {
+            var swaggerSwitch = EnvironmentProvider.GetSwaggerSwitch();//Swagger开关配置
+            if (swaggerSwitch == null || swaggerSwitch != "true")
+            {
+                return app;
+            }
+
             app.UseSwagger();
             app.UseKnife4UI(options =>
             {
                 options.RoutePrefix = string.Empty;
+                options.EnableDeepLinking();
+                options.DisplayOperationId();
                 options.SwaggerEndpoint(SwaggerConstant.SWAGGERENDPOINTURL, SwaggerConstant.SWAGGERGROUPNAME);
             });
             return app;

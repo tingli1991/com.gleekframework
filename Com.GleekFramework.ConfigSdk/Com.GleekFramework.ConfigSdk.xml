@@ -104,14 +104,14 @@
             环境变量常量参数
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PORT">
-            <summary>
-            主机的端口配置
-            </summary>
-        </member>
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.ENV">
             <summary>
             环境
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PORT">
+            <summary>
+            主机的端口配置
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PROJECT">

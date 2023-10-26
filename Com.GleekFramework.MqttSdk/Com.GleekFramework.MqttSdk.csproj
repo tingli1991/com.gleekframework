@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Version>1.0.0.0</Version>
     <IsPackable>true</IsPackable>
-    <Copyright>@2023 Geek</Copyright>
+    <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <Description>Mqtt拓展工具包</Description>
     <PackageReleaseNotes></PackageReleaseNotes>

@@ -2,7 +2,6 @@ using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.HttpSdk;
-using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.QueueSdk;
 
@@ -38,6 +37,6 @@ namespace Com.GleekFramework.AppSvc
             .UseNacosConf()
             .UseHttpClient()
             .UseConfigAttribute()
-            .UseGleekWebHostDefaults<MessageCode>();
+            .UseGleekWebHostDefaults<Startup>();
     }
 }

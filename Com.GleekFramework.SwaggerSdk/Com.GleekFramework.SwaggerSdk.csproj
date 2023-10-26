@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Version>1.0.0.0</Version>
     <IsPackable>true</IsPackable>
-    <Copyright>@2023 Geek</Copyright>
+    <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Description>Swagger文档拓展工具包</Description>
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Com.GleekFramework.AssemblySdk\Com.GleekFramework.AssemblySdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
   </ItemGroup>
 
 </Project>
