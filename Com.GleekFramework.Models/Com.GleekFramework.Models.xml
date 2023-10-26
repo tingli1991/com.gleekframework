@@ -121,22 +121,22 @@
         </member>
         <member name="P:Com.GleekFramework.Models.WeatherForecastModel.Date">
             <summary>
-            ʱ��
+            时间
             </summary>
         </member>
         <member name="P:Com.GleekFramework.Models.WeatherForecastModel.TemperatureC">
             <summary>
-            �¶�(���϶�)
+            摄氏度
             </summary>
         </member>
         <member name="P:Com.GleekFramework.Models.WeatherForecastModel.Summary">
             <summary>
-            ����
+            描述
             </summary>
         </member>
         <member name="P:Com.GleekFramework.Models.WeatherForecastModel.TemperatureF">
             <summary>
-            �¶�(���϶�)
+            华氏度
             </summary>
         </member>
         <member name="T:Com.GleekFramework.Models.ConfigOptions">
