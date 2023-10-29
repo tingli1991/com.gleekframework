@@ -3,7 +3,6 @@ using Aliyun.MQ.Model;
 using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.NLogSdk;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -41,24 +40,23 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <returns></returns>
         public static IHost SubscribeRocketMQ(this IHost host, RocketConsumerOptions options)
         {
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() => Subscribe(options));
-            lifeTime.ApplicationStopping.Register(() => @Cts.Cancel());
-            lifeTime.ApplicationStopped.Register(() =>
-            {
-                while (true)
+            host.RegisterApplicationStarted(() => Subscribe(options))
+                .RegisterApplicationStopping(() => @Cts.Cancel())
+                .RegisterApplicationStopped(() =>
                 {
-                    if (MessageCount > 0)
+                    while (true)
                     {
-                        var delayMilliseconds = Random.Next(0, 5000);
-                        NLogProvider.Warn($"【RocketMQ订阅】停机延迟{delayMilliseconds}毫秒，消息数量：{MessageCount}");
-                        Thread.Sleep(delayMilliseconds);//阻塞主线程   
-                    }
+                        if (MessageCount > 0)
+                        {
+                            var delayMilliseconds = Random.Next(0, 5000);
+                            NLogProvider.Warn($"【RocketMQ订阅】停机延迟{delayMilliseconds}毫秒，消息数量：{MessageCount}");
+                            Thread.Sleep(delayMilliseconds);//阻塞主线程   
+                        }
 
-                    NLogProvider.Warn($"【RocketMQ订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
-                    break;
-                }
-            });
+                        NLogProvider.Warn($"【RocketMQ订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
+                        break;
+                    }
+                });
             return host;
         }
 

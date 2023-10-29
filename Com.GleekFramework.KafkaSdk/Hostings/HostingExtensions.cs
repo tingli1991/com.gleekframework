@@ -3,7 +3,6 @@ using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.NLogSdk;
 using Confluent.Kafka;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
@@ -41,27 +40,26 @@ namespace Com.GleekFramework.KafkaSdk
         public static IHost SubscribeKafka(this IHost host, Func<IConfiguration, KafkaConsumerOptions> callback)
         {
             var options = callback(AppConfig.Configuration);
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() => Subscribe(options));
-            lifeTime.ApplicationStopping.Register(() => Cts.Cancel());
-            lifeTime.ApplicationStopped.Register(() =>
-            {
-                while (true)
+            host.RegisterApplicationStarted(() => Subscribe(options))
+                .RegisterApplicationStopping(() => Cts.Cancel())
+                .RegisterApplicationStopped(() =>
                 {
-                    if (MessageCount <= 0)
+                    while (true)
                     {
-                        ConsumerProvider.UnSubscribe();//取消订阅
-                        NLogProvider.Warn($"【Kafka订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
-                        break;
+                        if (MessageCount <= 0)
+                        {
+                            ConsumerProvider.UnSubscribe();//取消订阅
+                            NLogProvider.Warn($"【Kafka订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
+                            break;
+                        }
+                        else
+                        {
+                            var delayMilliseconds = Random.Next(0, 5000);
+                            NLogProvider.Warn($"【Kafka订阅】停机延迟{delayMilliseconds}毫秒，剩余消息数量：{MessageCount}");
+                            Thread.Sleep(delayMilliseconds);//阻塞主线程
+                        }
                     }
-                    else
-                    {
-                        var delayMilliseconds = Random.Next(0, 5000);
-                        NLogProvider.Warn($"【Kafka订阅】停机延迟{delayMilliseconds}毫秒，剩余消息数量：{MessageCount}");
-                        Thread.Sleep(delayMilliseconds);//阻塞主线程
-                    }
-                }
-            });
+                });
             return host;
         }
 

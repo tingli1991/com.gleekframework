@@ -1,5 +1,5 @@
-﻿using Com.GleekFramework.ConfigSdk;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ConfigSdk;
 using Microsoft.Extensions.Hosting;
 using System;
 
@@ -48,23 +48,11 @@ namespace Com.GleekFramework.NacosSdk
                 return host;
             }
 
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(async () =>
+            host.RegisterApplicationStarted(async () =>
             {
                 await Settings.RegisterInstanceAsync(serverName);//注册实例
                 await Settings.StartServiceInstanceBeatCheckAsync(serverName);//启动实例的心跳检查
-            });
-
-            lifeTime.ApplicationStopping.Register(async () =>
-            {
-                //注销服务实例
-                await Settings.RemoveServiceInstanceAsync(serverName);
-            });
-
-            lifeTime.ApplicationStopped.Register(() =>
-            {
-
-            });
+            }).RegisterApplicationStopping(async () => await Settings.RemoveServiceInstanceAsync(serverName));
             return host;
         }
     }

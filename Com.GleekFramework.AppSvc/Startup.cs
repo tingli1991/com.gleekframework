@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AttributeSdk;
+using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.SwaggerSdk;
@@ -39,8 +40,7 @@ namespace Com.GleekFramework.AppSvc
             app.UseHealthChecks();//使用心跳检测
             app.UseAuthentication();//启用授权
             app.UseEndpoints(endpoints => endpoints.MapControllers());//启用终结点配置
-            var lifeTime = app.ApplicationServices.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
+            app.RegisterApplicationStarted(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
         }
     }
 }

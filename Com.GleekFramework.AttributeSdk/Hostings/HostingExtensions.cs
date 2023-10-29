@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.ConfigSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ConfigSdk;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -34,8 +35,7 @@ namespace Com.GleekFramework.AttributeSdk
                 {
                     app.UseRouting();//使用路由规则
                     app.UseHealthChecks();//使用心跳检测
-                    var lifeTime = app.ApplicationServices.GetRequiredService<IHostApplicationLifetime>();
-                    lifeTime.ApplicationStarted.Register(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
+                    app.RegisterApplicationStarted(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
                 });
             });
             return builder;

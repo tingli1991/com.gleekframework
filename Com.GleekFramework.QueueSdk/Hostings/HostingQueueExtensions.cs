@@ -3,7 +3,6 @@ using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.ConsumerSdk;
 using Com.GleekFramework.NLogSdk;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
@@ -50,17 +49,14 @@ namespace Com.GleekFramework.QueueSdk
         /// <returns></returns>
         public static IHost SubscribeQueue(this IHost host, Func<IConfiguration, int> callback)
         {
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() =>
+            host.RegisterApplicationStarted(() =>
             {
                 //设置分区队列的分区数量(必须在发起订阅之前，不能调整顺序)
                 PartitionedQueueProvider.PartitionCount = callback(AppConfig.Configuration);
 
                 SubscribeQueue();//发起订阅
                 NLogProvider.Info($"【Queue订阅】分区数量：{PartitionedQueueProvider.PartitionCount}");
-            });
-
-            lifeTime.ApplicationStopped.Register(async () =>
+            }).RegisterApplicationStopped(async () =>
             {
                 while (true)
                 {
@@ -72,6 +68,7 @@ namespace Com.GleekFramework.QueueSdk
                         Thread.Sleep(delayMilliseconds);//阻塞主线程
                     }
                     NLogProvider.Info($"【Queue订阅】分区数量：{PartitionedQueueProvider.PartitionCount}，停机完毕！！！");
+                    break;
                 }
             });
             return host;

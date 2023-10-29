@@ -3,7 +3,6 @@ using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.NLogSdk;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -37,15 +36,12 @@ namespace Com.GleekFramework.RabbitMQSdk
         public static IHost SubscribeRabbitMQ(this IHost host, Func<IConfiguration, RabbitConsumerOptions> callback)
         {
             var options = callback(AppConfig.Configuration);
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() =>
+            host.RegisterApplicationStarted(() =>
             {
                 RpcConsumerProvider.Subscribe(options);
                 WorkConsumerProvider.Subscribe(options);
                 SubscribeConsumerProvider.Subscribe(options);
-            });
-
-            lifeTime.ApplicationStopped.Register(() =>
+            }).RegisterApplicationStopped(() =>
             {
                 while (true)
                 {

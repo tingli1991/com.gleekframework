@@ -3,7 +3,6 @@ using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.ConsumerSdk;
 using Com.GleekFramework.NLogSdk;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
@@ -33,17 +32,14 @@ namespace Com.GleekFramework.QueueSdk
         /// <returns></returns>
         public static IHost SubscribeStack(this IHost host, Func<IConfiguration, int> callback)
         {
-            var lifeTime = host.Services.GetRequiredService<IHostApplicationLifetime>();
-            lifeTime.ApplicationStarted.Register(() =>
+            host.RegisterApplicationStarted(() =>
             {
                 //设置分区队列的分区数量(必须在发起订阅之前，不能调整顺序)
                 PartitionedStackProvider.PartitionCount = callback(AppConfig.Configuration);
 
                 SubscribeStack();//发起订阅
                 NLogProvider.Info($"【Stack订阅】分区数量：{PartitionedQueueProvider.PartitionCount}");
-            });
-
-            lifeTime.ApplicationStopped.Register(async () =>
+            }).RegisterApplicationStopped(async () =>
             {
                 while (true)
                 {
