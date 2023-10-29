@@ -993,11 +993,11 @@
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostingExtensions.UseSemaphoreSwitch(Microsoft.Extensions.Hosting.IHost,System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.CommonSdk.HostingExtensions.UseSemaphoreSwitch(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32,System.Int32)">
             <summary>
             启用信号两开关
             </summary>
-            <param name="host"></param>
+            <param name="builder"></param>
             <param name="minProcessorCount">最小能够处理请求的线程数(初始值)</param>
             <param name="maxProcessorCount">最大能够处理请求的线程数量(上限值)</param>
             <returns></returns>

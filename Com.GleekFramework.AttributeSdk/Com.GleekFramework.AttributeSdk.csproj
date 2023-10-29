@@ -3,14 +3,14 @@
   <PropertyGroup>
     <Version>1.0.0.0</Version>
     <Nullable>disable</Nullable>
-    <!--<IsPackable>true</IsPackable>-->
+    <IsPackable>true</IsPackable>
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <ImplicitUsings>enable</ImplicitUsings>
     <Description>Web特性工具包</Description>
     <TargetFramework>net6.0</TargetFramework>
-    <!--<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>-->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.AttributeSdk.xml</DocumentationFile>
   </PropertyGroup>
 
