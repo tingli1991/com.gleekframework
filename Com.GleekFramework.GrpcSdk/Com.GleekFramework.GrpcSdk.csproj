@@ -7,19 +7,18 @@
     <Company>org.gleekframework</Company>
     <Description>Grpc拓展工具包</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.GrpcSdk.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Interceptors\**" />
-    <EmbeddedResource Remove="Interceptors\**" />
-    <None Remove="Interceptors\**" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.58.0" />
   </ItemGroup>
-
+  
   <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
   </ItemGroup>
 

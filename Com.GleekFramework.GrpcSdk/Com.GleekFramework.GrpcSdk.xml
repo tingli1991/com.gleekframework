@@ -9,6 +9,43 @@
             主机拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.GetGrpcServiceList">
+            <summary>
+            获取Grpc服务列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            注入GRPC
+            </summary>
+            <param name="endpoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Collections.Generic.IEnumerable{Com.GleekFramework.GrpcSdk.IBaseGrpcService})">
+            <summary>
+            注入GRPC
+            </summary>
+            <param name="endpoints"></param>
+            <param name="grpcServiceList">服务列表</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.GrpcSdk.GlobalExceptionInterceptor">
+            <summary>
+            全局异常捕获类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.GrpcSdk.GlobalExceptionInterceptor.UnaryServerHandler``2(``0,Grpc.Core.ServerCallContext,Grpc.Core.UnaryServerMethod{``0,``1})">
+            <summary>
+            处理函数
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="request"></param>
+            <param name="context"></param>
+            <param name="continuation"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.GrpcSdk.IBaseGrpcService">
             <summary>
             Grpc基础服务接口

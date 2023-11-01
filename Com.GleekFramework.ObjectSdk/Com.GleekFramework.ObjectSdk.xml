@@ -4,5 +4,140 @@
         <name>Com.GleekFramework.ObjectSdk</name>
     </assembly>
     <members>
+        <member name="T:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions">
+            <summary>
+            阿里云主机拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions.UseAliyunOSS(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.ObjectSdk.AliyunOSSOptions})">
+            <summary>
+            添加账号配置信息
+            </summary>
+            <param name="builder"></param>
+            <param name="callback">账号配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions.AddAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.ObjectSdk.AliyunOSSOptions)">
+            <summary>
+            添加账号配置信息
+            </summary>
+            <param name="configuration"></param>
+            <param name="options">账号配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSOptions">
+            <summary>
+            阿里云OSS
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AppId">
+            <summary>
+            SDK AppID
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AppKey">
+            <summary>
+            App Key
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.BaseUrl">
+            <summary>
+            地域节点
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.BucketUrl">
+            <summary>
+            Bucket 域名
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSProvider">
+            <summary>
+            OSS实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Options">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            上传文件到OSS
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="filePath">文件路径</param>
+            <param name="files">文件列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath"></param>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath"></param>
+            <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.String,System.IO.Stream)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath">文件路径(xxx/sdsss)</param>
+            <param name="fileName">文件名称(格式：xxx.jpg)</param>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSService">
+            <summary>
+            阿里云OSS服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            上传文件到OSS
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="filePath">文件路径</param>
+            <param name="files">文件列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath"></param>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath"></param>
+            <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.String,System.IO.Stream)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="bucketName"></param>
+            <param name="filePath">文件路径(xxx/sdsss)</param>
+            <param name="fileName">文件名称(格式：xxx.jpg)</param>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
