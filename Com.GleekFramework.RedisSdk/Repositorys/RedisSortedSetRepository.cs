@@ -8,7 +8,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis有序集合仓储
     /// </summary>
-    public class RedisSortedSetRepository : RedisRepository, IBaseAutofac
+    public partial class RedisSortedSetRepository : RedisRepository, IBaseAutofac
     {
         /// <summary>
         /// 移除有序集合中的一个或多个成员

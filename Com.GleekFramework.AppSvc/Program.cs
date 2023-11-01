@@ -2,8 +2,9 @@ using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.HttpSdk;
+using Com.GleekFramework.MigrationSdk;
+using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
-using Com.GleekFramework.QueueSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
@@ -20,8 +21,15 @@ namespace Com.GleekFramework.AppSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
-                 .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
+                 //.SubscribeStack((config) => 24)//订阅本地栈(先进显出)
+                 //.SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
+                 .UseMigrations((config) => new MigrationOptions()
+                 {
+                     MigrationSwitch = true,
+                     UpgrationSwitch = true,
+                     DatabaseType = DatabaseType.MySQL,
+                     ConnectionString = config.GetConnectionString(DatabaseConstant.DefaultMySQLHostsKey)
+                 })
                  .RunAsync();
         }
 

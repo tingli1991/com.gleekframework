@@ -54,6 +54,16 @@
             默认客户端配置名称
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.Models.DatabaseConstant">
+            <summary>
+            数据库常量
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.DatabaseConstant.DefaultMySQLHostsKey">
+            <summary>
+            默认测试数据库配置键
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.KafkaTopicConstant">
             <summary>
             Kafka主题常量
@@ -112,6 +122,16 @@
         <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_TEST_STACK_NAME">
             <summary>
             自定义Stack测试类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.MigrationVersion">
+            <summary>
+            版本信息表
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.MigrationVersion.Version">
+            <summary>
+            版本号
             </summary>
         </member>
         <member name="T:Com.GleekFramework.Models.WeatherForecastModel">

@@ -6,7 +6,7 @@ namespace Com.GleekFramework.AutofacSdk
     /// <summary>
     /// Autofac基础常量
     /// </summary>
-    public static partial class AutofacConstant
+    public static class AutofacConstant
     {
         /// <summary>
         /// 用于实现属性注入的基础接口类型

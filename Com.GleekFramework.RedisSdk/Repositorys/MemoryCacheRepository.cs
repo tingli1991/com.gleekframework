@@ -9,7 +9,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// 内存缓存对象
     /// </summary>
-    public class MemoryCacheRepository : IBaseAutofac
+    public partial class MemoryCacheRepository : IBaseAutofac
     {
         /// <summary>
         /// 内存缓存对象

@@ -3,6 +3,7 @@ using Aliyun.MQ.Model;
 using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.NLogSdk;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace Com.GleekFramework.RocketMQSdk
 {
     /// <summary>
-    /// RocketMQ消费者主机拓展
+    /// 自定义主机拓展
     /// </summary>
     public static partial class ConsumerHostingExtensions
     {
@@ -36,10 +37,11 @@ namespace Com.GleekFramework.RocketMQSdk
         /// 订阅RocketMQ
         /// </summary>
         /// <param name="host">主机</param>
-        /// <param name="options">配置选项</param>
+        /// <param name="callback"></param>
         /// <returns></returns>
-        public static IHost SubscribeRocketMQ(this IHost host, RocketConsumerOptions options)
+        public static IHost SubscribeRocketMQ(this IHost host, Func<IConfiguration, RocketConsumerOptions> callback)
         {
+            var options = callback(AppConfig.Configuration);
             host.RegisterApplicationStarted(() => Subscribe(options))
                 .RegisterApplicationStopping(() => @Cts.Cancel())
                 .RegisterApplicationStopped(() =>

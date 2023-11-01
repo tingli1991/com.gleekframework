@@ -23,17 +23,18 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public static async Task ExecuteAsync(IServiceProvider serviceProvider)
         {
-            var serviceList = MigrationFactory.GetServiceList<Upgration>();
+            var serviceList = UpgrationFactory.GetServiceList<Upgration>();
             if (serviceList == null || !serviceList.Any())
             {
                 return;
             }
 
+            var databaseProvider = serviceProvider.GetService<IDatabaseProvider>();
             var migrationContext = serviceProvider.GetService<IMigrationContext>();
             var migrationExecute = new ExecuteExpressionRoot(migrationContext);
             var versionServiceList = serviceList.Select(service =>
             {
-                var attribute = service.GetCustomAttribute<UpgrationAttribute>();
+                var attribute = service.GetType().GetCustomAttribute<UpgrationAttribute>();
                 if (attribute == null)
                 {
                     throw new InvalidOperationException(nameof(UpgrationAttribute));
@@ -50,7 +51,7 @@ namespace Com.GleekFramework.MigrationSdk
                 };
             });
 
-            var maxVersion = migrationContext.GetMaxVersion();
+            var maxVersion = databaseProvider.GetMaxVersion();
             var upgrateVersionList = new List<VersionModel>();
             foreach (var upgrate in versionServiceList.OrderBy(e => e.Version))
             {
@@ -89,7 +90,7 @@ namespace Com.GleekFramework.MigrationSdk
                     });
                 });
             }
-            await migrationContext.SaveVersion(upgrateVersionList);
+            databaseProvider.SaveVersion(upgrateVersionList);
         }
     }
 }

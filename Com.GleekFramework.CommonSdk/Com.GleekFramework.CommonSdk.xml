@@ -20,6 +20,100 @@
             </summary>
             <param name="key">键</param>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.CommentAttribute">
+            <summary>
+            表备注特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.CommentAttribute.Comment">
+            <summary>
+            备注字段
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.CommentAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="comment"></param>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.IndexAttribute">
+            <summary>
+            索引特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.IndexAttribute.Name">
+            <summary>
+            索引名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.IndexAttribute.IsUnique">
+            <summary>
+            索引是否唯一
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.IndexAttribute.IsAsc">
+            <summary>
+            是否是升序
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.IndexAttribute.PropertyNames">
+            <summary>
+            属性集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IndexAttribute.#ctor(System.String[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="propertyNames">属性名称集合</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IndexAttribute.#ctor(System.String,System.String[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">属性名称</param>
+            <param name="propertyNames">属性名称集合</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.IndexAttribute.#ctor(System.String,System.Boolean,System.String[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">属性名称</param>
+            <param name="isUnique">是否唯一索引</param>
+            <param name="propertyNames">属性名称集合</param>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.NotMapAttribute">
+            <summary>
+            表示应将属性或类从数据库映射中排除
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.NotMapAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.PrecisionAttribute">
+            <summary>
+            精度特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.PrecisionAttribute.Scale">
+            <summary>
+            保留位数
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.CommonSdk.PrecisionAttribute.Precision">
+            <summary>
+            精确度
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PrecisionAttribute.#ctor(System.Byte,System.Byte)">
+            <summary>
+            <para>自定义Decimal类型的精确度属性</para>
+            </summary>
+            <param name="scale">小数位数（默认2）</param>
+            <param name="precision">精度（默认18）</param>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.DependencyConstant">
             <summary>
             依赖常量
@@ -187,6 +281,40 @@
             * =只会出现在字符串最后，可能没有或者一个等号或者两个等号
             </summary>
             <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ClassAttributeExtensions">
+            <summary>
+            类特性拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeExtensions.GetCustomAttribute``1(System.Type)">
+            <summary>
+            获取自定义特性(包含T以及T的子类)
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeExtensions.GetCustomAttributeList(System.Type)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeExtensions.GetCustomAttributeList``1(System.Type)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeExtensions.GetCustomAttributeList``1(System.Type,System.Func{System.Attribute,System.Boolean})">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <param name="filter">过滤条件</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.ConnectionExtensions">
@@ -677,6 +805,25 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.MatchExtensions">
+            <summary>
+            Match拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.MatchExtensions.ClearDatabaseName(System.String)">
+            <summary>
+            清理数据库名称
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.MatchExtensions.ExtractDatabaseName(System.String)">
+            <summary>
+            提取数据库名称
+            </summary>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.Md5Extensions">
             <summary>
             MD5加密拓展类
@@ -731,6 +878,29 @@
             <summary>
             属性反射拓展类
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfo(System.Type,System.String)">
+            <summary>
+            获取属性信息
+            </summary>
+            <param name="type"></param>
+            <param name="propertyName">属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfoList(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            获取类型列表的属性信息列表
+            </summary>
+            <param name="typeList">类型列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfoList(System.Type,System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            获取Type的属性列表
+            </summary>
+            <param name="type">对象类型</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfoList(System.Type)">
             <summary>
@@ -813,6 +983,22 @@
             <summary>
             字符串基础拓展类
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ContainsIgnoreCases(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            判断包含逻辑
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.EqualIgnoreCases(System.String,System.String)">
+            <summary>
+            对比字符串
+            </summary>
+            <param name="input"></param>
+            <param name="str"></param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.TrimStart(System.String,System.String)">
             <summary>
@@ -988,6 +1174,43 @@
             <param name="compareWay">对比方式</param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.HostExtensions">
+            <summary>
+            主机拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStarted(Microsoft.Extensions.Hosting.IHost,System.Action)">
+            <summary>
+            注册主机启动完成时间
+            </summary>
+            <param name="host">主机信息</param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStarted(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action)">
+            <summary>
+            注册主机启动完成时间
+            </summary>
+            <param name="app">主机信息</param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStopping(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
+            <summary>
+            注册主机停止中事件
+            </summary>
+            <param name="lifeTime"></param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStopped(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
+            <summary>
+            注册主机停止完成事件
+            </summary>
+            <param name="lifeTime"></param>
+            <param name="callback">回调函数</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.HostingExtensions">
             <summary>
             主机拓展类
@@ -1160,6 +1383,50 @@
             <param name="assembly">程序集</param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ClassAttributeProvider">
+            <summary>
+            类特性实现类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ClassAttributeProvider.lock">
+            <summary>
+            对象锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.CommonSdk.ClassAttributeProvider.CacheList">
+            <summary>
+            对象类型缓存列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeProvider.GetCustomAttribute``1(System.Type)">
+            <summary>
+            获取自定义特性(包含T以及T的子类)
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeProvider.GetCustomAttributeList``1(System.Type,System.Func{System.Attribute,System.Boolean})">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeProvider.GetCustomAttributeList``1(System.Type)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ClassAttributeProvider.GetCustomAttributeList(System.Type)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="type">对象</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.DocumentProvider">
             <summary>
             程序集的文档实现类
@@ -1326,6 +1593,14 @@
             <summary>
             对象类型缓存列表
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyProvider.GetPropertyInfo(System.Type,System.String)">
+            <summary>
+            获取属性信息
+            </summary>
+            <param name="type"></param>
+            <param name="propertyName">属性名称</param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.PropertyProvider.GetPropertyInfoList(System.Collections.Generic.IEnumerable{System.Type})">
             <summary>

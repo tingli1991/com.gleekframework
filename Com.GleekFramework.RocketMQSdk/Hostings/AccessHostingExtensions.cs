@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Com.GleekFramework.ConfigSdk;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Com.GleekFramework.RocketMQSdk
 {
@@ -12,11 +14,11 @@ namespace Com.GleekFramework.RocketMQSdk
         /// 添加账号配置信息
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="options">账号配置选项</param>
+        /// <param name="callback">账号配置选项</param>
         /// <returns></returns>
-        public static IHostBuilder AddAccessOptions(this IHostBuilder builder, RocketAccessOptions options)
+        public static IHostBuilder AddAccessOptions(this IHostBuilder builder, Func<IConfiguration, RocketAccessOptions> callback)
         {
-            builder.ConfigureAppConfiguration((context, configuration) => configuration.AddAccessOptions(options));
+            builder.ConfigureAppConfiguration((context, configuration) => configuration.AddAccessOptions(callback(AppConfig.Configuration)));
             return builder;
         }
 

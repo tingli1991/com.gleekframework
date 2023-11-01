@@ -4,5 +4,828 @@
         <name>Com.GleekFramework.MigrationSdk</name>
     </assembly>
     <members>
+        <member name="T:Com.GleekFramework.MigrationSdk.AlwaysMigrationAttribute">
+            <summary>
+            每次都会执行的迁移特性
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.AlwaysMigrationAttribute.#ctor">
+            <summary>
+            /构造函数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.AlwaysUpgrationAttribute">
+            <summary>
+            每次都会执行的迁移特性
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.AlwaysUpgrationAttribute.#ctor">
+            <summary>
+            /构造函数
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.UpgrationAttribute">
+            <summary>
+            本本升级特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.UpgrationAttribute.Version">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.UpgrationAttribute.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.UpgrationAttribute.TransactionBehavior">
+            <summary>
+            事务行为
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationAttribute.#ctor(System.Int64,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="version"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationAttribute.#ctor(System.Int64,FluentMigrator.TransactionBehavior,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="version"></param>
+            <param name="transactionBehavior"></param>
+            <param name="description"></param>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationConstant">
+            <summary>
+            版本变更常量配置
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.MigrationConstant.Id">
+            <summary>
+            主键字段名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.MigrationConstant.BaseColumns">
+            <summary>
+            基础列
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.DatabaseType">
+            <summary>
+            数据库类型枚举
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.MsSQL">
+            <summary>
+            MsSQL数据库
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.MySQL">
+            <summary>
+            MySQL数据库
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.PgSQL">
+            <summary>
+            PgSQL数据库
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.ColumnExtensions">
+            <summary>
+            字段列的拓展类ss
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.ColumnExtensions.WithIdColumn(FluentMigrator.Builders.Create.Table.ICreateTableWithColumnSyntax,System.Reflection.PropertyInfo)">
+            <summary>
+            创建id列
+            </summary>
+            <param name="tableWithColumnSyntax"></param>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.ColumnExtensions.AddColumnSchema(FluentMigrator.Builders.Alter.Table.IAlterTableColumnAsTypeSyntax,System.Reflection.PropertyInfo)">
+            <summary>
+            添加列
+            </summary>
+            <param name="alterTableColumnSyntax"></param>
+            <param name="propertyInfo">属性信息</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.ColumnExtensions.WithColumn(FluentMigrator.Builders.Alter.Table.IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax,System.Object,System.String,System.Boolean,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)">
+            <summary>
+            追加列的相关属性
+            </summary>
+            <param name="columnSyntax"></param>
+            <param name="defaultValue">字段默认值</param>
+            <param name="comment">字段描述</param>
+            <param name="isPrimaryKey">是否是主键</param>
+            <param name="databaseGenerated"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.DbProviderExtensions">
+            <summary>
+            数据库实现拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.DbProviderExtensions.AddIMigrationRunner(FluentMigrator.Runner.IMigrationRunnerBuilder,Com.GleekFramework.MigrationSdk.DatabaseType)">
+            <summary>
+            注入迁移运行时的数据库类型
+            </summary>
+            <param name="builder"></param>
+            <param name="databaseType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.DbProviderExtensions.AddDatabaseProviderSingle(Microsoft.Extensions.DependencyInjection.IServiceCollection,Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            添加数据库实现注入
+            </summary>
+            <param name="services"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationExtensions">
+            <summary>
+            版本升级拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationExtensions.CreateMigrationProvider(Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            创建默认的服务集合
+            </summary>
+            <param name="options">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationExtensions.MigrationUpAsync(Microsoft.Extensions.DependencyInjection.IServiceScope,Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            本本升级
+            </summary>
+            <param name="scope"></param>
+            <param name="options">配置信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationExtensions.EnsureDatabase(System.IServiceProvider)">
+            <summary>
+            执行数据库初始化
+            </summary>
+            <param name="serviceProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.PropertyExtensions">
+            <summary>
+            列的属性拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetTableComment(System.Type)">
+            <summary>
+            获取表的描述
+            </summary>
+            <param name="typeInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetTableName(System.Type)">
+            <summary>
+            获取表名
+            </summary>
+            <param name="typeInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.Equals``1(System.Reflection.PropertyInfo)">
+            <summary>
+            对比属性类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetColumnName(System.Reflection.PropertyInfo)">
+            <summary>
+            获取列的名称
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetComment(System.Reflection.PropertyInfo)">
+            <summary>
+            获取备注
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.IsPrimaryKey(System.Reflection.PropertyInfo)">
+            <summary>
+            是否是主键
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.IsRequired(System.Reflection.PropertyInfo)">
+            <summary>
+            是否必填
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetMaxLength(System.Reflection.PropertyInfo)">
+            <summary>
+            获取最大长度
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetPrecisionInfo(System.Reflection.PropertyInfo)">
+            <summary>
+            获取精度配置
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetDatabaseGenerated(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetDefaultValue(System.Reflection.PropertyInfo)">
+            <summary>
+            获取默认值
+            </summary>
+            <param name="propertyInfo">属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.UpgrationExtensions">
+            <summary>
+            升级拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationExtensions.UpgrationAsync(Microsoft.Extensions.DependencyInjection.IServiceScope,Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            运行版本升级
+            </summary>
+            <param name="scope"></param>
+            <param name="options">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationExtensions.ExecuteAsync(FluentMigrator.TransactionBehavior,System.Action)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="transactionBehavior"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.UpgrationFactory">
+            <summary>
+            版本升级工厂类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.UpgrationFactory.lock">
+            <summary>
+            并发所
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.UpgrationFactory.ServiceList">
+            <summary>
+            升级服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationFactory.GetServiceList``1">
+            <summary>
+            服务列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationFactory.GetServiceCacheList(System.Type)">
+            <summary>
+            获取消息类型列表
+            </summary>
+            <param name="type">消息类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.HostingExtensions">
+            <summary>
+            主机拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.UseMigrations(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.MigrationSdk.MigrationOptions})">
+            <summary>
+            使用版本迁移
+            </summary>
+            <param name="host">主机信息</param>
+            <param name="callback">回调配置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.CreateServices(Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            创建升级服务
+            </summary>
+            <param name="options">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.IDatabaseProvider">
+            <summary>
+            版本迁移数据库实现接口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.IDatabaseProvider.ConnectionString">
+            <summary>
+            连接字符串对象
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetConnection">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.InitializeDatabase">
+            <summary>
+            初始化数据库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetMaxVersion">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetIndexSchemaList(System.String)">
+            <summary>
+            获取数据库索引摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetTableSchemaList(System.String)">
+            <summary>
+            获取表的摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.IMigrationTable">
+            <summary>
+            定义表的版本迁移接口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.IMigrationTable.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.IUpgration">
+            <summary>
+            升级接口
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.SchemaMigration">
+            <summary>
+            数据库架构迁移程序
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.Down">
+            <summary>
+            降级
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.Up">
+            <summary>
+            升级
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableBaseColumns(FluentMigrator.Builders.Alter.IAlterExpressionRoot,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+            构建表的基础字段
+            </summary>
+            <param name="alter"></param>
+            <param name="isFirstCreateTableSchema">是否首次创建架构</param>
+            <param name="tableName">表名称</param>
+            <param name="propertyInfoList">属性列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableOrdinaryColumns(FluentMigrator.Builders.Alter.IAlterExpressionRoot,System.String,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.TableSchemaModel})">
+            <summary>
+            构建表的普通列(排除Id主键和基础列)
+            </summary>
+            <param name="alter"></param>
+            <param name="tableName">表名称</param>
+            <param name="propertyInfoList">属性列表</param>
+            <param name="databaseTableSchemaColumnList">已存在的表结构列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.FirstCreateTableSchema(FluentMigrator.Builders.Create.ICreateExpressionRoot,System.Type,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.TableSchemaModel})">
+            <summary>
+            首次构建表架构
+            </summary>
+            <param name="create"></param>
+            <param name="typeInfo">表模型的的类型</param>
+            <param name="propertyInfoList">属性列表</param>
+            <param name="databaseTableSchemaColumnList">已存在的表结构列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableIndexs(FluentMigrator.Builders.Create.ICreateExpressionRoot,System.Type,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.IndexSchemaModel})">
+            <summary>
+            构建表的索引
+            </summary>
+            <param name="create"></param>
+            <param name="typeInfo">表模型的的类型</param>
+            <param name="propertyInfoList">属性列表</param>
+            <param name="databaseIndexSchemaList">数据库所有的索引</param>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.Upgration">
+            <summary>
+            版本升级程序基类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.Upgration.Context">
+            <summary>
+            版本变更上下文
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.Upgration.Execute">
+            <summary>
+            数据库脚本执行
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.Upgration.ExecuteAsync">
+            <summary>
+            升级过程中需要执行的代码逻辑
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.Upgration.ExecuteScriptsAsync">
+            <summary>
+            升级过程中需要执行的脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.Upgration.ExecuteSqlFilesAsync">
+            <summary>
+            升级过程中需要执行的脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.IndexSchemaModel">
+            <summary>
+            数据库索引摘要信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.IndexSchemaModel.TableName">
+            <summary>
+            数据表名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.IndexSchemaModel.IndexName">
+            <summary>
+            索引名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationTable">
+            <summary>
+            基础表
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.IsDeleted">
+            <summary>
+            死否删除
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.Extend">
+            <summary>
+            透传字段
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.TableSchemaModel">
+            <summary>
+            数据表的摘要信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.TableSchemaModel.TableName">
+            <summary>
+            数据表名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.TableSchemaModel.ColumnName">
+            <summary>
+            列名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.VersionModel">
+            <summary>
+            版本信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.Version">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.AppliedOn">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationOptions">
+            <summary>
+            版本变更配置选项
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.MigrationSwitch">
+            <summary>
+            版本迁移开关
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.UpgrationSwitch">
+            <summary>
+            版本升级开关
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.DatabaseType">
+            <summary>
+            注入的数据库类型
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationProvider">
+            <summary>
+            版本迁移实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationProvider.AssemblyList">
+            <summary>
+            程序集列表
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationProvider.MigrationOptions">
+            <summary>
+            版本迁移配置项
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationProvider.CreateMigrationProvider(Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            创建默认的服务集合
+            </summary>
+            <param name="options">配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationProvider.GetDatabaseProvider(FluentMigrator.Builders.Execute.IExecuteExpressionRoot)">
+            <summary>
+            获取数据库实现类
+            </summary>
+            <param name="execute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationProvider.GetAssemblyList">
+            <summary>
+            获取程序集列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider">
+            <summary>
+            MsSQL数据库实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString"></param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetConnection">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.InitializeDatabase">
+            <summary>
+            初始化数据库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetMaxVersion">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetIndexSchemaList(System.String)">
+            <summary>
+            获取数据库索引摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetTableSchemaList(System.String)">
+            <summary>
+            获取表的摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider">
+            <summary>
+            MySQL数据库实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString"></param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetConnection">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.InitializeDatabase">
+            <summary>
+            初始化数据库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetMaxVersion">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetIndexSchemaList(System.String)">
+            <summary>
+            获取数据库索引摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetTableSchemaList(System.String)">
+            <summary>
+            获取表的摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="paramters"></param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider">
+            <summary>
+            PgSQL数据库实现类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString"></param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetConnection">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.InitializeDatabase">
+            <summary>
+            初始化数据库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetMaxVersion">
+            <summary>
+            获取最大的版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetIndexSchemaList(System.String)">
+            <summary>
+            获取数据库索引摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetTableSchemaList(System.String)">
+            <summary>
+            获取表的摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.UpgrationProvider">
+            <summary>
+            升级实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.UpgrationProvider.ExecuteAsync(System.IServiceProvider)">
+            <summary>
+            执行升级脚本
+            </summary>
+            <param name="serviceProvider">容器实现类</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

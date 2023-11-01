@@ -8,7 +8,7 @@ namespace Com.GleekFramework.CommonSdk
     /// <summary>
     /// 主机拓展类
     /// </summary>
-    public static partial class HostExtension
+    public static partial class HostExtensions
     {
         /// <summary>
         /// 注册主机启动完成时间

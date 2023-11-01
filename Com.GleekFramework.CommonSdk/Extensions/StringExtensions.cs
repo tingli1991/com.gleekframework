@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -8,6 +9,36 @@ namespace Com.GleekFramework.CommonSdk
     /// </summary>
     public static partial class StringExtensions
     {
+        /// <summary>
+        /// 判断包含逻辑
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool ContainsIgnoreCases(this IEnumerable<string> source, string value)
+        {
+            if (source == null || !source.Any())
+            {
+                return false;
+            }
+            return source.Select(e => e.ToLower()).Distinct().Contains(value.ToLower());
+        }
+
+        /// <summary>
+        /// 对比字符串
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool EqualIgnoreCases(this string input, string str)
+        {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(str))
+            {
+                return input == str;
+            }
+            return input.ToLower() == str.ToLower();
+        }
+
         /// <summary>
         /// 去掉开始的字符串
         /// </summary>

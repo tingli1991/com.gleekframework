@@ -9,7 +9,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis哈希仓储类
     /// </summary>
-    public class RedisHashRepository : RedisRepository, IBaseAutofac
+    public partial class RedisHashRepository : RedisRepository, IBaseAutofac
     {
         /// <summary>
         /// 检查缓存Key是否存在

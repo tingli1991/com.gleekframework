@@ -3,7 +3,7 @@
     /// <summary>
     /// 队列常量配置
     /// </summary>
-    public static partial class QueueConstant
+    public static class QueueConstant
     {
         /// <summary>
         /// 默认的队列主题名称

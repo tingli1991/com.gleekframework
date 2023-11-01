@@ -65,6 +65,11 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<Attribute> GetCustomAttributeList(PropertyInfo propertyInfo)
         {
+            if (propertyInfo == null)
+            {
+                return new List<Attribute>();
+            }
+
             if (!CacheList.ContainsKey(propertyInfo))
             {
                 lock (@lock)

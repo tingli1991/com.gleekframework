@@ -3,7 +3,7 @@
     /// <summary>
     /// Lua脚本
     /// </summary>
-    public static partial class StringScriptConstant
+    public static class StringScriptConstant
     {
         /// <summary>
         /// String类型原子性递增

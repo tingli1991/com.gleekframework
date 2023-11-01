@@ -6,9 +6,9 @@ using System.Linq;
 namespace Com.GleekFramework.MigrationSdk
 {
     /// <summary>
-    /// 版本变更工厂
+    /// 版本升级工厂类
     /// </summary>
-    public static partial class MigrationFactory
+    public static partial class UpgrationFactory
     {
         /// <summary>
         /// 并发所

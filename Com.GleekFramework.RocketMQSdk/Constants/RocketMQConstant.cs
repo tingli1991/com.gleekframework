@@ -3,7 +3,7 @@
     /// <summary>
     /// 常量类
     /// </summary>
-    public static partial class RocketMQConstant
+    public static class RocketMQConstant
     {
         /// <summary>
         /// 默认的Tags

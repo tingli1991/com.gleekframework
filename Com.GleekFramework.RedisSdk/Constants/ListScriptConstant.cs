@@ -3,7 +3,7 @@
     /// <summary>
     /// 集合类型的Lua脚本
     /// </summary>
-    public static partial class ListScriptConstant
+    public static class ListScriptConstant
     {
         /// <summary>
         /// 将一个或多个值插入到列表头部

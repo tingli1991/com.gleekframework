@@ -10,7 +10,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis仓储实现类
     /// </summary>
-    public class RedisProvider
+    public static partial class RedisProvider
     {
         /// <summary>
         /// 对象锁

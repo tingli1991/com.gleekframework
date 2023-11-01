@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace Com.GleekFramework.MigrationSdk
 {
@@ -8,8 +8,13 @@ namespace Com.GleekFramework.MigrationSdk
     public static partial class MigrationConstant
     {
         /// <summary>
-        /// 系统默认时间
+        /// 主键字段名称
         /// </summary>
-        public static readonly DateTime DEFAULT_TIME = DateTime.Parse("0001/1/1 0:00:00");
+        public const string Id = "Id";
+
+        /// <summary>
+        /// 基础列
+        /// </summary>
+        public static readonly List<string> BaseColumns = new List<string>() { "IsDeleted", "UpdateTime", "CreateTime", "Extend", "Remark" };
     }
 }

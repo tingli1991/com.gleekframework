@@ -14,11 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Factorys\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.6.0" />
   </ItemGroup>
 

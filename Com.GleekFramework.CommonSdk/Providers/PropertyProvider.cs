@@ -21,6 +21,22 @@ namespace Com.GleekFramework.CommonSdk
         private static readonly Dictionary<Type, IEnumerable<PropertyInfo>> CacheList = new Dictionary<Type, IEnumerable<PropertyInfo>>();
 
         /// <summary>
+        /// 获取属性信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="propertyName">属性名称</param>
+        /// <returns></returns>
+        public static PropertyInfo GetPropertyInfo(Type type, string propertyName)
+        {
+            var propertyInfoList = GetPropertyInfoList(type);
+            if (propertyInfoList == null || !propertyInfoList.Any())
+            {
+                return null;
+            }
+            return propertyInfoList.FirstOrDefault(p => p.Name == propertyName);
+        }
+
+        /// <summary>
         /// 获取类型列表的属性信息列表
         /// </summary>
         /// <param name="typeList">类型列表</param>

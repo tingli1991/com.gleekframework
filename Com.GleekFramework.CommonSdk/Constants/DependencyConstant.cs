@@ -5,7 +5,7 @@ namespace Com.GleekFramework.CommonSdk
     /// <summary>
     /// 依赖常量
     /// </summary>
-    public static partial class DependencyConstant
+    public static class DependencyConstant
     {
         /// <summary>
         /// 排查的库类型列表

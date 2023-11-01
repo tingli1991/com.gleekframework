@@ -3,7 +3,7 @@
     /// <summary>
     /// 缓存常量
     /// </summary>
-    public static partial class CacheConstant
+    public static class CacheConstant
     {
         /// <summary>
         /// 系统默认的缓存时间(单位：秒)

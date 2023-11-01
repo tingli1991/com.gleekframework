@@ -8,7 +8,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis列表仓储
     /// </summary>
-    public class RedisListRepository : RedisRepository, IBaseAutofac
+    public partial class RedisListRepository : RedisRepository, IBaseAutofac
     {
         /// <summary>
         /// 获取列表的长度

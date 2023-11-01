@@ -3,7 +3,7 @@
     /// <summary>
     /// Lua脚本
     /// </summary>
-    public static partial class HashScriptConstant
+    public static class HashScriptConstant
     {
         /// <summary>
         /// HsetExpire脚本脚本

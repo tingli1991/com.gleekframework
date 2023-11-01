@@ -1,0 +1,153 @@
+﻿using Com.GleekFramework.CommonSdk;
+using Dapper;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+namespace Com.GleekFramework.MigrationSdk
+{
+    /// <summary>
+    /// MySQL数据库实现类
+    /// </summary>
+    public class MySQLDatabaseProvider : IDatabaseProvider
+    {
+        /// <summary>
+        /// 数据库连接字符串
+        /// </summary>
+        public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public MySQLDatabaseProvider(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+
+        /// <summary>
+        /// 获取数据库连接字符串
+        /// </summary>
+        /// <returns></returns>
+        public IDbConnection GetConnection()
+        {
+            return new MySqlConnection(ConnectionString);
+        }
+
+        /// <summary>
+        /// 初始化数据库
+        /// </summary>
+        public void InitializeDatabase()
+        {
+            var connectionString = ConnectionString.ClearDatabaseName();
+            var databaseName = ConnectionString.ExtractDatabaseName();
+            using var connection = new MySqlConnection(connectionString);
+            var sql = @"select schema_name from information_schema.schemata where schema_name=@Name limit 1;";
+            var existsDatabaseName = connection.ExecuteScalar<string>(sql, new { Name = databaseName });
+            if (!string.IsNullOrEmpty(existsDatabaseName))
+            {
+                return;
+            }
+
+            //初始化数据库
+            connection.Execute($"create database {databaseName} character set utf8 collate utf8_general_ci;");
+        }
+
+        /// <summary>
+        /// 获取最大的版本号
+        /// </summary>
+        /// <returns></returns>
+        public long GetMaxVersion()
+        {
+            using var connection = GetConnection();
+            var sql = "select max(version) from versioninfo;";
+            return connection.ExecuteScalar<long>(sql);
+        }
+
+        /// <summary>
+        /// 获取数据库名称
+        /// </summary>
+        /// <returns></returns>
+        public string GetDatabaseName()
+        {
+            return ConnectionString.ExtractDatabaseName();
+        }
+
+        /// <summary>
+        /// 获取数据库索引摘要信息
+        /// </summary>
+        /// <param name="databaseName">数据库名称</param>
+        /// <returns></returns>
+        public IEnumerable<IndexSchemaModel> GetIndexSchemaList(string databaseName)
+        {
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                return new List<IndexSchemaModel>();
+            }
+
+            var sql = @"select 
+                TABLE_NAME as 'TableName',
+                INDEX_NAME as 'IndexName'
+            from information_schema.statistics 
+            where TABLE_SCHEMA = @DatabaseName;";
+            using var db = GetConnection();
+            return db.Query<IndexSchemaModel>(sql, new { DatabaseName = databaseName });
+        }
+
+        /// <summary>
+        /// 获取表的摘要信息
+        /// </summary>
+        /// <param name="databaseName">数据库名称</param>
+        /// <returns></returns>
+        public IEnumerable<TableSchemaModel> GetTableSchemaList(string databaseName)
+        {
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                return new List<TableSchemaModel>();
+            }
+
+            var sql = @"select
+                TABLE_NAME as 'TableName',
+                COLUMN_NAME as 'ColumnName'
+            from information_schema.columns
+            where TABLE_SCHEMA=@DatabaseName;";
+            using var db = GetConnection();
+            return db.Query<TableSchemaModel>(sql, new { DatabaseName = databaseName });
+        }
+
+        /// <summary>
+        /// 保存版本信息
+        /// </summary>
+        /// <param name="versionList">版本列表</param>
+        public void SaveVersion(IEnumerable<VersionModel> versionList)
+        {
+            if (versionList == null || !versionList.Any())
+            {
+                return;
+            }
+            var sql = @"insert into versioninfo(version,appliedon,description) values(@Version,@AppliedOn,@Description);";
+            Execute(sql, versionList);
+        }
+
+        /// <summary>
+        /// 数据库操作执行方法（不带事务处理）
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="paramters"></param>
+        /// <param name="pageSize">分页大小</param>
+        /// <returns></returns>
+        public bool Execute<T>(string sql, IEnumerable<T> paramters, int pageSize = 2000)
+        {
+            if (paramters == null || !paramters.Any())
+            {
+                return false;
+            }
+
+            using var db = GetConnection();
+            var pageList = paramters.ToPageDictionary(pageSize);
+            pageList.ForEach(e => db.Execute(sql, e.Value, null));
+            return true;
+        }
+    }
+}

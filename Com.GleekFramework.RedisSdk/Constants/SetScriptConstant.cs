@@ -3,7 +3,7 @@
     /// <summary>
     /// 集合数据类型Lua脚本
     /// </summary>
-    public static partial class SetScriptConstant
+    public static class SetScriptConstant
     {
         /// <summary>
         /// 将一个或多个成员元素加入到集合中

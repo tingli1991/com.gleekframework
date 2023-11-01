@@ -6,7 +6,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Lua脚本拓展类
     /// </summary>
-    public static class ScriptExtensions
+    public static partial class ScriptExtensions
     {
         /// <summary>
         /// 执行lua脚本

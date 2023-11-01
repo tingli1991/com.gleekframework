@@ -3,7 +3,7 @@
     /// <summary>
     /// 常用的ContentType常量
     /// </summary>
-    public class ContentTypeConstant
+    public static class ContentTypeConstant
     {
         /// <summary>
         /// 文本类型

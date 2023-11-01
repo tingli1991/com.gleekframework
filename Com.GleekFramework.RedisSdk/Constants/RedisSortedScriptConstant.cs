@@ -3,7 +3,7 @@
     /// <summary>
     /// 有序集合数据类型Lua脚本
     /// </summary>
-    public static partial class RedisSortedScriptConstant
+    public static class RedisSortedScriptConstant
     {
         /// <summary>
         /// Hash原子性递增

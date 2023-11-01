@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using NLog;
-using System.Collections.Generic;
 
 namespace Com.GleekFramework.AttributeSdk
 {

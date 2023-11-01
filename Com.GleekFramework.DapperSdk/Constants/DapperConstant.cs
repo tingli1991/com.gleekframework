@@ -3,7 +3,7 @@
     /// <summary>
     /// Dapper常量
     /// </summary>
-    public static partial class DapperConstant
+    public static class DapperConstant
     {
         /// <summary>
         /// 数据库访问超市时间的秒数

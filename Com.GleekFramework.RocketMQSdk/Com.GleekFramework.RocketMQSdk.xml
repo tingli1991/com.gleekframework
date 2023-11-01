@@ -50,12 +50,12 @@
             账号主题拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketAccessOptions})">
             <summary>
             添加账号配置信息
             </summary>
             <param name="builder"></param>
-            <param name="options">账号配置选项</param>
+            <param name="callback">账号配置选项</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
@@ -68,7 +68,7 @@
         </member>
         <member name="T:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions">
             <summary>
-            RocketMQ消费者主机拓展
+            自定义主机拓展
             </summary>
         </member>
         <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.MessageCount">
@@ -86,12 +86,12 @@
             多线程控制器
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.SubscribeRocketMQ(Microsoft.Extensions.Hosting.IHost,Com.GleekFramework.RocketMQSdk.RocketConsumerOptions)">
+        <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.SubscribeRocketMQ(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketConsumerOptions})">
             <summary>
             订阅RocketMQ
             </summary>
             <param name="host">主机</param>
-            <param name="options">配置选项</param>
+            <param name="callback"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Subscribe(Com.GleekFramework.RocketMQSdk.RocketConsumerOptions)">

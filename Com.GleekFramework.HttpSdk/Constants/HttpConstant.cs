@@ -3,7 +3,7 @@
     /// <summary>
     /// Http常量配置
     /// </summary>
-    public static partial class HttpConstant
+    public static class HttpConstant
     {
         /// <summary>
         /// 头部信息包含的白名单字符(通配)

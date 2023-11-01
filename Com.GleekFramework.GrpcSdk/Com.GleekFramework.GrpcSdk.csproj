@@ -14,11 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+    <Compile Remove="Interceptors\**" />
+    <EmbeddedResource Remove="Interceptors\**" />
+    <None Remove="Interceptors\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interceptors\" />
+    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
   </ItemGroup>
 
 </Project>

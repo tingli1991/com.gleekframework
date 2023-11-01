@@ -6,7 +6,7 @@ namespace Com.GleekFramework.ConfigSdk
     /// <summary>
     /// 配置基础常量
     /// </summary>
-    public static partial class ConfigConstant
+    public static class ConfigConstant
     {
         /// <summary>
         /// 系统默认的配置存放路径
@@ -48,38 +48,12 @@ namespace Com.GleekFramework.ConfigSdk
         /// </summary>
         public static readonly IEnumerable<string> FilterAssemblyNameList = new List<string>()
         {
-            "NLog",
-            "Polly",
-            "System",
-            "Autofac",
-            "protobuf",
-            "NodaTime",
-            "Microsoft",
-            "AspNetCore",
-            "Newtonsoft",
-            "Swashbuckle",
-            "Dapper",
-            "Npgsql",
-            "Log4Net",
-            "ValueInject",
-            "AutoMapper",
-            "MySql.Data",
-            "SqlSugar",
-            "Quartz.Net",
-            "Lucene.Net",
-            "MySqlConnector",
-            "System.Data",
-            "IBM.Data.DB2",
-            "Confluent.Kafka",
-            "MongoDB.Bson",
-            "MongoDB.Driver",
-            "ElasticSearch.Net",
-            "RabbitMQ.Client",
-            "CSRedisCore",
-            "FluentMigrator",
-            "IGeekFan.AspNetCore",
-            "StackExchange.Redis",
-            "Oracle.ManagedDataAccess",
+            "NLog","Polly","System","Autofac","protobuf","NodaTime","Microsoft","AspNetCore",
+            "Newtonsoft","Swashbuckle","Dapper","Npgsql","Log4Net","ValueInject","AutoMapper",
+            "MySql.Data","SqlSugar","Quartz.Net","Lucene.Net","MySqlConnector","System.Data",
+            "IBM.Data.DB2","Confluent.Kafka","MongoDB.Bson","MongoDB.Driver","ElasticSearch.Net",
+            "RabbitMQ.Client","CSRedisCore","FluentMigrator","FluentMigrator","IGeekFan.AspNetCore",
+            "StackExchange.Redis","Oracle.ManagedDataAccess",
         };
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// 常量配置
     /// </summary>
-    public static partial class RabbitConstant
+    public static class RabbitConstant
     {
         /// <summary>
         /// RPC模式默认的队列名称

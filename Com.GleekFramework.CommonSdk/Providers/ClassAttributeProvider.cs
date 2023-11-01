@@ -23,18 +23,17 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 获取自定义特性(包含T以及T的子类)
         /// </summary>
-        /// <param name="source">对象对应的属性信息</param>
+        /// <param name="type">对象对应的属性信息</param>
         /// <returns></returns>
-        public static T GetCustomAttribute<T>(object source) where T : Attribute
+        public static T GetCustomAttribute<T>(Type type) where T : Attribute
         {
-            var customAttributeList = GetCustomAttributeList(source);
+            var customAttributeList = GetCustomAttributeList(type);
             if (customAttributeList == null)
             {
                 return default;
             }
 
-            var type = typeof(T);
-            var customAttribute = customAttributeList.FirstOrDefault(e => type.IsAssignableFrom(e.GetType()) || e.GetType() == type);
+            var customAttribute = customAttributeList.FirstOrDefault(e => typeof(T).IsAssignableFrom(e.GetType()) || e.GetType() == type);
             if (customAttribute == null)
             {
                 return default;
@@ -45,12 +44,12 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 获取自定义特性
         /// </summary>
-        /// <param name="source">对象对应的属性信息</param>
+        /// <param name="type">对象对应的属性信息</param>
         /// <param name="filter">过滤条件</param>
         /// <returns></returns>
-        public static IEnumerable<T> GetCustomAttributeList<T>(object source, Func<Attribute, bool> filter) where T : Attribute
+        public static IEnumerable<T> GetCustomAttributeList<T>(Type type, Func<Attribute, bool> filter) where T : Attribute
         {
-            var customAttributeList = GetCustomAttributeList(source);
+            var customAttributeList = GetCustomAttributeList(type);
             if (customAttributeList == null)
             {
                 return new List<T>();
@@ -61,18 +60,33 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 获取自定义特性
         /// </summary>
-        /// <param name="source">对象</param>
+        /// <param name="type">对象对应的属性信息</param>
         /// <returns></returns>
-        public static IEnumerable<Attribute> GetCustomAttributeList(object source)
+        public static IEnumerable<T> GetCustomAttributeList<T>(Type type) where T : Attribute
         {
-            var type = source.GetType();
+            var fullName = typeof(T).FullName;
+            var customAttributeList = GetCustomAttributeList(type);
+            if (customAttributeList == null)
+            {
+                return new List<T>();
+            }
+            return customAttributeList.Where(e => e.GetType().FullName == fullName).Select(e => (T)e);
+        }
+
+        /// <summary>
+        /// 获取自定义特性
+        /// </summary>
+        /// <param name="type">对象</param>
+        /// <returns></returns>
+        public static IEnumerable<Attribute> GetCustomAttributeList(Type type)
+        {
             if (!CacheList.ContainsKey(type))
             {
                 lock (@lock)
                 {
                     if (!CacheList.ContainsKey(type))
                     {
-                        var customAttributeList = type.GetCustomAttributes<Attribute>();
+                        var customAttributeList = CustomAttributeExtensions.GetCustomAttributes<Attribute>(type);
                         CacheList.Add(type, customAttributeList ?? new List<Attribute>());
                     }
                 }

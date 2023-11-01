@@ -7,7 +7,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis字符串类型仓储
     /// </summary>
-    public class RedisStringRepository : RedisRepository, IBaseAutofac
+    public partial class RedisStringRepository : RedisRepository, IBaseAutofac
     {
         /// <summary>
         /// 获取缓存

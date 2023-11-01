@@ -7,7 +7,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Lua脚本执行实现类
     /// </summary>
-    public static class ScriptProvider
+    public static partial class ScriptProvider
     {
         /// <summary>
         /// 对象锁

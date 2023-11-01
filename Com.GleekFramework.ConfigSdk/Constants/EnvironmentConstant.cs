@@ -3,7 +3,7 @@
     /// <summary>
     /// 环境变量常量参数
     /// </summary>
-    public static partial class EnvironmentConstant
+    public static class EnvironmentConstant
     {
         /// <summary>
         /// 环境

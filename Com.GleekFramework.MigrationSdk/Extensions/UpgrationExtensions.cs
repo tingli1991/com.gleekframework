@@ -15,9 +15,14 @@ namespace Com.GleekFramework.MigrationSdk
         /// 运行版本升级
         /// </summary>
         /// <param name="scope"></param>
+        /// <param name="options">配置选项</param>
         /// <returns></returns>
-        public static async Task UpgrationAsync(this IServiceScope scope)
+        public static async Task UpgrationAsync(this IServiceScope scope, MigrationOptions options)
         {
+            if (scope == null || !options.MigrationSwitch)
+            {
+                return;
+            }
             await UpgrationProvider.ExecuteAsync(scope.ServiceProvider);
         }
 
@@ -29,25 +34,18 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public static async Task ExecuteAsync(this TransactionBehavior transactionBehavior, Action callback)
         {
-            try
+            if (transactionBehavior == TransactionBehavior.None)
             {
-                if (transactionBehavior == TransactionBehavior.None)
-                {
 
-                    //执行回调函数
-                    callback();
-                }
-                else
-                {
-                    var options = new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted };
-                    using var scope = new TransactionScope(TransactionScopeOption.Required, options);
-                    callback();//执行回调函数
-                    scope.Complete();//提交事务
-                }
+                //执行回调函数
+                callback();
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                var options = new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted };
+                using var scope = new TransactionScope(TransactionScopeOption.Required, options);
+                callback();//执行回调函数
+                scope.Complete();//提交事务
             }
             await Task.CompletedTask;
         }

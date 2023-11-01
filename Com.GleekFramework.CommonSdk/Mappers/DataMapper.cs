@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using static System.Linq.Expressions.Expression;
 
 namespace Com.GleekFramework.CommonSdk
@@ -62,20 +59,19 @@ namespace Com.GleekFramework.CommonSdk
             //Func委托传入变量
             var parameter = Parameter(sourceType, "p");
             var memberBindings = new List<MemberBinding>();
-            var targetTypes = targetType.GetProperties().Where(e => e.PropertyType.IsPublic && e.CanWrite);
+            var targetTypes = targetType.GetPropertyInfoList(e => e.PropertyType.IsPublic && e.CanWrite);
             foreach (var targetItem in targetTypes)
             {
-
-                var sourceItem = sourceType.GetProperty(targetItem.Name);
-
-                //判断实体的读写权限
+                var sourceItem = sourceType.GetPropertyInfo(targetItem.Name);
                 if (sourceItem == null || !sourceItem.CanRead || sourceItem.PropertyType.IsNotPublic)
                 {
+                    //判断实体的读写权限
                     continue;
                 }
 
                 //标注NotMapped特性的属性忽略转换
-                if (sourceItem.GetCustomAttribute<NotMappedAttribute>() != null)
+                var notMappedAttribute = PropertyAttributeProvider.GetCustomAttribute<NotMapAttribute>(sourceItem);
+                if (notMappedAttribute != null)
                 {
                     continue;
                 }
