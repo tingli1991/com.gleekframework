@@ -14,6 +14,11 @@
             系统默认的缓存时间(单位：秒)
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.RedisSdk.CacheConstant.LOCK_EXPIRESECONDS">
+            <summary>
+            分布式锁系统默认的缓存时间(单位：秒)
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.RedisSdk.CacheConstant.DEFAULT_CONNECTION_NAME">
             <summary>
             默认的链接字符串名称
@@ -149,6 +154,39 @@
             <param name="configuration">配置对象</param>
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.CSRedisClientLockNx">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.CSRedisClientLockNx._key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RedisSdk.CSRedisClientLockNx._client">
+            <summary>
+            CsRedis客户端
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.CSRedisClientLockNx.#ctor(System.String,CSRedis.CSRedisClient)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.CSRedisClientLockNx.Unlock">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.CSRedisClientLockNx.Dispose">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Com.GleekFramework.RedisSdk.RedisProvider">
             <summary>
@@ -739,6 +777,91 @@
             <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
             <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
             <param name="pageSize">分页的大小（默认：200一个批次）</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.RedisSdk.RedisLockRepository">
+            <summary>
+            Redis分布式锁仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.SetNx(System.String,System.Int32)">
+            <summary>
+            通过SetNx的方式上锁(锁固定的时长)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.SetNxAsync(System.String,System.Int32)">
+            <summary>
+            通过SetNx的方式上锁(锁固定的时长)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.Increment(System.String,System.Int32)">
+            <summary>
+            原子递增的方式上锁(锁固定的时长,需要调用Decrement方法手动释放)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.IncrementAsync(System.String,System.Int32)">
+            <summary>
+            原子递增(锁固定的时长,需要调用DecrementAsync方法手动释放)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.Decrement(System.String,System.Int32)">
+            <summary>
+            释放原子锁
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.DecrementAsync(System.String,System.Int32)">
+            <summary>
+            释放原子锁
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">过期时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.LockUp(System.String,System.Int32)">
+            <summary>
+            排队锁(过期时间内等待)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.LockUpAsync(System.String,System.Int32)">
+            <summary>
+            排队锁(过期时间内等待)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.LockNx(System.String,System.Int32)">
+            <summary>
+            分布式锁(不等待)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.RedisSdk.RedisLockRepository.LockNxAsync(System.String,System.Int32)">
+            <summary>
+            分布式锁(不等待)
+            </summary>
+            <param name="key">缓存键</param>
+            <param name="expireSeconds">缓存时间(单位：秒)</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.RedisSdk.RedisRepository">
