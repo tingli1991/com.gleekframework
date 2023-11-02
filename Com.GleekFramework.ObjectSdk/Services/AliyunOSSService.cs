@@ -20,44 +20,90 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<List<string>> PutObjectAsync(string bucketName, string filePath, IEnumerable<IFormFile> files)
         {
-            return await AliyunOSSProvider.PutObjectAsync(bucketName, filePath, files);
+            return await PutObjectAsync(bucketName, filePath, files);
         }
 
         /// <summary>
         /// 上传文件
         /// </summary>
-        /// <param name="bucketName"></param>
-        /// <param name="filePath"></param>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="path">文件存放路径</param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static async Task<string> PutObjectAsync(string bucketName, string filePath, IFormFile file)
+        public static async Task<string> PutObjectAsync(string bucketName, string path, IFormFile file)
         {
-            return await AliyunOSSProvider.PutObjectAsync(bucketName, filePath, file);
+            return await AliyunOSSProvider.PutObjectAsync(bucketName, path, file);
         }
 
         /// <summary>
         /// 上传文件
         /// </summary>
-        /// <param name="bucketName"></param>
-        /// <param name="filePath"></param>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="path">文件存放路径</param>
         /// <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
         /// <returns></returns>
-        public static async Task<string> PutObjectAsync(string bucketName, string filePath, string fullName)
+        public static async Task<string> PutObjectAsync(string bucketName, string path, string fullName)
         {
-            return await AliyunOSSProvider.PutObjectAsync(bucketName, filePath, fullName);
+            return await AliyunOSSProvider.PutObjectAsync(bucketName, path, fullName);
         }
 
         /// <summary>
         /// 上传文件
         /// </summary>
-        /// <param name="bucketName"></param>
-        /// <param name="filePath">文件路径(xxx/sdsss)</param>
-        /// <param name="fileName">文件名称(格式：xxx.jpg)</param>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static async Task<string> PutObjectAsync(string bucketName, string filePath, string fileName, Stream stream)
+        public static async Task<string> PutObjectAsync(string bucketName, string fileName, Stream stream)
         {
-            return await AliyunOSSProvider.PutObjectAsync(bucketName, filePath, fileName, stream);
+            return await AliyunOSSProvider.PutObjectAsync(bucketName, fileName, stream);
+        }
+
+        /// <summary>
+        /// 上传支付穿
+        /// </summary>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="fileName">文件名称</param>
+        /// <param name="content">字符串内容</param>
+        /// <returns></returns>
+        public static async Task<string> PutContentAsync(string bucketName, string fileName, string content)
+        {
+            return await AliyunOSSProvider.PutContentAsync(bucketName, fileName, content);
+        }
+
+        /// <summary>
+        /// 获取对象的内容
+        /// </summary>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
+        /// <returns></returns>
+        public static async Task<string> GetContentAsync(string bucketName, string fileName)
+        {
+            return await AliyunOSSProvider.GetContentAsync(bucketName, fileName);
+        }
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="path">文件存放路径(格式：d:/www)</param>
+        /// <param name="fileName">要下载的文件</param>
+        /// <returns></returns>
+        public static async Task<string> Download(string bucketName, string path, string fileName)
+        {
+            return await AliyunOSSProvider.Download(bucketName, path, fileName);
+        }
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="bucketName">Bucket名称</param>
+        /// <param name="path">文件存放路径(格式：d:/www)</param>
+        /// <param name="fileNames">要下载的文件集合</param>
+        /// <returns></returns>
+        public static async Task<IEnumerable<string>> Download(string bucketName, string path, IEnumerable<string> fileNames)
+        {
+            return await AliyunOSSProvider.Download(bucketName, path, fileNames);
         }
     }
 }
