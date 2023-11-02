@@ -203,7 +203,16 @@
             <param name="func"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefault``1(System.String,System.Object,System.Nullable{System.Int32})">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefault``1(System.Object,System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryId"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefault``1(System.String,System.Object,System.Int32)">
             <summary>
             获取单条记录信息
             </summary>
@@ -221,6 +230,15 @@
             <param name="sql">sql语句</param>
             <param name="param">参数对象</param>
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefaultAsync``1(System.Object,System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryId"></param>
+            <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetList``1(System.String,System.Object,System.Int32)">
@@ -241,6 +259,146 @@
             <param name="sql">sql语句</param>
             <param name="param">参数对象</param>
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageList``1(System.Int32,System.Int32,System.Object,System.Collections.Generic.List{DapperExtensions.Predicate.Sort},System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="pageIndex">分页页码</param>
+            <param name="pageSize">分页大小</param>
+            <param name="param">参数对象</param>
+            <param name="sortList">排序字段</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageListAsync``1(System.Int32,System.Int32,System.Object,System.Collections.Generic.List{DapperExtensions.Predicate.Sort},System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="pageIndex">分页页码</param>
+            <param name="pageSize">分页大小</param>
+            <param name="param">参数对象</param>
+            <param name="sortList">排序字段</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertOne``1(``0,System.Int32)">
+            <summary>
+            插入单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            插入单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="paramters"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertOneAsync``1(``0,System.Int32)">
+            <summary>
+            插入单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            插入单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="paramters"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateOne``1(``0,System.Int32)">
+            <summary>
+            更新单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            更新多条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="paramters"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateOneAsync``1(``0,System.Int32)">
+            <summary>
+            更新单条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            更新多条数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entitys"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne``1(``0,System.Int32)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="entity"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne(System.Object,System.Int32)">
+            <summary>
+            根据条件删除
+            </summary>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            删除多条数据
+            </summary>
+            <param name="entitys"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync``1(``0,System.Int32)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="entity"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync(System.Object,System.Int32)">
+            <summary>
+            根据条件删除数据
+            </summary>
+            <param name="param"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            删除多条数据
+            </summary>
+            <param name="entitys"></param>
+            <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Execute(System.String,System.Object,System.Int32)">

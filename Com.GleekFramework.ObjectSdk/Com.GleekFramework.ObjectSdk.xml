@@ -30,19 +30,19 @@
             阿里云OSS
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AppId">
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.Endpoint">
+            <summary>
+            上传/下载是使用的终结点地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AccessKey">
             <summary>
             SDK AppID
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AppKey">
+        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AccessSecret">
             <summary>
             App Key
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.BaseUrl">
-            <summary>
-            地域节点
             </summary>
         </member>
         <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.BucketUrl">
@@ -73,8 +73,8 @@
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath"></param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径</param>
             <param name="file"></param>
             <returns></returns>
         </member>
@@ -82,19 +82,53 @@
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath"></param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径</param>
             <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.String,System.IO.Stream)">
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.IO.Stream)">
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath">文件路径(xxx/sdsss)</param>
-            <param name="fileName">文件名称(格式：xxx.jpg)</param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
             <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传支付穿
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称</param>
+            <param name="content">字符串内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.GetContentAsync(System.String,System.String)">
+            <summary>
+            获取对象的内容
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Download(System.String,System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径(格式：d:/www)</param>
+            <param name="fileName">要下载的文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Download(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            下载文件
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径(格式：d:/www)</param>
+            <param name="fileNames">要下载的文件集合</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSService">
@@ -115,8 +149,8 @@
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath"></param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径</param>
             <param name="file"></param>
             <returns></returns>
         </member>
@@ -124,19 +158,53 @@
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath"></param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径</param>
             <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.String,System.IO.Stream)">
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.IO.Stream)">
             <summary>
             上传文件
             </summary>
-            <param name="bucketName"></param>
-            <param name="filePath">文件路径(xxx/sdsss)</param>
-            <param name="fileName">文件名称(格式：xxx.jpg)</param>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
             <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传支付穿
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称</param>
+            <param name="content">字符串内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.GetContentAsync(System.String,System.String)">
+            <summary>
+            获取对象的内容
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.Download(System.String,System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径(格式：d:/www)</param>
+            <param name="fileName">要下载的文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.Download(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            下载文件
+            </summary>
+            <param name="bucketName">Bucket名称</param>
+            <param name="path">文件存放路径(格式：d:/www)</param>
+            <param name="fileNames">要下载的文件集合</param>
             <returns></returns>
         </member>
     </members>

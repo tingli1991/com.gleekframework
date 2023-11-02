@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.4" />
+    <PackageReference Include="DapperExtensions" Version="1.7.0" />
     <PackageReference Include="Npgsql" Version="7.0.6" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
     <PackageReference Include="MySqlConnector" Version="2.2.7" />
@@ -29,6 +30,7 @@
     <ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
   </ItemGroup>
 
 </Project>
