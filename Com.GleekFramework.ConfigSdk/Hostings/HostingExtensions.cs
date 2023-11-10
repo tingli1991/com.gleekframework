@@ -17,5 +17,20 @@ namespace Com.GleekFramework.ConfigSdk
             AppConfig.UseAppConfig(builder);
             return builder;
         }
+
+        /// <summary>
+        /// 添加Nacos
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IHostBuilder UseConfigAttribute(this IHostBuilder builder)
+        {
+            builder.ConfigureServices(services =>
+            {
+                DependencyProvider.Switch = true;//打开开关
+                DependencyProvider.RefreshConfigAttribute();
+            });
+            return builder;
+        }
     }
 }

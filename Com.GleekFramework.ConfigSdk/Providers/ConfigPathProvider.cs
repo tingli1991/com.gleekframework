@@ -31,10 +31,18 @@ namespace Com.GleekFramework.ConfigSdk
                     fileName = ConfigConstant.APP_CONFIG_FILENAME;
                 }
 
-                var environmentVariable = EnvironmentProvider.GetEnvironmentVariable(EnvironmentConstant.ENV);
-                if (!string.IsNullOrEmpty(environmentVariable))
+                var envVariable = EnvironmentProvider.GetEnv();
+                if (!string.IsNullOrEmpty(envVariable))
                 {
-                    fileName = $"{fileName.Replace(".json", "")}.{environmentVariable}.json";
+                    //绑定环境
+                    fileName = $"{fileName.Replace(".json", "")}.{envVariable}.json";
+                }
+
+                var projectVariable = EnvironmentProvider.GetProject();
+                if (!string.IsNullOrEmpty(projectVariable))
+                {
+                    //绑定项目名称
+                    fileName = $"{fileName.Replace(".json", "")}.{projectVariable}.json";
                 }
                 fileNameList.Add(Path.Combine(ConfigConstant.DEFAULT_CONFIG, fileName));
             }
