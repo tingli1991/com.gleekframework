@@ -64,13 +64,13 @@ namespace Com.GleekFramework.AttributeSdk
         /// 使用心跳检测
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="text">输出的内容(默认为：ok)</param>
+        /// <param name="callback">输出的内容(默认为：ok)</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder builder, string text = "ok")
+        public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder builder, Func<string> callback = null)
         {
             builder.UseEndpoints(endpoints => endpoints.MapHealthChecks("/health", new HealthCheckOptions()
             {
-                ResponseWriter = (context, result) => context.Response.WriteAsync(text, Encoding.UTF8)
+                ResponseWriter = (context, result) => context.Response.WriteAsync(callback == null ? "ok" : callback(), Encoding.UTF8)
             }));
             return builder;
         }
