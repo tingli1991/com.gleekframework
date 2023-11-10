@@ -89,3 +89,10 @@ namespace Com.GleekFramework.AppSvc.Controllers
     }
 }
 ```
+
+### 直接从容器内获取服务的实例
+不推荐(小后门)使用，具体可以通过`AutofacProvider`类的`GetService<T>()`方法直接从容器内获取实例对象，下面是其中一种获取方式
+``` C#
+//指定泛型的方式获取
+private static readonly HttpClientService HttpClientService = AutofacProvider.GetService<HttpClientService>();
+```
