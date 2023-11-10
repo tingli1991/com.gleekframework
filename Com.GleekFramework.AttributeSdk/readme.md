@@ -3,14 +3,13 @@
 
 ### 心跳检测接口统一规范说明
 该心跳接口默认返回 "ok"，也可以通过方法 UseHealthChecks 的 callback 参数自定义返回结果
-##### 接口定义如下
+###### 接口定义如下
 ``` C#
 http://localhost:8080/health
 ```
-##### 自定义心跳返回结果
+###### 自定义心跳返回结果
 ``` C#
-//使用心跳检测(自定义返回结果为当前的服务器时间)
-app.UseHealthChecks(() => $"{DateTime.Now:yyyyMMdd HH:mm:ss}");
+app.UseHealthChecks(() => $"{DateTime.Now:yyyyMMdd HH:mm:ss}");//使用心跳检测(自定义返回结果为当前的服务器时间)
 ```
 
 ### 主机注入方法介绍(HostingExtensions)
