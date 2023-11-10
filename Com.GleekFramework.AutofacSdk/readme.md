@@ -1,13 +1,13 @@
 ## 依赖注入SDK
 
-### 依赖注入约定
+### 约定/规范
 1. 所有的依赖注入统一约定成属性注入的方式;
 2. 利用属性注入的时候访问修饰符必须采用 `public` 关键字来进行修饰;
 3. 所有定义的服务 `Service` 必须继承自 `IBaseAutofac` 接口(框架自认该接口的子类);
 4. 在使用之前必须调用`HostingExtensions.cs`的`UseAutofac()`方法将Autofac注入到框架中,从而替换Net自带的IOC;
 5. 所有定义的服务 `Service` 统一基于服务本身来进行注入(目的是提高开发效率，实际应用场景几乎不会出现需要换实现层的情况，如果非要加接口层，可以调整把`DefaultModule.cs`里面的`.AsSelf()`方法去掉即可)
 
-### Autofac 启动注入示例
+### 启动注入示例
 ``` C#
 /// <summary>
 /// 程序类
@@ -37,7 +37,7 @@ public static class Program
 }
 ```
 
-#### Autofac 服务的定义
+#### 服务的定义
 ``` C#
 /// <summary>
 /// 程序集服务
@@ -56,7 +56,7 @@ public partial class AssemblyService : IBaseAutofac
 }
 ```
 
-#### Autofac 服务的使用
+#### 服务的使用
 ``` C#
 using Com.GleekFramework.AssemblySdk;
 using Com.GleekFramework.AttributeSdk;
