@@ -126,8 +126,13 @@ namespace Com.GleekFramework.ObjectSdk
                 //返回空字符串
                 return "";
             }
-            using var reader = new StreamReader(response.Content);
-            return await Task.FromResult(reader.ReadToEnd());
+
+            using var memoryStream = new MemoryStream();
+            response.Content.CopyTo(memoryStream);
+            var bytes = memoryStream.ToArray();
+            var objectContent = Encoding.UTF8.GetString(bytes);
+            response.Content.Close();
+            return await Task.FromResult(objectContent);
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using Com.GleekFramework.HttpSdk;
 using Com.GleekFramework.MigrationSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
+using Com.GleekFramework.QueueSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
@@ -21,8 +22,8 @@ namespace Com.GleekFramework.AppSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 //.SubscribeStack((config) => 24)//订阅本地栈(先进显出)
-                 //.SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
+                 .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
+                 .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
                  .UseMigrations((config) => new MigrationOptions()
                  {
                      MigrationSwitch = true,

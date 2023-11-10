@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.AssemblySdk\Com.GleekFramework.AssemblySdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.Models\Com.GleekFramework.Models.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />

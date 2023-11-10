@@ -25,7 +25,7 @@ namespace Com.GleekFramework.CommonSdk
         /// </summary>
         /// <param name="type">父级类型</param>
         /// <returns>程序集列表</returns>
-        public static IEnumerable<Assembly> GetAssemblyList(this Type type)
+        public static IEnumerable<Assembly> GetAssemblyList(Type type)
         {
             return GetAssemblyList().Where(e => CheckIsAssignableFrom(e, type));
         }
@@ -62,7 +62,7 @@ namespace Com.GleekFramework.CommonSdk
         /// </summary>
         /// <param name="assemblyName">程序集名称</param>
         /// <returns>程序集</returns>
-        public static Assembly GetAssembly(this string assemblyName)
+        public static Assembly GetAssembly(string assemblyName)
         {
             Assembly assembly = null;
             try

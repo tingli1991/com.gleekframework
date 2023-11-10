@@ -6,8 +6,15 @@
     <members>
         <member name="T:Com.GleekFramework.AssemblySdk.AssemblyService">
             <summary>
-            程序集实现类
+            程序集服务
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.AssemblyService.GetAssembly(System.String)">
+            <summary>
+            获取程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
         </member>
         <member name="M:Com.GleekFramework.AssemblySdk.AssemblyService.GetAssemblyList">
             <summary>
@@ -22,9 +29,17 @@
             <param name="type">父级类型</param>
             <returns>程序集列表</returns>
         </member>
+        <member name="M:Com.GleekFramework.AssemblySdk.AssemblyService.CheckIsAssignableFrom(System.Reflection.Assembly,System.Type)">
+            <summary>
+            检查当前程序集当中的类是否包含type的子类
+            </summary>
+            <param name="assembly">程序集</param>
+            <param name="type">基础类型</param>
+            <returns>true 表示是子类 false 表示不是子类</returns>
+        </member>
         <member name="T:Com.GleekFramework.AssemblySdk.DocumentService">
             <summary>
-            程序集的文档实现类
+            文档服务
             </summary>
         </member>
         <member name="M:Com.GleekFramework.AssemblySdk.DocumentService.GetXmlDocumentFileList">
@@ -35,7 +50,7 @@
         </member>
         <member name="T:Com.GleekFramework.AssemblySdk.LibraryService">
             <summary>
-            编译库实现类
+            编译库服务
             </summary>
         </member>
         <member name="M:Com.GleekFramework.AssemblySdk.LibraryService.GetCompileLibrarieNnameList">

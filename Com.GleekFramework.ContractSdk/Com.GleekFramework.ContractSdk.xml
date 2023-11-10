@@ -4,41 +4,6 @@
         <name>Com.GleekFramework.ContractSdk</name>
     </assembly>
     <members>
-        <member name="T:Com.GleekFramework.ContractSdk.MessageBody">
-            <summary>
-            接受消息的内容
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.ActionKey">
-            <summary>
-            消息类型(方法名称)
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.SerialNo">
-            <summary>
-            业务流水号
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.TimeStamp">
-            <summary>
-            时间戳
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.Headers">
-            <summary>
-            请求头信息
-            </summary>
-        </member>
-        <member name="T:Com.GleekFramework.ContractSdk.MessageBody`1">
-            <summary>
-            消息内容
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.MessageBody`1.Data">
-            <summary>
-            数据详情
-            </summary>
-        </member>
         <member name="T:Com.GleekFramework.ContractSdk.GlobalMessageCode">
             <summary>
             全局消息错误码
@@ -149,6 +114,41 @@
         <member name="P:Com.GleekFramework.ContractSdk.CacheModel`1.Data">
             <summary>
             数据内容
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.MessageBody">
+            <summary>
+            接受消息的内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.ActionKey">
+            <summary>
+            消息类型(方法名称)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.SerialNo">
+            <summary>
+            业务流水号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody.Headers">
+            <summary>
+            请求头信息
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.MessageBody`1">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.MessageBody`1.Data">
+            <summary>
+            数据详情
             </summary>
         </member>
         <member name="T:Com.GleekFramework.ContractSdk.SnowflakeProvider">

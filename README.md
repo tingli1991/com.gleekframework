@@ -12,7 +12,7 @@
 | Com.GleekFramework.AuthorizeSdk    | 认证授权开发工具包                |主要用于做认证授权相关的功能拓展和规范 (待完善)                                         |
 | Com.GleekFramework.AutofacSdk      | IOC(Autofac)开发工具包            |利用Autofac重写NET自带的IOC容器(所有的DI统一采用属性注入的方式)                         |
 | Com.GleekFramework.CommonSdk       | 基础的开发工具包                  |约定和定义通用的特性、常量、枚举、拓展方法、数据转换方法以及验证方法等                  |
-| Com.GleekFramework.AssemblySdk     | 配置文件拓展工具包                |管理和约定配置的定义以及读取方式                                                        |
+| Com.GleekFramework.ConfigSdk       | 配置文件拓展工具包                |管理和约定配置的定义以及读取方式                                                        |
 | Com.GleekFramework.ConsumerSdk     | 消费者开发工具包                  |管理和约定消费的的实现规范以及自定义了一套基于消费者的消费者的切面开发规范和切面开发能力|
 | Com.GleekFramework.ContractSdk     | 公共契约拓展工具包                |定义和约束项目暴露的契约数据(例如：接口的返回模型、项目的基础错误码以及流水号生成规范等)|
 | Com.GleekFramework.DapperSdk       | ORM(Dapper)拓展工具包             |基于Dapper和DapperExtensions整合出来的ORM组件                                           |

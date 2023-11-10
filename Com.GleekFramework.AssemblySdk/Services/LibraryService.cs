@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Com.GleekFramework.AssemblySdk
 {
     /// <summary>
-    /// 编译库实现类
+    /// 编译库服务
     /// </summary>
     public partial class LibraryService : IBaseAutofac
     {
