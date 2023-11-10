@@ -20,7 +20,7 @@ namespace Com.GleekFramework.AttributeSdk
     public static partial class HostingExtensions
     {
         /// <summary>
-        /// 使用默认的消费者Web主机
+        /// 使用默认的消费者主机
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
