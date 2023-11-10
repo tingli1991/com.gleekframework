@@ -106,7 +106,7 @@
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseGleekConsumerHostDefaults(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
-            使用默认的消费者Web主机
+            使用默认的消费者主机
             </summary>
             <param name="builder"></param>
             <returns></returns>
@@ -119,12 +119,12 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{System.String})">
             <summary>
             使用心跳检测
             </summary>
             <param name="builder"></param>
-            <param name="text">输出的内容(默认为：ok)</param>
+            <param name="callback">输出的内容(默认为：ok)</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
