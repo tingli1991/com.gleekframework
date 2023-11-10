@@ -66,3 +66,142 @@
 | Entitys                            | 自定义实体对象                    |存放所有的数据实体对象                                                                                 |
 | Config                             | 配置文件存放目录                  |存放所有的配置文件(例如：nacos.json文件)                                                               |
 | Handlers                           | 定义所有的消费者处理类            |存放所有的消费者处理类文件(类似于接口的Controllers)                                                    |
+
+## 项目启动时常用的一些注入参考
+### Web项目的注入示例
+``` C#
+using Com.GleekFramework.AttributeSdk;
+using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.HttpSdk;
+using Com.GleekFramework.MigrationSdk;
+using Com.GleekFramework.Models;
+using Com.GleekFramework.NacosSdk;
+using Com.GleekFramework.QueueSdk;
+
+namespace Com.GleekFramework.AppSvc
+{
+    /// <summary>
+    /// 程序类
+    /// </summary>
+    public static class Program
+    {
+        /// <summary>
+        /// 程序主函数
+        /// </summary>
+        /// <param name="args"></param>
+        public static async Task Main(string[] args)
+        {
+            await CreateDefaultHostBuilder(args)
+                 .Build()
+                 .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
+                 .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
+                 .UseMigrations((config) => new MigrationOptions()
+                 {
+                     MigrationSwitch = true,
+                     UpgrationSwitch = true,
+                     DatabaseType = DatabaseType.MySQL,
+                     ConnectionString = config.GetConnectionString(DatabaseConstant.DefaultMySQLHostsKey)
+                 })
+                 .RunAsync();
+        }
+
+        /// <summary>
+        /// 创建系统主机
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static IHostBuilder CreateDefaultHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .UseAutofac()
+            .UseConfig()
+            .UseNacosConf()
+            .UseHttpClient()
+            .UseConfigAttribute()
+            .UseGleekWebHostDefaults<Startup>();
+    }
+}
+
+/// <summary>
+/// 程序激动类
+/// </summary>
+public class Startup
+{
+    /// <summary>
+    /// 服务注册
+    /// </summary>
+    /// <param name="services"></param>
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddHealthChecks();//添加心跳
+        services.AddKnife4Gen("测试文档");//添加Knife4生成器
+
+        services.AddNewtonsoftJson();//添加对JSON的默认格式化
+        services.AddDistributedMemoryCache();//添加分布式内存缓存
+        services.AddGlobalExceptionAttribute();//添加全局异常
+        services.AddModelValidAttribute<MessageCode>();//添加模型验证
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();//添加Cookie支持
+    }
+
+    /// <summary>
+    /// 配置服务
+    /// </summary>
+    /// <param name="app"></param>
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseKnife4UI();//使用Knife4UI界面
+        app.UseStaticFiles();//使用静态资源
+        app.UseRouting();//使用路由规则
+        app.UseHealthChecks();//使用心跳检测
+        app.UseAuthentication();//启用授权
+        app.UseEndpoints(endpoints => endpoints.MapControllers());//启用终结点配置
+        app.RegisterApplicationStarted(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
+    }
+}
+```
+
+#### 控制台项目的注入示例（例如：kafka消费者）
+``` C#
+ using Com.GleekFramework.AttributeSdk;
+using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.KafkaSdk;
+using Com.GleekFramework.NacosSdk;
+using Com.GleekFramework.RabbitMQSdk;
+
+namespace Com.GleekFramework.ConsumerSvc
+{
+    /// <summary>
+    /// 主程序
+    /// </summary>
+    public static class Program
+    {
+        /// <summary>
+        /// 程序主函数
+        /// </summary>
+        /// <param name="args"></param>
+        public static async Task Main(string[] args)
+        {
+            await CreateDefaultHostBuilder(args)
+                 .Build()
+                 .SubscribeKafka(config => config.Get<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))
+                 .SubscribeRabbitMQ(config => config.Get<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))
+                 .RunAsync();
+        }
+
+        /// <summary>
+        /// 创建系统主机
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static IHostBuilder CreateDefaultHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .UseAutofac()
+            .UseConfig()
+            .UseNacosConf()
+            .UseWindowsService()
+            .UseConfigAttribute()
+            .UseGleekConsumerHostDefaults();
+    }
+}
+```
