@@ -67,8 +67,8 @@
 | Config                             | 配置文件存放目录                  |存放所有的配置文件(例如：nacos.json文件)                                                               |
 | Handlers                           | 定义所有的消费者处理类            |存放所有的消费者处理类文件(类似于接口的Controllers)                                                    |
 
-## 项目启动时常用的一些注入参考
-### Web项目的注入示例
+## 项目启动时常用注入参考
+### WEB项目的注入示例
 ``` C#
 using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
@@ -160,9 +160,9 @@ public class Startup
 }
 ```
 
-#### 控制台项目的注入示例（例如：kafka消费者）
+### 控制台项目的注入示例
 ``` C#
- using Com.GleekFramework.AttributeSdk;
+using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.KafkaSdk;
