@@ -28,7 +28,7 @@
 7. 启用了属性配置之后，当属性对应的配置发生变化的时候，程序会自动刷新对应的属性值;
 8. 如果设置了ENV的环境变量，那么所有通过SDK读取配置文件的时候都会去读取对应环境的`json`配置(例如：share.json 如果ENV=dev，那么share.json 则变更成share.dev.json，同理PROJECT=test的时候，那么share.json则编程share.dev.test.json);
 
-# 配置文件优先级
+#### 配置文件优先级
 当相同的配置key出现在不同的`json`配置文件当中，再回按照如下的优先级进行读取;
 > share.json  -->  application.json  --> subscription.json  --> bootstrap.json
 #### 程序启动是注入SDK
