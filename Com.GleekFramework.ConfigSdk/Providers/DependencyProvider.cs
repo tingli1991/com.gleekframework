@@ -108,7 +108,7 @@ namespace Com.GleekFramework.ConfigSdk
                         {
                             var configAttribute = PropertyAttributeProvider.GetCustomAttribute<ConfigAttribute>(propertyInfo);//配置文件特性
                             var configurationValue = GetConfigurationValue(configAttribute, propertyInfo.PropertyType);//配置文件值
-                            instance.SetPropertyValue(propertyInfo.Name, configurationValue);//设置对象的属性值
+                            propertyInfo.SetValue(instance, configurationValue);//设置对象的属性值
                         });
                     });
                 });
