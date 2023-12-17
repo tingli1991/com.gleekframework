@@ -846,7 +846,7 @@
             获取属性名称
             </summary>
             <param name="obj"></param>
-            <param name="fieldNames"></param>
+            <param name="propertyNames"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue(System.Object,System.String)">
@@ -854,7 +854,7 @@
             获取一个类指定的属性值
             </summary>
             <param name="obj">object对象</param>
-            <param name="fieldName">属性名称</param>
+            <param name="propertyName">属性名称</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue``1(System.Object,System.String)">
@@ -862,7 +862,7 @@
             获取一个类指定的属性值
             </summary>
             <param name="obj">object对象</param>
-            <param name="fieldName">属性名称</param>
+            <param name="propertyName">属性名称</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.SetPropertyValue(System.Object,System.String,System.Object)">
@@ -870,7 +870,7 @@
             设置对象属性值
             </summary>
             <param name="obj"></param>
-            <param name="fieldName">字段名称</param>
+            <param name="propertyName">字段名称</param>
             <param name="value">字段值</param>
             <returns></returns>
         </member>

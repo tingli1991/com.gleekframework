@@ -119,36 +119,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.AppSvc.Controllers.ClassA">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.ClassA.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.ClassA.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="T:Com.GleekFramework.AppSvc.Controllers.ClassB">
-            <summary>
-            目标类
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.ClassB.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.ClassB.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController">
             <summary>
             天气预报控制器

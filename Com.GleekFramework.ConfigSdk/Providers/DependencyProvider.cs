@@ -29,11 +29,6 @@ namespace Com.GleekFramework.ConfigSdk
         private static DateTime? LastExecuteTime { get; set; }
 
         /// <summary>
-        /// 启用的并行数量
-        /// </summary>
-        private static readonly ParallelOptions ParallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
-
-        /// <summary>
         /// 注册(或刷新)配置特性对照的配置值
         /// </summary>
         public static void RefreshConfigAttribute()
@@ -71,7 +66,7 @@ namespace Com.GleekFramework.ConfigSdk
                 }
 
                 //遍历程序集
-                Parallel.ForEach(assemblyList, ParallelOptions, (assembly) =>
+                Parallel.ForEach(assemblyList, (assembly) =>
                 {
                     if (ConfigConstant.FilterAssemblyNameList.Any(e => assembly.FullName.StartsWith(e)))
                     {
@@ -86,11 +81,18 @@ namespace Com.GleekFramework.ConfigSdk
                     }
 
                     //便利程序集对照的类型
-                    Parallel.ForEach(assembleTypeList, ParallelOptions, (assembleType) =>
+                    Parallel.ForEach(assembleTypeList, (assembleType) =>
                     {
-                        if (!assembleType.IsClass)
+                        if (!assembleType.IsClass || string.IsNullOrEmpty(assembleType.Name) || string.IsNullOrEmpty(assembleType.Namespace))
                         {
-                            //排除非Class的类
+                            return;
+                        }
+
+                        //当前类型的属性列表
+                        bool filter(PropertyInfo e) => e.CustomAttributes != null && e.CustomAttributes.Any(p => configAttributeType.IsAssignableFrom(p.AttributeType) || p.AttributeType == configAttributeType);
+                        var propertyInfoList = PropertyProvider.GetPropertyInfoList(assembleType, filter);
+                        if (propertyInfoList == null || !propertyInfoList.Any())
+                        {
                             return;
                         }
 
@@ -101,17 +103,8 @@ namespace Com.GleekFramework.ConfigSdk
                             return;
                         }
 
-                        //当前类型的属性列表
-                        bool filter(PropertyInfo e) => e.CustomAttributes != null && e.CustomAttributes
-                        .Any(p => configAttributeType.IsAssignableFrom(p.AttributeType) || p.AttributeType == configAttributeType);
-                        var propertyInfoList = PropertyProvider.GetPropertyInfoList(assembleType, filter);
-                        if (propertyInfoList == null || !propertyInfoList.Any())
-                        {
-                            return;
-                        }
-
                         //遍历属性列表
-                        Parallel.ForEach(propertyInfoList, ParallelOptions, (propertyInfo) =>
+                        Parallel.ForEach(propertyInfoList, (propertyInfo) =>
                         {
                             var configAttribute = PropertyAttributeProvider.GetCustomAttribute<ConfigAttribute>(propertyInfo);//配置文件特性
                             var configurationValue = GetConfigurationValue(configAttribute, propertyInfo.PropertyType);//配置文件值

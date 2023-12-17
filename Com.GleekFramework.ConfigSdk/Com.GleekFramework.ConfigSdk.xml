@@ -134,18 +134,6 @@
             Swagger开关
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.ConfigSdk.DependencyExtensions">
-            <summary>
-            配置文件依赖注入拓展
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.DependencyExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
-            <summary>
-            添加Nacos
-            </summary>
-            <param name="builder"></param>
-            <returns></returns>
-        </member>
         <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigExtensions">
             <summary>
             JSON配置文件拓展
@@ -204,6 +192,13 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.HostingExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            添加Nacos
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.ConfigSdk.ConfigPathProvider">
             <summary>
             配置文件路径实现类
@@ -234,11 +229,6 @@
         <member name="P:Com.GleekFramework.ConfigSdk.DependencyProvider.LastExecuteTime">
             <summary>
             最后一次执行事件
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.ConfigSdk.DependencyProvider.ParallelOptions">
-            <summary>
-            启用的并行数量
             </summary>
         </member>
         <member name="M:Com.GleekFramework.ConfigSdk.DependencyProvider.RefreshConfigAttribute">

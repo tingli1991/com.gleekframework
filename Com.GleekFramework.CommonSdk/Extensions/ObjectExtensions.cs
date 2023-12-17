@@ -13,17 +13,19 @@ namespace Com.GleekFramework.CommonSdk
         /// 获取属性名称
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="fieldNames"></param>
+        /// <param name="propertyNames"></param>
         /// <returns></returns>
-        public static T GetPropertyValue<T>(this object obj, params string[] fieldNames)
+        public static T GetPropertyValue<T>(this object obj, params string[] propertyNames)
         {
             T result = default;
             try
             {
-                if (fieldNames == null || !fieldNames.Any())
+                if (propertyNames == null || !propertyNames.Any())
+                {
                     return result;
+                }
 
-                foreach (var fieldName in fieldNames)
+                foreach (var fieldName in propertyNames)
                 {
                     result = obj.GetPropertyValue<T>(fieldName);
                     if (result != null)
@@ -44,39 +46,20 @@ namespace Com.GleekFramework.CommonSdk
         /// 获取一个类指定的属性值
         /// </summary>
         /// <param name="obj">object对象</param>
-        /// <param name="fieldName">属性名称</param>
+        /// <param name="propertyName">属性名称</param>
         /// <returns></returns>
-        public static object GetPropertyValue(this object obj, string fieldName)
+        public static object GetPropertyValue(this object obj, string propertyName)
         {
-            object result = null;
-            try
-            {
-                if (obj == null)
-                {
-                    return result;
-                }
-
-                Type type = obj.GetType();
-                var propertypeList = type.GetProperties();
-                var propertyInfo = propertypeList.FirstOrDefault(e => e.Name.Equals(fieldName, StringComparison.CurrentCultureIgnoreCase));
-                if (propertyInfo != null)
-                {
-                    result = propertyInfo.GetValue(obj, null);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return result;
+            return obj.GetPropertyValue<object>(propertyName);
         }
 
         /// <summary>
         /// 获取一个类指定的属性值
         /// </summary>
         /// <param name="obj">object对象</param>
-        /// <param name="fieldName">属性名称</param>
+        /// <param name="propertyName">属性名称</param>
         /// <returns></returns>
-        public static T GetPropertyValue<T>(this object obj, string fieldName)
+        public static T GetPropertyValue<T>(this object obj, string propertyName)
         {
             T result = default;
             try
@@ -86,42 +69,23 @@ namespace Com.GleekFramework.CommonSdk
                     return result;
                 }
 
-                var jobject = JObject.Parse(obj.ToString());
-                var data = $"{jobject[fieldName] ?? ""}";
-                if (data != null)
+                var propertypeList = PropertyProvider.GetPropertyInfoList(obj.GetType());
+                var propertyInfo = propertypeList.FirstOrDefault(e => e.Name.Equals(propertyName, StringComparison.CurrentCultureIgnoreCase));
+                if (propertyInfo == null)
                 {
-                    result = data.ToObject<T>();
+                    throw new ArgumentNullException(nameof(propertyName));
                 }
-                else
-                {
-                    Type type = obj.GetType();
-                    var propertypeList = type.GetProperties();
-                    var propertyInfo = propertypeList.FirstOrDefault(e => e.Name.Equals(fieldName, StringComparison.CurrentCultureIgnoreCase));
-                    if (propertyInfo != null)
-                    {
-                        var value = propertyInfo.GetValue(obj, null);
-                        if (value != null)
-                        {
-                            result = value.ToString().ToObject<T>();
-                        }
-                    }
-                }
+
+                var value = propertyInfo.GetValue(obj, null);
+                result = (T)Convert.ChangeType(value, typeof(T));
             }
             catch (Exception)
             {
                 try
                 {
-                    Type type = obj.GetType();
-                    var propertypeList = type.GetProperties();
-                    var propertyInfo = propertypeList.FirstOrDefault(e => e.Name.Equals(fieldName, StringComparison.CurrentCultureIgnoreCase));
-                    if (propertyInfo != null)
-                    {
-                        var value = propertyInfo.GetValue(obj, null);
-                        if (value != null)
-                        {
-                            result = value.ToString().ToObject<T>();
-                        }
-                    }
+                    var jsonObj = JObject.Parse(obj.ToString());
+                    var value = $"{jsonObj[propertyName] ?? ""}";
+                    result = value.ToObject<T>();
                 }
                 catch (Exception)
                 {
@@ -134,20 +98,20 @@ namespace Com.GleekFramework.CommonSdk
         /// 设置对象属性值
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="fieldName">字段名称</param>
+        /// <param name="propertyName">字段名称</param>
         /// <param name="value">字段值</param>
         /// <returns></returns>
-        public static bool SetPropertyValue(this object obj, string fieldName, object value)
+        public static bool SetPropertyValue(this object obj, string propertyName, object value)
         {
             try
             {
-                if (obj == null || string.IsNullOrEmpty(fieldName))
+                if (obj == null || string.IsNullOrEmpty(propertyName))
                 {
                     return false;
                 }
 
-                Type type = obj.GetType();
-                type.GetProperty(fieldName).SetValue(obj, value, null);
+                var propertypeInfo = PropertyProvider.GetPropertyInfo(obj.GetType(), propertyName);
+                propertypeInfo.SetValue(obj, value, null);
                 return true;
             }
             catch
