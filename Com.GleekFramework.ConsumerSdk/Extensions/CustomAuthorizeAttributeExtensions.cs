@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.ContractSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ContractSdk;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Com.GleekFramework.ConsumerSdk
         {
             ContractResult result = default;//返回结果
             var isSuccess = true;//是否处理成功
-            if (coustomAttributeList != null && coustomAttributeList.Any())
+            if (coustomAttributeList.IsNotNull())
             {
                 foreach (var coustomAttribute in coustomAttributeList.OrderBy(e => e.Order))
                 {

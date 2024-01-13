@@ -29,7 +29,7 @@ namespace Com.GleekFramework.CommonSdk
         public static PropertyInfo GetPropertyInfo(Type type, string propertyName)
         {
             var propertyInfoList = GetPropertyInfoList(type);
-            if (propertyInfoList == null || !propertyInfoList.Any())
+            if (propertyInfoList.IsNullOrEmpty())
             {
                 return null;
             }
@@ -43,7 +43,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<PropertyInfo> GetPropertyInfoList(IEnumerable<Type> typeList)
         {
-            if (typeList == null || !typeList.Any())
+            if (typeList.IsNullOrEmpty())
             {
                 return new List<PropertyInfo>();
             }
@@ -60,7 +60,7 @@ namespace Com.GleekFramework.CommonSdk
         public static IEnumerable<PropertyInfo> GetPropertyInfoList(Type type, Func<PropertyInfo, bool> filter)
         {
             var propertyInfoList = GetPropertyInfoList(type);
-            if (propertyInfoList == null || !propertyInfoList.Any())
+            if (propertyInfoList.IsNullOrEmpty())
             {
                 return new List<PropertyInfo>();
             }

@@ -45,7 +45,7 @@ namespace Com.GleekFramework.GrpcSdk
         /// <returns></returns>
         public static GrpcServiceEndpointConventionBuilder MapGrpcServices(this IEndpointRouteBuilder endpoints, IEnumerable<IBaseGrpcService> grpcServiceList)
         {
-            if (grpcServiceList == null || !grpcServiceList.Any())
+            if (grpcServiceList.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(nameof(grpcServiceList));
             }

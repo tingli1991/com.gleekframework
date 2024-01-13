@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -26,11 +25,11 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<string> GetXmlDocumentFileList()
         {
-            if (XmlDocumentFileList == null || !XmlDocumentFileList.Any())
+            if (XmlDocumentFileList.IsNullOrEmpty())
             {
                 lock (@lock)
                 {
-                    if (XmlDocumentFileList == null || !XmlDocumentFileList.Any())
+                    if (XmlDocumentFileList.IsNullOrEmpty())
                     {
                         XmlDocumentFileList = GetExistsXmlDocumentFileList();
                     }
@@ -47,7 +46,7 @@ namespace Com.GleekFramework.CommonSdk
         {
             var documentFileNameList = new List<string>();
             var compileLibrarieNnameList = LibraryProvider.GetLibraryNameList();
-            if (compileLibrarieNnameList == null || !compileLibrarieNnameList.Any())
+            if (compileLibrarieNnameList.IsNullOrEmpty())
             {
                 return documentFileNameList;
             }

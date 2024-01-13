@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -63,26 +64,26 @@ namespace Com.GleekFramework.ConsumerSdk
                     if (!AttributeCache.ContainsKey(cacheKey))
                     {
                         var classAttributeList = type.GetCustomAttributes<T>(false);
-                        if (classAttributeList != null && classAttributeList.Any())
+                        if (classAttributeList.IsNotNull())
                         {
                             attributeList = attributeList.Union(classAttributeList);
                         }
 
                         var methodAttributeList = type.GetMethods().SelectMany(e => e.GetCustomAttributes(attributeType, false).Select(p => p as T)).Where(e => e != null);
-                        if (methodAttributeList != null && methodAttributeList.Any())
+                        if (methodAttributeList.IsNotNull())
                         {
                             var fullNameList = attributeList.Select(e => e.GetType().FullName);
                             attributeList = attributeList.Union(methodAttributeList.Where(e => !fullNameList.Contains(e.GetType().FullName)));
                         }
 
                         var propertyAttributeList = type.GetProperties().SelectMany(e => e.GetCustomAttributes(attributeType, false).Select(p => p as T)).Where(e => e != null);
-                        if (propertyAttributeList != null && propertyAttributeList.Any())
+                        if (propertyAttributeList.IsNotNull())
                         {
                             var fullNameList = attributeList.Select(e => e.GetType().FullName);
                             attributeList = attributeList.Union(propertyAttributeList.Where(e => !fullNameList.Contains(e.GetType().FullName)));
                         }
 
-                        if (attributeList != null && attributeList.Any())
+                        if (attributeList.IsNotNull())
                         {
                             AttributeCache.Add(cacheKey, attributeList);
                         }

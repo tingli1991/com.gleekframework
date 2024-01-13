@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -94,7 +95,7 @@ namespace Com.GleekFramework.NacosSdk
             var requestUri = url.ToGetUrl(paramters);
             var httpContent = new FormUrlEncodedContent(new Dictionary<string, string>());
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded") { CharSet = "utf-8" };
-            if (headers != null && headers.Any())
+            if (headers.IsNotNull())
             {
                 foreach (var header in headers)
                 {
@@ -127,7 +128,7 @@ namespace Com.GleekFramework.NacosSdk
 
             var httpContent = new FormUrlEncodedContent(paramters ?? new Dictionary<string, string>());
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded") { CharSet = "utf-8" };
-            if (headers != null && headers.Any())
+            if (headers.IsNotNull())
             {
                 foreach (var header in headers)
                 {
@@ -164,7 +165,7 @@ namespace Com.GleekFramework.NacosSdk
         public static string ToGetParamters(this Dictionary<string, string> paramters)
         {
             string text = "";
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return text;
             }

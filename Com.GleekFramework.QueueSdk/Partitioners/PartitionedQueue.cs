@@ -73,7 +73,7 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="partitionKey">分区键</param>
         public Task PublishAsync(IEnumerable<T> messageBodys, object partitionKey = null)
         {
-            if (messageBodys == null || !messageBodys.Any())
+            if (messageBodys.IsNullOrEmpty())
             {
                 return Task.CompletedTask;
             }
@@ -102,7 +102,7 @@ namespace Com.GleekFramework.QueueSdk
         /// <returns></returns>
         public void Subscribe(Action<int, T> callback, CancellationToken cancellationToken = default)
         {
-            if (PartitionerQueues == null || !PartitionerQueues.Any())
+            if (PartitionerQueues.IsNullOrEmpty())
             {
                 callback(0, default);
             }

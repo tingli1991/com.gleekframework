@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Com.GleekFramework.CommonSdk;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Com.GleekFramework.ConfigSdk
 {
@@ -47,7 +47,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// <returns></returns>
         public static IConfiguration GetJsonConfiguration(string configurationName, string[] fileNames)
         {
-            if (fileNames == null || !fileNames.Any())
+            if (fileNames.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(nameof(fileNames));
             }

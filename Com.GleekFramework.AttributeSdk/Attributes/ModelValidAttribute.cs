@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
 using System.Net;
+using Com.GleekFramework.CommonSdk;
 
 namespace Com.GleekFramework.AttributeSdk
 {
@@ -58,8 +59,8 @@ namespace Com.GleekFramework.AttributeSdk
         private static Dictionary<string, Enum> GetModelStateErrorDic(ModelStateDictionary modelState)
         {
             var dataDic = new Dictionary<string, Enum>();
-            var errorFieldsAndMsgList = modelState.Where(e => e.Value.Errors.Any()).Select(x => new { x.Key, x.Value.Errors });
-            if (errorFieldsAndMsgList != null && errorFieldsAndMsgList.Any())
+            var errorFieldsAndMsgList = modelState.Where(e => e.Value.Errors.AnyOf()).Select(x => new { x.Key, x.Value.Errors });
+            if (errorFieldsAndMsgList.IsNotNull())
             {
                 foreach (var errorFieldsAndMsg in errorFieldsAndMsgList)
                 {

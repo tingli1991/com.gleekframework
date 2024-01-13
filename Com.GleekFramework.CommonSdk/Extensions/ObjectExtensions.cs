@@ -20,7 +20,7 @@ namespace Com.GleekFramework.CommonSdk
             T result = default;
             try
             {
-                if (propertyNames == null || !propertyNames.Any())
+                if (propertyNames.IsNullOrEmpty())
                 {
                     return result;
                 }

@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.CommonSdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Com.GleekFramework.MigrationSdk
         public static IEnumerable<T> GetServiceList<T>()
         {
             var serviceList = GetServiceCacheList(typeof(T));
-            if (serviceList == null || !serviceList.Any())
+            if (serviceList.IsNullOrEmpty())
             {
                 return new List<T>();
             }
@@ -49,7 +50,7 @@ namespace Com.GleekFramework.MigrationSdk
                     if (!ServiceList.ContainsKey(type))
                     {
                         var messageHandlerList = type.GetServiceList<IUpgration>();
-                        if (messageHandlerList == null || !messageHandlerList.Any())
+                        if (messageHandlerList.IsNullOrEmpty())
                         {
                             return new List<IUpgration>();
                         }

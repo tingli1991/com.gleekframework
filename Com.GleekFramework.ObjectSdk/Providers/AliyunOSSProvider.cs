@@ -1,4 +1,5 @@
 ﻿using Aliyun.OSS;
+using Com.GleekFramework.CommonSdk;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +29,7 @@ namespace Com.GleekFramework.ObjectSdk
         public static async Task<List<string>> PutObjectAsync(string bucketName, string filePath, IEnumerable<IFormFile> files)
         {
             var fileNames = new List<string>();
-            if (files == null || !files.Any())
+            if (files.IsNullOrEmpty())
             {
                 return fileNames;
             }

@@ -11,19 +11,85 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class EnumerableExtensions
     {
         /// <summary>
-        ///迭代遍历选项
+        /// 确定序列中的任何元素是否满足条件
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="enumerable"></param>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static bool AnyOf<T>(this IEnumerable<T> source)
+        {
+            return source != null && source.Any();
+        }
+
+        /// <summary>
+        /// 确定序列中的任何元素是否满足条件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static bool AnyOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source != null && source.Any(predicate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Add<T>(this IEnumerable<T> enumerable, T value)
+        public static bool ContainsOf<T>(this IEnumerable<T> source, T value)
         {
-            foreach (var cur in enumerable)
+            return source.IsNotNull() && source.Contains(value);
+        }
+
+        /// <summary>
+        /// 添加项
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> Add<T>(this IEnumerable<T> source, T value)
+        {
+            source ??= new List<T>();
+            foreach (var cur in source)
             {
                 yield return cur;
             }
+
+            if (value == null)
+            {
+                yield break;
+            }
             yield return value;
+        }
+
+        /// <summary>
+        /// 添加项
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> values)
+        {
+            source ??= new List<T>();
+            values ??= new List<T>();
+            foreach (var cur in source)
+            {
+                yield return cur;
+            }
+
+            foreach (var value in values)
+            {
+                if (value != null)
+                {
+                    yield return value;
+                }
+            }
         }
 
         /// <summary>
@@ -34,7 +100,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <param name="action"></param>
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
-            if (source == null || !source.Any())
+            if (source.IsNullOrEmpty())
             {
                 return;
             }
@@ -53,7 +119,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <param name="func"></param>
         public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> func)
         {
-            if (source == null || !source.Any())
+            if (source.IsNullOrEmpty())
             {
                 return;
             }
@@ -73,7 +139,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static int ToPageCount<T>(this IEnumerable<T> sourceList, int pageSize = 2000)
         {
-            if (sourceList == null || !sourceList.Any() || pageSize <= 0)
+            if (sourceList.IsNullOrEmpty() || pageSize <= 0)
                 return 0;
 
             return (int)Math.Ceiling((decimal)sourceList.Count() / pageSize);
@@ -89,7 +155,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<T> ToPageList<T>(this IEnumerable<T> sourceList, int pageIndex = 0, int pageSize = 2000)
         {
-            if (sourceList == null || !sourceList.Any())
+            if (sourceList.IsNullOrEmpty())
                 return new List<T>();
 
             if (pageIndex <= 0)
@@ -108,7 +174,7 @@ namespace Com.GleekFramework.CommonSdk
         public static Dictionary<int, IEnumerable<T>> ToPageDictionary<T>(this IEnumerable<T> sourceList, int pageSize = 2000)
         {
             var dic = new Dictionary<int, IEnumerable<T>>();
-            if (sourceList == null || !sourceList.Any())
+            if (sourceList.IsNullOrEmpty())
                 return dic;
 
             for (int pageIndex = 1; pageIndex <= sourceList.ToPageCount(pageSize); pageIndex++)
@@ -128,7 +194,7 @@ namespace Com.GleekFramework.CommonSdk
         public static Dictionary<int, IEnumerable<byte[]>> ToPageBinaryDictionary<T>(this IEnumerable<T> sourceList, int pageSize = 2000)
         {
             var dic = new Dictionary<int, IEnumerable<byte[]>>();
-            if (sourceList == null || !sourceList.Any())
+            if (sourceList.IsNullOrEmpty())
                 return dic;
 
             for (int pageIndex = 1; pageIndex <= sourceList.ToPageCount(pageSize); pageIndex++)

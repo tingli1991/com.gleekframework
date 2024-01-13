@@ -55,7 +55,7 @@ namespace Com.GleekFramework.AttributeSdk
 
                 var exclActionList = NLogMiddlewareExtensions.ExclActionList;
                 var host = ($"{context.Request.Host}" ?? "").TrimStart('/').TrimEnd('/');
-                if (exclActionList != null && !string.IsNullOrEmpty(url) && exclActionList.Any(e => url.Contains(e)))
+                if (exclActionList.AnyOf(e => url.ContainsOf(e)))
                 {
                     //拦截一些特定日志
                     return;

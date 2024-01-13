@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.ConfigSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ConfigSdk;
 using CSRedis;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -44,7 +45,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="connectionNames">连接字符串名称</param>
         public static void RegisterClientPool(IConfiguration configuration, params string[] connectionNames)
         {
-            if (connectionNames == null || !connectionNames.Any())
+            if (connectionNames.IsNullOrEmpty())
             {
                 //如果没传配置名称的情况下，使用默认的配置名称
                 connectionNames = new string[] { CacheConstant.DEFAULT_CONNECTION_NAME };

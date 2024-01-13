@@ -27,7 +27,7 @@ namespace Com.GleekFramework.NacosSdk
             }
             else
             {
-                if (serverAddresses == null || !serverAddresses.Any())
+                if (serverAddresses.IsNullOrEmpty())
                 {
                     throw new ArgumentNullException("serverAddresses");
                 }

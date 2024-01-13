@@ -39,7 +39,7 @@ namespace Com.GleekFramework.ConsumerSdk
         public static IEnumerable<T> GetHandlerServiceList<T>()
         {
             var messageHandlerServiceList = GetHandlerServiceList(typeof(T));
-            if (messageHandlerServiceList == null || !messageHandlerServiceList.Any())
+            if (messageHandlerServiceList.IsNullOrEmpty())
             {
                 return new List<T>();
             }
@@ -54,7 +54,7 @@ namespace Com.GleekFramework.ConsumerSdk
         public static IEnumerable<TopicServiceModel<T>> GetTopicServiceList<T>() where T : ITopicHandler
         {
             var messageHandlerServiceList = GetHandlerServiceList<T>();
-            if (messageHandlerServiceList == null || !messageHandlerServiceList.Any())
+            if (messageHandlerServiceList.IsNullOrEmpty())
             {
                 return new List<TopicServiceModel<T>>();
             }
@@ -82,7 +82,7 @@ namespace Com.GleekFramework.ConsumerSdk
                     if (!MessageHandlerServiceList.ContainsKey(type))
                     {
                         var messageHandlerList = type.GetServiceList<IHandler>();
-                        if (messageHandlerList == null || !messageHandlerList.Any())
+                        if (messageHandlerList.IsNullOrEmpty())
                         {
                             return new List<IHandler>();
                         }

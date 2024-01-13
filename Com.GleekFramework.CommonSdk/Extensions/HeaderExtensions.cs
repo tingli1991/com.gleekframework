@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -31,12 +30,9 @@ namespace Com.GleekFramework.CommonSdk
         /// <param name="headers">头部信息</param>
         public static Dictionary<string, string> AddHeaders(this Dictionary<string, string> source, Dictionary<string, string> headers)
         {
-            if (headers != null && headers.Any())
+            if (headers.IsNotNull())
             {
-                if (source == null || !source.Any())
-                {
-                    source = new Dictionary<string, string>();
-                }
+                source ??= new Dictionary<string, string>();
                 headers.ForEach(header => source.AddHeader(header.Key, header.Value));
             }
             return source;
@@ -49,7 +45,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static string GetUrl(this Dictionary<string, string> headers)
         {
-            if (headers == null || !headers.Any())
+            if (headers.IsNullOrEmpty())
             {
                 return "";
             }

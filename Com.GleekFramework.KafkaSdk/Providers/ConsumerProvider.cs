@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.NLogSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.NLogSdk;
 using Confluent.Kafka;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Com.GleekFramework.KafkaSdk
         /// </summary>
         public static void UnSubscribe()
         {
-            if (ConsumerCache == null || !ConsumerCache.Any())
+            if (ConsumerCache.IsNullOrEmpty())
             {
                 return;
             }

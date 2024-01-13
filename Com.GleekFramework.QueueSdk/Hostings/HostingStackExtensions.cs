@@ -65,7 +65,7 @@ namespace Com.GleekFramework.QueueSdk
         private static void SubscribeStack(CancellationToken cancellationToken = default)
         {
             var topicGroupServiceList = HandlerFactory.GetTopicServiceList<StackHandler>();
-            if (topicGroupServiceList == null || !topicGroupServiceList.Any())
+            if (topicGroupServiceList.IsNullOrEmpty())
             {
                 return;
             }
@@ -80,7 +80,7 @@ namespace Com.GleekFramework.QueueSdk
                     }
 
                     var serviceList = topicGroupService.ServiceList.Where(e => e.ActionKey.EqualsActionKey(messageBody.ActionKey));
-                    if (serviceList == null || !serviceList.Any())
+                    if (serviceList.IsNullOrEmpty())
                     {
                         return;
                     }

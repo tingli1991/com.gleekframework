@@ -29,7 +29,7 @@ namespace Com.GleekFramework.AutofacSdk
         {
             //扫描当前执行目录下所有存在继承于IAutofacBase接口的程序集
             var assemblyList = AssemblyProvider.GetAssemblyList(AutofacConstant.BASEAUTOFAC_TYPE);
-            if (assemblyList == null || !assemblyList.Any())
+            if (assemblyList.IsNullOrEmpty())
             {
                 return;
             }

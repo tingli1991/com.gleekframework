@@ -31,7 +31,7 @@ namespace Com.GleekFramework.RabbitMQSdk
 
 
             var handlerServiceList = HandlerFactory.GetHandlerServiceList<RabbitWorkHandler>();
-            if (handlerServiceList == null || !handlerServiceList.Any())
+            if (handlerServiceList.IsNullOrEmpty())
             {
                 return;
             }

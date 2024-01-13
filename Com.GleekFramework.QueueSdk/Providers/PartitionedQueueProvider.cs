@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.ContractSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ContractSdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Com.GleekFramework.QueueSdk
         /// <returns></returns>
         public static Task<long> GetSurplusMessageCountAsync()
         {
-            if (PartitionedCacheList == null || !PartitionedCacheList.Any())
+            if (PartitionedCacheList.IsNullOrEmpty())
             {
                 return Task.FromResult(0L);
             }

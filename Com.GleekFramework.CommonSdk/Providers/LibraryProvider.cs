@@ -26,11 +26,11 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<string> GetLibraryNameList()
         {
-            if (LibrarieNnameList == null || !LibrarieNnameList.Any())
+            if (LibrarieNnameList.IsNullOrEmpty())
             {
                 lock (@lock)
                 {
-                    if (LibrarieNnameList == null || !LibrarieNnameList.Any())
+                    if (LibrarieNnameList.IsNullOrEmpty())
                     {
                         var context = DependencyContext.Default;
                         var compileLibrarieList = context.CompileLibraries;

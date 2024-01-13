@@ -10,6 +10,17 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class StringExtensions
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool ContainsOf(this string source, string value)
+        {
+            return source.IsNotNull() && source.Contains(value);
+        }
+
+        /// <summary>
         /// 判断包含逻辑
         /// </summary>
         /// <param name="source"></param>
@@ -17,7 +28,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static bool ContainsIgnoreCases(this IEnumerable<string> source, string value)
         {
-            if (source == null || !source.Any())
+            if (source.IsNullOrEmpty())
             {
                 return false;
             }

@@ -161,7 +161,7 @@ namespace Com.GleekFramework.KafkaSdk
                 throw new ArgumentNullException(nameof(topic));
             }
 
-            if (data == null || !data.Any())
+            if (data.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(nameof(data));
             }

@@ -189,14 +189,14 @@ namespace Com.GleekFramework.CommonSdk
                 (beginTime, endTime) = (endTime, beginTime);
             }
 
-            if (timeaxis == null || !timeaxis.Any())
+            if (timeaxis.IsNullOrEmpty())
             {
                 //没有时间轴，直接按照开始和结束时间去随机
                 return beginTime.GetRandomTime(endTime);
             }
 
             var orderTimeAxisList = timeaxis.Where(time => time >= beginTime.AddSeconds(-intervalSeconds - 2) && time <= endTime.AddSeconds(intervalSeconds + 2));
-            if (orderTimeAxisList == null || !orderTimeAxisList.Any())
+            if (orderTimeAxisList.IsNullOrEmpty())
             {
                 //没有时间轴，直接按照开始和结束时间去随机
                 return beginTime.GetRandomTime(endTime);

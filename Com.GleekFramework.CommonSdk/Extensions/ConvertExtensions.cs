@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Com.GleekFramework.CommonSdk;
+using System.Collections.Generic;
 
 namespace Com.GleekFramework.HttpSdk
 {
@@ -28,7 +28,7 @@ namespace Com.GleekFramework.HttpSdk
         public static string ToGetParamters(this Dictionary<string, string> paramters)
         {
             var text = "";
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return text;
             }

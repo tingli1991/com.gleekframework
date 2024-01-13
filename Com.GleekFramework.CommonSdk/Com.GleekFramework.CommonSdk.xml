@@ -565,14 +565,40 @@
             集合基础拓展
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.AnyOf``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            确定序列中的任何元素是否满足条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.AnyOf``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            确定序列中的任何元素是否满足条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.Add``1(System.Collections.Generic.IEnumerable{``0},``0)">
-             <summary>
-            迭代遍历选项
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="enumerable"></param>
-             <param name="value"></param>
-             <returns></returns>
+            <summary>
+            添加项
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.AddRange``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            添加项
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="values"></param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
@@ -929,6 +955,51 @@
             <typeparam name="T"></typeparam>
             <param name="bytes"></param>
             <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions">
+            <summary>
+            查询器拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="query">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``2(``1,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="query">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="query">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``2(``1,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="query">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.OrderByIf``2(``1,System.Boolean,System.String)">
+            <summary>
+            条件排序
+            </summary>
+            <param name="query">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="sorting">排序值</param>
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.RadomExtensions">
             <summary>
@@ -1660,6 +1731,56 @@
             <param name="callback">回调处理方法</param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions">
+            <summary>
+            非空验证拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNull(System.Object)">
+            <summary>
+            判断是否为空
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNotNull(System.Object)">
+            <summary>
+            判断是否为空
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNullOrEmpty``1(System.String)">
+            <summary>
+            是否为空
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns>true：表示为空，false：表示不为空</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNotNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            判断袁术不为空
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            是否为空
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns>true：表示为空，false：表示不为空</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            判断字符串是否为空
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.IdCardVerifyExtensions">
             <summary>
             身份证号码验证
@@ -1846,27 +1967,6 @@
             检查IP地址的格式是否正确
             </summary>
             <param name="input"></param>
-        </member>
-        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNull(System.Object)">
-            <summary>
-            判断是否为空
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNull(System.String)">
-            <summary>
-            判断字符串是否为空
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsNotNull(System.Object)">
-            <summary>
-            判断是否为空
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.VerifyExtensions.IsBool(System.String)">
             <summary>

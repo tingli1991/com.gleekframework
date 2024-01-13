@@ -76,7 +76,7 @@ namespace Com.GleekFramework.KafkaSdk
                     throw new ArgumentNullException(nameof(options));
                 }
 
-                if (options.HostOptions == null || !options.HostOptions.Any())
+                if (options.HostOptions.IsNullOrEmpty())
                 {
                     throw new ArgumentNullException(nameof(options.HostOptions));
                 }
@@ -88,7 +88,7 @@ namespace Com.GleekFramework.KafkaSdk
 
                 foreach (var hostOptions in options.HostOptions)
                 {
-                    if (hostOptions.Topics == null || !hostOptions.Topics.Any())
+                    if (hostOptions.Topics.IsNullOrEmpty())
                     {
                         continue;
                     }

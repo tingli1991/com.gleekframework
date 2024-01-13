@@ -109,7 +109,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="headers"></param>
         public static void AddHeaders(this HttpHeaders requestHaaders, Dictionary<string, string> headers)
         {
-            if (headers == null || !headers.Any())
+            if (headers.IsNullOrEmpty())
             {
                 return;
             }
@@ -133,7 +133,7 @@ namespace Com.GleekFramework.HttpSdk
         {
             var headerDic = new Dictionary<string, string>();
             var headers = httpContext?.HttpContext?.Request?.Headers;
-            if (headers != null && headers.Any())
+            if (headers.IsNotNull())
             {
                 var request = httpContext.HttpContext.Request;
                 if (request.Host.HasValue)

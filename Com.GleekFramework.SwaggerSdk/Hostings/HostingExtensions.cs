@@ -42,7 +42,7 @@ namespace Com.GleekFramework.SwaggerSdk
                 });
 
                 var xmlDocumentFileList = DocumentProvider.GetXmlDocumentFileList();
-                if (xmlDocumentFileList != null && xmlDocumentFileList.Any())
+                if (xmlDocumentFileList.IsNotNull())
                 {
                     foreach (var documentFileName in xmlDocumentFileList)
                     {
@@ -50,7 +50,7 @@ namespace Com.GleekFramework.SwaggerSdk
                     }
                 }
 
-                if (headers != null && headers.Any())
+                if (headers.IsNotNull())
                 {
                     foreach (var header in headers)
                     {

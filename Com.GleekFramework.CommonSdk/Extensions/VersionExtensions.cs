@@ -17,7 +17,7 @@ namespace Com.GleekFramework.CommonSdk
         public static Version MaxVervion(this IEnumerable<Version> versions)
         {
             Version maxVersion = null;
-            if (versions == null || !versions.Any())
+            if (versions.IsNullOrEmpty())
                 return maxVersion;
 
             foreach (var version in versions)
@@ -49,7 +49,7 @@ namespace Com.GleekFramework.CommonSdk
         public static string MaxVervion(this IEnumerable<string> versions)
         {
             string maxVersion = null;
-            if (versions == null || !versions.Any())
+            if (versions.IsNullOrEmpty())
                 return maxVersion;
 
             foreach (var version in versions)
@@ -81,7 +81,7 @@ namespace Com.GleekFramework.CommonSdk
         public static Version MinVervion(this IEnumerable<Version> versions)
         {
             Version maxVersion = null;
-            if (versions == null || !versions.Any())
+            if (versions.IsNullOrEmpty())
                 return maxVersion;
 
             foreach (var version in versions)
@@ -113,7 +113,7 @@ namespace Com.GleekFramework.CommonSdk
         public static string MinVervion(this IEnumerable<string> versions)
         {
             string maxVersion = "";
-            if (versions == null || !versions.Any())
+            if (versions.IsNullOrEmpty())
                 return maxVersion;
 
             foreach (var version in versions)

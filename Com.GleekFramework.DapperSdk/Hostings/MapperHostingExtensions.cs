@@ -18,7 +18,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="assemblyNameList">命名空间名称列表</param>
         public static IHostBuilder UseDapperColumnMap(this IHostBuilder builder, params string[] assemblyNameList)
         {
-            if (assemblyNameList == null || !assemblyNameList.Any())
+            if (assemblyNameList.IsNullOrEmpty())
                 throw new ArgumentNullException("assemblyNameList");
 
             var assemblyTypeList = assemblyNameList
@@ -28,7 +28,7 @@ namespace Com.GleekFramework.DapperSdk
                 .Distinct()
                 .ToList();
 
-            if (assemblyTypeList != null && !assemblyTypeList.Any())
+            if (assemblyTypeList.IsNotNull())
                 return builder;
 
             assemblyTypeList.ForEach(type => SqlMapper.SetTypeMap(type, new ColumnTypeMapper(type)));

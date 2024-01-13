@@ -19,7 +19,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<T> GetConnectionObjectList<T>(this IConfiguration configuration, params string[] keys) where T : new()
         {
-            if (keys == null || !keys.Any())
+            if (keys.IsNullOrEmpty())
             {
                 return new List<T>();
             }
@@ -36,7 +36,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<T> GetConnectionObjectList<T>(this IConfiguration configuration, IEnumerable<string> keys) where T : new()
         {
-            if (keys == null || !keys.Any())
+            if (keys.IsNullOrEmpty())
             {
                 return new List<T>();
             }
@@ -128,7 +128,7 @@ namespace Com.GleekFramework.CommonSdk
             }
 
             var pairs = connectionStrings.Trim(';').Split(';');
-            if (pairs == null || !pairs.Any())
+            if (pairs.IsNullOrEmpty())
             {
                 return dictionary;
             }
@@ -136,7 +136,7 @@ namespace Com.GleekFramework.CommonSdk
             foreach (string pair in pairs)
             {
                 var keyValue = pair.Split('=');
-                if (keyValue == null || !keyValue.Any())
+                if (keyValue.IsNullOrEmpty())
                 {
                     continue;
                 }

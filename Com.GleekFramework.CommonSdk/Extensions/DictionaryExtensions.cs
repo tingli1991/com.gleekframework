@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -17,7 +16,7 @@ namespace Com.GleekFramework.CommonSdk
         public static string GetValue(this IDictionary<string, string> source, params string[] keys)
         {
             var result = "";
-            if (keys == null || !keys.Any())
+            if (keys.IsNullOrEmpty())
             {
                 return default;
             }
@@ -42,7 +41,7 @@ namespace Com.GleekFramework.CommonSdk
         public static T GetValue<T>(this IDictionary<string, string> source, params string[] keys)
         {
             T result = default;
-            if (keys == null || !keys.Any())
+            if (keys.IsNullOrEmpty())
             {
                 return default;
             }
@@ -93,7 +92,7 @@ namespace Com.GleekFramework.CommonSdk
         public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key)
         {
             TValue result = default;
-            if (source == null || !source.Any())
+            if (source.IsNullOrEmpty())
             {
                 return result;
             }
@@ -126,7 +125,7 @@ namespace Com.GleekFramework.CommonSdk
         public static string GetActionArgumentValue(this IDictionary<string, object> actionArguments, params string[] fieldNames)
         {
             var actionArgumentValue = "";
-            if (actionArguments == null || !actionArguments.Any() || fieldNames == null || !fieldNames.Any())
+            if (actionArguments.IsNullOrEmpty() || fieldNames.IsNullOrEmpty())
                 return actionArgumentValue;
 
             foreach (var actionArgument in actionArguments)

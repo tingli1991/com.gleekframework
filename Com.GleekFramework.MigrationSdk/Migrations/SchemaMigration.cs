@@ -32,7 +32,7 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseProvider = Execute.GetDatabaseProvider();//数据库实现类
             var excludeClassNames = new List<string>() { "IMigrationTable", "MigrationTable" };//需要排除的类名称集合
             var assemblyTypeInfoList = typeof(IMigrationTable).GetTypeList().Where(e => !excludeClassNames.ContainsIgnoreCases(e.Name));//类型列表
-            if (assemblyTypeInfoList == null || !assemblyTypeInfoList.Any())
+            if (assemblyTypeInfoList.IsNullOrEmpty())
             {
                 return;
             }
@@ -67,7 +67,7 @@ namespace Com.GleekFramework.MigrationSdk
             }
 
             var basePropertyInfoList = propertyInfoList.Where(e => MigrationConstant.BaseColumns.ContainsIgnoreCases(e.Name));
-            if (basePropertyInfoList == null || !basePropertyInfoList.Any())
+            if (basePropertyInfoList.IsNullOrEmpty())
             {
                 return;
             }
@@ -95,7 +95,7 @@ namespace Com.GleekFramework.MigrationSdk
         private static void AlertTableOrdinaryColumns(IAlterExpressionRoot alter, string tableName, IEnumerable<PropertyInfo> propertyInfoList, IEnumerable<TableSchemaModel> databaseTableSchemaColumnList)
         {
             var ordinaryColumnPropertyInfoList = propertyInfoList.Where(e => !e.Name.EqualIgnoreCases(MigrationConstant.Id) && !MigrationConstant.BaseColumns.ContainsIgnoreCases(e.Name));
-            if (ordinaryColumnPropertyInfoList == null || !ordinaryColumnPropertyInfoList.Any())
+            if (ordinaryColumnPropertyInfoList.IsNullOrEmpty())
             {
                 return;
             }
@@ -124,7 +124,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         private static bool FirstCreateTableSchema(ICreateExpressionRoot create, Type typeInfo, IEnumerable<PropertyInfo> propertyInfoList, IEnumerable<TableSchemaModel> databaseTableSchemaColumnList)
         {
-            var isFirstCreateTableSchema = databaseTableSchemaColumnList == null || !databaseTableSchemaColumnList.Any();
+            var isFirstCreateTableSchema = databaseTableSchemaColumnList.IsNullOrEmpty();
             if (!isFirstCreateTableSchema)
             {
                 return false;
@@ -149,7 +149,7 @@ namespace Com.GleekFramework.MigrationSdk
             var tableName = typeInfo.GetTableName();//表名称
             var tableComment = typeInfo.GetTableComment();//表的描述
             var tableIndexAttributeList = ClassAttributeExtensions.GetCustomAttributeList<IndexAttribute>(typeInfo);
-            if (tableIndexAttributeList == null || !tableIndexAttributeList.Any())
+            if (tableIndexAttributeList.IsNullOrEmpty())
             {
                 return;
             }
@@ -158,7 +158,7 @@ namespace Com.GleekFramework.MigrationSdk
             {
                 var indexName = tableIndexAttribute.Name.ToLower();//索引名称
                 var propertyNames = tableIndexAttribute.PropertyNames.ToList();
-                if (propertyNames == null || !propertyNames.Any())
+                if (propertyNames.IsNullOrEmpty())
                 {
                     throw new ArgumentNullException(nameof(tableIndexAttribute.PropertyNames));
                 }

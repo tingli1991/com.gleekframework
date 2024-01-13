@@ -37,7 +37,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<Type> GetTypeList(this IEnumerable<Assembly> assemblyList)
         {
-            if (assemblyList == null || !assemblyList.Any())
+            if (assemblyList.IsNullOrEmpty())
             {
                 return new List<Type>();
             }

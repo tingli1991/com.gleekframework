@@ -24,7 +24,7 @@ namespace Com.GleekFramework.MigrationSdk
         public static async Task ExecuteAsync(IServiceProvider serviceProvider)
         {
             var serviceList = UpgrationFactory.GetServiceList<Upgration>();
-            if (serviceList == null || !serviceList.Any())
+            if (serviceList.IsNullOrEmpty())
             {
                 return;
             }
@@ -64,7 +64,7 @@ namespace Com.GleekFramework.MigrationSdk
                 {
                     //分批执行数据库脚本语句
                     var executeScripts = await upgrate.Service.ExecuteScriptsAsync();
-                    if (executeScripts != null && executeScripts.Any())
+                    if (executeScripts.IsNotNull())
                     {
                         var pageScripts = executeScripts.ToPageDictionary();
                         pageScripts.Values.ForEach(scriptList =>
@@ -75,7 +75,7 @@ namespace Com.GleekFramework.MigrationSdk
                     }
 
                     var executeSqlFiles = await upgrate.Service.ExecuteSqlFilesAsync();
-                    if (executeSqlFiles != null && executeSqlFiles.Any())
+                    if (executeSqlFiles.IsNotNull())
                     {
                         var filePaths = executeSqlFiles.Select(e => Path.Combine(AppContext.BaseDirectory, "Scripts", e)).Where(e => File.Exists(e));
                         filePaths.ForEach(path => upgrate.Service.Execute.Script(path));//运行SQL文件

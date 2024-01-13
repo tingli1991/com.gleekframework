@@ -53,7 +53,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static T Next<T>(this Random _random, IEnumerable<T> sourceList)
         {
-            if (sourceList == null || !sourceList.Any())
+            if (sourceList.IsNullOrEmpty())
                 return default;
 
             var index = _random.Next(0, sourceList.Count());

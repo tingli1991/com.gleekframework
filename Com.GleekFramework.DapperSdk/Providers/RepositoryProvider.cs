@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.ConfigSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ConfigSdk;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="connectionNames">连接字符串名称</param>
         public static void RegisterConnectionStrings(IConfiguration configuration, params string[] connectionNames)
         {
-            if (connectionNames == null || !connectionNames.Any())
+            if (connectionNames.IsNullOrEmpty())
             {
                 //如果没传配置名称的情况下，使用默认的配置名称
                 throw new ArgumentNullException($"connectionNames does not exist");

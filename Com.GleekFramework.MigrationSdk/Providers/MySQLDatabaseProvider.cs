@@ -122,7 +122,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <param name="versionList">版本列表</param>
         public void SaveVersion(IEnumerable<VersionModel> versionList)
         {
-            if (versionList == null || !versionList.Any())
+            if (versionList.IsNullOrEmpty())
             {
                 return;
             }
@@ -139,7 +139,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public bool Execute<T>(string sql, IEnumerable<T> paramters, int pageSize = 2000)
         {
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return false;
             }

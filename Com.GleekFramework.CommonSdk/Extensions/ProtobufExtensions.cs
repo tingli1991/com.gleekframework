@@ -1,6 +1,5 @@
 ﻿using ProtoBuf;
 using System.IO;
-using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -38,7 +37,7 @@ namespace Com.GleekFramework.CommonSdk
         public static T DeserializeObject<T>(this byte[] bytes)
         {
             var result = default(T);
-            if (bytes == null || !bytes.Any())
+            if (bytes.IsNullOrEmpty())
             {
                 return result;
             }

@@ -26,7 +26,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<object> CreateInstances(IEnumerable<Type> typeList)
         {
-            if (typeList == null || !typeList.Any())
+            if (typeList.IsNullOrEmpty())
             {
                 return new List<object>();
             }

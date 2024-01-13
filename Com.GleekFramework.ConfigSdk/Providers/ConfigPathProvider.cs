@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Com.GleekFramework.CommonSdk;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace Com.GleekFramework.ConfigSdk
         public static IEnumerable<string> GetEnvironmentFileNames(params string[] fileNames)
         {
             var fileNameList = new List<string>();
-            if (fileNames == null || !fileNames.Any())
+            if (fileNames.IsNullOrEmpty())
             {
                 return fileNameList;
             }

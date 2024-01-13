@@ -44,7 +44,7 @@ namespace Com.GleekFramework.NacosSdk
 
             var host = "";//主机地址
             var serviceHostList = await GetServiceHostListAsync(serviceName);
-            if (serviceHostList != null && serviceHostList.Any())
+            if (serviceHostList.IsNotNull())
             {
                 var serviceHostInfo = serviceHostList.Next();
                 host = $"{serviceHostInfo.Ip}:{serviceHostInfo.Port}";
@@ -72,7 +72,7 @@ namespace Com.GleekFramework.NacosSdk
                 var token = baseUrl.GetAuthTokenAsync(options.UserName, options.Password).Result;//获取授权的token
                 var serviceList = await GetServiceListAsync(baseUrl, serviceName, token);//服务实例信息
                 var expireSeconds = options.ServiceSettings.ExpireSeconds;//过期时间(单位：秒)
-                if (serviceList == null || serviceList.Hosts == null || !serviceList.Hosts.Any())
+                if (serviceList == null || serviceList.Hosts.IsNullOrEmpty())
                 {
                     serviceHostList = new List<ListInstancesHostResponse>();
                 }

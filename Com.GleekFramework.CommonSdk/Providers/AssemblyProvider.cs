@@ -38,11 +38,11 @@ namespace Com.GleekFramework.CommonSdk
         {
             try
             {
-                if (AssemblyList == null || !AssemblyList.Any())
+                if (AssemblyList.IsNullOrEmpty())
                 {
                     lock (@lock)
                     {
-                        if (AssemblyList == null || !AssemblyList.Any())
+                        if (AssemblyList.IsNullOrEmpty())
                         {
                             var assemblyNameList = LibraryProvider.GetLibraryNameList();
                             AssemblyList = assemblyNameList.Select(assemblyName => GetAssembly(assemblyName));

@@ -65,36 +65,6 @@ namespace Com.GleekFramework.CommonSdk
         }
 
         /// <summary>
-        /// 判断是否为空
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static bool IsNull(this object obj)
-        {
-            return obj == null;
-        }
-
-        /// <summary>
-        /// 判断字符串是否为空
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static bool IsNull(this string obj)
-        {
-            return string.IsNullOrWhiteSpace(obj);
-        }
-
-        /// <summary>
-        /// 判断是否为空
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static bool IsNotNull(this object obj)
-        {
-            return !obj.IsNull();
-        }
-
-        /// <summary>
         /// 是否是Bool值
         /// </summary>
         public static bool IsBool(this string input)

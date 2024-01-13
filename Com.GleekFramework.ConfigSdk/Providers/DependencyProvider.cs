@@ -60,7 +60,7 @@ namespace Com.GleekFramework.ConfigSdk
 
                 var configAttributeType = typeof(ConfigAttribute);
                 var assemblyList = AssemblyProvider.GetAssemblyList();//类型列表
-                if (assemblyList == null || !assemblyList.Any())
+                if (assemblyList.IsNullOrEmpty())
                 {
                     return;
                 }
@@ -75,7 +75,7 @@ namespace Com.GleekFramework.ConfigSdk
                     }
 
                     var assembleTypeList = AssemblyTypeProvider.GetTypeList(assembly);
-                    if (assembleTypeList == null || !assembleTypeList.Any())
+                    if (assembleTypeList.IsNullOrEmpty())
                     {
                         return;
                     }
@@ -91,7 +91,7 @@ namespace Com.GleekFramework.ConfigSdk
                         //当前类型的属性列表
                         bool filter(PropertyInfo e) => e.CustomAttributes != null && e.CustomAttributes.Any(p => configAttributeType.IsAssignableFrom(p.AttributeType) || p.AttributeType == configAttributeType);
                         var propertyInfoList = PropertyProvider.GetPropertyInfoList(assembleType, filter);
-                        if (propertyInfoList == null || !propertyInfoList.Any())
+                        if (propertyInfoList.IsNullOrEmpty())
                         {
                             return;
                         }

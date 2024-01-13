@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -78,7 +77,7 @@ namespace Com.GleekFramework.RocketMQSdk
                 throw new ArgumentNullException(nameof(options.GroupId));
             }
 
-            if (options.HostOptions == null || !options.HostOptions.Any())
+            if (options.HostOptions.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(nameof(options.HostOptions));
             }
@@ -90,7 +89,7 @@ namespace Com.GleekFramework.RocketMQSdk
 
             foreach (var hostOptions in options.HostOptions)
             {
-                if (hostOptions.Topics == null || !hostOptions.Topics.Any())
+                if (hostOptions.Topics.IsNullOrEmpty())
                 {
                     continue;
                 }
@@ -116,7 +115,7 @@ namespace Com.GleekFramework.RocketMQSdk
             while (@Cts.Token == default || !@Cts.Token.IsCancellationRequested)
             {
                 var messageInfoList = ConsumeMessageList(consumer, awaitTask, batchSize, waitSeconds);
-                if (messageInfoList == null || !messageInfoList.Any())
+                if (messageInfoList.IsNullOrEmpty())
                 {
                     //延迟1秒继续(有可能是报错，也有可能是没有消息)
                     await Task.Delay(1000);

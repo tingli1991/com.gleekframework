@@ -100,7 +100,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <returns></returns>
         public bool Delete(IEnumerable<string> keys)
         {
-            if (keys == null || !keys.Any())
+            if (keys.IsNullOrEmpty())
             {
                 return false;
             }

@@ -185,8 +185,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public void InsertMany<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            IList<ISort> sort = new List<ISort>() { };
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return;
             }
@@ -213,7 +212,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task InsertManyAsync<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return;
             }
@@ -238,7 +237,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         public void UpdateMany<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return;
             }
@@ -263,7 +262,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         public async Task UpdateManyAsync<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (entitys == null || !entitys.Any())
+            if (entitys.IsNullOrEmpty())
             {
                 return;
             }
@@ -298,7 +297,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public void DeleteMany<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (entitys == null || !entitys.Any())
+            if (entitys.IsNullOrEmpty())
             {
                 return;
             }
@@ -332,7 +331,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task DeleteManyAsync<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (entitys == null || !entitys.Any())
+            if (entitys.IsNullOrEmpty())
             {
                 return;
             }
@@ -371,7 +370,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public bool Execute<T>(string sql, IEnumerable<T> paramters, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
         {
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return false;
             }
@@ -392,7 +391,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task<bool> ExecuteAsync<T>(string sql, IEnumerable<T> paramters, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
         {
-            if (paramters == null || !paramters.Any())
+            if (paramters.IsNullOrEmpty())
             {
                 return false;
             }
