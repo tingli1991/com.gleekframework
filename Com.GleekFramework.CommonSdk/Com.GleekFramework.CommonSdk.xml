@@ -582,6 +582,15 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ContainsOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.Add``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>
             添加项
@@ -1054,6 +1063,14 @@
             <summary>
             字符串基础拓展类
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ContainsOf(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.StringExtensions.ContainsIgnoreCases(System.Collections.Generic.IEnumerable{System.String},System.String)">
             <summary>

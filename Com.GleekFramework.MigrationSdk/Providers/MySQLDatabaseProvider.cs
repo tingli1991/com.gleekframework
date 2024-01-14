@@ -3,7 +3,6 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace Com.GleekFramework.MigrationSdk
 {
@@ -40,18 +39,11 @@ namespace Com.GleekFramework.MigrationSdk
         /// </summary>
         public void InitializeDatabase()
         {
-            var connectionString = ConnectionString.ClearDatabaseName();
             var databaseName = ConnectionString.ExtractDatabaseName();
+            var connectionString = ConnectionString.ClearDatabaseName();
             using var connection = new MySqlConnection(connectionString);
-            var sql = @"select schema_name from information_schema.schemata where schema_name=@Name limit 1;";
-            var existsDatabaseName = connection.ExecuteScalar<string>(sql, new { Name = databaseName });
-            if (!string.IsNullOrEmpty(existsDatabaseName))
-            {
-                return;
-            }
-
-            //初始化数据库
-            connection.Execute($"create database {databaseName} character set utf8 collate utf8_general_ci;");
+            var query = @"CREATE DATABASE IF NOT EXISTS `@Name` CHARACTER SET utf8 COLLATE utf8_general_ci;";
+            connection.Execute(query, new { Name = databaseName });
         }
 
         /// <summary>
@@ -86,9 +78,7 @@ namespace Com.GleekFramework.MigrationSdk
                 return new List<IndexSchemaModel>();
             }
 
-            var sql = @"select 
-                TABLE_NAME as 'TableName',
-                INDEX_NAME as 'IndexName'
+            var sql = @"select TABLE_NAME as 'TableName',INDEX_NAME as 'IndexName' 
             from information_schema.statistics 
             where TABLE_SCHEMA = @DatabaseName;";
             using var db = GetConnection();
@@ -107,9 +97,7 @@ namespace Com.GleekFramework.MigrationSdk
                 return new List<TableSchemaModel>();
             }
 
-            var sql = @"select
-                TABLE_NAME as 'TableName',
-                COLUMN_NAME as 'ColumnName'
+            var sql = @"select TABLE_NAME as 'TableName',COLUMN_NAME as 'ColumnName'
             from information_schema.columns
             where TABLE_SCHEMA=@DatabaseName;";
             using var db = GetConnection();

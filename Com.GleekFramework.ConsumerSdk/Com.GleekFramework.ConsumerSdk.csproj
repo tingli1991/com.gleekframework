@@ -6,8 +6,8 @@
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <Description>消费者开发工具包</Description>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.ConsumerSdk.xml</DocumentationFile>

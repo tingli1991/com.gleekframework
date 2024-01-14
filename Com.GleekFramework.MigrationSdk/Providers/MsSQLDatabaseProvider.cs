@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 
@@ -29,7 +32,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public IDbConnection GetConnection()
         {
-            throw new NotImplementedException();
+            return new SqlConnection(ConnectionString);
         }
 
         /// <summary>
@@ -37,7 +40,13 @@ namespace Com.GleekFramework.MigrationSdk
         /// </summary>
         public void InitializeDatabase()
         {
-            throw new NotImplementedException();
+            var databaseName = ConnectionString.ExtractDatabaseName();
+            var connectionString = ConnectionString.ClearDatabaseName();
+            using var connection = new MySqlConnection(connectionString);
+            var query = @"
+            IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = @Name)
+            CREATE DATABASE [@Name]";
+            connection.Execute(query, new { Name = databaseName });
         }
 
         /// <summary>
@@ -46,16 +55,9 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public long GetMaxVersion()
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 保存版本信息
-        /// </summary>
-        /// <param name="versionList">版本列表</param>
-        public void SaveVersion(IEnumerable<VersionModel> versionList)
-        {
-            throw new NotImplementedException();
+            using var connection = GetConnection();
+            var sql = "select max(version) from versioninfo;";
+            return connection.ExecuteScalar<long>(sql);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public string GetDatabaseName()
         {
-            throw new NotImplementedException();
+            return ConnectionString.ExtractDatabaseName();
         }
 
         /// <summary>
@@ -74,7 +76,17 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public IEnumerable<IndexSchemaModel> GetIndexSchemaList(string databaseName)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                return new List<IndexSchemaModel>();
+            }
+
+            var sql = @"SELECT t.name AS 'TableName', ind.name AS 'IndexName'
+            FROM sys.indexes ind
+            INNER JOIN sys.tables t ON ind.object_id = t.object_id
+            WHERE t.name = @DatabaseName;";
+            using var db = GetConnection();
+            return db.Query<IndexSchemaModel>(sql, new { DatabaseName = databaseName });
         }
 
         /// <summary>
@@ -84,7 +96,50 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public IEnumerable<TableSchemaModel> GetTableSchemaList(string databaseName)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                return new List<TableSchemaModel>();
+            }
+
+            var sql = @"SELECT TABLE_NAME AS 'TableName', COLUMN_NAME AS 'ColumnName'
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_CATALOG = @DatabaseName;";
+            using var db = GetConnection();
+            return db.Query<TableSchemaModel>(sql, new { DatabaseName = databaseName });
+        }
+
+        /// <summary>
+        /// 保存版本信息
+        /// </summary>
+        /// <param name="versionList">版本列表</param>
+        public void SaveVersion(IEnumerable<VersionModel> versionList)
+        {
+            if (versionList.IsNullOrEmpty())
+            {
+                return;
+            }
+            var sql = @"insert into versioninfo(version,appliedon,description) values(@Version,@AppliedOn,@Description);";
+            Execute(sql, versionList);
+        }
+
+        /// <summary>
+        /// 数据库操作执行方法（不带事务处理）
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="paramters"></param>
+        /// <param name="pageSize">分页大小</param>
+        /// <returns></returns>
+        public bool Execute<T>(string sql, IEnumerable<T> paramters, int pageSize = 2000)
+        {
+            if (paramters.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            using var db = GetConnection();
+            var pageList = paramters.ToPageDictionary(pageSize);
+            pageList.ForEach(e => db.Execute(sql, e.Value, null));
+            return true;
         }
     }
 }

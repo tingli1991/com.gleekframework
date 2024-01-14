@@ -7,7 +7,7 @@
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Description>Web特性工具包</Description>
+    <Description>特性开发工具包</Description>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
