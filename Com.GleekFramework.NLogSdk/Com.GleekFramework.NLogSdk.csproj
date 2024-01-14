@@ -13,9 +13,9 @@
     <DocumentationFile>Com.GleekFramework.NLogSdk.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Content Include="NLog.config" Pack="true" />
-  </ItemGroup>
+  </ItemGroup>-->
   
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.2.4" />
