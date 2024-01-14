@@ -59,7 +59,7 @@ namespace Com.GleekFramework.RedisSdk
                     {
                         if (!ClientCache.ContainsKey(connectionName))
                         {
-                            var connectionString = configuration.GetValue(connectionName);
+                            var connectionString = configuration.Get(connectionName);
                             if (connectionString == null)
                             {
                                 throw new ArgumentNullException($"{connectionName} does not exist");

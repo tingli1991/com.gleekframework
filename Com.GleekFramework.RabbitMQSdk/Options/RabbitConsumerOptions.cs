@@ -20,6 +20,6 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <summary>
         /// 主机配置
         /// </summary>
-        public IEnumerable<RabbitHostOptions> Hosts { get; set; }
+        public IEnumerable<RabbitHostOptions> HostOptions { get; set; }
     }
 }

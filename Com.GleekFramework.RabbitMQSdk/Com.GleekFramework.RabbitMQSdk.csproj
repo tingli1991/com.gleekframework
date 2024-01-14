@@ -18,10 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.ConsumerSdk\Com.GleekFramework.ConsumerSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.ConsumerSdk\Com.GleekFramework.ConsumerSdk.csproj" />
   </ItemGroup>
 
 </Project>

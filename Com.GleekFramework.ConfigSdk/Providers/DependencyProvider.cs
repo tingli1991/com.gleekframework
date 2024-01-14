@@ -152,7 +152,7 @@ namespace Com.GleekFramework.ConfigSdk
             else
             {
                 //获取指定的配置
-                configurationValue = configAttribute.Configuration.GetValue(propertyType, configAttribute.Key);
+                configurationValue = configAttribute.Configuration.Get(propertyType, configAttribute.Key);
             }
 
             return configurationValue;

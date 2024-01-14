@@ -2,7 +2,7 @@
   "RabbitConnectionOptions": {
     "AwaitTask": false,
     "VirtualHost": "/",
-    "Hosts": [
+    "HostOptions": [
       {
         "Port": 5672,
         "UserName": "guest",

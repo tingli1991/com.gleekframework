@@ -159,7 +159,7 @@
             虚拟主机
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions.Hosts">
+        <member name="P:Com.GleekFramework.RabbitMQSdk.RabbitConsumerOptions.HostOptions">
             <summary>
             主机配置
             </summary>

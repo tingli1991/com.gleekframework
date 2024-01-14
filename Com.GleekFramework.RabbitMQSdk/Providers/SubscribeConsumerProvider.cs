@@ -24,12 +24,12 @@ namespace Com.GleekFramework.RabbitMQSdk
                 throw new ArgumentNullException(nameof(options));
             }
 
-            if (options.Hosts == null)
+            if (options.HostOptions == null)
             {
-                throw new ArgumentNullException(nameof(options.Hosts));
+                throw new ArgumentNullException(nameof(options.HostOptions));
             }
 
-            if (options.Hosts.Any(e => e.Host == null))
+            if (options.HostOptions.Any(e => e.Host == null))
             {
                 throw new ArgumentNullException("Host");
             }
@@ -40,7 +40,7 @@ namespace Com.GleekFramework.RabbitMQSdk
                 return;
             }
 
-            options.Hosts.ForEach(host =>
+            options.HostOptions.ForEach(host =>
             {
                 var handlerGroupServiceList = handlerServiceList
                 .GroupBy(e => new { e.AutoAck, e.ExchangeName })

@@ -45,7 +45,7 @@ namespace Com.GleekFramework.AppSvc
             .UseMigrations((config) => new MigrationOptions()
             {
                 DatabaseType = DatabaseType.MySQL,
-                ConnectionString = config.GetValue(DatabaseConstant.DefaultMySQLHostsKey)
+                ConnectionString = config.Get(DatabaseConstant.DefaultMySQLHostsKey)
             });
     }
 }
