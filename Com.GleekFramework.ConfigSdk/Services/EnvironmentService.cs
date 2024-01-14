@@ -8,34 +8,63 @@ namespace Com.GleekFramework.ConfigSdk
     public partial class EnvironmentService : IBaseAutofac
     {
         /// <summary>
-        /// 获取版本号
-        /// </summary>
-        /// <param name="prefix">前缀</param>
-        /// <returns></returns>
-        public string GetVersion(string prefix) => EnvironmentProvider.GetVersion(prefix);
-
-        /// <summary>
         /// 获取环境值
         /// </summary>
         /// <returns></returns>
-        public string GetEnv() => EnvironmentProvider.GetEnvironmentVariable(EnvironmentConstant.ENV);
+        public string GetEnv() => EnvironmentProvider.GetEnv();
 
         /// <summary>
         /// 获取项目名称
         /// </summary>
         /// <returns></returns>
-        public string GetProject() => EnvironmentProvider.GetEnvironmentVariable(EnvironmentConstant.PROJECT);
+        public string GetProject() => EnvironmentProvider.GetProject();
 
         /// <summary>
         /// 获取版本号
         /// </summary>
         /// <returns></returns>
-        public string GetVersion() => EnvironmentProvider.GetEnvironmentVariable(EnvironmentConstant.VERSION);
+        public string GetVersion() => EnvironmentProvider.GetVersion();
 
         /// <summary>
         /// 获取Nacos项目主机地址
         /// </summary>
         /// <returns></returns>
-        public string GetNacosUrl() => EnvironmentProvider.GetEnvironmentVariable(EnvironmentConstant.NOCOS_URL);
+        public string GetNacosUrl() => EnvironmentProvider.GetNacosUrl();
+
+        /// <summary>
+        /// 获取主机的端口地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHost() => EnvironmentProvider.GetHost();
+
+        /// <summary>
+        /// 获取主机的端口
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPort() => EnvironmentProvider.GetPort();
+
+        /// <summary>
+        /// 获取Http协议
+        /// </summary>
+        /// <returns></returns>
+        public static string GetScheme() => EnvironmentProvider.GetScheme();
+
+        /// <summary>
+        /// 获取Swagger开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetSwaggerSwitch() => EnvironmentProvider.GetSwaggerSwitch();
+
+        /// <summary>
+        /// 获取版本迁移开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetMigrationSwitch() => EnvironmentProvider.GetMigrationSwitch();
+
+        /// <summary>
+        /// 获取版本升级开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetUpgrationSwitch() => EnvironmentProvider.GetUpgrationSwitch();
     }
 }

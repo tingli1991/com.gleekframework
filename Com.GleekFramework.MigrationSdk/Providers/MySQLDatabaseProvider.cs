@@ -42,7 +42,7 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseName = ConnectionString.ExtractDatabaseName();
             var connectionString = ConnectionString.ClearDatabaseName();
             using var connection = new MySqlConnection(connectionString);
-            var query = @"CREATE DATABASE IF NOT EXISTS `@Name` CHARACTER SET utf8 COLLATE utf8_general_ci;";
+            var query = $@"CREATE DATABASE IF NOT EXISTS `{databaseName}` CHARACTER SET utf8 COLLATE utf8_general_ci;";
             connection.Execute(query, new { Name = databaseName });
         }
 

@@ -110,7 +110,6 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <param name="awaitTask">是否需要等待Task任务完成</param>
         private static async Task PullMessageBodyAsync(string host, string groupId, string topic, uint batchSize, uint waitSeconds, bool awaitTask)
         {
-            topic = EnvironmentProvider.GetVersion(topic);//转化环境参数
             var consumer = ConsumerProvider.GetConsumerSingle(host, topic, groupId);//获取消费者实例
             while (@Cts.Token == default || !@Cts.Token.IsCancellationRequested)
             {

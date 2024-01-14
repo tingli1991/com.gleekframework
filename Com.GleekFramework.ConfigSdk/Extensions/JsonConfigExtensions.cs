@@ -19,17 +19,17 @@ namespace Com.GleekFramework.ConfigSdk
             return configuration[key];
         }
 
-        /// <summary>
-        /// 获取Json配置
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="configuration">配置文件</param>
-        /// <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
-        /// <returns></returns>
-        public static T Get<T>(this IConfiguration configuration, string key)
-        {
-            return configuration.GetSection(key).Get<T>();
-        }
+        ///// <summary>
+        ///// 获取Json配置
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="configuration">配置文件</param>
+        ///// <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
+        ///// <returns></returns>
+        //public static T GetValue<T>(this IConfiguration configuration, string key)
+        //{
+        //    return configuration.GetSection(key).Get<T>();
+        //}
 
         /// <summary>
         /// 获取Json配置

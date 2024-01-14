@@ -6,6 +6,7 @@ using Com.GleekFramework.MigrationSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.QueueSdk;
+using Com.GleekFramework.DapperSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
@@ -24,13 +25,6 @@ namespace Com.GleekFramework.AppSvc
                  .Build()
                  .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
                  .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
-                 .UseMigrations((config) => new MigrationOptions()
-                 {
-                     MigrationSwitch = true,
-                     UpgrationSwitch = true,
-                     DatabaseType = DatabaseType.MySQL,
-                     ConnectionString = config.GetConnectionString(DatabaseConstant.DefaultMySQLHostsKey)
-                 })
                  .RunAsync();
         }
 
@@ -46,6 +40,12 @@ namespace Com.GleekFramework.AppSvc
             .UseNacosConf()
             .UseHttpClient()
             .UseConfigAttribute()
-            .UseGleekWebHostDefaults<Startup>();
+            .UseGleekWebHostDefaults<Startup>()
+            .UseDapper(DatabaseConstant.DefaultMySQLHostsKey)
+            .UseMigrations((config) => new MigrationOptions()
+            {
+                DatabaseType = DatabaseType.MySQL,
+                ConnectionString = config.GetValue(DatabaseConstant.DefaultMySQLHostsKey)
+            });
     }
 }

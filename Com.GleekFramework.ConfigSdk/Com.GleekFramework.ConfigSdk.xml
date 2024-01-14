@@ -114,6 +114,11 @@
             主机的端口配置
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.SCHEME">
+            <summary>
+            Http请求协议(http或者https)
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PROJECT">
             <summary>
             项目名称
@@ -134,6 +139,16 @@
             Swagger开关
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.MIGRATION_SWITCH">
+            <summary>
+            版本迁移开关
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.UPGRATION_SWITCH">
+            <summary>
+            版本升级开关
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigExtensions">
             <summary>
             JSON配置文件拓展
@@ -143,15 +158,6 @@
             <summary>
             获取Json配置
             </summary>
-            <param name="configuration">配置文件</param>
-            <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.Get``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
-            <summary>
-            获取Json配置
-            </summary>
-            <typeparam name="T"></typeparam>
             <param name="configuration">配置文件</param>
             <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
             <returns></returns>
@@ -254,6 +260,11 @@
             线程对象锁
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentProvider.CacheDic">
+            <summary>
+            环境变量缓存
+            </summary>
+        </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnv">
             <summary>
             获取环境值
@@ -278,28 +289,47 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentProvider.CacheDic">
-            <summary>
-            环境变量缓存
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetSwaggerSwitch">
-            <summary>
-            获取swagger开关配置
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetHost">
             <summary>
             获取主机的端口地址
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetVersion(System.String)">
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetPort">
             <summary>
-            获取版本号
+            获取主机的端口
             </summary>
-            <param name="prefix">前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetScheme">
+            <summary>
+            获取Http协议
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetSwaggerSwitch">
+            <summary>
+            获取Swagger开关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetMigrationSwitch">
+            <summary>
+            获取版本迁移开关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetUpgrationSwitch">
+            <summary>
+            获取版本升级开关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable``1(System.String)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable(System.String)">
@@ -381,13 +411,6 @@
             环境变量拓展方法
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetVersion(System.String)">
-            <summary>
-            获取版本号
-            </summary>
-            <param name="prefix">前缀</param>
-            <returns></returns>
-        </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetEnv">
             <summary>
             获取环境值
@@ -409,6 +432,42 @@
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetNacosUrl">
             <summary>
             获取Nacos项目主机地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetHost">
+            <summary>
+            获取主机的端口地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetPort">
+            <summary>
+            获取主机的端口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetScheme">
+            <summary>
+            获取Http协议
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetSwaggerSwitch">
+            <summary>
+            获取Swagger开关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetMigrationSwitch">
+            <summary>
+            获取版本迁移开关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetUpgrationSwitch">
+            <summary>
+            获取版本升级开关
             </summary>
             <returns></returns>
         </member>

@@ -1,5 +1,4 @@
 ﻿using Com.GleekFramework.AttributeSdk;
-using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ContractSdk;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,6 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpGet("execute")]
         public async Task<ContractResult> ExecuteAsync()
         {
-
             return await Task.FromResult(new ContractResult());
         }
     }

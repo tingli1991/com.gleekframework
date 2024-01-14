@@ -16,6 +16,11 @@
         public const string PORT = "PORT";
 
         /// <summary>
+        /// Http请求协议(http或者https)
+        /// </summary>
+        public const string SCHEME = "SCHEME";
+
+        /// <summary>
         /// 项目名称
         /// </summary>
         public const string PROJECT = "PROJECT";
@@ -34,5 +39,15 @@
         /// Swagger开关
         /// </summary>
         public const string SWAGGER_SWITCH = "SWAGGER_SWITCH";
+
+        /// <summary>
+        /// 版本迁移开关
+        /// </summary>
+        public const string MIGRATION_SWITCH = "MIGRATION_SWITCH";
+
+        /// <summary>
+        /// 版本升级开关
+        /// </summary>
+        public const string UPGRATION_SWITCH = "UPGRATION_SWITCH";
     }
 }

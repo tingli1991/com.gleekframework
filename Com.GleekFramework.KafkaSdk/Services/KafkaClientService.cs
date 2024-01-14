@@ -130,9 +130,7 @@ namespace Com.GleekFramework.KafkaSdk
                 throw new ArgumentNullException(nameof(topic));
             }
 
-            topic = EnvironmentService.GetVersion(topic);//转化环境参数
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
-
             var producer = ProducerProvider.GetProducerSingle(host);
             producer.ProduceAsync(topic, new Message<string, string> { Key = key, Value = JsonConvert.SerializeObject(data) });
             return Task.FromResult(result.SetSuceccful(serialNo));//设置为成功

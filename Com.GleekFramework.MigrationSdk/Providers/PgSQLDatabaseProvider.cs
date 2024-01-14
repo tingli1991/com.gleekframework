@@ -43,12 +43,12 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseName = ConnectionString.ExtractDatabaseName();
             var connectionString = ConnectionString.ClearDatabaseName();
             using var connection = new MySqlConnection(connectionString);
-            var query = @"
+            var query = $@"
             DO $$
             BEGIN
                 IF NOT EXISTS (SELECT FROM pg_catalog.pg_database WHERE datname = @Name)
                 THEN
-                    CREATE DATABASE ""@Name"";
+                    CREATE DATABASE ""{databaseName}"";
                 END IF;
             END $$;";
             connection.Execute(query, new { Name = databaseName });

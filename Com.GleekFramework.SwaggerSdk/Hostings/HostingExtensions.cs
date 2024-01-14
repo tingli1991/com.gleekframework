@@ -74,7 +74,7 @@ namespace Com.GleekFramework.SwaggerSdk
         public static IApplicationBuilder UseKnife4UI(this IApplicationBuilder app)
         {
             var swaggerSwitch = EnvironmentProvider.GetSwaggerSwitch();//Swagger开关配置
-            if (swaggerSwitch == null || swaggerSwitch != "true")
+            if (!swaggerSwitch)
             {
                 return app;
             }

@@ -165,7 +165,6 @@ namespace Com.GleekFramework.RocketMQSdk
                 throw new ArgumentException("消息内容不能为空");
             }
 
-            topic = EnvironmentService.GetVersion(topic);//转化环境参数
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
             var jsonValue = JsonConvert.SerializeObject(data);
             var producer = ProducerProvider.GetProducerSingle(host, topic);//创建生产者

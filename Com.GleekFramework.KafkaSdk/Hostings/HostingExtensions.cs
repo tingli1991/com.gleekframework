@@ -112,7 +112,7 @@ namespace Com.GleekFramework.KafkaSdk
         /// <param name="autoOffset">偏移方式</param>
         private static async Task PullMessageBodyAsync(string host, string groupId, string topic, bool awaitTask, bool autoAck, AutoOffsetReset autoOffset)
         {
-            var consumer = ConsumerProvider.GetConsumerSingle(host, groupId, EnvironmentProvider.GetVersion(topic), autoAck, autoOffset);
+            var consumer = ConsumerProvider.GetConsumerSingle(host, groupId, topic, autoAck, autoOffset);
             consumer.Subscribe(topic);//订阅消息
             while (@Cts.Token == default || !@Cts.Token.IsCancellationRequested)
             {

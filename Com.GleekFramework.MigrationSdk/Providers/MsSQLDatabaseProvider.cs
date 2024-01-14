@@ -43,9 +43,8 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseName = ConnectionString.ExtractDatabaseName();
             var connectionString = ConnectionString.ClearDatabaseName();
             using var connection = new MySqlConnection(connectionString);
-            var query = @"
-            IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = @Name)
-            CREATE DATABASE [@Name]";
+            var query = $@"IF NOT EXISTS (SELECT name FROM sys.databases WHERE name=@Name)
+            CREATE DATABASE {databaseName}";
             connection.Execute(query, new { Name = databaseName });
         }
 

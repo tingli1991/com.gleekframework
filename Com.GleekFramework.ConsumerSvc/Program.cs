@@ -20,8 +20,8 @@ namespace Com.GleekFramework.ConsumerSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeKafka(config => config.Get<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))
-                 .SubscribeRabbitMQ(config => config.Get<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))
+                 .SubscribeKafka(config => config.GetValue<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))
+                 .SubscribeRabbitMQ(config => config.GetValue<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))
                  .RunAsync();
         }
 

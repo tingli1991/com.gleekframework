@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using System;
 using System.Collections.Generic;
 
 namespace Com.GleekFramework.ConfigSdk
@@ -12,6 +13,11 @@ namespace Com.GleekFramework.ConfigSdk
         /// 线程对象锁
         /// </summary>
         private static readonly object @lock = new object();
+
+        /// <summary>
+        /// 环境变量缓存
+        /// </summary>
+        private static readonly Dictionary<string, string> CacheDic = new Dictionary<string, string>();
 
         /// <summary>
         /// 获取环境值
@@ -38,28 +44,51 @@ namespace Com.GleekFramework.ConfigSdk
         public static string GetNacosUrl() => GetEnvironmentVariable(EnvironmentConstant.NOCOS_URL);
 
         /// <summary>
-        /// 环境变量缓存
-        /// </summary>
-        private static readonly Dictionary<string, string> CacheDic = new Dictionary<string, string>();
-
-        /// <summary>
-        /// 获取swagger开关配置
-        /// </summary>
-        /// <returns></returns>
-        public static string GetSwaggerSwitch() => GetEnvironmentVariable(EnvironmentConstant.SWAGGER_SWITCH);
-
-        /// <summary>
         /// 获取主机的端口地址
         /// </summary>
         /// <returns></returns>
-        public static string GetHost() => $"http://*:{GetEnvironmentVariable(EnvironmentConstant.PORT) ?? "8080"}";
+        public static string GetHost() => $"{GetScheme()}://*:{GetPort()}";
 
         /// <summary>
-        /// 获取版本号
+        /// 获取主机的端口
         /// </summary>
-        /// <param name="prefix">前缀</param>
         /// <returns></returns>
-        public static string GetVersion(string prefix) => $"{prefix}_{GetEnvironmentVariable(EnvironmentConstant.VERSION)}".TrimEnd('_');
+        public static string GetPort() => $"{GetEnvironmentVariable(EnvironmentConstant.PORT) ?? "8080"}";
+
+        /// <summary>
+        /// 获取Http协议
+        /// </summary>
+        /// <returns></returns>
+        public static string GetScheme() => $"{GetEnvironmentVariable(EnvironmentConstant.SCHEME) ?? "http"}";
+
+        /// <summary>
+        /// 获取Swagger开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetSwaggerSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.SWAGGER_SWITCH);
+
+        /// <summary>
+        /// 获取版本迁移开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetMigrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.MIGRATION_SWITCH);
+
+        /// <summary>
+        /// 获取版本升级开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetUpgrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.UPGRATION_SWITCH);
+
+        /// <summary>
+        /// 获取环境变量值
+        /// </summary>
+        /// <param name="name">环境变量参数名称</param>
+        /// <returns></returns>
+        public static T GetEnvironmentVariable<T>(string name)
+        {
+            var environmentVariable = GetEnvironmentVariable(name);
+            return environmentVariable.ToObject<T>();
+        }
 
         /// <summary>
         /// 获取环境变量值

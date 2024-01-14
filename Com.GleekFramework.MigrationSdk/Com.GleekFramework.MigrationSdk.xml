@@ -316,19 +316,12 @@
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.UseMigrations(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.MigrationSdk.MigrationOptions})">
+        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.UseMigrations(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.MigrationSdk.MigrationOptions})">
             <summary>
             使用版本迁移
             </summary>
-            <param name="host">主机信息</param>
+            <param name="builder">主机信息</param>
             <param name="callback">回调配置</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.CreateServices(Com.GleekFramework.MigrationSdk.MigrationOptions)">
-            <summary>
-            创建升级服务
-            </summary>
-            <param name="options">配置选项</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.IDatabaseProvider">
@@ -574,16 +567,6 @@
             版本变更配置选项
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.MigrationSwitch">
-            <summary>
-            版本迁移开关
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.UpgrationSwitch">
-            <summary>
-            版本升级开关
-            </summary>
-        </member>
         <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.ConnectionString">
             <summary>
             数据库连接字符串
@@ -592,6 +575,16 @@
         <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.DatabaseType">
             <summary>
             注入的数据库类型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.MigrationSwitch">
+            <summary>
+            版本迁移开关
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationOptions.UpgrationSwitch">
+            <summary>
+            版本升级开关
             </summary>
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.MigrationProvider">
@@ -662,12 +655,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
-            <summary>
-            保存版本信息
-            </summary>
-            <param name="versionList">版本列表</param>
-        </member>
         <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetDatabaseName">
             <summary>
             获取数据库名称
@@ -686,6 +673,21 @@
             获取表的摘要信息
             </summary>
             <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="paramters"></param>
+            <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider">
@@ -789,12 +791,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
-            <summary>
-            保存版本信息
-            </summary>
-            <param name="versionList">版本列表</param>
-        </member>
         <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetDatabaseName">
             <summary>
             获取数据库名称
@@ -813,6 +809,21 @@
             获取表的摘要信息
             </summary>
             <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+            <summary>
+            保存版本信息
+            </summary>
+            <param name="versionList">版本列表</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            数据库操作执行方法（不带事务处理）
+            </summary>
+            <param name="sql"></param>
+            <param name="paramters"></param>
+            <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.UpgrationProvider">
