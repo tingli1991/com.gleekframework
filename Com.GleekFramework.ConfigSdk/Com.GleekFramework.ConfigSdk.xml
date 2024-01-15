@@ -154,7 +154,16 @@
             JSON配置文件拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetValue(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.Get``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            获取Json配置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration">配置文件</param>
+            <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.Get(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
             获取Json配置
             </summary>
@@ -162,7 +171,7 @@
             <param name="key">配置文件的Key(格式：xxx:yyy，注意中间使用':'分割)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.GetValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String)">
+        <member name="M:Com.GleekFramework.ConfigSdk.JsonConfigExtensions.Get(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String)">
             <summary>
             获取Json配置
             </summary>
