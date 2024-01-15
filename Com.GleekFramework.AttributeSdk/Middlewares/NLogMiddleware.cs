@@ -46,7 +46,7 @@ namespace Com.GleekFramework.AttributeSdk
                 serialNo = GetSerialNo(context.Request.Headers, request, response);//流水编号
 
                 var path = context.Request.Path;
-                if (!path.HasValue || path.Value.IndexOf("swagger") >= 0 || path.Value.IndexOf("api-docs") >= 0)
+                if (!path.HasValue || path.Value.Contains("swagger") || path.Value.Contains("api-docs"))
                 {
                     //非空校验
                     await _next(context);
