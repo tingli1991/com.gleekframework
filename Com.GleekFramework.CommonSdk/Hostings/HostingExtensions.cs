@@ -5,7 +5,7 @@ namespace Com.GleekFramework.CommonSdk
     /// <summary>
     /// 主机拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class CommonHostingExtensions
     {
         /// <summary>
         /// 启用信号两开关

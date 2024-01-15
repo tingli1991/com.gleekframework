@@ -9,7 +9,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// 主机拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class MigrationHostingExtensions
     {
         /// <summary>
         /// 使用版本迁移

@@ -5,7 +5,7 @@ namespace Com.GleekFramework.ConfigSdk
     /// <summary>
     /// 配置主机
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class ConfigHostingExtensions
     {
         /// <summary>
         /// 使用配置

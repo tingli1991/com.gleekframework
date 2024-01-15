@@ -46,7 +46,7 @@ namespace Com.GleekFramework.RabbitMQSdk
             catch (Exception ex)
             {
                 var totalMilliseconds = (long)(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds;
-                NLogProvider.Error($"【RabbitMQ消费】{ex}", messageBody.SerialNo, messageBody.Headers.GetUrl(), totalMilliseconds);
+                NLogProvider.Error($"【RabbitMQ消费】{ex}", messageBody?.SerialNo ?? "", messageBody?.Headers?.GetUrl(), totalMilliseconds);
             }
             return Task.FromResult(new ContractResult());
         }

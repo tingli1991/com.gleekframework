@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.ContractSdk;
+using System;
 using System.Collections.Generic;
 
 namespace Com.GleekFramework.ConsumerSdk
@@ -30,6 +31,11 @@ namespace Com.GleekFramework.ConsumerSdk
         /// <returns></returns>
         public static CustomActionExecutingContext CreateActionExecutingContext(CustomAuthorizationContext context)
         {
+            if (context == null)
+            {
+                throw new NullReferenceException(nameof(context));
+            }
+
             return new CustomActionExecutingContext()
             {
                 Handler = context?.Handler,

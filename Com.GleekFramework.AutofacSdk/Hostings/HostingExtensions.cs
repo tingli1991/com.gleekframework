@@ -12,7 +12,7 @@ namespace Com.GleekFramework.AutofacSdk
     /// <summary>
     /// 主机拓展
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class AutofacHostingExtensions
     {
         /// <summary>
         /// 使用默认的IOC注入方式

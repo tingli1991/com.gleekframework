@@ -19,7 +19,6 @@ namespace Com.GleekFramework.ConsumerSdk
         /// <returns></returns>
         public static async Task<ContractResult> OnActionExecutingAsync(this IEnumerable<CustomActionAttribute> coustomAttributeList, CustomActionExecutingContext context)
         {
-            var isSuccess = true;//是否处理成功
             ContractResult result = default;//返回结果
             if (coustomAttributeList.IsNotNull())
             {
@@ -32,7 +31,7 @@ namespace Com.GleekFramework.ConsumerSdk
                     }
                 }
             }
-            return !isSuccess ? result : null;
+            return result;
         }
 
         /// <summary>
@@ -51,7 +50,6 @@ namespace Com.GleekFramework.ConsumerSdk
             }
             else
             {
-                var isSuccess = true;//是否处理成功
                 if (coustomAttributeList.IsNotNull())
                 {
                     foreach (var coustomAttribute in coustomAttributeList.OrderBy(e => e.Order))
@@ -63,7 +61,7 @@ namespace Com.GleekFramework.ConsumerSdk
                         }
                     }
                 }
-                return !isSuccess ? result : null;
+                return result;
             }
         }
     }

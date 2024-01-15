@@ -41,7 +41,7 @@ namespace Com.GleekFramework.AutofacSdk
         /// <summary>
         /// 获取接口服务
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="serviceType"></param>
         /// <returns></returns>
         public static object GetService(Type serviceType)
         {

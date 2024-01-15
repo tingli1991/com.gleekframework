@@ -11,7 +11,7 @@ namespace Com.GleekFramework.HttpSdk
     /// <summary>
     /// 主机拓展
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class HttpHostingExtensions
     {
         /// <summary>
         /// 使用HttpClient

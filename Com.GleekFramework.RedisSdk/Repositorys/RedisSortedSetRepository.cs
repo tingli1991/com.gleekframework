@@ -32,7 +32,6 @@ namespace Com.GleekFramework.RedisSdk
         /// <summary>
         /// 返回有序集中指定区间内的成员，通过索引，分数从高到底
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="start">开始位置，0表示第一个元素，-1表示最后一个元素</param>
         /// <param name="stop">结束位置，0表示第一个元素，-1表示最后一个元素</param>
@@ -81,7 +80,6 @@ namespace Com.GleekFramework.RedisSdk
         /// <summary>
         /// 通过分数返回有序集合指定区间内的成员
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key">键</param>
         /// <param name="min">分数最小值</param>
         /// <param name="max">分数最大值</param>
@@ -94,7 +92,6 @@ namespace Com.GleekFramework.RedisSdk
         /// <summary>
         /// 通过索引区间返回有序集合成指定区间内的成员
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key">键</param>
         /// <param name="start">起始位置</param>
         /// <param name="stop">结束位置</param>
@@ -107,7 +104,6 @@ namespace Com.GleekFramework.RedisSdk
         ///    如果key不存在，一个空列表会被创建并执行LPUSH操作,并设置List的过期时间
         ///    当key存在但不是列表类型时，返回一个错误
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key">键</param>
         /// <param name="value">值集</param>
         /// <param name="expireSeconds">过期时间</param>

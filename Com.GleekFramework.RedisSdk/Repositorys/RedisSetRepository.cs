@@ -15,6 +15,7 @@ namespace Com.GleekFramework.RedisSdk
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key">键</param>
+        /// <param name="values"></param>
         /// <returns></returns>
         public async Task<long> RemAsync<T>(string key, params T[] values)
             => await Client.SRemAsync(key, values);

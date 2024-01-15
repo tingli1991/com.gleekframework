@@ -46,10 +46,10 @@ namespace Com.GleekFramework.NacosSdk
 
                     var token = baseUrl.GetAuthTokenAsync(nacosConf.UserName, nacosConf.Password).Result;
                     var responseJsonValue = baseUrl.GetConfigAsync(nodeSettings.NamespaceId, nodeSettings.GroupName, nodeSettings.DataId, token).Result;
-                    if (!string.IsNullOrEmpty(responseJsonValue) && configValue.EncryptMd5() != responseJsonValue.EncryptMd5())
+                    if (!responseJsonValue.IsNullOrEmpty() && configValue.EncryptMd5() != responseJsonValue.EncryptMd5())
                     {
                         //写入文件
-                        File.WriteAllText(fileName, responseJsonValue ?? "", Encoding.UTF8);
+                        File.WriteAllText(fileName, responseJsonValue, Encoding.UTF8);
                     }
                 }
                 catch (Exception ex)

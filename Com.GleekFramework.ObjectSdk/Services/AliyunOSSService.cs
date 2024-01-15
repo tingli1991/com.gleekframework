@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.CommonSdk;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +21,16 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<List<string>> PutObjectAsync(string bucketName, string filePath, IEnumerable<IFormFile> files)
         {
-            return await PutObjectAsync(bucketName, filePath, files);
+            var fileNames = new List<string>();
+            foreach (var file in files)
+            {
+                var fileName = await PutObjectAsync(bucketName, filePath, file);
+                if (!fileName.IsNullOrEmpty())
+                {
+                    fileNames.Add(fileName);
+                }
+            }
+            return fileNames;
         }
 
         /// <summary>

@@ -57,7 +57,6 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <summary>
         /// 拉取并处理消息
         /// </summary>
-        /// <param name="virtualHost">虚拟主机</param>
         /// <param name="awaitTask">是否同步等待任务结果</param>
         /// <param name="options">处理服务</param>
         /// <param name="hostOptions">配置选项</param>

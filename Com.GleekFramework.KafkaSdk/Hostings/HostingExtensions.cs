@@ -14,7 +14,7 @@ namespace Com.GleekFramework.KafkaSdk
     /// <summary>
     /// 消费者拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class KafkaHostingExtensions
     {
         /// <summary>
         /// 消息数量

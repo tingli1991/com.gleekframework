@@ -53,9 +53,11 @@ namespace Com.GleekFramework.RocketMQSdk
                             NLogProvider.Warn($"【RocketMQ订阅】停机延迟{delayMilliseconds}毫秒，消息数量：{MessageCount}");
                             Thread.Sleep(delayMilliseconds);//阻塞主线程   
                         }
-
-                        NLogProvider.Warn($"【RocketMQ订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
-                        break;
+                        else
+                        {
+                            NLogProvider.Warn($"【RocketMQ订阅】订阅配置：{options.JsonCompressAndEscape()}，取消订阅成功！");
+                            break;
+                        }
                     }
                 });
             return host;

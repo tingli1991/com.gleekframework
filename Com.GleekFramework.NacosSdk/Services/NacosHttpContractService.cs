@@ -70,6 +70,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult> PostAsync<R>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PostAsync<R, ContractResult>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);
@@ -83,6 +84,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult<T>> PostAsync<R, T>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PostAsync<R, T>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);
@@ -95,6 +97,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult> PutAsync<R>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PutAsync<R, ContractResult>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);
@@ -108,6 +111,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult<T>> PutAsync<R, T>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PutAsync<R, T>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);
@@ -120,6 +124,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult> PatchAsync<R>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PatchAsync<R, ContractResult>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);
@@ -133,6 +138,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="action">接口路径</param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public async Task<ContractResult<T>> PatchAsync<R, T>(string serviceName, string action, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
             => await ExecuteAsync(serviceName, action, (url) => HttpClientService.PatchAsync<R, T>(url, data, headers, param), NacosConstant.DEFAULT_HTTP_SCHEME);

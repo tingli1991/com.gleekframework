@@ -58,8 +58,8 @@ namespace Com.GleekFramework.NacosSdk
             return new ServiceClientOptions()
             {
                 GroupName = groupName,
-                Clusters = serviceOptions.Clusters,
-                ServiceName = serviceOptions.ServiceName,
+                Clusters = serviceOptions?.Clusters ?? "",
+                ServiceName = serviceOptions?.ServiceName ?? "",
                 NamespaceId = namespaceId.TrimStart(ConfigConstant.REMOVESTARTSTR)
             };
         }

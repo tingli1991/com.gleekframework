@@ -30,9 +30,9 @@ namespace Com.GleekFramework.KafkaSdk
 
                 messageBody = JsonConvert.DeserializeObject<MessageBody<object>>(messageStr);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                
             }
             return messageBody;
         }

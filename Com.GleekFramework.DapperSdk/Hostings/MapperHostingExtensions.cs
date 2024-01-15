@@ -9,7 +9,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// 字段映射工具拓展类
     /// </summary>
-    public static partial class MapperHostingExtensions
+    public static partial class DapperMapperHostingExtensions
     {
         /// <summary>
         /// 使用Dapper字段映射

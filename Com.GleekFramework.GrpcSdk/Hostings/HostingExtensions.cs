@@ -11,7 +11,7 @@ namespace Com.GleekFramework.GrpcSdk
     /// <summary>
     /// 主机拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class GrpcHostingExtensions
     {
         /// <summary>
         /// 获取Grpc服务列表

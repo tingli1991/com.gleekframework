@@ -8,7 +8,7 @@ namespace Com.GleekFramework.MongodbSdk
     /// <summary>
     /// Mongo拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class MongodbHostingExtensions
     {
         /// <summary>
         /// 使用Mongodb

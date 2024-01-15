@@ -8,7 +8,7 @@ namespace Com.GleekFramework.RedisSdk
     /// <summary>
     /// Redis仓储拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class RedisHostingExtensions
     {
         /// <summary>
         /// 使用CsRedis

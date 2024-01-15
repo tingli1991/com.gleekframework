@@ -17,7 +17,7 @@ namespace Com.GleekFramework.AttributeSdk
     /// <summary>
     /// Web主题拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class AttributeHostingExtensions
     {
         /// <summary>
         /// 使用默认的消费者主机

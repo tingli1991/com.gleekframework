@@ -3,7 +3,6 @@ using Com.GleekFramework.ContractSdk;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 
 namespace Com.GleekFramework.HttpSdk
@@ -131,19 +130,24 @@ namespace Com.GleekFramework.HttpSdk
         /// <returns>屏蔽完非中横线和大写字母的头部信息结果</returns>
         public static Dictionary<string, string> ToHeaders(this IHttpContextAccessor httpContext)
         {
+            if (httpContext == null)
+            {
+                throw new NullReferenceException(nameof(httpContext));
+            }
+
             var headerDic = new Dictionary<string, string>();
-            var headers = httpContext?.HttpContext?.Request?.Headers;
+            var request = httpContext.HttpContext.Request;
+            if (request.Host.HasValue)
+            {
+                headerDic.AddHeader("x-host", request.Host.Value);
+            }
+
+            headerDic.AddHeader("x-path", request.Path);//接口请求路径
+            headerDic.AddHeader("x-scheme", request.Scheme);//请求协议
+            headerDic.AddHeader("x-method", request.Method);//请求方法
+            var headers = httpContext.HttpContext.Request.Headers;
             if (headers.IsNotNull())
             {
-                var request = httpContext.HttpContext.Request;
-                if (request.Host.HasValue)
-                {
-                    headerDic.AddHeader("x-host", request.Host.Value);
-                }
-
-                headerDic.AddHeader("x-path", request.Path);//接口请求路径
-                headerDic.AddHeader("x-scheme", request.Scheme);//请求协议
-                headerDic.AddHeader("x-method", request.Method);//请求方法
                 foreach (var header in headers)
                 {
                     //非空校验

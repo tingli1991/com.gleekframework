@@ -24,7 +24,7 @@ namespace Com.GleekFramework.QueueSdk
     /// <summary>
     /// 队列主机拓展
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class HostingQueueExtensions
     {
         /// <summary>
         /// 随机因子
@@ -67,8 +67,11 @@ namespace Com.GleekFramework.QueueSdk
                         NLogProvider.Warn($"【Queue订阅】停机延迟{delayMilliseconds}毫秒，剩余消息数量：{surplusMessageCount}");
                         Thread.Sleep(delayMilliseconds);//阻塞主线程
                     }
-                    NLogProvider.Info($"【Queue订阅】分区数量：{PartitionedQueueProvider.PartitionCount}，停机完毕！！！");
-                    break;
+                    else
+                    {
+                        NLogProvider.Info($"【Queue订阅】分区数量：{PartitionedQueueProvider.PartitionCount}，停机完毕！！！");
+                        break;
+                    }
                 }
             });
             return host;

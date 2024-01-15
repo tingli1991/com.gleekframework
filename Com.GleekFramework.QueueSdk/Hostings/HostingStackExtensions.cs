@@ -13,8 +13,13 @@ namespace Com.GleekFramework.QueueSdk
     /// <summary>
     /// 队列主机拓展
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class HostingStackExtensions
     {
+        /// <summary>
+        /// 随机因子
+        /// </summary>
+        private static Random Random => new Random((int)DateTime.Now.ToCstTime().Ticks);
+
         /// <summary>
         /// 订阅Stack
         /// </summary>
@@ -50,9 +55,11 @@ namespace Com.GleekFramework.QueueSdk
                         NLogProvider.Warn($"【Stack订阅】停机延迟{delayMilliseconds}毫秒，剩余消息数量：{surplusMessageCount}");
                         Thread.Sleep(delayMilliseconds);//阻塞主线程
                     }
-
-                    NLogProvider.Info($"【Stack订阅】分区数量：{PartitionedQueueProvider.PartitionCount}，停机完毕！！！");
-                    break;
+                    else
+                    {
+                        NLogProvider.Info($"【Stack订阅】分区数量：{PartitionedQueueProvider.PartitionCount}，停机完毕！！！");
+                        break;
+                    }
                 }
             });
             return host;

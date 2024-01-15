@@ -79,6 +79,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult> PostAsync<R>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {
@@ -93,6 +94,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult<T>> PostAsync<R, T>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {
@@ -106,6 +108,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult> PutAsync<R>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {
@@ -120,6 +123,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult<T>> PutAsync<R, T>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {
@@ -133,6 +137,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult> PatchAsync<R>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {
@@ -147,6 +152,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <param name="headers"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public Task<ContractResult<T>> PatchAsync<R, T>(string url, R data, Dictionary<string, string> headers = null, Dictionary<string, string> param = null)
         {

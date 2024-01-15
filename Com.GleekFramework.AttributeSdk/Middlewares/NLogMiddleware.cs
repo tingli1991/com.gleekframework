@@ -113,10 +113,10 @@ namespace Com.GleekFramework.AttributeSdk
         /// <param name="requestJson">请求参数</param>
         /// <param name="responseJson">返回结果</param>
         /// <returns></returns>
-        private static (object? request, object? response) ConvertObject(string requestJson, string responseJson)
+        private static (object request, object response) ConvertObject(string requestJson, string responseJson)
         {
-            object? request = null;
-            object? response = null;
+            object request = null;
+            object response = null;
             try
             {
                 request = JsonConvert.DeserializeObject(requestJson);
@@ -136,7 +136,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <param name="request">请求参数</param>
         /// <param name="response">返回结果的Json字符串</param>
         /// <returns></returns>
-        private static string GetSerialNo(IHeaderDictionary headers, object? request, object? response)
+        private static string GetSerialNo(IHeaderDictionary headers, object request, object response)
         {
             var serialNo = headers.GetSerialNo();
             if (string.IsNullOrEmpty(serialNo))

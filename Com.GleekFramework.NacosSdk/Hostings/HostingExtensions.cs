@@ -5,7 +5,7 @@ namespace Com.GleekFramework.NacosSdk
     /// <summary>
     /// 主机拓展
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class NacosHostingExtensions
     {
         /// <summary>
         /// 添加Nacos

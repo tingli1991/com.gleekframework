@@ -6,14 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Com.GleekFramework.SwaggerSdk
 {
     /// <summary>
     /// Swagger文档拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class SwaggerHostingExtensions
     {
         /// <summary>
         /// 添加Knife4生成器

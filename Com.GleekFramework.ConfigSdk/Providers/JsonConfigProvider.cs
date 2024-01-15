@@ -90,6 +90,11 @@ namespace Com.GleekFramework.ConfigSdk
                 configurationBuilder = JsonConfigurationExtensions
                     .AddJsonFile(configBuilder, fileName, true, true);
             }
+
+            if (configurationBuilder == null)
+            {
+                throw new NullReferenceException(nameof(configurationBuilder));
+            }
             var configuration = configurationBuilder.Build();//编译配置文件
             return configuration;
         }

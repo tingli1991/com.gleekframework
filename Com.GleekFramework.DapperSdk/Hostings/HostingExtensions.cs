@@ -8,7 +8,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// Dapper仓储拓展类
     /// </summary>
-    public static partial class HostingExtensions
+    public static partial class DapperHostingExtensions
     {
         /// <summary>
         /// 使用Dapper
