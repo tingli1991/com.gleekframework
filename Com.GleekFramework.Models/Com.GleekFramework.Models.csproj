@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <Version>1.0.0.0</Version>
+    <Nullable>disable</Nullable>
     <IsPackable>true</IsPackable>
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
