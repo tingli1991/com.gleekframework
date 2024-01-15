@@ -407,7 +407,7 @@
             时间拓展类
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.CommonSdk.DateTimeExtensions.Random">
+        <member name="F:Com.GleekFramework.CommonSdk.DateTimeExtensions.Random">
             <summary>
             随机因子
             </summary>
@@ -1015,7 +1015,7 @@
             随机数基础拓展
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.CommonSdk.RadomExtensions.Random">
+        <member name="F:Com.GleekFramework.CommonSdk.RadomExtensions.Random">
             <summary>
             随机因子
             </summary>

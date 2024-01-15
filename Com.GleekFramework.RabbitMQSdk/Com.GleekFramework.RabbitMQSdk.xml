@@ -110,7 +110,7 @@
             消息数量
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.Random">
+        <member name="F:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.Random">
             <summary>
             随机因子
             </summary>

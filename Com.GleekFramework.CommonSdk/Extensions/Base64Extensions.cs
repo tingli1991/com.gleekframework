@@ -44,8 +44,6 @@ namespace Com.GleekFramework.CommonSdk
                     if (base64Str.Any(c => !base64CodeArray.Contains(c)))
                         return false;
                 }
-
-                var bytes = Convert.FromBase64String(base64Str);
                 return true;
             }
             catch (FormatException)
@@ -69,12 +67,12 @@ namespace Com.GleekFramework.CommonSdk
                 }
 
                 byte[] bytContent = Encoding.UTF8.GetBytes(text);
-                text = Convert.ToBase64String(bytContent, 0, bytContent.Length);
+                return Convert.ToBase64String(bytContent, 0, bytContent.Length);
             }
             catch (Exception)
             {
+                return text;
             }
-            return text;
         }
 
         /// <summary>
@@ -84,17 +82,16 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static string Base64ToString(this string base64)
         {
-            var strResult = base64;
             try
             {
                 base64 = Base64StringLen(base64);
                 byte[] bytContent = Convert.FromBase64String(base64);
-                strResult = Encoding.UTF8.GetString(bytContent);
+                return Encoding.UTF8.GetString(bytContent);
             }
             catch (Exception)
             {
+                return base64;
             }
-            return strResult;
         }
 
         /// <summary>

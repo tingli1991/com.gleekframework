@@ -110,7 +110,7 @@
             队列主机拓展
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.QueueSdk.HostingQueueExtensions.Random">
+        <member name="F:Com.GleekFramework.QueueSdk.HostingQueueExtensions.Random">
             <summary>
             随机因子
             </summary>
@@ -141,7 +141,7 @@
             队列主机拓展
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.QueueSdk.HostingStackExtensions.Random">
+        <member name="F:Com.GleekFramework.QueueSdk.HostingStackExtensions.Random">
             <summary>
             随机因子
             </summary>

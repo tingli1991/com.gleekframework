@@ -46,7 +46,7 @@ namespace Com.GleekFramework.AttributeSdk
                 serialNo = GetSerialNo(context.Request.Headers, request, response);//流水编号
 
                 var path = context.Request.Path;
-                if (!path.HasValue || path.Value.IndexOf("swagger") > 0 || path.Value.IndexOf("api-docs") > 0)
+                if (!path.HasValue || path.Value.IndexOf("swagger") >= 0 || path.Value.IndexOf("api-docs") >= 0)
                 {
                     //非空校验
                     await _next(context);
@@ -54,7 +54,6 @@ namespace Com.GleekFramework.AttributeSdk
                 }
 
                 var exclActionList = NLogMiddlewareExtensions.ExclActionList;
-                var host = ($"{context.Request.Host}" ?? "").TrimStart('/').TrimEnd('/');
                 if (exclActionList.AnyOf(e => url.ContainsOf(e)))
                 {
                     //拦截一些特定日志
@@ -115,17 +114,8 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         private static (object request, object response) ConvertObject(string requestJson, string responseJson)
         {
-            object request = null;
-            object response = null;
-            try
-            {
-                request = JsonConvert.DeserializeObject(requestJson);
-                response = JsonConvert.DeserializeObject(responseJson);
-            }
-            catch (Exception)
-            {
-
-            }
+            var request = JsonConvert.DeserializeObject(requestJson);
+            var response = JsonConvert.DeserializeObject(responseJson);
             return (request, response);
         }
 

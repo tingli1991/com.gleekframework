@@ -166,7 +166,7 @@
             对象锁
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider._random">
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.Random">
             <summary>
             随机因子
             </summary>

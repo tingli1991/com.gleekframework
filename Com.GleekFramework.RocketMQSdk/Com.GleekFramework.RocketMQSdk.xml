@@ -76,7 +76,7 @@
             消息数量
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Random">
+        <member name="F:Com.GleekFramework.RocketMQSdk.ConsumerHostingExtensions.Random">
             <summary>
             随机因子
             </summary>

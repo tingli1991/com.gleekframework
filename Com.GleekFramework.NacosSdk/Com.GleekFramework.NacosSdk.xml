@@ -293,7 +293,7 @@
             过期时间
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.NacosSdk.NacosAuthExtensions.Random">
+        <member name="F:Com.GleekFramework.NacosSdk.NacosAuthExtensions.Random">
             <summary>
             随机因子
             </summary>

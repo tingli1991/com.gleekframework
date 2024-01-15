@@ -60,14 +60,14 @@
             消息数量
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Random">
-            <summary>
-            随机因子
-            </summary>
-        </member>
         <member name="F:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Cts">
             <summary>
             多线程控制器
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Random">
+            <summary>
+            随机因子
             </summary>
         </member>
         <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.SubscribeKafka(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.KafkaSdk.KafkaConsumerOptions})">

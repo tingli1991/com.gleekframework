@@ -11,7 +11,7 @@ namespace Com.GleekFramework.AttributeSdk
     /// <summary>
     /// 全局异常过滤器
     /// </summary>
-    public class GlobalExceptionAttribute : IAsyncExceptionFilter, IFilterMetadata
+    public class GlobalExceptionAttribute : IAsyncExceptionFilter
     {
         /// <summary>
         /// 发生异常时调用

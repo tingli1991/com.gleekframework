@@ -22,14 +22,14 @@ namespace Com.GleekFramework.KafkaSdk
         public static long MessageCount = 0;
 
         /// <summary>
+        /// 随机因子
+        /// </summary>
+        private static readonly Random Random = new Random((int)DateTime.Now.Ticks);
+
+        /// <summary>
         /// 多线程控制器
         /// </summary>
         private static readonly CancellationTokenSource @Cts = new CancellationTokenSource();
-
-        /// <summary>
-        /// 随机因子
-        /// </summary>
-        private static readonly Random Random = new Random((int)DateTime.Now.ToCstTime().Ticks);
 
         /// <summary>
         /// 订阅Kafka
