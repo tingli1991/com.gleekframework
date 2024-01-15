@@ -12,7 +12,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 随机因子
         /// </summary>
-        private static Random Random => new Random((int)DateTime.Now.ToCstTime().Ticks);
+        private static readonly Random Random = new Random((int)DateTime.Now.ToCstTime().Ticks);
 
         /// <summary>
         /// LONG类型随机

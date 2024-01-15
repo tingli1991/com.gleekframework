@@ -105,27 +105,24 @@
             <param name="messageBody"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.QueueSdk.HostingExtensions">
-            <summary>
-            队列主机拓展
-            </summary>
+        <member name="T:Com.GleekFramework.QueueSdk.HostingQueueExtensions">
             <summary>
             队列主机拓展
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.QueueSdk.HostingExtensions.Random">
+        <member name="P:Com.GleekFramework.QueueSdk.HostingQueueExtensions.Random">
             <summary>
             随机因子
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost)">
+        <member name="M:Com.GleekFramework.QueueSdk.HostingQueueExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost)">
             <summary>
             订阅Queue
             </summary>
             <param name="host"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
+        <member name="M:Com.GleekFramework.QueueSdk.HostingQueueExtensions.SubscribeQueue(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
             <summary>
             订阅Queue
             </summary>
@@ -133,20 +130,30 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeQueue(System.Threading.CancellationToken)">
+        <member name="M:Com.GleekFramework.QueueSdk.HostingQueueExtensions.SubscribeQueue(System.Threading.CancellationToken)">
             <summary>
             订阅消息
             </summary>
             <param name="cancellationToken"></param>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost)">
+        <member name="T:Com.GleekFramework.QueueSdk.HostingStackExtensions">
+            <summary>
+            队列主机拓展
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.QueueSdk.HostingStackExtensions.Random">
+            <summary>
+            随机因子
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.QueueSdk.HostingStackExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost)">
             <summary>
             订阅Stack
             </summary>
             <param name="host"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
+        <member name="M:Com.GleekFramework.QueueSdk.HostingStackExtensions.SubscribeStack(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,System.Int32})">
             <summary>
             订阅Stack
             </summary>
@@ -154,7 +161,7 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.QueueSdk.HostingExtensions.SubscribeStack(System.Threading.CancellationToken)">
+        <member name="M:Com.GleekFramework.QueueSdk.HostingStackExtensions.SubscribeStack(System.Threading.CancellationToken)">
             <summary>
             订阅消息
             </summary>

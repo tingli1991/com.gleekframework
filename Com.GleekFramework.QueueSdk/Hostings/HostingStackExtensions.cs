@@ -18,7 +18,7 @@ namespace Com.GleekFramework.QueueSdk
         /// <summary>
         /// 随机因子
         /// </summary>
-        private static Random Random => new Random((int)DateTime.Now.ToCstTime().Ticks);
+        private static readonly Random Random = new Random((int)DateTime.Now.ToCstTime().Ticks);
 
         /// <summary>
         /// 订阅Stack

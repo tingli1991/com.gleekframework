@@ -22,12 +22,12 @@ namespace Com.GleekFramework.ContractSdk
         /// <summary>
         /// 随机因子
         /// </summary>
-        private static readonly Random _random = new Random((int)DateTime.Now.ToCstTime().Ticks);
+        private static readonly Random Random = new Random((int)DateTime.Now.ToCstTime().Ticks);
 
         /// <summary>
         /// 机器码
         /// </summary>
-        private static readonly string PersonCode = $"{_random.NextLong(1, 999)}".PadLeft(3, '0');
+        private static readonly string PersonCode = $"{Random.NextLong(1, 999)}".PadLeft(3, '0');
 
         /// <summary>
         /// 重新计数的时间点

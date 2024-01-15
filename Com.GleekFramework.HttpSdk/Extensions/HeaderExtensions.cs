@@ -76,12 +76,7 @@ namespace Com.GleekFramework.HttpSdk
         /// <param name="contentType">类型字符串</param>
         public static void SetContentType(this Dictionary<string, string> headers, string contentType = ContentTypeConstant.JSON)
         {
-            if (headers == null)
-            {
-                throw new ArgumentNullException(nameof(headers));
-            }
-
-            if (!headers.ContainsKey(HttpConstant.CONTENT_TYPE_HEADER_NAME))
+            if (headers.IsNotNull() && !headers.ContainsKey(HttpConstant.CONTENT_TYPE_HEADER_NAME))
             {
                 headers.Add(HttpConstant.CONTENT_TYPE_HEADER_NAME, contentType);
             }

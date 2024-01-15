@@ -39,12 +39,12 @@
             ORACLEE默认的链接字符串名称
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
             <summary>
             Dapper仓储拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperHostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
             <summary>
             使用Dapper
             </summary>
@@ -52,7 +52,7 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperHostingExtensions.UseDapper(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
             <summary>
             使用Dapper
             </summary>
@@ -61,7 +61,7 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.HostingExtensions.UseDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperHostingExtensions.UseDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
             <summary>
             使用Dapper
             </summary>
@@ -70,12 +70,12 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.MapperHostingExtensions">
+        <member name="T:Com.GleekFramework.DapperSdk.DapperMapperHostingExtensions">
             <summary>
             字段映射工具拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.MapperHostingExtensions.UseDapperColumnMap(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperMapperHostingExtensions.UseDapperColumnMap(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
             <summary>
             使用Dapper字段映射
             </summary>

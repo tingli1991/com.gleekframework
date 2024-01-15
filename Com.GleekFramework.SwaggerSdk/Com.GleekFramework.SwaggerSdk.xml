@@ -34,12 +34,12 @@
             终结点地址
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.SwaggerSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.SwaggerSdk.SwaggerHostingExtensions">
             <summary>
             Swagger文档拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.SwaggerSdk.HostingExtensions.AddKnife4Gen(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Com.GleekFramework.SwaggerSdk.SwaggerHostingExtensions.AddKnife4Gen(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             添加Knife4生成器
             </summary>
@@ -49,7 +49,7 @@
             <param name="headers">头部信息</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.SwaggerSdk.HostingExtensions.UseKnife4UI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Com.GleekFramework.SwaggerSdk.SwaggerHostingExtensions.UseKnife4UI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             使用Knife4UI界面
             </summary>

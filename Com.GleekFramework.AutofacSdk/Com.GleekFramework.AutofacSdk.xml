@@ -86,19 +86,19 @@
             <param name="containerBuilder"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.AutofacSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.AutofacSdk.AutofacHostingExtensions">
             <summary>
             主机拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacHostingExtensions.UseAutofac(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             使用默认的IOC注入方式
             </summary>
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac``1(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacHostingExtensions.UseAutofac``1(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             使用Autofac
             </summary>
@@ -106,13 +106,13 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.UseAutofac``1(Autofac.ContainerBuilder)">
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacHostingExtensions.UseAutofac``1(Autofac.ContainerBuilder)">
             <summary>
             使用属性注入
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="M:Com.GleekFramework.AutofacSdk.HostingExtensions.AddControllerActivator(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Com.GleekFramework.AutofacSdk.AutofacHostingExtensions.AddControllerActivator(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             注入控制器
             </summary>
@@ -180,7 +180,7 @@
             <summary>
             获取接口服务
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="serviceType"></param>
             <returns></returns>
         </member>
     </members>

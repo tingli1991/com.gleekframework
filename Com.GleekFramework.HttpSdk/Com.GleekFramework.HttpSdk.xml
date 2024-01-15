@@ -263,12 +263,12 @@
             <param name="paramters"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.HttpSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.HttpSdk.HttpHostingExtensions">
             <summary>
             主机拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.HttpSdk.HostingExtensions.UseHttpClient(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32)">
+        <member name="M:Com.GleekFramework.HttpSdk.HttpHostingExtensions.UseHttpClient(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32)">
             <summary>
             使用HttpClient
             </summary>
@@ -276,7 +276,7 @@
             <param name="timeOutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.HttpSdk.HostingExtensions.UseHttpClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Int32)">
+        <member name="M:Com.GleekFramework.HttpSdk.HttpHostingExtensions.UseHttpClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Int32)">
             <summary>
             使用Polly服务
             </summary>
@@ -466,6 +466,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PostAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -477,6 +478,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PutAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -487,6 +489,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PutAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -498,6 +501,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PatchAsync``1(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -508,6 +512,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.HttpSdk.HttpContractService.PatchAsync``2(System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -519,6 +524,7 @@
             <param name="url"></param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
     </members>

@@ -4,25 +4,25 @@
         <name>Com.GleekFramework.GrpcSdk</name>
     </assembly>
     <members>
-        <member name="T:Com.GleekFramework.GrpcSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.GrpcSdk.GrpcHostingExtensions">
             <summary>
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.GetGrpcServiceList">
+        <member name="M:Com.GleekFramework.GrpcSdk.GrpcHostingExtensions.GetGrpcServiceList">
             <summary>
             获取Grpc服务列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+        <member name="M:Com.GleekFramework.GrpcSdk.GrpcHostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
             <summary>
             注入GRPC
             </summary>
             <param name="endpoints"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.GrpcSdk.HostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Collections.Generic.IEnumerable{Com.GleekFramework.GrpcSdk.IBaseGrpcService})">
+        <member name="M:Com.GleekFramework.GrpcSdk.GrpcHostingExtensions.MapGrpcServices(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Collections.Generic.IEnumerable{Com.GleekFramework.GrpcSdk.IBaseGrpcService})">
             <summary>
             注入GRPC
             </summary>

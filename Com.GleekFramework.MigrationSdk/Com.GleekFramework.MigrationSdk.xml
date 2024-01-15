@@ -311,12 +311,12 @@
             <param name="type">消息类型</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.MigrationSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.MigrationSdk.MigrationHostingExtensions">
             <summary>
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.HostingExtensions.UseMigrations(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.MigrationSdk.MigrationOptions})">
+        <member name="M:Com.GleekFramework.MigrationSdk.MigrationHostingExtensions.UseMigrations(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.MigrationSdk.MigrationOptions})">
             <summary>
             使用版本迁移
             </summary>

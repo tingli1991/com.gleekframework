@@ -195,19 +195,19 @@
             <param name="type">对象类型</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.ConfigSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.ConfigSdk.ConfigHostingExtensions">
             <summary>
             配置主机
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.HostingExtensions.UseConfig(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.ConfigSdk.ConfigHostingExtensions.UseConfig(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             使用配置
             </summary>
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.HostingExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.ConfigSdk.ConfigHostingExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             添加Nacos
             </summary>

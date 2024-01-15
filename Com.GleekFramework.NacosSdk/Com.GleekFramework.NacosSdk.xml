@@ -374,19 +374,19 @@
             <param name="param">请求参数</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.NacosSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.NacosSdk.NacosHostingExtensions">
             <summary>
             主机拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.NacosSdk.HostingExtensions.UseNacosConf(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.NacosSdk.NacosHostingExtensions.UseNacosConf(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             添加Nacos
             </summary>
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.NacosSdk.HostingExtensions.UseNacosService(Microsoft.Extensions.Hosting.IHost,System.String)">
+        <member name="M:Com.GleekFramework.NacosSdk.NacosHostingExtensions.UseNacosService(Microsoft.Extensions.Hosting.IHost,System.String)">
             <summary>
             使用阿里巴巴的Nacos配置功能
             </summary>
@@ -1120,6 +1120,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.NacosSdk.NacosHttpContractService.PostAsync``2(System.String,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1132,6 +1133,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.NacosSdk.NacosHttpContractService.PutAsync``1(System.String,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1143,6 +1145,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.NacosSdk.NacosHttpContractService.PutAsync``2(System.String,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1155,6 +1158,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.NacosSdk.NacosHttpContractService.PatchAsync``1(System.String,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1166,6 +1170,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.NacosSdk.NacosHttpContractService.PatchAsync``2(System.String,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1178,6 +1183,7 @@
             <param name="action">接口路径</param>
             <param name="data"></param>
             <param name="headers"></param>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.NacosSdk.NacosHttpService">

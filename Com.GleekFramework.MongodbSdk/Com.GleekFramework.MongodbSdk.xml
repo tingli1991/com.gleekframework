@@ -123,12 +123,12 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.MongodbSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.MongodbSdk.MongodbHostingExtensions">
             <summary>
             Mongo拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbHostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
             <summary>
             使用Mongodb
             </summary>
@@ -136,7 +136,7 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbHostingExtensions.UseMongodb(Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
             <summary>
             使用Mongodb
             </summary>
@@ -145,7 +145,7 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MongodbSdk.HostingExtensions.UseMongodb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbHostingExtensions.UseMongodb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String[])">
             <summary>
             使用Mongodb
             </summary>

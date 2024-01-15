@@ -93,7 +93,7 @@ namespace Com.GleekFramework.ConfigSdk
 
             if (configurationBuilder == null)
             {
-                throw new NullReferenceException(nameof(configurationBuilder));
+                throw new Exception("configurationBuilder");
             }
             var configuration = configurationBuilder.Build();//编译配置文件
             return configuration;

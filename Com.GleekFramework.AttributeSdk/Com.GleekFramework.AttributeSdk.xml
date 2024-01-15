@@ -99,19 +99,19 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.AttributeSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions">
             <summary>
             Web主题拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseGleekConsumerHostDefaults(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseGleekConsumerHostDefaults(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             使用默认的消费者主机
             </summary>
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseGleekWebHostDefaults``1(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseGleekWebHostDefaults``1(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             使用默认的Web主机
             </summary>
@@ -119,7 +119,7 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{System.String})">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{System.String})">
             <summary>
             使用心跳检测
             </summary>
@@ -127,21 +127,21 @@
             <param name="callback">输出的内容(默认为：ok)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加全局异常
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.AddModelValidAttribute``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddModelValidAttribute``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加模型验证
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.HostingExtensions.AddNewtonsoftJson(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddNewtonsoftJson(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加默认的JSON配置参数
             </summary>

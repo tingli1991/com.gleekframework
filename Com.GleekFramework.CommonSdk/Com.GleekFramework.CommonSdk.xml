@@ -1262,12 +1262,12 @@
             <param name="compareWay">对比方式</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.CommonSdk.HostExtensions">
+        <member name="T:Com.GleekFramework.CommonSdk.CommonHostExtensions">
             <summary>
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStarted(Microsoft.Extensions.Hosting.IHost,System.Action)">
+        <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStarted(Microsoft.Extensions.Hosting.IHost,System.Action)">
             <summary>
             注册主机启动完成时间
             </summary>
@@ -1275,7 +1275,7 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStarted(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action)">
+        <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStarted(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action)">
             <summary>
             注册主机启动完成时间
             </summary>
@@ -1283,7 +1283,7 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStopping(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
+        <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStopping(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
             <summary>
             注册主机停止中事件
             </summary>
@@ -1291,7 +1291,7 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostExtensions.RegisterApplicationStopped(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
+        <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStopped(Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Action)">
             <summary>
             注册主机停止完成事件
             </summary>
@@ -1299,12 +1299,12 @@
             <param name="callback">回调函数</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.CommonSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.CommonSdk.CommonHostingExtensions">
             <summary>
             主机拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.HostingExtensions.UseSemaphoreSwitch(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.CommonSdk.CommonHostingExtensions.UseSemaphoreSwitch(Microsoft.Extensions.Hosting.IHostBuilder,System.Int32,System.Int32)">
             <summary>
             启用信号两开关
             </summary>

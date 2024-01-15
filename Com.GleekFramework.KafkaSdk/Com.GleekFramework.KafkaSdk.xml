@@ -50,27 +50,27 @@
             <param name="message"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.KafkaSdk.HostingExtensions">
+        <member name="T:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions">
             <summary>
             消费者拓展类
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.KafkaSdk.HostingExtensions.MessageCount">
+        <member name="F:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.MessageCount">
             <summary>
             消息数量
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.KafkaSdk.HostingExtensions.Random">
+        <member name="P:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Random">
             <summary>
             随机因子
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.KafkaSdk.HostingExtensions.Cts">
+        <member name="F:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Cts">
             <summary>
             多线程控制器
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.SubscribeKafka(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.KafkaSdk.KafkaConsumerOptions})">
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.SubscribeKafka(Microsoft.Extensions.Hosting.IHost,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.KafkaSdk.KafkaConsumerOptions})">
             <summary>
             订阅Kafka
             </summary>
@@ -78,13 +78,13 @@
             <param name="callback">配置选项</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.Subscribe(Com.GleekFramework.KafkaSdk.KafkaConsumerOptions)">
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.Subscribe(Com.GleekFramework.KafkaSdk.KafkaConsumerOptions)">
             <summary>
             订阅消费者
             </summary>
             <param name="options"></param>
         </member>
-        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.PullMessageBodyAsync(System.String,System.String,System.String,System.Boolean,System.Boolean,Confluent.Kafka.AutoOffsetReset)">
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.PullMessageBodyAsync(System.String,System.String,System.String,System.Boolean,System.Boolean,Confluent.Kafka.AutoOffsetReset)">
             <summary>
             拉取消息
             </summary>
@@ -95,14 +95,14 @@
             <param name="autoAck">是否启用自动提交偏移量</param>
             <param name="autoOffset">偏移方式</param>
         </member>
-        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.ConsumeMessage(Confluent.Kafka.IConsumer{System.String,System.String})">
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.ConsumeMessage(Confluent.Kafka.IConsumer{System.String,System.String})">
             <summary>
             消费消息
             </summary>
             <param name="consumer">消费者对象</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.KafkaSdk.HostingExtensions.CallbackMessageAsync(Confluent.Kafka.IConsumer{System.String,System.String},Confluent.Kafka.ConsumeResult{System.String,System.String},System.Boolean,System.Boolean)">
+        <member name="M:Com.GleekFramework.KafkaSdk.KafkaHostingExtensions.CallbackMessageAsync(Confluent.Kafka.IConsumer{System.String,System.String},Confluent.Kafka.ConsumeResult{System.String,System.String},System.Boolean,System.Boolean)">
             <summary>
             回调消息处理方法
             </summary>

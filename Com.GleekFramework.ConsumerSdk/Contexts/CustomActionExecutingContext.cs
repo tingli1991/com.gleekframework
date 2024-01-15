@@ -33,7 +33,7 @@ namespace Com.GleekFramework.ConsumerSdk
         {
             if (context == null)
             {
-                throw new NullReferenceException(nameof(context));
+                throw new Exception("context");
             }
 
             return new CustomActionExecutingContext()
