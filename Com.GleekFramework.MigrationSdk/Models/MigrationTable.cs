@@ -22,6 +22,15 @@ namespace Com.GleekFramework.MigrationSdk
         public long Id { get; set; }
 
         /// <summary>
+        /// 主键
+        /// </summary>
+        [Key]
+        [Column("version")]
+        [Comment("版本号")]
+        [JsonProperty("version"), JsonPropertyName("version")]
+        public long Version { get; set; }
+
+        /// <summary>
         /// 死否删除
         /// </summary>
         [Comment("是否删除")]

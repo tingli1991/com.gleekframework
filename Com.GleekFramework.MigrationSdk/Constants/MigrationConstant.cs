@@ -15,6 +15,6 @@ namespace Com.GleekFramework.MigrationSdk
         /// <summary>
         /// 基础列
         /// </summary>
-        public static readonly List<string> BaseColumns = new List<string>() { "IsDeleted", "UpdateTime", "CreateTime", "Extend", "Remark" };
+        public static readonly List<string> BaseColumns = new List<string>() { "Version", "IsDeleted", "UpdateTime", "CreateTime", "Extend", "Remark" };
     }
 }
