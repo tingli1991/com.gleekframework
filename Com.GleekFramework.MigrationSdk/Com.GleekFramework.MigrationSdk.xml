@@ -502,6 +502,11 @@
             主键
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.Version">
+            <summary>
+            主键
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.MigrationSdk.MigrationTable.IsDeleted">
             <summary>
             死否删除
