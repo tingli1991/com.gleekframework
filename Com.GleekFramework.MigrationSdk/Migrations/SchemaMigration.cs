@@ -102,14 +102,13 @@ namespace Com.GleekFramework.MigrationSdk
 
             foreach (var propertyInfo in ordinaryColumnPropertyInfoList)
             {
-                var databaseTableColumnSchemaInfo = databaseTableSchemaColumnList.FirstOrDefault(e => e.ColumnName.EqualIgnoreCases(propertyInfo.Name));
+                var columnName = propertyInfo.GetColumnName();//列的名称
+                var databaseTableColumnSchemaInfo = databaseTableSchemaColumnList.FirstOrDefault(e => e.ColumnName.EqualIgnoreCases(columnName));
                 if (databaseTableColumnSchemaInfo != null)
                 {
                     //列已经存在的情况下
-                    return;
+                    continue;
                 }
-
-                var columnName = propertyInfo.GetColumnName();//列的名称
                 alter.Table(tableName).AddColumn(columnName).AddColumnSchema(propertyInfo);//调整列
             }
         }
