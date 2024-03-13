@@ -123,7 +123,7 @@ namespace Com.GleekFramework.AppSvc
 }
 
 /// <summary>
-/// 程序激动类
+/// 程序启动类
 /// </summary>
 public class Startup
 {
