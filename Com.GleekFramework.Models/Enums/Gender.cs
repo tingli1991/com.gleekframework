@@ -14,9 +14,9 @@ namespace Com.GleekFramework.Models.Enums
         Man = 10,
 
         /// <summary>
-        /// 男
+        /// 女
         /// </summary>
-        [Description("男")]
+        [Description("女")]
         WoMan = 20,
 
         /// <summary>

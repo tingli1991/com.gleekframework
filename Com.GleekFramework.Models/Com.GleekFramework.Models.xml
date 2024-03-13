@@ -111,7 +111,7 @@
         </member>
         <member name="F:Com.GleekFramework.Models.Enums.Gender.WoMan">
             <summary>
-            男
+            女
             </summary>
         </member>
         <member name="F:Com.GleekFramework.Models.Enums.Gender.Other">

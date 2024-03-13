@@ -24,9 +24,9 @@ namespace Com.GleekFramework.MigrationSdk
         /// <summary>
         /// 主键
         /// </summary>
-        [Key]
         [Column("version")]
         [Comment("版本号")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [JsonProperty("version"), JsonPropertyName("version")]
         public long Version { get; set; }
 
