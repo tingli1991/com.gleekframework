@@ -27,7 +27,7 @@
 | Com.GleekFramework.NLogSdk         | NLog拓展工具包                    |基于NLog实现的日志输出框架                                                              |
 | Com.GleekFramework.ObjectSdk       | 对象存储开发工具包                |阿里云、腾讯云的对象存储上传和下载(目前只实现了阿里云OSS)                               |
 | Com.GleekFramework.OpenSdk         | OpenAPI拓展工具包                 |调用网关的统一封装(待完善)                                                              |
-| Com.GleekFramework.QueueSdk        | 本地队列展工具包                  |先进显出的队列和先进后出的栈的功能封装                                                  |
+| Com.GleekFramework.QueueSdk        | 本地队列展工具包                  |先进先出的队列和先进后出的栈的功能封装                                                  |
 | Com.GleekFramework.RabbitMQSdk     | RabbitMQ拓展工具包                |工作模式、发布订阅模式、RPC模式以及延迟队列(延迟还在开发)                               |
 | Com.GleekFramework.RedisSdk        | Redis拓展工具包                   |基础类型的封装以及强大的分布式锁的拓展                                                  |
 | Com.GleekFramework.RocketMQSdk     | RocketMQ拓展工具包                |目前只实现了普通消息和延迟消息的生产和消费(基本够用)                                    |
@@ -94,7 +94,7 @@ namespace Com.GleekFramework.AppSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
+                 .SubscribeStack((config) => 24)//订阅本地栈(先进先出)
                  .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
                  .UseMigrations((config) => new MigrationOptions()
                  {
