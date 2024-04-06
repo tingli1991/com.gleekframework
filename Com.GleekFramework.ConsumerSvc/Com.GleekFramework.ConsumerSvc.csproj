@@ -7,7 +7,7 @@
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <ImplicitUsings>enable</ImplicitUsings>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>控制台测试项目</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

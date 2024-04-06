@@ -20,7 +20,6 @@ namespace Com.GleekFramework.MigrationSdk
             {
                 case DatabaseType.MsSQL:
                     builder.AddSqlServer();
-                    builder.AddSqlServerCe();
                     break;
                 case DatabaseType.MySQL:
                     builder.AddMySql5();
