@@ -3,7 +3,7 @@
     /// <summary>
     /// 定义表的版本迁移接口
     /// </summary>
-    public interface IMigrationTable
+    public interface ITable
     {
         /// <summary>
         /// 主键Id

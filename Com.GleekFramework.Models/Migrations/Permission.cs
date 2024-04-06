@@ -14,7 +14,7 @@ namespace Com.GleekFramework.Models
     /// </summary>
     [Comment("权限表")]
     [Table("permission")]
-    public class Permission : MigrationTable
+    public class Permission : BasicTable
     {
         /// <summary>
         /// 用户名

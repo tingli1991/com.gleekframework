@@ -11,7 +11,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// 基础表
     /// </summary>
     [Index(nameof(Version))]
-    public class MigrationTable : IMigrationTable
+    public class BasicTable : ITable
     {
         /// <summary>
         /// 主键
@@ -21,15 +21,6 @@ namespace Com.GleekFramework.MigrationSdk
         [Comment("主键")]
         [JsonProperty("id"), JsonPropertyName("id")]
         public long Id { get; set; }
-
-        /// <summary>
-        /// 主键
-        /// </summary>
-        [Column("version")]
-        [Comment("版本号")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [JsonProperty("version"), JsonPropertyName("version")]
-        public long Version { get; set; }
 
         /// <summary>
         /// 死否删除

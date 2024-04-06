@@ -17,7 +17,7 @@ namespace Com.GleekFramework.Models
     [Comment("用户表")]
     [Index("idx_user_email", nameof(Email))]
     [Index("idx_user_user_name", nameof(UserName))]
-    public class User : MigrationTable
+    public class User : BasicTable
     {
         /// <summary>
         /// 用户名

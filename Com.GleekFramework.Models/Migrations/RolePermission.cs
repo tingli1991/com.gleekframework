@@ -11,7 +11,7 @@ namespace Com.GleekFramework.Models
     /// </summary>
     [Table("role_permission")]
     [Comment("角色权限对应表")]
-    public class RolePermission : MigrationTable
+    public class RolePermission : BasicTable
     {
         /// <summary>
         /// 角色Id

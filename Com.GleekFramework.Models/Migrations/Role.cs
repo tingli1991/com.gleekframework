@@ -14,7 +14,7 @@ namespace Com.GleekFramework.Models
     /// </summary>
     [Table("role")]
     [Comment("角色表")]
-    public class Role : MigrationTable
+    public class Role : BasicTable
     {
         /// <summary>
         /// 用户名
