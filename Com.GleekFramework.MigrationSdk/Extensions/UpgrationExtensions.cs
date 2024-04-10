@@ -19,7 +19,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public static async Task UpgrationAsync(this IServiceScope scope, MigrationOptions options)
         {
-            if (scope == null || !options.MigrationSwitch)
+            if (scope == null || !options.UpgrationSwitch)
             {
                 return;
             }

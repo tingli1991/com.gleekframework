@@ -1,12 +1,13 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using FluentMigrator;
-using FluentMigrator.Builders.Alter;
+using FluentMigrator.Builders.Alter.Table;
 using FluentMigrator.Builders.Create;
 using FluentMigrator.Builders.Create.Index;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Com.GleekFramework.MigrationSdk
 {
@@ -30,7 +31,7 @@ namespace Com.GleekFramework.MigrationSdk
         public override void Up()
         {
             var databaseProvider = Execute.GetDatabaseProvider();//数据库实现类
-            var excludeClassNames = new List<string>() { "IMigrationTable", "MigrationTable" };//需要排除的类名称集合
+            var excludeClassNames = new List<string>() { "ITable", "BasicTable", "VersionTable" };//需要排除的类名称集合
             var assemblyTypeInfoList = typeof(ITable).GetTypeList().Where(e => !excludeClassNames.ContainsIgnoreCases(e.Name));//类型列表
             if (assemblyTypeInfoList.IsNullOrEmpty())
             {
@@ -40,16 +41,19 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseName = databaseProvider.GetDatabaseName();//数据库名称
             var databaseIndexSchemaList = databaseProvider.GetIndexSchemaList(databaseName);//数据库索引列表
             var databaseTableSchemaList = databaseProvider.GetTableSchemaList(databaseName);//数据库表信息列表
-            foreach (var typeInfo in assemblyTypeInfoList)
+            Parallel.ForEach(assemblyTypeInfoList, new ParallelOptions() { MaxDegreeOfParallelism = assemblyTypeInfoList.Count() }, typeInfo =>
             {
                 var tableName = typeInfo.GetTableName();//表名称
+                var alterTableColumnAsTypeSyntax = Alter.Table(tableName);
+
                 var propertyInfoList = PropertyProvider.GetPropertyInfoList(typeInfo);//对象的属性列表
                 var databaseTableSchemaColumnList = databaseTableSchemaList.Where(e => e.TableName.EqualIgnoreCases(tableName));//当前表下面的所有列
                 var isFirstCreateTableSchema = FirstCreateTableSchema(Create, typeInfo, propertyInfoList, databaseTableSchemaColumnList);//首次创建表结构
-                AlertTableOrdinaryColumns(Alter, tableName, propertyInfoList, databaseTableSchemaColumnList);//构建表的普通列(排除Id主键和基础列)
-                AlertTableBaseColumns(Alter, isFirstCreateTableSchema, tableName, propertyInfoList);//构建表的基础字段
-                AlertTableIndexs(Create, typeInfo, propertyInfoList, databaseIndexSchemaList);//构建表的索引
-            }
+
+                AlertTableOrdinaryColumns(alterTableColumnAsTypeSyntax, propertyInfoList, databaseTableSchemaColumnList);//构建表的普通列(排除Id主键和基础列)
+                AlertTableBaseColumns(alterTableColumnAsTypeSyntax, isFirstCreateTableSchema, propertyInfoList);//构建表的基础字段
+                AlertTableIndexs(Create, typeInfo, propertyInfoList, databaseIndexSchemaList);//构建表的索引 
+            });
         }
 
         /// <summary>
@@ -57,9 +61,8 @@ namespace Com.GleekFramework.MigrationSdk
         /// </summary>
         /// <param name="alter"></param>
         /// <param name="isFirstCreateTableSchema">是否首次创建架构</param>
-        /// <param name="tableName">表名称</param>
         /// <param name="propertyInfoList">属性列表</param>
-        private static void AlertTableBaseColumns(IAlterExpressionRoot alter, bool isFirstCreateTableSchema, string tableName, IEnumerable<PropertyInfo> propertyInfoList)
+        private static void AlertTableBaseColumns(IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax alter, bool isFirstCreateTableSchema, IEnumerable<PropertyInfo> propertyInfoList)
         {
             if (!isFirstCreateTableSchema)
             {
@@ -81,7 +84,7 @@ namespace Com.GleekFramework.MigrationSdk
                 }
 
                 var columnName = basePropertyInfo.GetColumnName();//列的名称
-                alter.Table(tableName).AddColumn(columnName).AddColumnSchema(basePropertyInfo);//调整列
+                alter.AddColumn(columnName).AddColumnSchema(basePropertyInfo);//调整列
             }
         }
 
@@ -89,10 +92,9 @@ namespace Com.GleekFramework.MigrationSdk
         /// 构建表的普通列(排除Id主键和基础列)
         /// </summary>
         /// <param name="alter"></param>
-        /// <param name="tableName">表名称</param>
         /// <param name="propertyInfoList">属性列表</param>
         /// <param name="databaseTableSchemaColumnList">已存在的表结构列表</param>
-        private static void AlertTableOrdinaryColumns(IAlterExpressionRoot alter, string tableName, IEnumerable<PropertyInfo> propertyInfoList, IEnumerable<TableSchemaModel> databaseTableSchemaColumnList)
+        private static void AlertTableOrdinaryColumns(IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax alter, IEnumerable<PropertyInfo> propertyInfoList, IEnumerable<TableSchemaModel> databaseTableSchemaColumnList)
         {
             var ordinaryColumnPropertyInfoList = propertyInfoList.Where(e => !e.Name.EqualIgnoreCases(MigrationConstant.Id) && !MigrationConstant.BaseColumns.ContainsIgnoreCases(e.Name));
             if (ordinaryColumnPropertyInfoList.IsNullOrEmpty())
@@ -109,7 +111,7 @@ namespace Com.GleekFramework.MigrationSdk
                     //列已经存在的情况下
                     continue;
                 }
-                alter.Table(tableName).AddColumn(columnName).AddColumnSchema(propertyInfo);//调整列
+                alter.AddColumn(columnName).AddColumnSchema(propertyInfo);//调整列
             }
         }
 

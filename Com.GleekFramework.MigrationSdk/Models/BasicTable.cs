@@ -10,7 +10,6 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// 基础表
     /// </summary>
-    [Index(nameof(Version))]
     public class BasicTable : ITable
     {
         /// <summary>

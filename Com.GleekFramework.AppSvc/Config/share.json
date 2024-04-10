@@ -1,11 +1,13 @@
 {
-  "ConnectionStrings": {
-    "DefaultMySQLHosts": "server=192.168.100.23;port=3306;Database=abc_test;UID=root;PWD=ChinaNet910111"
-  },
   "KafkaConnectionStrings": {
     "DefaultClientHosts": "192.168.100.33:9092,192.168.100.34:9092,192.168.100.35:9092"
   },
   "RabbitConnectionStrings": {
     "DefaultClientHosts": "Host=192.168.100.29;VirtualHost=/;Port=5672;UserName=guest;Password=ChinaNet910111;"
+  },
+  "ConnectionStrings": {
+    "DefaultMySQLHosts": "server=192.168.100.23;port=3306;Database=abc_test;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterHosts": "server=192.168.100.23;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterOnlyHosts": "server=192.168.100.24;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111Command Timeout=180;"
   }
 }

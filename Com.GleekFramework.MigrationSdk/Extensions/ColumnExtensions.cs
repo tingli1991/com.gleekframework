@@ -131,9 +131,14 @@ namespace Com.GleekFramework.MigrationSdk
                 columnSyntax.PrimaryKey();
             }
 
-            if (databaseGenerated == DatabaseGeneratedOption.Identity)
+            switch (databaseGenerated)
             {
-                columnSyntax.Identity();
+                case DatabaseGeneratedOption.Identity:
+                    columnSyntax.Identity();
+                    break;
+                case DatabaseGeneratedOption.Computed:
+
+                    break;
             }
 
             columnSyntax = columnSyntax.WithColumnDescription(comment);

@@ -9,7 +9,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// 带版本号的表名称
     /// </summary>
-    [Index(nameof(Version))]
+    [Index("idx_version",nameof(Version))]
     public class VersionTable : BasicTable
     {
         /// <summary>

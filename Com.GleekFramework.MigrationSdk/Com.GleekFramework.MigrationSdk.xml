@@ -407,21 +407,19 @@
             升级
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableBaseColumns(FluentMigrator.Builders.Alter.IAlterExpressionRoot,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableBaseColumns(FluentMigrator.Builders.Alter.Table.IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax,System.Boolean,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
             <summary>
             构建表的基础字段
             </summary>
             <param name="alter"></param>
             <param name="isFirstCreateTableSchema">是否首次创建架构</param>
-            <param name="tableName">表名称</param>
             <param name="propertyInfoList">属性列表</param>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableOrdinaryColumns(FluentMigrator.Builders.Alter.IAlterExpressionRoot,System.String,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.TableSchemaModel})">
+        <member name="M:Com.GleekFramework.MigrationSdk.SchemaMigration.AlertTableOrdinaryColumns(FluentMigrator.Builders.Alter.Table.IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.TableSchemaModel})">
             <summary>
             构建表的普通列(排除Id主键和基础列)
             </summary>
             <param name="alter"></param>
-            <param name="tableName">表名称</param>
             <param name="propertyInfoList">属性列表</param>
             <param name="databaseTableSchemaColumnList">已存在的表结构列表</param>
         </member>
