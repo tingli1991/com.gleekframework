@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Com.GleekFramework.MigrationSdk
 {
@@ -41,7 +40,7 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseName = databaseProvider.GetDatabaseName();//数据库名称
             var databaseIndexSchemaList = databaseProvider.GetIndexSchemaList(databaseName);//数据库索引列表
             var databaseTableSchemaList = databaseProvider.GetTableSchemaList(databaseName);//数据库表信息列表
-            Parallel.ForEach(assemblyTypeInfoList, new ParallelOptions() { MaxDegreeOfParallelism = assemblyTypeInfoList.Count() }, typeInfo =>
+            foreach (var typeInfo in assemblyTypeInfoList)
             {
                 var tableName = typeInfo.GetTableName();//表名称
                 var alterTableColumnAsTypeSyntax = Alter.Table(tableName);
@@ -53,7 +52,7 @@ namespace Com.GleekFramework.MigrationSdk
                 AlertTableOrdinaryColumns(alterTableColumnAsTypeSyntax, propertyInfoList, databaseTableSchemaColumnList);//构建表的普通列(排除Id主键和基础列)
                 AlertTableBaseColumns(alterTableColumnAsTypeSyntax, isFirstCreateTableSchema, propertyInfoList);//构建表的基础字段
                 AlertTableIndexs(Create, typeInfo, propertyInfoList, databaseIndexSchemaList);//构建表的索引 
-            });
+            }
         }
 
         /// <summary>
