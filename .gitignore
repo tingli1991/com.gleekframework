@@ -1,4 +1,3 @@
-*.nupkgs
 *.userprefs
 *.local.xml
 *.sln.docstates
@@ -95,3 +94,4 @@ docs-temp
 # Verify Tests
 *.received.*
 /.sonarqube
+nupkgs/*
