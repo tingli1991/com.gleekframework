@@ -41,6 +41,24 @@ namespace Com.GleekFramework.ContractSdk
         }
 
         /// <summary>
+        /// 设置错误信息
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="error">错误码</param>
+        /// <param name="serialNo">流水号</param>
+        public static ContractResult<T> SetError<T>(this ContractResult<T> source, Enum error, string serialNo = "")
+        {
+            source.Success = false;
+            source.Code = error.GetDescription();
+            source.Message = $"{error.GetHashCode()}";
+            if (!string.IsNullOrWhiteSpace(serialNo))
+            {
+                source.SerialNo = serialNo;
+            }
+            return source;
+        }
+
+        /// <summary>
         /// 设置成功返回信息
         /// </summary>
         /// <param name="source"></param>

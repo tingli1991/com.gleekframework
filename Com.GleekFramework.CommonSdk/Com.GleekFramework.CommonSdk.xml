@@ -1767,11 +1767,10 @@
             <param name="source"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNullOrEmpty``1(System.String)">
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNullOrEmpty(System.String)">
             <summary>
             是否为空
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="source"></param>
             <returns>true：表示为空，false：表示不为空</returns>
         </member>

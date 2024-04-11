@@ -85,6 +85,14 @@
             <param name="error">错误码</param>
             <param name="serialNo">流水号</param>
         </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError``1(Com.GleekFramework.ContractSdk.ContractResult{``0},System.Enum,System.String)">
+            <summary>
+            设置错误信息
+            </summary>
+            <param name="source"></param>
+            <param name="error">错误码</param>
+            <param name="serialNo">流水号</param>
+        </member>
         <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful(Com.GleekFramework.ContractSdk.ContractResult,System.String)">
             <summary>
             设置成功返回信息

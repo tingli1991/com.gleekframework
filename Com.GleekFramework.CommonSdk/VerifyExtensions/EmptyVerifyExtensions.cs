@@ -31,10 +31,9 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 是否为空
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns>true：表示为空，false：表示不为空</returns>
-        public static bool IsNullOrEmpty<T>(this string source)
+        public static bool IsNullOrEmpty(this string source)
         {
             return string.IsNullOrEmpty(source);
         }

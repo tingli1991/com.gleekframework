@@ -1,3 +1,4 @@
+*.nupkgs
 *.userprefs
 *.local.xml
 *.sln.docstates
