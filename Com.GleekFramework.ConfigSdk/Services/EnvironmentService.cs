@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.CommonSdk;
 
 namespace Com.GleekFramework.ConfigSdk
 {
@@ -66,5 +67,19 @@ namespace Com.GleekFramework.ConfigSdk
         /// </summary>
         /// <returns></returns>
         public static bool GetUpgrationSwitch() => EnvironmentProvider.GetUpgrationSwitch();
+
+        /// <summary>
+        /// 获取环境变量值
+        /// </summary>
+        /// <param name="name">环境变量参数名称</param>
+        /// <returns></returns>
+        public static T GetEnvironmentVariable<T>(string name) => EnvironmentProvider.GetEnvironmentVariable<T>(name);
+
+        /// <summary>
+        /// 获取环境变量值
+        /// </summary>
+        /// <param name="name">环境变量参数名称</param>
+        /// <returns></returns>
+        public static string GetEnvironmentVariable(string name) => EnvironmentProvider.GetEnvironmentVariable(name);
     }
 }

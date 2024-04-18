@@ -33,7 +33,7 @@
         /// <summary>
         /// Nacos地址
         /// </summary>
-        public const string NOCOS_URL = "NOCOS_URL";
+        public const string NOCOS_URL = "NACOS_URL";
 
         /// <summary>
         /// Swagger开关

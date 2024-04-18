@@ -19,7 +19,7 @@ namespace Com.GleekFramework.ConfigSdk
         }
 
         /// <summary>
-        /// 添加Nacos
+        /// 添加特性配置
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
