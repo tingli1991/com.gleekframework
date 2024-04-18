@@ -209,7 +209,7 @@
         </member>
         <member name="M:Com.GleekFramework.ConfigSdk.ConfigHostingExtensions.UseConfigAttribute(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
-            添加Nacos
+            添加特性配置
             </summary>
             <param name="builder"></param>
             <returns></returns>
@@ -478,6 +478,20 @@
             <summary>
             获取版本升级开关
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetEnvironmentVariable``1(System.String)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetEnvironmentVariable(System.String)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigService">
