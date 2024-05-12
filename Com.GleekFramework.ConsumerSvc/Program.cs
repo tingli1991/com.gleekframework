@@ -3,7 +3,6 @@ using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.KafkaSdk;
 using Com.GleekFramework.NacosSdk;
-using Com.GleekFramework.RabbitMQSdk;
 
 namespace Com.GleekFramework.ConsumerSvc
 {
@@ -19,9 +18,8 @@ namespace Com.GleekFramework.ConsumerSvc
         public static async Task Main(string[] args)
         {
             await CreateDefaultHostBuilder(args)
-                 .Build()
+                 .Build()                 
                  .SubscribeKafka(config => config.GetValue<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))
-                 .SubscribeRabbitMQ(config => config.GetValue<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))
                  .RunAsync();
         }
 
