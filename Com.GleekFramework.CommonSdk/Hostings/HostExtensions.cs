@@ -11,7 +11,7 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class CommonHostExtensions
     {
         /// <summary>
-        /// 注册主机启动完成时间
+        /// 注册主机启动完成事件
         /// </summary>
         /// <param name="host">主机信息</param>
         /// <param name="callback">回调函数</param>
@@ -24,7 +24,7 @@ namespace Com.GleekFramework.CommonSdk
         }
 
         /// <summary>
-        /// 注册主机启动完成时间
+        /// 注册主机启动完成事件
         /// </summary>
         /// <param name="app">主机信息</param>
         /// <param name="callback">回调函数</param>

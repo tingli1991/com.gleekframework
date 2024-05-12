@@ -84,7 +84,7 @@
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.NotMapAttribute">
             <summary>
-            表示应将属性或类从数据库映射中排除
+            表示应将属性或类从映射中排除
             </summary>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.NotMapAttribute.#ctor">
@@ -223,6 +223,14 @@
             <param name="assembly">程序集</param>
             <param name="type">基础类型</param>
             <returns>true 表示是子类 false 表示不是子类</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyExtensions.ImplementsGenericInterface(System.Type,System.Type)">
+            <summary>
+            判定是否实现了某个特性的接口
+            </summary>
+            <param name="type"></param>
+            <param name="interfaceType"></param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.AttributeExtensions">
             <summary>
@@ -400,6 +408,24 @@
             <typeparam name="TSource">原数据类型</typeparam>
             <typeparam name="TTarget">目标数据类型</typeparam>
             <param name="sources">原数据实例集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``2(System.Threading.Tasks.Task{``0})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="TSource">原数据类型</typeparam>
+            <typeparam name="TTarget">目标数据类型</typeparam>
+            <param name="source">原数据实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``2(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            单模型映射方法
+            </summary>
+            <typeparam name="TSource">原数据类型</typeparam>
+            <typeparam name="TTarget">目标数据类型</typeparam>
+            <param name="sourceList">原数据实例</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.DateTimeExtensions">
@@ -1269,7 +1295,7 @@
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStarted(Microsoft.Extensions.Hosting.IHost,System.Action)">
             <summary>
-            注册主机启动完成时间
+            注册主机启动完成事件
             </summary>
             <param name="host">主机信息</param>
             <param name="callback">回调函数</param>
@@ -1277,7 +1303,7 @@
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.CommonHostExtensions.RegisterApplicationStarted(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action)">
             <summary>
-            注册主机启动完成时间
+            注册主机启动完成事件
             </summary>
             <param name="app">主机信息</param>
             <param name="callback">回调函数</param>
@@ -1448,6 +1474,14 @@
             <param name="assembly">程序集</param>
             <param name="type">基础类型</param>
             <returns>true 表示是子类 false 表示不是子类</returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.AssemblyProvider.ImplementsGenericInterface(System.Type,System.Type)">
+            <summary>
+            判定是否实现了某个特性的接口
+            </summary>
+            <param name="type"></param>
+            <param name="interfaceType"></param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.CommonSdk.AssemblyTypeProvider">
             <summary>

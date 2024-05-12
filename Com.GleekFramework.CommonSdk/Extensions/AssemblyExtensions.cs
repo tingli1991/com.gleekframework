@@ -65,5 +65,16 @@ namespace Com.GleekFramework.CommonSdk
         {
             return AssemblyProvider.CheckIsAssignableFrom(assembly, type);
         }
+
+        /// <summary>
+        /// 判定是否实现了某个特性的接口
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="interfaceType"></param>
+        /// <returns></returns>
+        public static bool ImplementsGenericInterface(this Type type, Type interfaceType)
+        {
+            return AssemblyProvider.ImplementsGenericInterface(type, interfaceType);
+        }
     }
 }

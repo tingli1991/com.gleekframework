@@ -93,13 +93,39 @@ namespace Com.GleekFramework.CommonSdk
                 }
 
                 var typeList = assembly.GetTypes();
-                isSuccess = typeList.Any(e => type.IsAssignableFrom(e) && e != type);
+                isSuccess = typeList.Any(e => e != type && (type.IsAssignableFrom(e) || ImplementsGenericInterface(e, type)));
             }
             catch (Exception)
             {
                 //直接屏蔽出现的异常
             }
             return isSuccess;
+        }
+
+        /// <summary>
+        /// 判定是否实现了某个特性的接口
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="interfaceType"></param>
+        /// <returns></returns>
+        public static bool ImplementsGenericInterface(Type type, Type interfaceType)
+        {
+            // 检查是否有直接实现的接口
+            var isDirectlyImplemented = type.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
+
+            if (isDirectlyImplemented)
+            {
+                return true;
+            }
+
+            // 检查基类
+            var baseType = type.BaseType;
+            if (baseType == null)
+            {
+                return false;
+            }
+
+            return ImplementsGenericInterface(baseType, interfaceType);
         }
     }
 }

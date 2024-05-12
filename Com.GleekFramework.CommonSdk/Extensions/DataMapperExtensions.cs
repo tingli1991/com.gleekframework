@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Com.GleekFramework.CommonSdk
 {
@@ -33,6 +34,34 @@ namespace Com.GleekFramework.CommonSdk
             where TTarget : class
         {
             return DataMapper<TSource, TTarget>.MapList(sources);
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
+        /// <typeparam name="TSource">原数据类型</typeparam>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="source">原数据实例</param>
+        /// <returns></returns>
+        public static async Task<TTarget> MapAsync<TSource, TTarget>(Task<TSource> source)
+            where TTarget : class
+            where TSource : class
+        {
+            return (await source).Map<TSource, TTarget>();
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
+        /// <typeparam name="TSource">原数据类型</typeparam>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="sourceList">原数据实例</param>
+        /// <returns></returns>
+        public static async Task<IEnumerable<TTarget>> MapAsync<TSource, TTarget>(Task<IEnumerable<TSource>> sourceList)
+            where TTarget : class
+            where TSource : class
+        {
+            return (await sourceList).Map<TSource, TTarget>();
         }
     }
 }
