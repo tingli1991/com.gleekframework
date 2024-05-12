@@ -84,6 +84,12 @@
             自定义RPC队列名称
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.Models.RabbitQueueConstant.WorkCustomerQueue">
+            <summary>
+            自定义Work队列名称
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Com.GleekFramework.Models.RabbitQueueConstant.WorkCustomerExchangeName" -->
         <member name="T:Com.GleekFramework.Models.Enums.EnableStatus">
             <summary>
             启用状态
@@ -291,7 +297,7 @@
         </member>
         <member name="T:Com.GleekFramework.Models.WeatherForecastModel">
             <summary>
-            ����Ԥ��
+             天气模型
             </summary>
         </member>
         <member name="P:Com.GleekFramework.Models.WeatherForecastModel.Date">

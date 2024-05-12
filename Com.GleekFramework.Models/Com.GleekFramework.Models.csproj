@@ -16,7 +16,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.MigrationSdk\Com.GleekFramework.MigrationSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.MongodbSdk\Com.GleekFramework.MongodbSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.RabbitMQSdk\Com.GleekFramework.RabbitMQSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.RedisSdk\Com.GleekFramework.RedisSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.RocketMQSdk\Com.GleekFramework.RocketMQSdk.csproj" />
   </ItemGroup>
 
 </Project>
