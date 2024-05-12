@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using System;
 
 namespace Com.GleekFramework.MongodbSdk
 {
@@ -8,9 +9,14 @@ namespace Com.GleekFramework.MongodbSdk
     public static class MongoConstant
     {
         /// <summary>
+        /// 用于实现属性注入的基础接口类型
+        /// </summary>
+        public static readonly Type BASEAUTOFAC_TYPE = typeof(IMongoRepository<>);
+
+        /// <summary>
         /// 默认的链接字符串名称
         /// </summary>
-        public const string DEFAULT_CONNECTION_NAME = "ConnectionStrings:MongoConnectionHost";
+        public const string DEFAULT_CONNECTION_NAME = "MongoConnectionStrings:DefaultClientHosts";
 
         /// <summary>
         /// 批量新增默认选项

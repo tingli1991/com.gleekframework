@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Com.GleekFramework.MongodbSdk
 {
     /// <summary>
-    /// Mongo基础实体
+    /// Mongo基础实体接口
     /// </summary>
     public interface IMEntity
     {

@@ -1,10 +1,8 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ConfigSdk;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Com.GleekFramework.MongodbSdk
 {
@@ -64,13 +62,7 @@ namespace Com.GleekFramework.MongodbSdk
                             {
                                 throw new ArgumentNullException($"{connectionName} does not exist");
                             }
-
-                            var dbConnectionString = $"{connectionString.TrimEnd(',', ';')}";
-                            if (!dbConnectionString.Equals("defaultDatabase", StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                dbConnectionString += ",defaultDatabase=0";
-                            }
-                            ClientCache.Add(connectionName, new MongodbClient(dbConnectionString));
+                            ClientCache.Add(connectionName, new MongodbClient($"{connectionString.TrimEnd(',', ';')}"));
                         }
                     }
                 }

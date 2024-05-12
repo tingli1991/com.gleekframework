@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Com.GleekFramework.MongodbSdk
 {
@@ -13,6 +14,6 @@ namespace Com.GleekFramework.MongodbSdk
         /// </summary>
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-        public string Id { get; set; }
+        public string Id { get; set; } = $"{Guid.NewGuid()}";
     }
 }

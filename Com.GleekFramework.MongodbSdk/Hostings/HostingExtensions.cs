@@ -1,4 +1,6 @@
-﻿using Com.GleekFramework.ConfigSdk;
+﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.MongodbSdk.Modules;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -6,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 namespace Com.GleekFramework.MongodbSdk
 {
     /// <summary>
-    /// Mongo拓展类
+    /// Mongo注入类
     /// </summary>
     public static partial class MongodbHostingExtensions
     {
@@ -18,6 +20,7 @@ namespace Com.GleekFramework.MongodbSdk
         /// <returns></returns>
         public static IHostBuilder UseMongodb(this IHostBuilder builder, params string[] connectionNames)
         {
+            builder.UseAutofac<MongoModule>();
             builder.ConfigureServices((context, services) => services.UseMongodb(AppConfig.Configuration, connectionNames));
             return builder;
         }
@@ -31,6 +34,7 @@ namespace Com.GleekFramework.MongodbSdk
         /// <returns></returns>
         public static IHostBuilder UseMongodb(this IHostBuilder builder, IConfiguration configuration, params string[] connectionNames)
         {
+            builder.UseAutofac<MongoModule>();
             builder.ConfigureServices((context, services) => services.UseMongodb(configuration, connectionNames));
             return builder;
         }
@@ -42,7 +46,7 @@ namespace Com.GleekFramework.MongodbSdk
         /// <param name="configuration">配置对象</param>
         /// <param name="connectionNames">连接名称列表</param>
         /// <returns></returns>
-        public static IServiceCollection UseMongodb(this IServiceCollection services, IConfiguration configuration, params string[] connectionNames)
+        private static IServiceCollection UseMongodb(this IServiceCollection services, IConfiguration configuration, params string[] connectionNames)
         {
             MongoClientProvider.RegisterClientPool(configuration, connectionNames);
             return services;
