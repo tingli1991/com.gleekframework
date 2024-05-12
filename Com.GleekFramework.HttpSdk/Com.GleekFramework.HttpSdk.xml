@@ -158,6 +158,34 @@
             <param name="param">请求参数</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.SendAsync``1(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.Func{System.Net.Http.HttpClient,System.String,System.String,System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            发送请求
+            </summary>
+            <typeparam name="T">返回模型</typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="headers">头部信息</param>
+            <param name="param">请求参数</param>
+            <param name="sendFunc">回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.SendAsync``2(System.Net.Http.IHttpClientFactory,Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,``0,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.Func{System.Net.Http.HttpClient,System.String,System.String,``0,System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            发送请求
+            </summary>
+            <typeparam name="R">请求模型</typeparam>
+            <typeparam name="T">返回模型</typeparam>
+            <param name="factory">工厂类</param>
+            <param name="context">上下文</param>
+            <param name="url">接口地址</param>
+            <param name="data">请求数据</param>
+            <param name="headers">头部信息</param>
+            <param name="param">请求参数</param>
+            <param name="sendFunc">回调函数</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.HttpSdk.ClientFactoryExtensions.ReadAsStringAsync``1(System.Net.Http.HttpResponseMessage)">
             <summary>
             读取响应内容
@@ -282,6 +310,76 @@
             </summary>
             <param name="services"></param>
             <param name="timeOutSeconds">超时时间(单位：秒)</param>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpHostingExtensions.UseHttpClient(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.HttpSdk.HttpClientOptions})">
+            <summary>
+            使用HttpClient
+            </summary>
+            <param name="builder"></param>
+            <param name="callback">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpHostingExtensions.UseHttpClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.HttpSdk.HttpClientOptions})">
+            <summary>
+            使用HttpClient
+            </summary>
+            <param name="services"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HttpClientOptions">
+            <summary>
+            客户端配置选项
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientOptions.TimeOutSeconds">
+            <summary>
+            超时时间(单位：秒，默认：3秒)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientOptions.SleepDurations">
+            <summary>
+            等待并重试规则
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientOptions.MaxConnectionsPerServer">
+            <summary>
+            最大连接数(默认：10000)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientOptions.ClientName">
+            <summary>
+            客户端名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.HttpClientOptions.AdvancedCircuitBreakerOptions">
+            <summary>
+            高级断路器
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.HttpSdk.AdvancedCircuitBreakerOptions">
+            <summary>
+            高级断路器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.AdvancedCircuitBreakerOptions.SamplingDuration">
+            <summary>
+            采样持续时间(单位：秒，默认值：10秒)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.AdvancedCircuitBreakerOptions.MinimumThroughput">
+            <summary>
+            最小吞吐量(最少调用多少次，默认：10000)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.AdvancedCircuitBreakerOptions.FailureThreshold">
+            <summary>
+            故障阈值(至少n%有异常则熔断，默认值：80%)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.HttpSdk.AdvancedCircuitBreakerOptions.DurationOfBreak">
+            <summary>
+            中断持续时长(单位：秒，默认值：3秒)
+            </summary>
         </member>
         <member name="T:Com.GleekFramework.HttpSdk.HttpClientService">
             <summary>
