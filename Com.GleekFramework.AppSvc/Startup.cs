@@ -34,6 +34,7 @@ namespace Com.GleekFramework.AppSvc
         /// <param name="app"></param>
         public void Configure(IApplicationBuilder app)
         {
+            app.UseNLogMiddleware(NLog.LogLevel.Trace);
             app.UseKnife4UI();//使用Knife4UI界面
             app.UseStaticFiles();//使用静态资源
             app.UseRouting();//使用路由规则

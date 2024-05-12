@@ -1,11 +1,21 @@
 {
+  "RocketAccountOptions": {
+    "SecretKey": "SKnRjkl12s93dd",
+    "AccessKey": "AKlmo32fjRkls31",
+    "InstanceId": "i-0f2g1h2j3k4l5m"
+  },
   "KafkaConnectionStrings": {
     "DefaultClientHosts": "192.168.100.33:9092,192.168.100.34:9092,192.168.100.35:9092"
   },
   "RabbitConnectionStrings": {
     "DefaultClientHosts": "Host=192.168.100.29;VirtualHost=/;Port=5672;UserName=guest;Password=ChinaNet910111;"
   },
+  "MongoConnectionStrings": {
+    "DefaultClientHosts": "mongodb://root:ChinaNet910111@192.168.100.70:27017,192.168.100.71:27017,192.168.100.72:27017/test?replicaSet=mg-cluster&authSource=admin;",
+    "DefaultClientOnlyHosts": "mongodb://root:ChinaNet910111@192.168.100.70:27017,192.168.100.71:27017,192.168.100.72:27017/test1?replicaSet=mg-cluster&authSource=admin;"
+  },
   "ConnectionStrings": {
+    "RedisConnectionHost": "192.168.100.22:6379,password=ChinaNet910111,defaultDatabase=0,poolsize=50,ssl=false,writeBuffer=10240",
     "DefaultMySQLHosts": "server=192.168.100.23;port=3306;Database=abc_test;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
     "AuthCenterHosts": "server=192.168.100.23;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
     "AuthCenterOnlyHosts": "server=192.168.100.24;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111Command Timeout=180;"

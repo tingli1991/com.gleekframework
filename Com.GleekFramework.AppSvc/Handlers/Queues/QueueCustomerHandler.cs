@@ -1,4 +1,5 @@
-﻿using Com.GleekFramework.CommonSdk;
+﻿using Com.GleekFramework.AppSvc.Attributes;
+using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.QueueSdk;
@@ -21,6 +22,7 @@ namespace Com.GleekFramework.AppSvc
         /// </summary>
         /// <param name="messageBody"></param>
         /// <returns></returns>
+        [TestCustomAction, TestCustomAuthorize]
         public override async Task<ContractResult> ExecuteAsync(MessageBody messageBody)
         {
             var param = messageBody.GetData<StudentParam>();

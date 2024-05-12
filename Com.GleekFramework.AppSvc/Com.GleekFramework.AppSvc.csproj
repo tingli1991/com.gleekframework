@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.NacosSdk\Com.GleekFramework.NacosSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.ObjectSdk\Com.GleekFramework.ObjectSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.QueueSdk\Com.GleekFramework.QueueSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.SwaggerSdk\Com.GleekFramework.SwaggerSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.RabbitMQSdk\Com.GleekFramework.RabbitMQSdk.csproj" />
@@ -57,6 +58,9 @@
     </Content>
     <Content Update="Config\nacos.json">
       <Pack>true</Pack>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Config\subscription.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="NLog.config">

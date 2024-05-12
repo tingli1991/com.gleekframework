@@ -1,12 +1,14 @@
 using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.DapperSdk;
 using Com.GleekFramework.HttpSdk;
+using Com.GleekFramework.KafkaSdk;
 using Com.GleekFramework.MigrationSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
-using Com.GleekFramework.QueueSdk;
-using Com.GleekFramework.DapperSdk;
+using Com.GleekFramework.RabbitMQSdk;
+using Com.GleekFramework.RocketMQSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
@@ -23,8 +25,9 @@ namespace Com.GleekFramework.AppSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeStack((config) => 24)//订阅本地栈(先进显出)
-                 .SubscribeQueue((config) => 24)//订阅本地队列(先进后出)
+                 .SubscribeRocketMQ(config => config.Get<RocketConsumerOptions>("RocketConnectionOptions"))//订阅Rocket消费服务
+                 .SubscribeRabbitMQ(config => config.Get<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))//订阅RabbitMQ消费服务
+                 .SubscribeKafka(config => config.GetValue<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))//订阅Kafka消费服务
                  .RunAsync();
         }
 
@@ -41,6 +44,7 @@ namespace Com.GleekFramework.AppSvc
             .UseHttpClient()
             .UseConfigAttribute()
             .UseGleekWebHostDefaults<Startup>()
+            .AddRocketMQAccessOptions(config => config.Get<RocketAccessOptions>("RocketAccountOptions")) //添加Rocket账号配置
             .UseDapper(DatabaseConstant.DefaultMySQLHostsKey)
             .UseMigrations((config) => new MigrationOptions()
             {
