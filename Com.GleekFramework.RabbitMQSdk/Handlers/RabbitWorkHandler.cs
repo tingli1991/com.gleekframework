@@ -8,6 +8,6 @@
         /// <summary>
         /// 队列名称
         /// </summary>
-        public abstract string QueueName { get; set; }
+        public abstract string QueueName { get; }
     }
 }

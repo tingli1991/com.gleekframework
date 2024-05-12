@@ -1,0 +1,37 @@
+{
+  "RabbitConnectionOptions": {
+    "AwaitTask": false,
+    "VirtualHost": "/",
+    "HostOptions": [
+      {
+        "Port": 5672,
+        "UserName": "guest",
+        "Host": "192.168.100.29",
+        "Password": "ChinaNet910111"
+      }
+    ]
+  },
+  "RocketConnectionOptions": {
+    "GroupId": "test_group_id",
+    "BatchSize": 16,
+    "WaitSeconds": 30,
+    "AwaitTask": false,
+    "HostOptions": [
+      {
+        "Host": "192.168.100.29:8080",
+        "Topics": ["test_topic_01","test_topic_02"]
+      }
+    ]
+  },
+  "KafkaConnectionOptions": {
+    "AutoAck": true,
+    "AwaitTask": false,
+    "GroupId": "com.gleekframework.kafka.test",
+    "HostOptions": [
+      {
+        "Topics": [ "com.gleekframework.kafka.dev" ],
+        "Host": "192.168.100.33:9092,192.168.100.34:9092,192.168.100.35:9092"
+      }
+    ]
+  }
+}

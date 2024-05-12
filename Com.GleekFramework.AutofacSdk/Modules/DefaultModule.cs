@@ -36,7 +36,7 @@ namespace Com.GleekFramework.AutofacSdk
 
             //注入所有继承于IAutofacBase接口的实现类
             builder.RegisterAssemblyTypes(assemblyList.ToArray())
-                .Where(type => type != AutofacConstant.BASEAUTOFAC_TYPE && AutofacConstant.BASEAUTOFAC_TYPE.IsAssignableFrom(type))
+                .Where(type => type != AutofacConstant.BASEAUTOFAC_TYPE && (AutofacConstant.BASEAUTOFAC_TYPE.IsAssignableFrom(type) || type.ImplementsGenericInterface(AutofacConstant.BASEAUTOFAC_TYPE)))
                 .AsSelf()
                 .InstancePerLifetimeScope()
                 .PropertiesAutowired();

@@ -107,16 +107,6 @@
             流水号生成器
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.HttpClientFactory">
-            <summary>
-            Http客户端工厂类
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.HttpContextAccessor">
-            <summary>
-            Http请求上下文
-            </summary>
-        </member>
         <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.RabbitRpcClientService">
             <summary>
             RPC客户端服务
@@ -176,7 +166,7 @@
             测试控制器
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.TestController.RedisLockRepository">
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.TestController.RocketClientService">
             <summary>
             
             </summary>
@@ -358,6 +348,24 @@
             执行方法
             </summary>
             <param name="messageBody">消息内容</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RocketTestHandler">
+            <summary>
+            测试消费
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RocketTestHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RocketTestHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>

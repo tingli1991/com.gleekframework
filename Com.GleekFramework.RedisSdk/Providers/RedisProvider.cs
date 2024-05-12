@@ -65,10 +65,6 @@ namespace Com.GleekFramework.RedisSdk
                             }
 
                             var dbConnectionString = $"{connectionString.TrimEnd(',', ';')}";
-                            if (!dbConnectionString.Equals("defaultDatabase", StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                dbConnectionString += ",defaultDatabase=0";
-                            }
                             ClientCache.Add(connectionName, new CSRedisClient(dbConnectionString));
                         }
                     }
