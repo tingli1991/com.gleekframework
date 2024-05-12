@@ -16,9 +16,9 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <param name="builder"></param>
         /// <param name="callback">账号配置选项</param>
         /// <returns></returns>
-        public static IHostBuilder AddAccessOptions(this IHostBuilder builder, Func<IConfiguration, RocketAccessOptions> callback)
+        public static IHostBuilder AddRocketMQAccessOptions(this IHostBuilder builder, Func<IConfiguration, RocketAccessOptions> callback)
         {
-            builder.ConfigureAppConfiguration((context, configuration) => configuration.AddAccessOptions(callback(AppConfig.Configuration)));
+            builder.ConfigureAppConfiguration((context, configuration) => configuration.AddRocketMQAccessOptions(callback(AppConfig.Configuration)));
             return builder;
         }
 
@@ -28,7 +28,7 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <param name="configuration"></param>
         /// <param name="options">账号配置选项</param>
         /// <returns></returns>
-        public static IConfigurationBuilder AddAccessOptions(this IConfigurationBuilder configuration, RocketAccessOptions options)
+        public static IConfigurationBuilder AddRocketMQAccessOptions(this IConfigurationBuilder configuration, RocketAccessOptions options)
         {
             RocketAccessProvider.SetAccessOptions(options);
             return configuration;

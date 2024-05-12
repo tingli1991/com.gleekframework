@@ -50,7 +50,7 @@
             账号主题拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketAccessOptions})">
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketAccessOptions})">
             <summary>
             添加账号配置信息
             </summary>
@@ -58,7 +58,7 @@
             <param name="callback">账号配置选项</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
             <summary>
             添加账号配置信息
             </summary>
@@ -321,44 +321,7 @@
             Http请求上下文
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.RocketMQSdk.RocketClientService.EnvironmentService">
-            <summary>
-            环境变量服务
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync(System.String,System.String,System.Enum,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            推送消息
-            </summary>
-            <param name="host">主机</param>
-            <param name="topic">主题</param>
-            <param name="type">消息类型(方法名称)</param>
-            <param name="serialNo">业务流水号</param>
-            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
-                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
-                注意：不设置也不会影响消息正常收发。
-            </param>
-            <param name="headers">头部信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            推送消息
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="host">主机</param>
-            <param name="topic">主题</param>
-            <param name="type">消息类型(方法名称)</param>
-            <param name="data">消息内容</param>
-            <param name="serialNo">业务流水号</param>
-            <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
-                以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
-                注意：不设置也不会影响消息正常收发。
-            </param>
-            <param name="headers">头部信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync(System.String,System.String,System.Enum,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishMessageBodyAsync(System.String,System.String,System.Enum,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             推送消息
             </summary>
@@ -371,7 +334,7 @@
             <param name="headers">头部喜喜</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishAsync``1(System.String,System.String,System.Enum,``0,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Com.GleekFramework.RocketMQSdk.RocketClientService.PublishMessageBodyAsync``1(System.String,System.String,System.Enum,``0,System.Int64,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             推送消息
             </summary>

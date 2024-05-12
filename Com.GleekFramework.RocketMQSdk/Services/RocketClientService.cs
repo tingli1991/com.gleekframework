@@ -1,7 +1,6 @@
 ﻿using Aliyun.MQ.Model;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.CommonSdk;
-using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.HttpSdk;
 using Microsoft.AspNetCore.Http;
@@ -23,51 +22,6 @@ namespace Com.GleekFramework.RocketMQSdk
         public IHttpContextAccessor HttpContextAccessor { get; set; }
 
         /// <summary>
-        /// 环境变量服务
-        /// </summary>
-        private static readonly EnvironmentService EnvironmentService = AutofacProvider.GetService<EnvironmentService>();
-
-        /// <summary>
-        /// 推送消息
-        /// </summary>
-        /// <param name="host">主机</param>
-        /// <param name="topic">主题</param>
-        /// <param name="type">消息类型(方法名称)</param>
-        /// <param name="serialNo">业务流水号</param>
-        /// <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
-        ///     以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
-        ///     注意：不设置也不会影响消息正常收发。
-        /// </param>
-        /// <param name="headers">头部信息</param>
-        /// <returns></returns>
-        public async Task<ContractResult<string>> PublishAsync(string host, string topic, Enum type,
-            string serialNo = null, string key = null, Dictionary<string, string> headers = null)
-        {
-            return await PublishAsync(host, topic, type, 0, serialNo, key, headers);
-        }
-
-        /// <summary>
-        /// 推送消息
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="host">主机</param>
-        /// <param name="topic">主题</param>
-        /// <param name="type">消息类型(方法名称)</param>
-        /// <param name="data">消息内容</param>
-        /// <param name="serialNo">业务流水号</param>
-        /// <param name="key">设置代表消息的业务关键属性，请尽可能全局唯一
-        ///     以方便您在无法正常收到消息情况下，可通过消息队列RocketMQ版控制台查询消息并补发
-        ///     注意：不设置也不会影响消息正常收发。
-        /// </param>
-        /// <param name="headers">头部信息</param>
-        /// <returns></returns>
-        public async Task<ContractResult<string>> PublishAsync<T>(string host, string topic, Enum type, T data,
-            string serialNo = null, string key = null, Dictionary<string, string> headers = null) where T : class
-        {
-            return await PublishAsync(host, topic, type, data, 0, serialNo, key, headers);
-        }
-
-        /// <summary>
         /// 推送消息
         /// </summary>
         /// <param name="host">主机地址</param>
@@ -78,7 +32,7 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <param name="key">分区键</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public async Task<ContractResult<string>> PublishAsync(string host, string topic, Enum type, long deliverTimeMillis = 0,
+        public async Task<ContractResult<string>> PublishMessageBodyAsync(string host, string topic, Enum type, long deliverTimeMillis = 0,
             string serialNo = null, string key = null, Dictionary<string, string> headers = null)
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
@@ -105,7 +59,7 @@ namespace Com.GleekFramework.RocketMQSdk
         /// <param name="key">分区键</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public async Task<ContractResult<string>> PublishAsync<T>(string host, string topic, Enum type, T data, long deliverTimeMillis = 0,
+        public async Task<ContractResult<string>> PublishMessageBodyAsync<T>(string host, string topic, Enum type, T data, long deliverTimeMillis = 0,
             string serialNo = null, string key = null, Dictionary<string, string> headers = null) where T : class
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
