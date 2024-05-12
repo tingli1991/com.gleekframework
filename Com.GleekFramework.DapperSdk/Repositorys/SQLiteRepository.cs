@@ -1,18 +1,18 @@
 ﻿using Com.GleekFramework.AutofacSdk;
-using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using System.Data.SQLite;
 
 namespace Com.GleekFramework.DapperSdk
 {
     /// <summary>
-    /// Oracle数据仓储
+    /// SQLite数据仓储
     /// </summary>
-    public partial class OracleRepository : DapperRepository, IBaseAutofac
+    public partial class SQLiteRepository : DapperRepository, IBaseAutofac
     {
         /// <summary>
         /// 配置文件名称
         /// </summary>
-        public override string ConnectionName => DapperConstant.DEFAULT_ORACLE_CONNECTION_NAME;
+        public override string ConnectionName => DapperConstant.DEFAULT_SQLLITE_CONNECTION_NAME;
 
         /// <summary>
         /// 获取连接对象
@@ -20,7 +20,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         protected override IDbConnection GetConnection()
         {
-            return new OracleConnection(ConnectionString);
+            return new SQLiteConnection(ConnectionString);
         }
     }
 }

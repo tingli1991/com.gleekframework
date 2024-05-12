@@ -493,17 +493,17 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.SQLiteRepository">
+        <member name="T:Com.GleekFramework.DapperSdk.OracleRepository">
             <summary>
-            PgSQL数据仓储
+            Oracle数据仓储
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.DapperSdk.SQLiteRepository.ConnectionName">
+        <member name="P:Com.GleekFramework.DapperSdk.OracleRepository.ConnectionName">
             <summary>
             配置文件名称
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.SQLiteRepository.GetConnection">
+        <member name="M:Com.GleekFramework.DapperSdk.OracleRepository.GetConnection">
             <summary>
             获取连接对象
             </summary>
@@ -527,17 +527,17 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.OracleRepository">
+        <member name="T:Com.GleekFramework.DapperSdk.SQLiteRepository">
             <summary>
-            Oracle数据仓储
+            SQLite数据仓储
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.DapperSdk.OracleRepository.ConnectionName">
+        <member name="P:Com.GleekFramework.DapperSdk.SQLiteRepository.ConnectionName">
             <summary>
             配置文件名称
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.OracleRepository.GetConnection">
+        <member name="M:Com.GleekFramework.DapperSdk.SQLiteRepository.GetConnection">
             <summary>
             获取连接对象
             </summary>
