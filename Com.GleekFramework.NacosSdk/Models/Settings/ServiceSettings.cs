@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Com.GleekFramework.ConfigSdk;
+using System.Collections.Generic;
 
 namespace Com.GleekFramework.NacosSdk
 {
@@ -15,7 +16,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <summary>
         /// 端口
         /// </summary>
-        public int Port { get; set; } = 80;
+        public int Port { get; set; } = int.Parse(EnvironmentProvider.GetPort());
 
         /// <summary>
         /// 协议头
