@@ -970,6 +970,13 @@
             <param name="type">对象类型</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyExtensions.GetPropertyInfoList``1(``0)">
+            <summary>
+            获取Type的属性列表
+            </summary>
+            <param name="source">对象类型</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.ProtobufExtensions">
             <summary>
             Protobuf序列化拓展类
