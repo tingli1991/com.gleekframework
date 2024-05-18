@@ -105,7 +105,21 @@ namespace Com.GleekFramework.CommonSdk
                 {
                     return result;
                 }
-                result = (T)Convert.ChangeType(value, typeof(T));
+
+                if (typeof(T) == typeof(Guid))
+                {
+                    //特别针对Guid类型的处理
+                    return (T)(object)Guid.Parse(value);
+                }
+                else if (typeof(T).IsEnum)
+                {
+                    //处理枚举类型的转换
+                    return (T)Enum.Parse(typeof(T), value);
+                }
+                else
+                {
+                    result = (T)Convert.ChangeType(value, typeof(T));
+                }
             }
             catch
             {
