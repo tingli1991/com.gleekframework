@@ -935,6 +935,33 @@
             <param name="value">字段值</param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.PropertyAttributeExtensions">
+            <summary>
+            属性特性拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeExtensions.GetCustomAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            获取自定义特性(包含T以及T的子类)
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeExtensions.GetCustomAttributeList``1(System.Reflection.PropertyInfo,System.Func{System.Attribute,System.Boolean})">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.PropertyAttributeExtensions.GetCustomAttributeList(System.Reflection.PropertyInfo)">
+            <summary>
+            获取自定义特性
+            </summary>
+            <param name="propertyInfo">对象对应的属性信息</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.PropertyExtensions">
             <summary>
             属性反射拓展类
