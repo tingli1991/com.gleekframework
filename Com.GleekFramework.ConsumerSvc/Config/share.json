@@ -1,5 +1,0 @@
-{
-  "RabbitConnectionStrings": {
-    "DefaultClientHosts": "Host=192.168.100.29;VirtualHost=/;Port=5672;UserName=guest;Password=ChinaNet910111;"
-  }
-}
