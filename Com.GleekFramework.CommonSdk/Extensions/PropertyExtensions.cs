@@ -50,5 +50,16 @@ namespace Com.GleekFramework.CommonSdk
         {
             return PropertyProvider.GetPropertyInfoList(type);
         }
+
+        /// <summary>
+        /// 获取Type的属性列表
+        /// </summary>
+        /// <param name="source">对象类型</param>
+        /// <returns></returns>
+        public static IEnumerable<PropertyInfo> GetPropertyInfoList<T>(this T source) where T : class
+        {
+            var type = source.GetType();
+            return PropertyProvider.GetPropertyInfoList(type);
+        }
     }
 }
