@@ -58,7 +58,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static IEnumerable<PropertyInfo> GetPropertyInfoList<T>(this T source) where T : class
         {
-            var type = source.GetType();
+            var type = typeof(T);
             return PropertyProvider.GetPropertyInfoList(type);
         }
     }
