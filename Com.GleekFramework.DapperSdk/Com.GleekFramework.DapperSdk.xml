@@ -70,12 +70,12 @@
             <param name="connectionNames">连接名称列表</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.DapperMapperHostingExtensions">
+        <member name="T:Com.GleekFramework.DapperSdk.MapperHostingExtensions">
             <summary>
             字段映射工具拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperMapperHostingExtensions.UseDapperColumnMap(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
+        <member name="M:Com.GleekFramework.DapperSdk.MapperHostingExtensions.UseDapperColumnMap(Microsoft.Extensions.Hosting.IHostBuilder,System.String[])">
             <summary>
             使用Dapper字段映射
             </summary>
