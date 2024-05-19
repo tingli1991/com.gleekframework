@@ -51,11 +51,11 @@ namespace Com.GleekFramework.MigrationSdk
                 };
             });
 
-            var maxVersion = databaseProvider.GetMaxVersion();
             var upgrateVersionList = new List<VersionModel>();
+            var existsVersionList = databaseProvider.GetExistsVersionList();//已经存在的版本号列表
             foreach (var upgrate in versionServiceList.OrderBy(e => e.Version))
             {
-                if (upgrate.Version <= maxVersion)
+                if (existsVersionList.IsNotNull() && existsVersionList.Any(e => e == upgrate.Version))
                 {
                     continue;
                 }

@@ -16,8 +16,8 @@
   },
   "ConnectionStrings": {
     "RedisConnectionHost": "192.168.100.22:6379,password=ChinaNet910111,defaultDatabase=0,poolsize=50,ssl=false,writeBuffer=10240",
-    "DefaultMySQLHosts": "server=192.168.100.23;port=3306;Database=abc_test;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
-    "AuthCenterHosts": "server=192.168.100.23;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
-    "AuthCenterOnlyHosts": "server=192.168.100.24;port=3306;Database=gleek_auth_center;UID=root;PWD=ChinaNet910111Command Timeout=180;"
+    "DefaultMySQLHosts": "server=192.168.100.23;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterHosts": "server=192.168.100.23;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterOnlyHosts": "server=192.168.100.24;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111Command Timeout=180;"
   }
 }

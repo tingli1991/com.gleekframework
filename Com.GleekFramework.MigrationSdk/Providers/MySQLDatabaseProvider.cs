@@ -47,14 +47,14 @@ namespace Com.GleekFramework.MigrationSdk
         }
 
         /// <summary>
-        /// 获取最大的版本号
+        /// 获取已存在的版本号集合
         /// </summary>
         /// <returns></returns>
-        public long GetMaxVersion()
+        public IEnumerable<long> GetExistsVersionList()
         {
             using var connection = GetConnection();
-            var sql = "select max(version) from versioninfo;";
-            return connection.ExecuteScalar<long>(sql);
+            var sql = "select distinct version from versioninfo where Description<>'SchemaMigration';";
+            return connection.Query<long>(sql);
         }
 
         /// <summary>

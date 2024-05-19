@@ -24,4 +24,10 @@
     <ProjectReference Include="..\Com.GleekFramework.RocketMQSdk\Com.GleekFramework.RocketMQSdk.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Scripts\com_area.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

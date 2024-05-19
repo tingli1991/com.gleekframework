@@ -49,16 +49,47 @@ namespace Com.GleekFramework.MigrationSdk
                 {
                     if (!ServiceList.ContainsKey(type))
                     {
-                        var messageHandlerList = type.GetServiceList<IUpgration>();
-                        if (messageHandlerList.IsNullOrEmpty())
+                        IEnumerable<IUpgration> messageHandlerList = new List<IUpgration>();
+                        var assemblyList = AssemblyProvider.GetAssemblyList(type);//类型列表
+                        if (assemblyList.IsNullOrEmpty())
                         {
                             return new List<IUpgration>();
                         }
                         else
                         {
-                            //获取或者新增
-                            ServiceList.Add(type, messageHandlerList);
+                            foreach (var assembly in assemblyList)
+                            {
+                                var assembleTypeList = AssemblyTypeProvider.GetTypeList(assembly);
+                                if (assembleTypeList.IsNullOrEmpty())
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    foreach (var assembleType in assembleTypeList)
+                                    {
+                                        if (assembleType == type || !assembleType.IsClass || string.IsNullOrEmpty(assembleType.Name) || string.IsNullOrEmpty(assembleType.Namespace))
+                                        {
+                                            continue;
+                                        }
+
+                                        if (!type.IsAssignableFrom(assembleType))
+                                        {
+                                            continue;
+                                        }
+
+                                        //当前对象实例
+                                        var instance = ActivatorProvider.CreateInstance(assembleType);
+                                        if (instance == null)
+                                        {
+                                            continue;
+                                        }
+                                        messageHandlerList = messageHandlerList.Add((IUpgration)instance);
+                                    }
+                                }
+                            }
                         }
+                        ServiceList.Add(type, messageHandlerList);
                     }
                 }
             }

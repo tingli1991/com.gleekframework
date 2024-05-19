@@ -31,10 +31,10 @@ namespace Com.GleekFramework.MigrationSdk
         void InitializeDatabase();
 
         /// <summary>
-        /// 获取最大的版本号
+        /// 获取已存在的版本号集合
         /// </summary>
         /// <returns></returns>
-        long GetMaxVersion();
+        IEnumerable<long> GetExistsVersionList();
 
         /// <summary>
         /// 保存版本信息

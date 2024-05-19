@@ -90,6 +90,31 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "F:Com.GleekFramework.Models.RabbitQueueConstant.WorkCustomerExchangeName" -->
+        <member name="T:Com.GleekFramework.Models.AreaLevel">
+            <summary>
+            地区级别
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.AreaLevel.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.AreaLevel.City">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.AreaLevel.District">
+            <summary>
+            区县
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.Models.AreaLevel.Street">
+            <summary>
+            城镇/街道
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.Enums.EnableStatus">
             <summary>
             启用状态
@@ -163,6 +188,41 @@
         <member name="F:Com.GleekFramework.Models.MessageType.CUSTOMER_TEST_STACK_NAME">
             <summary>
             自定义Stack测试类
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.ComArea">
+            <summary>
+            地区信息表
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.Name">
+            <summary>
+            地区名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.Level">
+            <summary>
+            地区级别
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.Lng">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.Lat">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComArea.ParentId">
+            <summary>
+            父级
             </summary>
         </member>
         <member name="T:Com.GleekFramework.Models.Permission">
@@ -379,6 +439,29 @@
             <summary>
             温度(华氏度)
             </summary>
+        </member>
+        <member name="T:Com.GleekFramework.Models.ComAreaUpgration">
+            <summary>
+            地区编码升级脚本
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.Models.ComAreaUpgration.ExecuteSqlFilesAsync">
+            <summary>
+            执行sql文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.Models.ComAreaUpgration.ExecuteScriptsAsync">
+            <summary>
+            执行sql脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.Models.ComAreaUpgration.ExecuteAsync">
+            <summary>
+            执行代码
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

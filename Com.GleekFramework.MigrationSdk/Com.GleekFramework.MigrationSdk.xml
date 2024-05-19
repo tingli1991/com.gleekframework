@@ -351,9 +351,9 @@
             初始化数据库
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetMaxVersion">
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.GetExistsVersionList">
             <summary>
-            获取最大的版本号
+            获取已存在的版本号集合
             </summary>
             <returns></returns>
         </member>
@@ -657,9 +657,9 @@
             初始化数据库
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetMaxVersion">
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.GetExistsVersionList">
             <summary>
-            获取最大的版本号
+            获取已存在的版本号集合
             </summary>
             <returns></returns>
         </member>
@@ -725,9 +725,9 @@
             初始化数据库
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetMaxVersion">
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.GetExistsVersionList">
             <summary>
-            获取最大的版本号
+            获取已存在的版本号集合
             </summary>
             <returns></returns>
         </member>
@@ -793,9 +793,9 @@
             初始化数据库
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetMaxVersion">
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetExistsVersionList">
             <summary>
-            获取最大的版本号
+            获取已存在的版本号集合
             </summary>
             <returns></returns>
         </member>
