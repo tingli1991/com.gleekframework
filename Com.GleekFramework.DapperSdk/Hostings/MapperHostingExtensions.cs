@@ -9,7 +9,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// 字段映射工具拓展类
     /// </summary>
-    public static partial class DapperMapperHostingExtensions
+    public static partial class MapperHostingExtensions
     {
         /// <summary>
         /// 使用Dapper字段映射
@@ -20,6 +20,9 @@ namespace Com.GleekFramework.DapperSdk
         {
             if (assemblyNameList.IsNullOrEmpty())
                 throw new ArgumentNullException("assemblyNameList");
+
+            // 启用Dapper的下划线到驼峰命名的自动转换
+            DefaultTypeMap.MatchNamesWithUnderscores = true;
 
             var assemblyTypeList = assemblyNameList
                 .Select(assemblyName => AssemblyProvider.GetAssembly(assemblyName))
