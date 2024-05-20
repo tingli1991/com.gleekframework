@@ -14,7 +14,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// 升级实现类
     /// </summary>
-    public static partial class UpgrationProvider
+    public static class UpgrationProvider
     {
         /// <summary>
         /// 执行升级脚本
@@ -32,60 +32,56 @@ namespace Com.GleekFramework.MigrationSdk
             var databaseProvider = serviceProvider.GetService<IDatabaseProvider>();
             var migrationContext = serviceProvider.GetService<IMigrationContext>();
             var migrationExecute = new ExecuteExpressionRoot(migrationContext);
-            var versionServiceList = serviceList.Select(service =>
+            var upgrationAttributeList = serviceList.Select(service =>
             {
-                var attribute = service.GetType().GetCustomAttribute<UpgrationAttribute>();
-                if (attribute == null)
-                {
-                    throw new InvalidOperationException(nameof(UpgrationAttribute));
-                }
-
+                var type = service.GetType();
                 service.Context = migrationContext;
                 service.Execute = migrationExecute;
+                var attribute = type.GetCustomAttribute<UpgrationAttribute>() ?? throw new InvalidOperationException(nameof(UpgrationAttribute));
                 return new
                 {
                     Service = service,
                     attribute.Version,
-                    Description = attribute.Description ?? service.GetType().Name,
+                    Description = attribute.Description ?? type.Name,
                     TransactionBehavior = attribute?.TransactionBehavior ?? TransactionBehavior.Default
                 };
             });
 
-            var upgrateVersionList = new List<VersionModel>();
+            var upgrateVersionList = new List<VersionInfo>();
             var existsVersionList = databaseProvider.GetExistsVersionList();//已经存在的版本号列表
-            foreach (var upgrate in versionServiceList.OrderBy(e => e.Version))
+            foreach (var upgrationAttribute in upgrationAttributeList.OrderBy(e => e.Version))
             {
-                if (existsVersionList.IsNotNull() && existsVersionList.Any(e => e == upgrate.Version))
+                if (existsVersionList.IsNotNull() && existsVersionList.Any(e => e == upgrationAttribute.Version))
                 {
                     continue;
                 }
 
-                await upgrate.TransactionBehavior.ExecuteAsync(async () =>
+                await upgrationAttribute.TransactionBehavior.ExecuteAsync(async () =>
                 {
                     //分批执行数据库脚本语句
-                    var executeScripts = await upgrate.Service.ExecuteScriptsAsync();
+                    var executeScripts = await upgrationAttribute.Service.ExecuteScriptsAsync();
                     if (executeScripts.IsNotNull())
                     {
                         var pageScripts = executeScripts.ToPageDictionary();
                         pageScripts.Values.ForEach(scriptList =>
                         {
                             var executeSql = string.Join(';', scriptList = scriptList.Select(e => e.TrimEnd(';')));
-                            upgrate.Service.Execute.Sql(executeSql);//执行数据库脚本
+                            upgrationAttribute.Service.Execute.Sql(executeSql);//执行数据库脚本
                         });
                     }
 
-                    var executeSqlFiles = await upgrate.Service.ExecuteSqlFilesAsync();
+                    var executeSqlFiles = await upgrationAttribute.Service.ExecuteSqlFilesAsync();
                     if (executeSqlFiles.IsNotNull())
                     {
-                        var filePaths = executeSqlFiles.Select(e => Path.Combine(AppContext.BaseDirectory, "Scripts", e)).Where(e => File.Exists(e));
-                        filePaths.ForEach(path => upgrate.Service.Execute.Script(path));//运行SQL文件
+                        var filePaths = executeSqlFiles.Select(e => Path.Combine(AppContext.BaseDirectory, "Scripts", e));
+                        filePaths.ForEach(path => upgrationAttribute.Service.Execute.Script(path));//运行SQL文件
                     }
 
-                    await upgrate.Service.ExecuteAsync();
-                    upgrateVersionList.Add(new VersionModel()
+                    await upgrationAttribute.Service.ExecuteAsync();
+                    upgrateVersionList.Add(new VersionInfo()
                     {
-                        Version = upgrate.Version,
-                        Description = upgrate.Description,
+                        Version = upgrationAttribute.Version,
+                        Description = upgrationAttribute.Description,
                         AppliedOn = DateTime.Now.ToCstTime()
                     });
                 });

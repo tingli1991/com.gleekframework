@@ -362,7 +362,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+        <member name="M:Com.GleekFramework.MigrationSdk.IDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
             <summary>
             保存版本信息
             </summary>
@@ -510,22 +510,22 @@
             列名称
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.MigrationSdk.VersionModel">
+        <member name="T:Com.GleekFramework.MigrationSdk.VersionInfo">
             <summary>
-            版本信息
+            版本信息表
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.Version">
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionInfo.Version">
             <summary>
             版本号
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.AppliedOn">
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionInfo.AppliedOn">
             <summary>
             时间
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.VersionModel.Description">
+        <member name="P:Com.GleekFramework.MigrationSdk.VersionInfo.Description">
             <summary>
             描述
             </summary>
@@ -643,7 +643,7 @@
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+        <member name="M:Com.GleekFramework.MigrationSdk.MsSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
             <summary>
             保存版本信息
             </summary>
@@ -711,7 +711,7 @@
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+        <member name="M:Com.GleekFramework.MigrationSdk.MySQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
             <summary>
             保存版本信息
             </summary>
@@ -779,7 +779,7 @@
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionModel})">
+        <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
             <summary>
             保存版本信息
             </summary>

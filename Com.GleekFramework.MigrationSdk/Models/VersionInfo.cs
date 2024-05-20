@@ -3,9 +3,9 @@
 namespace Com.GleekFramework.MigrationSdk
 {
     /// <summary>
-    /// 版本信息
+    /// 版本信息表
     /// </summary>
-    public class VersionModel
+    public class VersionInfo
     {
         /// <summary>
         /// 版本号

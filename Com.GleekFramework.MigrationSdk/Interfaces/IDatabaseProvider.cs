@@ -40,7 +40,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// 保存版本信息
         /// </summary>
         /// <param name="versionList">版本列表</param>
-        void SaveVersion(IEnumerable<VersionModel> versionList);
+        void SaveVersion(IEnumerable<VersionInfo> versionList);
 
         /// <summary>
         /// 获取数据库索引摘要信息

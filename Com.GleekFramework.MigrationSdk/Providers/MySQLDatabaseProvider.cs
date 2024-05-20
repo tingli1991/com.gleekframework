@@ -108,7 +108,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// 保存版本信息
         /// </summary>
         /// <param name="versionList">版本列表</param>
-        public void SaveVersion(IEnumerable<VersionModel> versionList)
+        public void SaveVersion(IEnumerable<VersionInfo> versionList)
         {
             if (versionList.IsNullOrEmpty())
             {
