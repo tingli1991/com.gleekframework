@@ -30,8 +30,7 @@ namespace Com.GleekFramework.MigrationSdk
         public override void Up()
         {
             var databaseProvider = Execute.GetDatabaseProvider();//数据库实现类
-            var excludeClassNames = new List<string>() { "ITable", "BasicTable", "VersionTable" };//需要排除的类名称集合
-            var assemblyTypeInfoList = typeof(ITable).GetTypeList().Where(e => !excludeClassNames.ContainsIgnoreCases(e.Name));//类型列表
+            var assemblyTypeInfoList = typeof(ITable).GetTypeList().Where(e => !MigrationConstant.ExcludeClassNames.ContainsIgnoreCases(e.Name));//类型列表
             if (assemblyTypeInfoList.IsNullOrEmpty())
             {
                 return;
