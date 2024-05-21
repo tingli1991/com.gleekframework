@@ -9,6 +9,22 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class SerializeExtensions
     {
         /// <summary>
+        /// 序列化请求参数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string SerializeObject<T>(this T source)
+        {
+            if (source == null)
+            {
+                return "";
+            }
+
+            return JsonConvert.SerializeObject(source);
+        }
+
+        /// <summary>
         /// 反序列化请求参数
         /// </summary>
         /// <typeparam name="T"></typeparam>

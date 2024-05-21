@@ -1111,6 +1111,14 @@
             序列化拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.SerializeExtensions.SerializeObject``1(``0)">
+            <summary>
+            序列化请求参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.SerializeExtensions.DeserializeObject``1(System.String)">
             <summary>
             反序列化请求参数
