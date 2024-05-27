@@ -31,8 +31,8 @@ namespace Com.GleekFramework.ContractSdk
         public static ContractResult SetError(this ContractResult source, Enum error, string serialNo = "")
         {
             source.Success = false;
-            source.Code = error.GetDescription();
-            source.Message = $"{error.GetHashCode()}";
+            source.Code = $"{error.GetHashCode()}";
+            source.Message = error.GetDescription();
             if (!string.IsNullOrWhiteSpace(serialNo))
             {
                 source.SerialNo = serialNo;
@@ -49,8 +49,8 @@ namespace Com.GleekFramework.ContractSdk
         public static ContractResult<T> SetError<T>(this ContractResult<T> source, Enum error, string serialNo = "")
         {
             source.Success = false;
-            source.Code = error.GetDescription();
-            source.Message = $"{error.GetHashCode()}";
+            source.Code = $"{error.GetHashCode()}";
+            source.Message = error.GetDescription();
             if (!string.IsNullOrWhiteSpace(serialNo))
             {
                 source.SerialNo = serialNo;
