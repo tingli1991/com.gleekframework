@@ -174,7 +174,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public dynamic InsertOne<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => Open(db => db.Insert(param, null, timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return null;
+            }
+            return Open(db => db.Insert(param, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 插入单条数据
@@ -201,7 +207,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public async Task<dynamic> InsertOneAsync<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => await OpenAsync(db => db.InsertAsync(param, null, timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return null;
+            }
+            return await OpenAsync(db => db.InsertAsync(param, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 插入单条数据
@@ -227,7 +239,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param"></param>
         /// <param name="timeoutSeconds"></param>
         public bool UpdateOne<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => Open(db => db.Update(param, null, timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return false;
+            }
+            return Open(db => db.Update(param, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 更新多条数据
@@ -252,7 +270,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param"></param>
         /// <param name="timeoutSeconds"></param>
         public async Task<bool> UpdateOneAsync<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => await OpenAsync(db => db.UpdateAsync(param, null, timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return false;
+            }
+            return await OpenAsync(db => db.UpdateAsync(param, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 更新多条数据
@@ -278,7 +302,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public bool DeleteOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => Open(db => db.Delete(entity, null, timeoutSeconds));
+        {
+            if (entity == null)
+            {
+                return false;
+            }
+            return Open(db => db.Delete(entity, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 根据条件删除
@@ -287,7 +317,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public bool DeleteOne(object param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
-            => Open(db => db.Delete<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return false;
+            }
+            return Open(db => db.Delete<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+        }
 
         /// <summary>
         /// 删除多条数据
@@ -312,7 +348,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public async Task<bool> DeleteOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-            => await OpenAsync(db => db.DeleteAsync(entity, null, timeoutSeconds));
+        {
+            if (entity == null)
+            {
+                return false;
+            }
+            return await OpenAsync(db => db.DeleteAsync(entity, null, timeoutSeconds));
+        }
 
         /// <summary>
         /// 根据条件删除数据
@@ -321,7 +363,13 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
         public async Task<bool> DeleteOneAsync(object param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
-            => await OpenAsync(db => db.DeleteAsync<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+        {
+            if (param == null)
+            {
+                return false;
+            }
+            return await OpenAsync(db => db.DeleteAsync<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+        }
 
         /// <summary>
         /// 删除多条数据
