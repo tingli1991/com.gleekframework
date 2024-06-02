@@ -440,7 +440,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="primaryKey">主键</param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        protected bool DeleteById<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        public bool DeleteById<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
         {
             if (primaryKey <= 0)
             {
@@ -464,7 +464,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        protected void DeleteByIds<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        public void DeleteByIds<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
         {
             if (primaryKeys.IsNullOrEmpty())
             {
@@ -536,7 +536,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="primaryKey">主键</param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        protected async Task<bool> DeleteByIdAsync<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        public async Task<bool> DeleteByIdAsync<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
         {
             if (primaryKey <= 0)
             {
@@ -560,7 +560,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        protected async Task DeleteByIdsAsync<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        public async Task DeleteByIdsAsync<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
         {
             if (primaryKeys.IsNullOrEmpty())
             {
