@@ -405,7 +405,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne``1(System.Int64,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteById``1(System.Int64,System.Int32)">
             <summary>
             批量删除
             </summary>
@@ -414,7 +414,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIds``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
             <summary>
             批量删除
             </summary>
@@ -449,7 +449,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync``1(System.Int64,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIdAsync``1(System.Int64,System.Int32)">
             <summary>
             批量删除
             </summary>
@@ -458,7 +458,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIdsAsync``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
             <summary>
             批量删除
             </summary>

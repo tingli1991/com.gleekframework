@@ -1,5 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
-using Com.GleekFramework.MigrationSdk;
+using Com.GleekFramework.ContractSdk;
 using Newtonsoft.Json;
 using ProtoBuf;
 using System;
