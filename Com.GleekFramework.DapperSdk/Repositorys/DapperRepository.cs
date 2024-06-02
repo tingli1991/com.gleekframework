@@ -6,7 +6,9 @@ using DapperExtensions;
 using DapperExtensions.Predicate;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -416,16 +418,66 @@ namespace Com.GleekFramework.DapperSdk
         /// 删除多条数据
         /// </summary>
         /// <param name="entitys"></param>
+        /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public void DeleteMany<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void DeleteMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
                 return;
             }
-            using var conn = GetConnection();
-            conn.Delete(entitys, null, timeoutSeconds);
+
+            entitys.ForEach(pageSize, (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                conn.Delete(entitys, null, timeoutSeconds);
+            });
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="timeoutSeconds"></param>
+        /// <returns></returns>
+        protected bool DeleteOne<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        {
+            if (primaryKey <= 0)
+            {
+                return false;
+            }
+
+            var type = typeof(T);
+            var tableName = type.GetTableName<T>();//获取表名称
+            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
+
+            // 数据库脚本
+            var sql = @$"delete from {tableName} where {primaryColumnName}=@PrimaryKey";
+            return Open(db => db.Execute(sql, new { PrimaryKey = primaryKey }, null, timeoutSeconds) > 0);
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="primaryKeys">主键Id集合</param>
+        /// <param name="pageSize"></param>
+        /// <param name="timeoutSeconds"></param>
+        /// <returns></returns>
+        protected void DeleteMany<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        {
+            if (primaryKeys.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var type = typeof(T);
+            var tableName = type.GetTableName<T>();//获取表名称
+            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
+            var sql = @$"delete from {tableName} where {primaryColumnName} in @PrimaryKeys";
+            primaryKeys.ForEach(pageSize, (pageIndex, pageList) => Open(db => db.ExecuteAsync(sql, new { PrimaryKeys = pageList }, null, timeoutSeconds)));
         }
 
         /// <summary>
@@ -462,17 +514,66 @@ namespace Com.GleekFramework.DapperSdk
         /// 删除多条数据
         /// </summary>
         /// <param name="entitys"></param>
+        /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task DeleteManyAsync<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task DeleteManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
                 return;
             }
-            using var conn = GetConnection();
-            conn.Delete(entitys, null, timeoutSeconds);
-            await Task.CompletedTask;
+
+            await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                await conn.DeleteAsync(entitys, null, timeoutSeconds);
+            });
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="timeoutSeconds"></param>
+        /// <returns></returns>
+        protected async Task<bool> DeleteOneAsync<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        {
+            if (primaryKey <= 0)
+            {
+                return false;
+            }
+
+            var type = typeof(T);
+            var tableName = type.GetTableName<T>();//获取表名称
+            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
+
+            // 数据库脚本
+            var sql = @$"delete from {tableName} where {primaryColumnName}=@PrimaryKey";
+            return await OpenAsync(async db => await db.ExecuteAsync(sql, new { PrimaryKey = primaryKey }, null, timeoutSeconds) > 0);
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="primaryKeys">主键Id集合</param>
+        /// <param name="pageSize"></param>
+        /// <param name="timeoutSeconds"></param>
+        /// <returns></returns>
+        protected async Task DeleteManyAsync<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
+        {
+            if (primaryKeys.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var type = typeof(T);
+            var tableName = type.GetTableName<T>();//获取表名称
+            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
+            var sql = @$"delete from {tableName} where {primaryColumnName} in @PrimaryKeys";
+            await primaryKeys.ForEachAsync(pageSize, async (pageIndex, pageList) => await OpenAsync(db => db.ExecuteAsync(sql, new { PrimaryKeys = pageList }, null, timeoutSeconds)));
         }
 
         /// <summary>

@@ -109,6 +109,26 @@
             <param name="data"></param>
             <param name="serialNo"></param>
         </member>
+        <member name="T:Com.GleekFramework.ContractSdk.ITable">
+            <summary>
+            定义表的版本迁移接口
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ITable.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.IVersionTable">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.IVersionTable.Version">
+            <summary>
+            版本号
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ContractSdk.CacheModel`1">
             <summary>
             集合数据缓存模型

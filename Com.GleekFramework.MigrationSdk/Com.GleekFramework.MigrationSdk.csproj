@@ -27,5 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
   </ItemGroup>
 </Project>

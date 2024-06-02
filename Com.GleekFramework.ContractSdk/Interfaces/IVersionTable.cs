@@ -1,7 +1,7 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Com.GleekFramework.DapperSdk
+namespace Com.GleekFramework.ContractSdk
 {
     /// <summary>
     /// 版本号

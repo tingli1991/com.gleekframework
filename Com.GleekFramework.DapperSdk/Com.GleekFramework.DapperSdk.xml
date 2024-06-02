@@ -39,6 +39,24 @@
             ORACLEE默认的链接字符串名称
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.DapperSdk.PropertyExtensions">
+            <summary>
+            属性拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.PropertyExtensions.GetPrimaryColumnName``1(System.Type)">
+            <summary>
+            获取主键名称
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.PropertyExtensions.GetTableName``1(System.Type)">
+            <summary>
+            获取表名
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
             <summary>
             Dapper仓储拓展类
@@ -81,16 +99,6 @@
             </summary>
             <param name="builder"></param>
             <param name="assemblyNameList">命名空间名称列表</param>
-        </member>
-        <member name="T:Com.GleekFramework.DapperSdk.IVersionTable">
-            <summary>
-            版本号
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.DapperSdk.IVersionTable.Version">
-            <summary>
-            版本号
-            </summary>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.ColumnTypeMapper">
             <summary>
@@ -388,11 +396,31 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>
             <param name="entitys"></param>
+            <param name="pageSize"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne``1(System.Int64,System.Int32)">
+            <summary>
+            批量删除
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryKey">主键</param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
+            <summary>
+            批量删除
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryKeys">主键Id集合</param>
+            <param name="pageSize"></param>
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
@@ -412,11 +440,31 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>
             <param name="entitys"></param>
+            <param name="pageSize"></param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync``1(System.Int64,System.Int32)">
+            <summary>
+            批量删除
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryKey">主键</param>
+            <param name="timeoutSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
+            <summary>
+            批量删除
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="primaryKeys">主键Id集合</param>
+            <param name="pageSize"></param>
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>

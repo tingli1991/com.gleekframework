@@ -382,16 +382,6 @@
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.MigrationSdk.ITable">
-            <summary>
-            定义表的版本迁移接口
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.ITable.Id">
-            <summary>
-            主键Id
-            </summary>
-        </member>
         <member name="T:Com.GleekFramework.MigrationSdk.IUpgration">
             <summary>
             升级接口

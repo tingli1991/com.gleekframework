@@ -1,4 +1,4 @@
-﻿namespace Com.GleekFramework.MigrationSdk
+﻿namespace Com.GleekFramework.ContractSdk
 {
     /// <summary>
     /// 定义表的版本迁移接口

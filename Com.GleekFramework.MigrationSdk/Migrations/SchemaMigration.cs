@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ContractSdk;
 using FluentMigrator;
 using FluentMigrator.Builders.Alter.Table;
 using FluentMigrator.Builders.Create;
