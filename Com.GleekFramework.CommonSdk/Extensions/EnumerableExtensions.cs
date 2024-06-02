@@ -116,6 +116,29 @@ namespace Com.GleekFramework.CommonSdk
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this IEnumerable<T> source, int pageSize, Action<int, IEnumerable<T>> action)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var pageDataDic = source.ToPageDictionary(pageSize);
+            foreach (var pageDataInfo in pageDataDic)
+            {
+                var pageIndex = pageDataInfo.Key;//分页页码
+                var pageDataList = pageDataInfo.Value;//分页后的数据列表
+                action(pageIndex, pageDataList);//执行回调函数
+            }
+        }
+
+        /// <summary>
+        /// ForEach扩展方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
         /// <param name="func"></param>
         public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> func)
         {
@@ -127,6 +150,29 @@ namespace Com.GleekFramework.CommonSdk
             foreach (T item in source)
             {
                 await func(item);
+            }
+        }
+
+        /// <summary>
+        /// ForEach分页扩展方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="pageSize">分页大小</param>
+        /// <param name="func"></param>
+        public static async Task ForEachAsync<T>(this IEnumerable<T> source, int pageSize, Func<int, IEnumerable<T>, Task> func)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var pageDataDic = source.ToPageDictionary(pageSize);
+            foreach (var pageDataInfo in pageDataDic)
+            {
+                var pageIndex = pageDataInfo.Key;//分页页码
+                var pageDataList = pageDataInfo.Value;//分页后的数据列表
+                await func(pageIndex, pageDataList);//执行回调函数
             }
         }
 

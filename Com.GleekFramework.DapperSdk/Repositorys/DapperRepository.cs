@@ -29,6 +29,11 @@ namespace Com.GleekFramework.DapperSdk
         protected abstract IDbConnection GetConnection();
 
         /// <summary>
+        /// 流水号生成服务
+        /// </summary>
+        public SnowflakeService SnowflakeService { get; set; }
+
+        /// <summary>
         /// 获取连接字符串
         /// </summary>
         protected string ConnectionString => RepositoryProvider.GetConnectionString(ConnectionName);
@@ -170,112 +175,129 @@ namespace Com.GleekFramework.DapperSdk
         /// 插入单条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
+        /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public dynamic InsertOne<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public dynamic InsertOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (param == null)
+            if (entity == null)
             {
                 return null;
             }
-            return Open(db => db.Insert(param, null, timeoutSeconds));
+
+            if (entity is IVersionTable versionInfo)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+            return Open(db => db.Insert(entity, null, timeoutSeconds));
         }
 
         /// <summary>
         /// 插入单条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="paramters"></param>
-        /// <param name="timeoutSeconds"></param>
+        /// <param name="entitys"></param>
+        /// <param name="pageSize">分页大小</param>
+        /// <param name="timeoutSeconds">超时时间</param>
         /// <returns></returns>
-        public void InsertMany<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void InsertMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (paramters.IsNullOrEmpty())
+            if (entitys.IsNullOrEmpty())
             {
                 return;
             }
-            using var conn = GetConnection();
-            conn.Insert(paramters, null, timeoutSeconds);
+
+            if (entitys is IEnumerable<IVersionTable> versionInfoList)
+            {
+                foreach (var versionInfo in versionInfoList)
+                {
+                    //赋值版本号
+                    versionInfo.Version = SnowflakeService.GetVersionNo();
+                }
+            }
+
+            entitys.ForEach(pageSize, (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                conn.Insert(pageList, null, timeoutSeconds);
+            });
         }
 
         /// <summary>
         /// 插入单条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
+        /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task<dynamic> InsertOneAsync<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<dynamic> InsertOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (param == null)
+            if (entity == null)
             {
                 return null;
             }
-            return await OpenAsync(db => db.InsertAsync(param, null, timeoutSeconds));
+
+            if (entity is IVersionTable versionInfo)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
+            return await OpenAsync(db => db.InsertAsync(entity, null, timeoutSeconds));
         }
 
         /// <summary>
         /// 插入单条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="paramters"></param>
+        /// <param name="entitys"></param>
+        /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task InsertManyAsync<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task InsertManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (paramters.IsNullOrEmpty())
+            if (entitys.IsNullOrEmpty())
             {
                 return;
             }
-            using var conn = GetConnection();
-            await conn.InsertAsync(paramters, null, timeoutSeconds);
+
+            if (entitys is IEnumerable<IVersionTable> versionInfoList)
+            {
+                foreach (var versionInfo in versionInfoList)
+                {
+                    //赋值版本号
+                    versionInfo.Version = SnowflakeService.GetVersionNo();
+                }
+            }
+
+            await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                await conn.InsertAsync(pageList, null, timeoutSeconds);
+            });
         }
 
         /// <summary>
         /// 更新单条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
+        /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
-        public bool UpdateOne<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public bool UpdateOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            if (param == null)
+            if (entity == null)
             {
                 return false;
             }
-            return Open(db => db.Update(param, null, timeoutSeconds));
-        }
 
-        /// <summary>
-        /// 更新多条数据
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="paramters"></param>
-        /// <param name="timeoutSeconds"></param>
-        public void UpdateMany<T>(IEnumerable<T> paramters, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-        {
-            if (paramters.IsNullOrEmpty())
+            if (entity is IVersionTable versionInfo)
             {
-                return;
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
             }
-            using var conn = GetConnection();
-            conn.Update(paramters, null, timeoutSeconds);
-        }
 
-        /// <summary>
-        /// 更新单条数据
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
-        /// <param name="timeoutSeconds"></param>
-        public async Task<bool> UpdateOneAsync<T>(T param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
-        {
-            if (param == null)
-            {
-                return false;
-            }
-            return await OpenAsync(db => db.UpdateAsync(param, null, timeoutSeconds));
+            return Open(db => db.Update(entity, null, timeoutSeconds));
         }
 
         /// <summary>
@@ -283,16 +305,81 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entitys"></param>
+        /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
-        public async Task UpdateManyAsync<T>(IEnumerable<T> entitys, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void UpdateMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
                 return;
             }
-            using var conn = GetConnection();
-            conn.Update(entitys, null, timeoutSeconds);
-            await Task.CompletedTask;
+
+            if (entitys is IEnumerable<IVersionTable> versionInfoList)
+            {
+                foreach (var versionInfo in versionInfoList)
+                {
+                    //赋值版本号
+                    versionInfo.Version = SnowflakeService.GetVersionNo();
+                }
+            }
+
+            entitys.ForEach(pageSize, (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                conn.Update(pageList, null, timeoutSeconds);
+            });
+        }
+
+        /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="timeoutSeconds"></param>
+        public async Task<bool> UpdateOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            if (entity == null)
+            {
+                return false;
+            }
+
+            if (entity is IVersionTable versionInfo)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
+            return await OpenAsync(db => db.UpdateAsync(entity, null, timeoutSeconds));
+        }
+
+        /// <summary>
+        /// 更新多条数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entitys"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="timeoutSeconds"></param>
+        public async Task UpdateManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            if (entitys.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            if (entitys is IEnumerable<IVersionTable> versionInfoList)
+            {
+                foreach (var versionInfo in versionInfoList)
+                {
+                    //赋值版本号
+                    versionInfo.Version = SnowflakeService.GetVersionNo();
+                }
+            }
+
+            await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
+            {
+                using var conn = GetConnection();
+                await conn.UpdateAsync(pageList, null, timeoutSeconds);
+            });
         }
 
         /// <summary>

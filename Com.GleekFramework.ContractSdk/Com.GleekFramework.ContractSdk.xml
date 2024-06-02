@@ -322,5 +322,12 @@
             <param name="suffix">流水号前缀</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetVersionNo(System.Int32)">
+            <summary>
+            获取版本号
+            </summary>
+            <param name="suffix">流水号前缀</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

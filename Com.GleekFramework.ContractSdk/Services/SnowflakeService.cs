@@ -16,5 +16,15 @@ namespace Com.GleekFramework.ContractSdk
         {
             return SnowflakeProvider.GetSerialNo(suffix);
         }
+
+        /// <summary>
+        /// 获取版本号
+        /// </summary>
+        /// <param name="suffix">流水号前缀</param>
+        /// <returns></returns>
+        public long GetVersionNo(int suffix = 100)
+        {
+            return long.Parse(GetSerialNo(suffix));
+        }
     }
 }

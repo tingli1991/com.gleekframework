@@ -643,12 +643,30 @@
             <param name="source"></param>
             <param name="action"></param>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Action{System.Int32,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            ForEach扩展方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="pageSize"></param>
+            <param name="action"></param>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task})">
             <summary>
             ForEach扩展方法
             </summary>
             <typeparam name="T"></typeparam>
             <param name="source"></param>
+            <param name="func"></param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Int32,System.Collections.Generic.IEnumerable{``0},System.Threading.Tasks.Task})">
+            <summary>
+            ForEach分页扩展方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="pageSize">分页大小</param>
             <param name="func"></param>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.EnumerableExtensions.ToPageCount``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
