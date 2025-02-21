@@ -24,6 +24,7 @@ namespace Com.GleekFramework.SwaggerSdk
         /// <returns></returns>
         public static IServiceCollection AddKnife4Gen(this IServiceCollection services, string title, string version = "v1.0.0.0", Dictionary<string, string> headers = null)
         {
+            services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(options =>
             {
                 options.EnableAnnotations();//启用特性支持
