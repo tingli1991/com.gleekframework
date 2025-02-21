@@ -84,7 +84,6 @@ namespace Com.GleekFramework.NLogSdk
             logInfo.Properties["Content"] = model.Content;
             logInfo.Properties["SerialNo"] = model.SerialNo;
             logInfo.Properties["ServiceTime"] = model.ServiceTime;
-            logInfo.Properties["TotalSeconds"] = model.TotalSeconds;
             logInfo.Properties["ContentLength"] = model.ContentLength;
             logInfo.Properties["TotalMilliseconds"] = model.TotalMilliseconds;
             _log.Log(logInfo);

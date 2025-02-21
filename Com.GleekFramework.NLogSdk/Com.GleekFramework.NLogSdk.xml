@@ -62,11 +62,6 @@
             日志打印时间(在配置文件中配置)
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.NLogSdk.NLogModel.TotalSeconds">
-            <summary>
-            程序执行时间(单位：秒)
-            </summary>
-        </member>
         <member name="T:Com.GleekFramework.NLogSdk.NLogProvider">
             <summary>
             日志实现类

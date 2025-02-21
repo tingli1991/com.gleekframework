@@ -5,10 +5,10 @@ if %time:~0,2% LEQ 9 (set now=%date:~0,4%%date:~5,2%%date:~8,2%0%time:~1,1%%time
 set project_name=Com.GleekFramework.SecuritySdk
 
 :: 指定上传的api key
-set api_key=278466c7-23cc-3ec8-86d8-43adde285742
+set api_key=0f8f1f84-61fc-35e8-94e9-9f207fff8c0d
 
 :: 指定上传的url
-set source_api_uri=http://192.168.100.15:8081/repository/nuget-hosted/index.json
+set source_api_uri=https://192.168.100.44/repository/nuget-hosted/index.json
  
 :: 获取当前文件夹
 set current_dir=%~dp0%

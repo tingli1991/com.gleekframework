@@ -5,10 +5,10 @@ if %time:~0,2% LEQ 9 (set now=%date:~0,4%%date:~5,2%%date:~8,2%0%time:~1,1%%time
 set project_name=Com.GleekFramework.MqttSdk
 
 :: 指定上传的api key
-set api_key=278466c7-23cc-3ec8-86d8-43adde285742
+set api_key=2c8c029f-79e2-3aee-a74a-e95a3d64c337
 
 :: 指定上传的url
-set source_api_uri=http://192.168.100.15:8081/repository/nuget-hosted/index.json
+set source_api_uri=https://192.168.100.44/repository/nuget-hosted/
  
 :: 获取当前文件夹
 set current_dir=%~dp0%

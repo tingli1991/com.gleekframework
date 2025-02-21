@@ -1,5 +1,4 @@
 ﻿using Com.GleekFramework.AutofacSdk;
-using Com.GleekFramework.CommonSdk;
 
 namespace Com.GleekFramework.ConfigSdk
 {
