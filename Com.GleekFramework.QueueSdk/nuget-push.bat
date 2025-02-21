@@ -28,6 +28,6 @@ dotnet pack %csproj_path%  -c Release -o %packg_dir% -p:IncludeSymbols=true -p:S
 
 :: 批量推送包
 echo start push %packg_name% ...
-dotnet nuget push  %packg_dir%\*.nupkg  -k %api_key% -s %source_api_uri% --allow-insecure-connections
+dotnet nuget push  %packg_dir%\*.nupkg  -k %api_key% -s %source_api_uri% 
 echo push %packg_name% finish ...
 pause
