@@ -11,12 +11,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <summary>
         /// 日志级别
         /// </summary>
-        public static LogLevel Level { get; set; } = null;
-
-        /// <summary>
-        /// 是否记录Content
-        /// </summary>
-        public static bool IsSaveContent { get; set; } = true;
+        public static LogLevel Level { get; set; }
 
         /// <summary>
         /// 排除的接口路径配置
@@ -32,11 +27,10 @@ namespace Com.GleekFramework.AttributeSdk
         /// <param name="exclActionList"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseNLogMiddleware(this IApplicationBuilder app, LogLevel level, bool isSaveContent = true, IEnumerable<string> exclActionList = null, params object[] args)
+        public static IApplicationBuilder UseNLogMiddleware(this IApplicationBuilder app, LogLevel level = null, bool isSaveContent = true, IEnumerable<string> exclActionList = null, params object[] args)
         {
-            Level = level;
-            IsSaveContent = isSaveContent;
             ExclActionList = exclActionList;
+            Level = level ?? LogLevel.Trace;//记录日志的级别
             app.UseMiddleware<NLogMiddleware>(args);//接口日志收集
             return app;
         }

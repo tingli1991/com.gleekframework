@@ -1,8 +1,22 @@
 {
+  "AllowedHosts": "*",
+  "Summaries": [
+    "Freezingss",
+    "Bracing"
+  ],
+  "ConfigOptions": {
+    "Id": 11111,
+    "Name": "张三",
+    "Arrays": [
+      "1",
+      "你好"
+    ]
+  },
   "Logging": {
     "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
+      "Microsoft": "Warning",
+      "Default": "Warning",
+      "Microsoft.Hosting.Lifetime": "Warning"
     }
   }
 }

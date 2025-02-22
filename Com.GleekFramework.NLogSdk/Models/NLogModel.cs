@@ -43,6 +43,6 @@ namespace Com.GleekFramework.NLogSdk
         /// 日志打印时间(在配置文件中配置)
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string ServiceTime { get => DateTime.Now.ToCstTime().Format(true); }
+        public string ServiceTime { get => DateTime.Now.ToCstTime().Format(); }
     }
 }

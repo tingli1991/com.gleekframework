@@ -20,6 +20,11 @@ namespace Com.GleekFramework.CommonSdk
             T result = default;
             try
             {
+                if (obj == null)
+                {
+                    return result;
+                }
+
                 if (propertyNames.IsNullOrEmpty())
                 {
                     return result;

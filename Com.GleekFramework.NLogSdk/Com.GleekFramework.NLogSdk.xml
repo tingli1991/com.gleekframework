@@ -19,12 +19,11 @@
             日志拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.NLogSdk.NLogExtensions.Format(System.DateTime,System.Boolean)">
+        <member name="M:Com.GleekFramework.NLogSdk.NLogExtensions.Format(System.DateTime)">
             <summary>
             时间格式化,false = 精确到毫秒。
             </summary>
             <param name="content"></param>
-            <param name="toMillisecond"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.NLogSdk.NLogModel">

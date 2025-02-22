@@ -25,9 +25,10 @@ namespace Com.GleekFramework.AppSvc
         {
             await CreateDefaultHostBuilder(args)
                  .Build()
-                 .SubscribeRocketMQ(config => config.Get<RocketConsumerOptions>("RocketConnectionOptions"))//订阅Rocket消费服务
+                 .UseNacosService("org-gleek-fromework")
+                 //.SubscribeRocketMQ(config => config.Get<RocketConsumerOptions>("RocketConnectionOptions"))//订阅Rocket消费服务
                  .SubscribeRabbitMQ(config => config.Get<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))//订阅RabbitMQ消费服务
-                 .SubscribeKafka(config => config.GetValue<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))//订阅Kafka消费服务
+                 .SubscribeKafka(config => config.Get<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))//订阅Kafka消费服务
                  .RunAsync();
         }
 

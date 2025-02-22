@@ -3,10 +3,18 @@
     "Com.GleekFramework.AppSvc": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "https://localhost:51033;http://localhost:51035",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:51816;http://localhost:51817"
+        "ENV": "dev", //环境
+        "PORT": "8081", //主机的端口配置
+        "SCHEME": "http", //Http请求协议(http或者https)
+        "PROJECT": "", //项目名称
+        "VERSION": "v1.0.0.0", //程序版本号
+        "NACOS_URL": "http://localhost:8848", //NACOS地址
+        "SWAGGER_SWITCH": "true", //Swagger开关
+        "MIGRATION_SWITCH": "true", //版本迁移开关
+        "UPGRATION_SWITCH": "true" //版本升级开关
+      }
     }
   }
 }

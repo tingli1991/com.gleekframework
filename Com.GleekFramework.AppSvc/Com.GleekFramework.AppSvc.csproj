@@ -67,6 +67,9 @@
       <Pack>true</Pack>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Config\subscription.dev.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Config\subscription.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -11,20 +11,12 @@ namespace Com.GleekFramework.NLogSdk
         /// 时间格式化,false = 精确到毫秒。
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="toMillisecond"></param>
         /// <returns></returns>
-        public static string Format(this DateTime content, bool toMillisecond)
+        public static string Format(this DateTime content)
         {
             if (content != null)
             {
-                if (!toMillisecond)
-                {
-                    return content.ToString("yyyy-MM-dd HH:mm:ss.ffff");
-                }
-                else
-                {
-                    return content.ToString("yyyy-MM-dd HH:mm:ss");
-                }
+                return content.ToString("yyyy-MM-dd HH:mm:ss.ffffff");
             }
             return string.Empty;
         }

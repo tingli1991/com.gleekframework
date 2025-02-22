@@ -47,12 +47,13 @@ namespace Com.GleekFramework.NacosSdk
 
             var requestUri = url.ToGetUrl(paramters);
             var response = await client.GetAsync(requestUri);
+            var responseContent = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 //请求状态不对的时候抛出异常信息
-                throw new HttpRequestException($"StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}");
+                throw new HttpRequestException($"Url：{requestUri}，StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}，ResponseContent：{responseContent}");
             }
-            return await response.Content.ReadAsStringAsync();
+            return responseContent;
         }
 
         /// <summary>
@@ -70,12 +71,13 @@ namespace Com.GleekFramework.NacosSdk
 
             var requestUri = url.ToGetUrl(paramters);
             var response = await client.DeleteAsync(requestUri);
+            var responseContent = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 //请求状态不对的时候抛出异常信息
-                throw new HttpRequestException($"StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}");
+                throw new HttpRequestException($"Url：{requestUri}，StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}，ResponseContent：{responseContent}");
             }
-            return await response.Content.ReadAsStringAsync();
+            return responseContent;
         }
 
         /// <summary>
@@ -104,12 +106,13 @@ namespace Com.GleekFramework.NacosSdk
             }
 
             var response = await client.PutAsync(requestUri, httpContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 //请求状态不对的时候抛出异常信息
-                throw new HttpRequestException($"StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}");
+                throw new HttpRequestException($"Url：{requestUri}，StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}，ResponseContent：{responseContent}");
             }
-            return await response.Content.ReadAsStringAsync();
+            return responseContent;
         }
 
         /// <summary>
@@ -137,12 +140,13 @@ namespace Com.GleekFramework.NacosSdk
             }
 
             var response = await client.PostAsync(url, httpContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 //请求状态不对的时候抛出异常信息
-                throw new HttpRequestException($"StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}");
+                throw new HttpRequestException($"Url：{url}，StatusCode：{(int)response.StatusCode}，ReasonPhrase：{response.ReasonPhrase}，ResponseContent：{responseContent}");
             }
-            return await response.Content.ReadAsStringAsync();
+            return responseContent;
         }
 
         /// <summary>

@@ -1,3 +1,23 @@
 {
-
+  "RocketAccountOptions": {
+    "SecretKey": "SKnRjkl12s93dd",
+    "AccessKey": "AKlmo32fjRkls31",
+    "InstanceId": "i-0f2g1h2j3k4l5m"
+  },
+  "KafkaConnectionStrings": {
+    "DefaultClientHosts": "127.0.0.1:9092"
+  },
+  "RabbitConnectionStrings": {
+    "DefaultClientHosts": "Host=127.0.0.1;VirtualHost=/;Port=5672;UserName=root;Password=ChinaNet910111;"
+  },
+  "MongoConnectionStrings": {
+    "DefaultClientHosts": "mongodb://root:ChinaNet910111@127.0.0.1:27017;",
+    "DefaultClientOnlyHosts": "mongodb://root:ChinaNet910111@127.0.0.1:27017;"
+  },
+  "ConnectionStrings": {
+    "RedisConnectionHost": "127.0.0.1:6379,password=ChinaNet910111,defaultDatabase=0,poolsize=50,ssl=false,writeBuffer=10240",
+    "DefaultMySQLHosts": "server=127.0.0.1;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterHosts": "server=127.0.0.1;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111;Command Timeout=180;",
+    "AuthCenterOnlyHosts": "server=127.0.0.1;port=3306;Database=gleek_fromework;UID=root;PWD=ChinaNet910111;Command Timeout=180;"
+  }
 }

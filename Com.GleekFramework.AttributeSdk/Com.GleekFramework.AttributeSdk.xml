@@ -78,11 +78,6 @@
             日志级别
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions.IsSaveContent">
-            <summary>
-            是否记录Content
-            </summary>
-        </member>
         <member name="P:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions.ExclActionList">
             <summary>
             排除的接口路径配置

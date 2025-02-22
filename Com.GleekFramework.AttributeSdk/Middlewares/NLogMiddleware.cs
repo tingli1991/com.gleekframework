@@ -33,19 +33,14 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         public async Task InvokeAsync(HttpContext context)
         {
+            string serialNo = "";//流水编号
+            string requestBodyStr = "";//请求的body参数
+            string responseBodyStr = "";//相应的body参数
             var beginTime = DateTime.Now.ToCstTime();//开始时间
-            var url = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path}";
-            string requestBodyStr = "";
-            string responseBodyStr = "";
-            string serialNo = "";
+            var url = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path}";//接口地址
             try
             {
-                requestBodyStr = await context.Request.GetRequestBody();//请求参数
-                responseBodyStr = await GetResponseBodyJsonStr(context);//响应结果
-                var (request, response) = ConvertObject(requestBodyStr, responseBodyStr);//转换对象
-                serialNo = GetSerialNo(context.Request.Headers, request, response);//流水编号
-
-                var path = context.Request.Path;
+                var path = context.Request.Path;//接口路径
                 if (!path.HasValue || path.Value.Contains("swagger") || path.Value.Contains("api-docs"))
                 {
                     //非空校验
@@ -54,36 +49,33 @@ namespace Com.GleekFramework.AttributeSdk
                 }
 
                 var exclActionList = NLogMiddlewareExtensions.ExclActionList;
-                if (exclActionList.AnyOf(e => url.ContainsOf(e)))
+                if (exclActionList.AnyOf(url.ContainsOf))
                 {
                     //拦截一些特定日志
                     return;
                 }
 
+                requestBodyStr = await context.Request.GetRequestBody();//请求参数
+                responseBodyStr = await GetResponseBodyJsonStr(context);//响应结果
+                var (request, response) = ConvertObject(requestBodyStr, responseBodyStr);//转换对象
+                serialNo = GetSerialNo(context.Request.Headers, request, response);//流水编号
                 context.Response.OnCompleted(async () =>
                 {
                     await Task.CompletedTask;
                     var totalMilliseconds = (long)(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds;
-                    if (NLogMiddlewareExtensions.Level != null)
+                    NLogProvider.Save(NLogMiddlewareExtensions.Level, new NLogModel()
                     {
-                        NLogProvider.Save(NLogMiddlewareExtensions.Level, new NLogModel()
-                        {
-                            Url = url,
-                            SerialNo = serialNo,
-                            TotalMilliseconds = totalMilliseconds,
-                            Content = @$"请求参数：{requestBodyStr.JsonCompressAndEscape()}，响应结果：{responseBodyStr.JsonCompressAndEscape()}，头部信息：{context.Request.Headers.JsonCompressAndEscape()}",
-                        });
-                    }
-                    else
-                    {
-                        NLogProvider.Trace(@$"请求参数：{requestBodyStr.JsonCompressAndEscape()}，响应结果：{responseBodyStr.JsonCompressAndEscape()}，头部信息：{context.Request.Headers.JsonCompressAndEscape()}", serialNo, url, totalMilliseconds);
-                    }
+                        Url = url,
+                        SerialNo = serialNo,
+                        TotalMilliseconds = totalMilliseconds,
+                        Content = @$"请求参数：{requestBodyStr}，响应结果：{responseBodyStr}，头部信息：{context.Request.Headers.JsonCompressAndEscape()}",
+                    });
                 });
             }
             catch (Exception ex)
             {
                 var totalMilliseconds = (long)(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds;
-                NLogProvider.Error(@$"请求参数：{requestBodyStr.JsonCompressAndEscape()}，响应结果：{responseBodyStr.JsonCompressAndEscape()}，头部信息：{context.Request.Headers.JsonCompressAndEscape()}，错误信息：{ex}", serialNo, url, totalMilliseconds);
+                NLogProvider.Error(@$"请求参数：{requestBodyStr}，响应结果：{responseBodyStr}，头部信息：{context.Request.Headers.JsonCompressAndEscape()}，错误信息：{ex}", serialNo, url, totalMilliseconds);
             }
         }
 
@@ -114,8 +106,8 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         private static (object request, object response) ConvertObject(string requestJson, string responseJson)
         {
-            var request = JsonConvert.DeserializeObject(requestJson);
-            var response = JsonConvert.DeserializeObject(responseJson);
+            var request = requestJson.IsJson() ? JsonConvert.DeserializeObject(requestJson) : null;
+            var response = responseJson.IsJson() ? JsonConvert.DeserializeObject(responseJson) : null;
             return (request, response);
         }
 
