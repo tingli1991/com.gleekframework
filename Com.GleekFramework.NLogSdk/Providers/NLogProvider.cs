@@ -40,7 +40,7 @@ namespace Com.GleekFramework.NLogSdk
         /// <param name="url">接口路径</param>
         /// <param name="totalMilliseconds">程序执行时间(单位：毫秒)</param>
         public static void Info(string content, string serialNo = "", string url = "", long totalMilliseconds = 0)
-            => Save(LogLevel.Warn, new NLogModel() { SerialNo = serialNo, Content = content, Url = url, TotalMilliseconds = totalMilliseconds });
+            => Save(LogLevel.Info, new NLogModel() { SerialNo = serialNo, Content = content, Url = url, TotalMilliseconds = totalMilliseconds });
 
         /// <summary>
         /// 警告日志

@@ -216,6 +216,11 @@
             自定义Kafka消费处理类
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.AppSvc.KafkaCustomerHandler.NLogService">
+            <summary>
+            日志服务
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.AppSvc.KafkaCustomerHandler.ActionKey">
             <summary>
             方法名称
