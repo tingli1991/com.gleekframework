@@ -40,7 +40,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost]
         public async Task TestAsync()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();

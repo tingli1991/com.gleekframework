@@ -1,9 +1,8 @@
-﻿using Com.GleekFramework.ContractSdk;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.KafkaSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.NLogSdk;
-using Newtonsoft.Json;
-using Com.GleekFramework.CommonSdk;
 
 namespace Com.GleekFramework.AppSvc
 {
@@ -27,14 +26,14 @@ namespace Com.GleekFramework.AppSvc
         /// </summary>
         /// <param name="messageBody"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public async Task<ContractResult> ExecuteAsync(MessageBody messageBody)
         {
             var beginTime = DateTime.Now.ToCstTime();
-            var param = messageBody.GetData<StudentParam>();
+            var param = messageBody.GetData<StudentParam>();//请求参数
             var totalMilliseconds = (long)(DateTime.Now.ToCstTime() - beginTime).TotalMicroseconds;//耗时时间
+            var response = new ContractResult().SetSuceccful(messageBody.SerialNo);//相应结果
             NLogService.Info($"请求参数：{param.JsonCompressAndEscape()}", messageBody.SerialNo, messageBody.Headers.GetUrl(), totalMilliseconds);
-            return await Task.FromResult(new ContractResult().SetSuceccful(messageBody.SerialNo));
+            return await Task.FromResult(response);
         }
     }
 }
