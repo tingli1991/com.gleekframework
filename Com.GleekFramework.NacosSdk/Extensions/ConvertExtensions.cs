@@ -103,8 +103,8 @@ namespace Com.GleekFramework.NacosSdk
         /// <param name="token">token</param>
         public static SendHeartbeatRequestParam ToSendHeartbeatRequest(this NacosSettings nacosConf, string serviceName, string token)
         {
-            var serviceConf = nacosConf.ServiceSettings;
-            var addressInfo = nacosConf.ServiceSettings.GetUri();
+            var serviceConf = nacosConf?.ServiceSettings ?? new ServiceSettings();
+            var addressInfo = serviceConf.GetUri();
             var param = new SendHeartbeatRequestParam()
             {
                 Metadata = "",
@@ -136,7 +136,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <returns></returns>
         public static RegisterInstanceRequestParam ToRegisterInstanceRequest(this NacosSettings nacosConf, string serverName, string token)
         {
-            var serviceConf = nacosConf.ServiceSettings;
+            var serviceConf = nacosConf?.ServiceSettings ?? new ServiceSettings();
             Uri rui = serviceConf.GetUri();
             var param = new RegisterInstanceRequestParam()
             {

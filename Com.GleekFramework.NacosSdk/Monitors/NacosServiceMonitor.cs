@@ -37,9 +37,6 @@ namespace Com.GleekFramework.NacosSdk
         {
             try
             {
-                if (nacosConf?.ServiceSettings == null)
-                    return;
-
                 var baseUrl = nacosConf.ServerAddresses.GetServerAddressesUrl();//随机获取服务端配置
                 var token = baseUrl.GetAuthTokenAsync(nacosConf.UserName, nacosConf.Password).Result;//获取授权的token
                 var param = nacosConf.ToRegisterInstanceRequest(serverName, token);
@@ -49,7 +46,7 @@ namespace Com.GleekFramework.NacosSdk
             }
             catch (Exception ex)
             {
-                NLogProvider.Trace($"【Nacos服务实例注册】发生未经处理的异常：{ex}");
+                NLogProvider.Error($"【Nacos服务实例注册】发生未经处理的异常：{ex}");
             }
         }
 
@@ -74,7 +71,7 @@ namespace Com.GleekFramework.NacosSdk
             }
             catch (Exception ex)
             {
-                NLogProvider.Trace($"【Nacos注销服务实例】发生未经处理的异常：{ex}");
+                NLogProvider.Error($"【Nacos注销服务实例】发生未经处理的异常：{ex}");
             }
         }
 
@@ -88,12 +85,7 @@ namespace Com.GleekFramework.NacosSdk
         {
             try
             {
-                if (nacosConf?.ServiceSettings == null)
-                {
-                    return;
-                }
                 var beginTime = DateTime.Now.ToCstTime();//当前时间
-                NLogProvider.Warn($"【心跳时间】{beginTime}");
                 var baseUrl = nacosConf.ServerAddresses.GetServerAddressesUrl();//随机获取服务端配置
                 var token = baseUrl.GetAuthTokenAsync(nacosConf.UserName, nacosConf.Password).Result;//获取授权的token
                 var param = nacosConf.ToSendHeartbeatRequest(serverName, token);
@@ -114,7 +106,7 @@ namespace Com.GleekFramework.NacosSdk
             }
             catch (Exception ex)
             {
-                NLogProvider.Trace($"【Nacos发送心跳间隔】发生未经处理的异常：{ex}");
+                NLogProvider.Error($"【Nacos发送心跳间隔】发生未经处理的异常：{ex}");
             }
         }
     }
