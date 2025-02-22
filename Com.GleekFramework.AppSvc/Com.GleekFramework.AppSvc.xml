@@ -232,7 +232,6 @@
             </summary>
             <param name="messageBody"></param>
             <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:Com.GleekFramework.AppSvc.QueueCustomerHandler">
             <summary>
