@@ -1,4 +1,6 @@
 ﻿using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.MigrationSdk.Filters;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,14 +22,17 @@ namespace Com.GleekFramework.MigrationSdk
         public static IHostBuilder UseMigrations(this IHostBuilder builder, Func<IConfiguration, MigrationOptions> callback)
         {
             var options = callback(AppConfig.Configuration);
-            builder.ConfigureServices(async services =>
+            builder.ConfigureServices(services =>
             {
-                var serviceProvider = options.CreateMigrationProvider();
-                using var scope = serviceProvider.CreateScope();
-                {
-                    await scope.MigrationUpAsync(options);//执行升级脚本迁移
-                    await scope.UpgrationAsync(options);//执行程序升级脚本
-                }
+                services.AddSingleton(provider => callback(AppConfig.Configuration));// 将配置以单例的形式注入到容器中
+                services.AddTransient<IStartupFilter, MigrationFilter>();// 注册自定义的 StartupFilter
+
+                //var serviceProvider = options.CreateMigrationProvider();
+                //using var scope = serviceProvider.CreateScope();
+                //{
+                //    await scope.MigrationUpAsync(options);//执行升级脚本迁移
+                //    await scope.UpgrationAsync(options);//执行程序升级脚本
+                //}
             });
             return builder;
         }

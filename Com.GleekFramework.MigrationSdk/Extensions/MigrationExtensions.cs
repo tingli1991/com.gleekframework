@@ -1,4 +1,6 @@
-﻿using FluentMigrator.Runner;
+﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.NLogSdk;
+using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
@@ -21,7 +23,7 @@ namespace Com.GleekFramework.MigrationSdk
         }
 
         /// <summary>
-        /// 本本升级
+        /// 版本升级
         /// </summary>
         /// <param name="scope"></param>
         /// <param name="options">配置信息</param>

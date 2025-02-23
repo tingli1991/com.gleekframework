@@ -170,7 +170,7 @@
         </member>
         <member name="M:Com.GleekFramework.MigrationSdk.MigrationExtensions.MigrationUpAsync(Microsoft.Extensions.DependencyInjection.IServiceScope,Com.GleekFramework.MigrationSdk.MigrationOptions)">
             <summary>
-            本本升级
+            版本升级
             </summary>
             <param name="scope"></param>
             <param name="options">配置信息</param>
@@ -314,6 +314,34 @@
             获取消息类型列表
             </summary>
             <param name="type">消息类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.Filters.MigrationFilter">
+            <summary>
+            版本升级过滤器
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.Filters.MigrationFilter.MigrationOptions">
+            <summary>
+            迁移配置信息
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.MigrationSdk.Filters.MigrationFilter._tcs">
+            <summary>
+            使用 TaskCompletionSource 创建一个阻塞点
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.Filters.MigrationFilter.#ctor(Com.GleekFramework.MigrationSdk.MigrationOptions)">
+            <summary>
+            通过构造函数注入 MigrationOptions
+            </summary>
+            <param name="migrationOptions">迁移配置信息</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.Filters.MigrationFilter.Configure(System.Action{Microsoft.AspNetCore.Builder.IApplicationBuilder})">
+            <summary>
+            执行配置
+            </summary>
+            <param name="next"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.MigrationHostingExtensions">
