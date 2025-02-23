@@ -24,8 +24,10 @@ namespace Com.GleekFramework.MigrationSdk
             {
                 var serviceProvider = options.CreateMigrationProvider();
                 using var scope = serviceProvider.CreateScope();
-                await scope.MigrationUpAsync(options);//执行升级脚本迁移
-                await scope.UpgrationAsync(options);//执行程序升级脚本
+                {
+                    await scope.MigrationUpAsync(options);//执行升级脚本迁移
+                    await scope.UpgrationAsync(options);//执行程序升级脚本
+                }
             });
             return builder;
         }

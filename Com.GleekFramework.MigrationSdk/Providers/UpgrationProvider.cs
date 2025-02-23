@@ -1,7 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using FluentMigrator;
-using FluentMigrator.Builders.Execute;
-using FluentMigrator.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -30,13 +28,11 @@ namespace Com.GleekFramework.MigrationSdk
             }
 
             var databaseProvider = serviceProvider.GetService<IDatabaseProvider>();
-            var migrationContext = serviceProvider.GetService<IMigrationContext>();
-            var migrationExecute = new ExecuteExpressionRoot(migrationContext);
             var upgrationAttributeList = serviceList.Select(service =>
             {
                 var type = service.GetType();
-                service.Context = migrationContext;
-                service.Execute = migrationExecute;
+                service.ServiceProvider = serviceProvider;
+                service.DatabaseProvider = databaseProvider;
                 var attribute = type.GetCustomAttribute<UpgrationAttribute>() ?? throw new InvalidOperationException(nameof(UpgrationAttribute));
                 return new
                 {
@@ -58,23 +54,15 @@ namespace Com.GleekFramework.MigrationSdk
 
                 await upgrationAttribute.TransactionBehavior.ExecuteAsync(async () =>
                 {
-                    //分批执行数据库脚本语句
                     var executeScripts = await upgrationAttribute.Service.ExecuteScriptsAsync();
-                    if (executeScripts.IsNotNull())
-                    {
-                        var pageScripts = executeScripts.ToPageDictionary();
-                        pageScripts.Values.ForEach(scriptList =>
-                        {
-                            var executeSql = string.Join(';', scriptList = scriptList.Select(e => e.TrimEnd(';')));
-                            upgrationAttribute.Service.Execute.Sql(executeSql);//执行数据库脚本
-                        });
-                    }
+                    databaseProvider.ExecuteScripts(executeScripts);//分批执行数据库脚本语句
 
                     var executeSqlFiles = await upgrationAttribute.Service.ExecuteSqlFilesAsync();
                     if (executeSqlFiles.IsNotNull())
                     {
                         var filePaths = executeSqlFiles.Select(e => Path.Combine(AppContext.BaseDirectory, "Scripts", e));
-                        filePaths.ForEach(path => upgrationAttribute.Service.Execute.Script(path));//运行SQL文件
+                        var executeSqlFileScripts = filePaths.SelectMany(e => File.ReadAllLines(e));//需要执行的Sql文件存放的所有脚本
+                        databaseProvider.ExecuteScripts(executeSqlFileScripts);//分批执行数据库脚本语句
                     }
 
                     await upgrationAttribute.Service.ExecuteAsync();

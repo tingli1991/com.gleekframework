@@ -1,5 +1,4 @@
-﻿using Com.GleekFramework.AutofacSdk;
-using Com.GleekFramework.CommonSdk;
+﻿using Com.GleekFramework.CommonSdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;

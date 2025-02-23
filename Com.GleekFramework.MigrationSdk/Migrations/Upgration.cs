@@ -1,5 +1,4 @@
-﻿using FluentMigrator.Builders.Execute;
-using FluentMigrator.Infrastructure;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,14 +10,14 @@ namespace Com.GleekFramework.MigrationSdk
     public abstract class Upgration : IUpgration
     {
         /// <summary>
-        /// 版本变更上下文
+        /// 服务实现类
         /// </summary>
-        public IMigrationContext Context { get; set; }
+        public IServiceProvider ServiceProvider { get; set; }
 
         /// <summary>
-        /// 数据库脚本执行
+        /// 数据库实现类
         /// </summary>
-        public IExecuteExpressionRoot Execute { get; set; }
+        public IDatabaseProvider DatabaseProvider { get; set; }
 
         /// <summary>
         /// 升级过程中需要执行的代码逻辑

@@ -23,6 +23,7 @@ namespace Com.GleekFramework.MigrationSdk
             {
                 return;
             }
+
             await UpgrationProvider.ExecuteAsync(scope.ServiceProvider);
         }
 

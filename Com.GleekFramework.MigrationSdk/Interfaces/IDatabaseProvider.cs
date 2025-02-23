@@ -43,6 +43,14 @@ namespace Com.GleekFramework.MigrationSdk
         void SaveVersion(IEnumerable<VersionInfo> versionList);
 
         /// <summary>
+        /// 执行数据库脚本（不带事务处理）
+        /// </summary>
+        /// <param name="scripts">数据库脚本集合</param>
+        /// <param name="pageSize">分页大小</param>
+        /// <returns></returns>
+        bool ExecuteScripts(IEnumerable<string> scripts, int pageSize = 2000);
+
+        /// <summary>
         /// 获取数据库索引摘要信息
         /// </summary>
         /// <param name="databaseName">数据库名称</param>
