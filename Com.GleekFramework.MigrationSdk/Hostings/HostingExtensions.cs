@@ -26,13 +26,6 @@ namespace Com.GleekFramework.MigrationSdk
             {
                 services.AddSingleton(provider => callback(AppConfig.Configuration));// 将配置以单例的形式注入到容器中
                 services.AddTransient<IStartupFilter, MigrationFilter>();// 注册自定义的 StartupFilter
-
-                //var serviceProvider = options.CreateMigrationProvider();
-                //using var scope = serviceProvider.CreateScope();
-                //{
-                //    await scope.MigrationUpAsync(options);//执行升级脚本迁移
-                //    await scope.UpgrationAsync(options);//执行程序升级脚本
-                //}
             });
             return builder;
         }
