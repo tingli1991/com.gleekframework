@@ -21,7 +21,6 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public static IHostBuilder UseMigrations(this IHostBuilder builder, Func<IConfiguration, MigrationOptions> callback)
         {
-            var options = callback(AppConfig.Configuration);
             builder.ConfigureServices(services =>
             {
                 services.AddSingleton(provider => callback(AppConfig.Configuration));// 将配置以单例的形式注入到容器中

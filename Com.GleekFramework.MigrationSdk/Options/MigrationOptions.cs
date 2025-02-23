@@ -25,6 +25,6 @@ namespace Com.GleekFramework.MigrationSdk
         /// <summary>
         /// 版本升级开关
         /// </summary>
-        public bool UpgrationSwitch => EnvironmentProvider.GetMigrationSwitch();
+        public bool UpgrationSwitch => EnvironmentProvider.GetUpgrationSwitch();
     }
 }
