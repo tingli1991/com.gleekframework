@@ -15,7 +15,7 @@
         /// </summary>
         public const string WorkCustomerQueue = "com.gleekframework.customer.queue.work";
 
-        // <summary>
+        /// <summary>
         /// 自定义Subscribe交换名称
         /// </summary>
         public const string WorkCustomerExchangeName = "com.gleekframework.customer.exchange.test";
