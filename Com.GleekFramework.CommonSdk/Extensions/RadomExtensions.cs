@@ -17,6 +17,30 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// LONG类型随机
         /// </summary>
+        /// <param name="source">扩展的对象</param>
+        /// <param name="minValue">最小值</param>
+        /// <param name="maxValue">最大值</param>
+        /// <returns></returns>
+        public static int NextInt(this object source, int minValue, int maxValue)
+        {
+            return Random.Next(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// LONG类型随机
+        /// </summary>
+        /// <param name="source">扩展的对象</param>
+        /// <param name="minValue">最小值</param>
+        /// <param name="maxValue">最大值</param>
+        /// <returns></returns>
+        public static long NextLong(this object source, long minValue, long maxValue)
+        {
+            return Random.NextLong(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// LONG类型随机
+        /// </summary>
         /// <param name="random">扩展的对象</param>
         /// <param name="minValue">最小值</param>
         /// <param name="maxValue">最大值</param>

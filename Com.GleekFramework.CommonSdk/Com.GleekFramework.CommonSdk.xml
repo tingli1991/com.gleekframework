@@ -1098,6 +1098,24 @@
             随机因子
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.NextInt(System.Object,System.Int32,System.Int32)">
+            <summary>
+            LONG类型随机
+            </summary>
+            <param name="source">扩展的对象</param>
+            <param name="minValue">最小值</param>
+            <param name="maxValue">最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.NextLong(System.Object,System.Int64,System.Int64)">
+            <summary>
+            LONG类型随机
+            </summary>
+            <param name="source">扩展的对象</param>
+            <param name="minValue">最小值</param>
+            <param name="maxValue">最大值</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.RadomExtensions.NextLong(System.Random,System.Int64,System.Int64)">
             <summary>
             LONG类型随机
