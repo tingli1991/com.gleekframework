@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 
 namespace Com.GleekFramework.AttributeSdk
 {
@@ -8,14 +9,24 @@ namespace Com.GleekFramework.AttributeSdk
     public static class UserAuthExtensions
     {
         /// <summary>
+        /// 默认的用户授权键
+        /// </summary>
+        private const string DEFAULT_USER_AUTH_KEY = "AUTHORIZATION_KEY";
+
+        /// <summary>
         /// 设置授权对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="httpContext"></param>
         /// <param name="userAuthKey"></param>
         /// <param name="userAuthInfo"></param>
-        public static void SetUserAuth<T>(this HttpContext httpContext, string userAuthKey, T userAuthInfo)
+        public static void SetUserAuth<T>(this HttpContext httpContext, string userAuthKey = DEFAULT_USER_AUTH_KEY, T userAuthInfo = default)
         {
+            if (userAuthInfo == null)
+            {
+                return;
+            }
+
             if (httpContext.Items.ContainsKey(userAuthKey))
             {
                 //修改
@@ -35,7 +46,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <param name="contextAccessor"></param>
         /// <param name="userAuthKey"></param>
         /// <returns></returns>
-        public static T ToUserAuth<T>(this IHttpContextAccessor contextAccessor, string userAuthKey)
+        public static T ToUserAuth<T>(this IHttpContextAccessor contextAccessor, string userAuthKey = DEFAULT_USER_AUTH_KEY)
         {
             T result = default;
             var httpContext = contextAccessor.HttpContext;//当前的Http请求上下文
