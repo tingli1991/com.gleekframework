@@ -109,6 +109,13 @@
             默认的用户授权键
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            从上下文获取访问令牌
+            </summary>
+            <param name="contextAccessor">上下文</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             从上下文获取访问令牌
