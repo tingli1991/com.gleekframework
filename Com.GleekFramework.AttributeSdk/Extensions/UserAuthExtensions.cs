@@ -23,6 +23,16 @@ namespace Com.GleekFramework.AttributeSdk
         /// <summary>
         /// 从上下文获取访问令牌
         /// </summary>
+        /// <param name="contextAccessor">上下文</param>
+        /// <returns></returns>
+        public static string GetAccessToken(this IHttpContextAccessor contextAccessor)
+        {
+            return contextAccessor.HttpContext.GetAccessToken();
+        }
+
+        /// <summary>
+        /// 从上下文获取访问令牌
+        /// </summary>
         /// <param name="httpContext">上下文</param>
         /// <returns></returns>
         public static string GetAccessToken(this HttpContext httpContext)
