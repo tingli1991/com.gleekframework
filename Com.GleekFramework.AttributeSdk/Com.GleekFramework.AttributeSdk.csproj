@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
   </ItemGroup>
 </Project>

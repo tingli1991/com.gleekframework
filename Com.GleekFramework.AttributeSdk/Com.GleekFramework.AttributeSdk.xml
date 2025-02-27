@@ -99,21 +99,33 @@
             用户认证拓展类
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.START_WITH_TOKEN_KEY">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.DEFAULT_USER_AUTH_KEY">
             <summary>
             默认的用户授权键
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.SetUserAuth``1(Microsoft.AspNetCore.Http.HttpContext,System.String,``0)">
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            从上下文获取访问令牌
+            </summary>
+            <param name="httpContext">上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.SetUserAuth``1(Microsoft.AspNetCore.Http.HttpContext,``0,System.String)">
             <summary>
             设置授权对象
             </summary>
             <typeparam name="T"></typeparam>
             <param name="httpContext"></param>
-            <param name="userAuthKey"></param>
             <param name="userAuthInfo"></param>
+            <param name="userAuthKey"></param>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.ToUserAuth``1(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String)">
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetUserAuth``1(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String)">
             <summary>
             转换授权对象
             </summary>
