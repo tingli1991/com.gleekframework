@@ -94,6 +94,29 @@
             <param name="args"></param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.UserAuthExtensions">
+            <summary>
+            用户认证拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.SetUserAuth``1(Microsoft.AspNetCore.Http.HttpContext,System.String,``0)">
+            <summary>
+            设置授权对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="httpContext"></param>
+            <param name="userAuthKey"></param>
+            <param name="userAuthInfo"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.ToUserAuth``1(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String)">
+            <summary>
+            转换授权对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contextAccessor"></param>
+            <param name="userAuthKey"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions">
             <summary>
             Web主题拓展类

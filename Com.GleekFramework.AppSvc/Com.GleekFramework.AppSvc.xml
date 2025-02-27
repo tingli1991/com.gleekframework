@@ -455,16 +455,5 @@
             </summary>
             <param name="app"></param>
         </member>
-        <member name="T:Com.GleekFramework.AppSvc.TestService">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.AppSvc.TestService.TestAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
     </members>
 </doc>

@@ -89,7 +89,11 @@
             自定义Work队列名称
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:Com.GleekFramework.Models.RabbitQueueConstant.WorkCustomerExchangeName" -->
+        <member name="F:Com.GleekFramework.Models.RabbitQueueConstant.WorkCustomerExchangeName">
+            <summary>
+            自定义Subscribe交换名称
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.AreaLevel">
             <summary>
             地区级别
