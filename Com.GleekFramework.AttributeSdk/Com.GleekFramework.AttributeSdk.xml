@@ -99,6 +99,11 @@
             用户认证拓展类
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.DEFAULT_USER_AUTH_KEY">
+            <summary>
+            默认的用户授权键
+            </summary>
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.SetUserAuth``1(Microsoft.AspNetCore.Http.HttpContext,System.String,``0)">
             <summary>
             设置授权对象
