@@ -278,6 +278,91 @@
             <param name="httpContext">http上下文</param>
             <returns>屏蔽完非中横线和大写字母的头部信息结果</returns>
         </member>
+        <member name="T:Com.GleekFramework.HttpSdk.HttpContextExtensions">
+            <summary>
+            Http请求参数拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetParamterValue(Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.String)">
+            <summary>
+            获取参数值
+            </summary>
+            <param name="context">当前请求的上下文</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetHeaderValue(Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.String)">
+            <summary>
+            获取Query参数值
+            </summary>
+            <param name="context">当前请求的上下文</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetHeaderValue(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            获取Query参数值
+            </summary>
+            <param name="context">当前请求的上下文</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetQueryValue(Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.String)">
+            <summary>
+            获取Query参数值
+            </summary>
+            <param name="context">当前请求的上下文</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetQueryValue(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            获取Query参数值
+            </summary>
+            <param name="context">当前请求的上下文</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetRouteValue(Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.String)">
+            <summary>
+            获取路由参数值
+            </summary>
+            <param name="context"></param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetRouteValue(Microsoft.AspNetCore.Mvc.ActionContext,System.String)">
+            <summary>
+            获取路由参数值
+            </summary>
+            <param name="context"></param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetRouteValue(Microsoft.AspNetCore.Routing.RouteData,System.String)">
+            <summary>
+            获取路由参数值
+            </summary>
+            <param name="routeData">路由参数</param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetBodyValue(Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.String)">
+            <summary>
+            获取Body参数值
+            </summary>
+            <param name="context"></param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.HttpSdk.HttpContextExtensions.GetBodyValue(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            获取Body参数值
+            </summary>
+            <param name="context"></param>
+            <param name="propertyName">参数名称</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.HttpSdk.SerializeExtensions">
             <summary>
             序列化拓展类

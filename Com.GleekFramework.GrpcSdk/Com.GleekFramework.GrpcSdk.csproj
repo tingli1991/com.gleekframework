@@ -8,7 +8,7 @@
     <Company>org.gleekframework</Company>
     <Description>Grpc拓展工具包</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.GrpcSdk.xml</DocumentationFile>
