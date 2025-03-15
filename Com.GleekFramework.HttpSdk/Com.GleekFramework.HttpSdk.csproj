@@ -8,7 +8,7 @@
     <Company>org.gleekframework</Company>
     <Description>Http拓展工具包</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.HttpSdk.xml</DocumentationFile>
