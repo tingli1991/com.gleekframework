@@ -70,6 +70,14 @@
             通用返回模型
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.ToResultAsync``1(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            转换成数据返回模型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.IsSuceccful(Com.GleekFramework.ContractSdk.ContractResult)">
             <summary>
             检查是否成功

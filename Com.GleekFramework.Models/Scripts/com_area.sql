@@ -1,2 +1,2 @@
-INSERT INTO `com_area`(`id`, `code`, `name`, `level`, `lng`, `lat`, `parent_id`, `id_deleted`, `update_time`, `create_time`) VALUES ('1', '110000', '北京市', '1', '116.407394', '39.904211', '-1', '0', '2024/7/4 22:35:51', '2024/7/4 22:35:51');
-INSERT INTO `com_area`(`id`, `code`, `name`, `level`, `lng`, `lat`, `parent_id`, `id_deleted`, `update_time`, `create_time`) VALUES ('2', '110100', '北京城区', '2', '116.407394', '39.904211', '1', '0', '2024/7/4 22:35:51', '2024/7/4 22:35:51');
+INSERT INTO `com_area`(`id`, `code`, `name`, `level`, `lng`, `lat`, `parent_id`, `is_deleted`, `update_time`, `create_time`) VALUES ('1', '110000', '北京市', '1', '116.407394', '39.904211', '-1', '0', '2024/7/4 22:35:51', '2024/7/4 22:35:51');
+INSERT INTO `com_area`(`id`, `code`, `name`, `level`, `lng`, `lat`, `parent_id`, `is_deleted`, `update_time`, `create_time`) VALUES ('2', '110100', '北京城区', '2', '116.407394', '39.904211', '1', '0', '2024/7/4 22:35:51', '2024/7/4 22:35:51');

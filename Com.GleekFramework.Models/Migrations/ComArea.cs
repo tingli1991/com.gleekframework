@@ -99,8 +99,8 @@ namespace Com.GleekFramework.Models
         /// </summary>
         [ProtoMember(9)]
         [Comment("是否删除")]
-        [Column("id_deleted")]
-        [JsonProperty("id_deleted"), JsonPropertyName("id_deleted")]
+        [Column("is_deleted")]
+        [JsonProperty("is_deleted"), JsonPropertyName("is_deleted")]
         public bool IsDeleted { get; set; }
 
         /// <summary>

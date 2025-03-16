@@ -1,5 +1,8 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Com.GleekFramework.ContractSdk
 {
@@ -8,6 +11,18 @@ namespace Com.GleekFramework.ContractSdk
     /// </summary>
     public static partial class ResultExtensions
     {
+        /// <summary>
+        /// 转换成数据返回模型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static async Task<ContractResult<IEnumerable<T>>> ToResultAsync<T>(this Task<IEnumerable<T>> source)
+        {
+            var dataList = await source;
+            return new ContractResult<IEnumerable<T>>().SetSuceccful(dataList);
+        }
+
         /// <summary>
         /// 检查是否成功
         /// </summary>
