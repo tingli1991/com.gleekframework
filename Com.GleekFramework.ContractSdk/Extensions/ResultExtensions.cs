@@ -1,6 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +10,30 @@ namespace Com.GleekFramework.ContractSdk
     /// </summary>
     public static partial class ResultExtensions
     {
+        /// <summary>
+        /// 转换成数据返回模型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static async Task<ContractResult<PageResult<T>>> ToResultAsync<T>(this Task<PageResult<T>> source)
+        {
+            var pageResult = await source;
+            return new ContractResult<PageResult<T>>().SetSuceccful(pageResult);
+        }
+
+        /// <summary>
+        /// 转换成数据返回模型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static async Task<ContractResult<PageDataResult<T>>> ToResultAsync<T>(this Task<PageDataResult<T>> source)
+        {
+            var pageResult = await source;
+            return new ContractResult<PageDataResult<T>>().SetSuceccful(pageResult);
+        }
+
         /// <summary>
         /// 转换成数据返回模型
         /// </summary>
