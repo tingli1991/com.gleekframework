@@ -14,13 +14,13 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [FromQuery(Name = "next_id")]
         [JsonProperty("next_id"), JsonPropertyName("next_id")]
-        public int NextId { get; set; }
+        public long? NextId { get; set; }
 
         /// <summary>
         /// 分页大小
         /// </summary>
         [FromQuery(Name = "page_size")]
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = 20;
     }
 }
