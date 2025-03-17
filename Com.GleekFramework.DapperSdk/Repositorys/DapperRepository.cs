@@ -145,7 +145,7 @@ namespace Com.GleekFramework.DapperSdk
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 TotalCount = conn.Count<T>(param, null, timeoutSeconds),
-                PageList = conn.GetPage<T>(param, (IList<ISort>)sortList, pageIndex, pageSize, null, timeoutSeconds)
+                Results = conn.GetPage<T>(param, (IList<ISort>)sortList, pageIndex, pageSize, null, timeoutSeconds)
             };
         }
 
@@ -167,7 +167,7 @@ namespace Com.GleekFramework.DapperSdk
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 TotalCount = await conn.CountAsync<T>(param, null, timeoutSeconds),
-                PageList = await conn.GetPageAsync<T>(param, (IList<ISort>)sortList, pageIndex, pageSize, null, timeoutSeconds)
+                Results = await conn.GetPageAsync<T>(param, (IList<ISort>)sortList, pageIndex, pageSize, null, timeoutSeconds)
             };
         }
 

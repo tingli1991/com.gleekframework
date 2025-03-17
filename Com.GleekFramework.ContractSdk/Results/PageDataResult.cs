@@ -11,6 +11,12 @@ namespace Com.GleekFramework.ContractSdk
     public partial class PageDataResult<T>
     {
         /// <summary>
+        /// 分页列表
+        /// </summary>
+        [JsonProperty("results"), JsonPropertyName("results")]
+        public IEnumerable<T> Results { get; set; }
+
+        /// <summary>
         /// 页码
         /// </summary>
         [JsonProperty("page_index"), JsonPropertyName("page_index")]
@@ -27,12 +33,6 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [JsonProperty("total_count"), JsonPropertyName("total_count")]
         public int TotalCount { get; set; }
-
-        /// <summary>
-        /// 分页列表
-        /// </summary>
-        [JsonProperty("page_list"), JsonPropertyName("page_list")]
-        public IEnumerable<T> PageList { get; set; }
 
         /// <summary>
         /// 是否包含下一页

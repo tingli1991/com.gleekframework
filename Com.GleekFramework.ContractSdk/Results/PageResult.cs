@@ -12,8 +12,8 @@ namespace Com.GleekFramework.ContractSdk
         /// <summary>
         /// 最大ID
         /// </summary>
-        [JsonProperty("max_id"), JsonPropertyName("max_id")]
-        public int MaxId { get; set; }
+        [JsonProperty("next_id"), JsonPropertyName("next_id")]
+        public int NextId { get; set; }
 
         /// <summary>
         /// 分页大小
@@ -24,7 +24,7 @@ namespace Com.GleekFramework.ContractSdk
         /// <summary>
         /// 分页列表
         /// </summary>
-        [JsonProperty("page_list"), JsonPropertyName("page_list")]
+        [JsonProperty("results"), JsonPropertyName("results")]
         public IEnumerable<T> PageList { get; set; }
     }
 }

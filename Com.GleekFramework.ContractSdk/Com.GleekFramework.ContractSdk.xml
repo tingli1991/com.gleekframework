@@ -283,6 +283,11 @@
             分页数据
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.Results">
+            <summary>
+            分页列表
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageIndex">
             <summary>
             页码
@@ -296,11 +301,6 @@
         <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.TotalCount">
             <summary>
             总页数
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.PageList">
-            <summary>
-            分页列表
             </summary>
         </member>
         <member name="P:Com.GleekFramework.ContractSdk.PageDataResult`1.HasNext">
@@ -323,7 +323,7 @@
             分页返回结果
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.MaxId">
+        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.NextId">
             <summary>
             最大ID
             </summary>
