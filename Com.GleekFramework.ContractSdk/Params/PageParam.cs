@@ -1,30 +1,26 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace Com.GleekFramework.ContractSdk
 {
     /// <summary>
-    /// 分页返回结果
+    /// 分页请求参数
     /// </summary>
-    public partial class PageResult<T>
+    public class PageParam
     {
         /// <summary>
-        /// 最大ID
+        /// 最大Id
         /// </summary>
+        [FromQuery(Name = "next_id")]
         [JsonProperty("next_id"), JsonPropertyName("next_id")]
         public int NextId { get; set; }
 
         /// <summary>
         /// 分页大小
         /// </summary>
+        [FromQuery(Name = "page_size")]
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
         public int PageSize { get; set; }
-
-        /// <summary>
-        /// 分页列表
-        /// </summary>
-        [JsonProperty("results"), JsonPropertyName("results")]
-        public IEnumerable<T> Results { get; set; }
     }
 }

@@ -187,6 +187,36 @@
             数据详情
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.ContractSdk.PageDataParam">
+            <summary>
+            分页数据请求参数
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataParam.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageDataParam.PageSize">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.PageParam">
+            <summary>
+            分页请求参数
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageParam.NextId">
+            <summary>
+            最大Id
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.PageParam.PageSize">
+            <summary>
+            分页大小
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ContractSdk.SnowflakeProvider">
             <summary>
             雪花算法实现类
@@ -333,7 +363,7 @@
             分页大小
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.PageList">
+        <member name="P:Com.GleekFramework.ContractSdk.PageResult`1.Results">
             <summary>
             分页列表
             </summary>
