@@ -1,23 +1,22 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.MigrationSdk.Providers;
 using Dapper;
-using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Com.GleekFramework.MigrationSdk
 {
     /// <summary>
-    /// MsSQL数据库实现类
+    /// SQLite数据库实现类
     /// </summary>
-    public class MsSQLDatabaseProvider : MDatabaseProvider
+    public class SQLiteDatabaseProvider : MDatabaseProvider
     {
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="connectionString">数据库链接字符串</param>
-        public MsSQLDatabaseProvider(string connectionString) : base(connectionString) { }
+        public SQLiteDatabaseProvider(string connectionString) : base(connectionString) { }
 
         /// <summary>
         /// 获取数据库连接字符串
@@ -25,7 +24,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <returns></returns>
         public override IDbConnection GetConnection()
         {
-            return new SqlConnection(ConnectionString);
+            return new SqliteConnection(ConnectionString);
         }
 
         /// <summary>
@@ -33,14 +32,8 @@ namespace Com.GleekFramework.MigrationSdk
         /// </summary>
         public override void InitializeDatabase()
         {
-            var databaseName = ConnectionString.ExtractDatabaseName();
-            var connectionString = ConnectionString.ClearDatabaseName();
-            using var connection = new MySqlConnection(connectionString);
-            var query = $@"IF NOT EXISTS (SELECT name FROM sys.databases WHERE name=@Name)
-            CREATE DATABASE {databaseName}";
-            connection.Execute(query, new { Name = databaseName });
+            //不需要单独创建，GetConnection的时候会自动创建数据库
         }
-
 
         /// <summary>
         /// 获取数据库名称
@@ -63,10 +56,10 @@ namespace Com.GleekFramework.MigrationSdk
                 return new List<IndexSchemaModel>();
             }
 
-            var sql = @"SELECT t.name AS 'TableName', ind.name AS 'IndexName'
-            FROM sys.indexes ind
-            INNER JOIN sys.tables t ON ind.object_id = t.object_id
-            WHERE t.name = @DatabaseName;";
+            var sql = @"select m.name as TableName,i.name as IndexName
+            from sqlite_master AS m
+            join pragma_index_list(m.name) AS i
+            where m.type = 'table' and m.name not like 'sqlite_%' and i.origin != 'pk';";
             using var db = GetConnection();
             return db.Query<IndexSchemaModel>(sql, new { DatabaseName = databaseName });
         }
@@ -83,9 +76,10 @@ namespace Com.GleekFramework.MigrationSdk
                 return new List<TableSchemaModel>();
             }
 
-            var sql = @"SELECT TABLE_NAME AS 'TableName', COLUMN_NAME AS 'ColumnName'
-            FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_CATALOG = @DatabaseName;";
+            var sql = @"select m.name as TableName,p.name as ColumnName
+            from sqlite_master as m
+            join pragma_table_info(m.name) as p
+            where m.type = 'table' and m.name not like 'sqlite_%';";
             using var db = GetConnection();
             return db.Query<TableSchemaModel>(sql, new { DatabaseName = databaseName });
         }

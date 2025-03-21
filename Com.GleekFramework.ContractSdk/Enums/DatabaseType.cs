@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Com.GleekFramework.MigrationSdk
+namespace Com.GleekFramework.ContractSdk
 {
     /// <summary>
     /// 数据库类型枚举
@@ -25,6 +25,12 @@ namespace Com.GleekFramework.MigrationSdk
         /// PgSQL数据库
         /// </summary>
         [Description("PgSQL数据库")]
-        PgSQL = 30
+        PgSQL = 30,
+
+        /// <summary>
+        /// SQLite数据库
+        /// </summary>
+        [Description("SQLite数据库")]
+        SQLite = 40,
     }
 }

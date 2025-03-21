@@ -1,5 +1,6 @@
 ﻿using Com.GleekFramework.AutofacSdk;
-using MySql.Data.MySqlClient;
+using Com.GleekFramework.ContractSdk;
+using MySqlConnector;
 using System.Data;
 
 namespace Com.GleekFramework.DapperSdk
@@ -9,6 +10,11 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public partial class MySqlRepository : DapperRepository, IBaseAutofac
     {
+        /// <summary>
+        /// MySQL
+        /// </summary>
+        public override DatabaseType DatabaseType => DatabaseType.MySQL;
+
         /// <summary>
         /// 配置文件名称
         /// </summary>

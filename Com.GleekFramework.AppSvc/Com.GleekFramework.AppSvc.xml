@@ -76,6 +76,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.MySqlController">
+            <summary>
+            MySQL测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.MySqlController.ComAreaRepository">
+            <summary>
+            区域仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.MySqlController.GetPageListAsync(Com.GleekFramework.Models.ComAreaPageParam)">
+            <summary>
+            获取分页列表
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.QueueController">
             <summary>
             本地队列测试控制器
@@ -426,6 +443,33 @@
             </summary>
             <param name="args"></param>
             <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository">
+            <summary>
+            区域仓储
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.DefaultRepository">
+            <summary>
+            默认测试仓储(读写)
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.GetPageListAsync(Com.GleekFramework.Models.ComAreaPageParam)">
+            <summary>
+            获取分页列表
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.DefaultRepository">
+            <summary>
+            默认测试仓储(读写)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.DefaultRepository.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
         </member>
         <member name="T:Com.GleekFramework.AppSvc.MongoOnlyRepository`1">
             <summary>

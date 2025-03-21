@@ -8,7 +8,7 @@ namespace Com.GleekFramework.MigrationSdk.Providers
     /// <summary>
     /// 基础数据库实现类
     /// </summary>
-    public abstract class BaseDatabaseProvider : IDatabaseProvider
+    public abstract class MDatabaseProvider : IDatabaseProvider
     {
         /// <summary>
         /// 数据库连接字符串
@@ -19,7 +19,7 @@ namespace Com.GleekFramework.MigrationSdk.Providers
         /// 构造函数
         /// </summary>
         /// <param name="connectionString"></param>
-        public BaseDatabaseProvider(string connectionString)
+        public MDatabaseProvider(string connectionString)
         {
             ConnectionString = connectionString;
         }

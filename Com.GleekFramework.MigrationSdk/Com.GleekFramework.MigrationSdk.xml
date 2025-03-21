@@ -84,26 +84,6 @@
             基础列
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.MigrationSdk.DatabaseType">
-            <summary>
-            数据库类型枚举
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.MsSQL">
-            <summary>
-            MsSQL数据库
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.MySQL">
-            <summary>
-            MySQL数据库
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.MigrationSdk.DatabaseType.PgSQL">
-            <summary>
-            PgSQL数据库
-            </summary>
-        </member>
         <member name="T:Com.GleekFramework.MigrationSdk.ColumnExtensions">
             <summary>
             字段列的拓展类ss
@@ -140,7 +120,7 @@
             数据库实现拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.DbProviderExtensions.AddIMigrationRunner(FluentMigrator.Runner.IMigrationRunnerBuilder,Com.GleekFramework.MigrationSdk.DatabaseType)">
+        <member name="M:Com.GleekFramework.MigrationSdk.DbProviderExtensions.AddIMigrationRunner(FluentMigrator.Runner.IMigrationRunnerBuilder,Com.GleekFramework.ContractSdk.DatabaseType)">
             <summary>
             注入迁移运行时的数据库类型
             </summary>
@@ -581,66 +561,66 @@
             版本升级开关
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider">
+        <member name="T:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider">
             <summary>
             基础数据库实现类
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.ConnectionString">
+        <member name="P:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.ConnectionString">
             <summary>
             数据库连接字符串
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.#ctor(System.String)">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.#ctor(System.String)">
             <summary>
             构造函数
             </summary>
             <param name="connectionString"></param>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.GetDatabaseName">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.GetDatabaseName">
             <summary>
             获取数据库名称
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.InitializeDatabase">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.InitializeDatabase">
             <summary>
             初始化数据库
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.GetConnection">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.GetConnection">
             <summary>
             获取数据库连接
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.GetIndexSchemaList(System.String)">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.GetIndexSchemaList(System.String)">
             <summary>
             获取数据库索引摘要信息
             </summary>
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.GetTableSchemaList(System.String)">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.GetTableSchemaList(System.String)">
             <summary>
             获取表的摘要信息
             </summary>
             <param name="databaseName">数据库名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.GetExistsVersionList">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.GetExistsVersionList">
             <summary>
             获取已存在的版本号集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.SaveVersion(System.Collections.Generic.IEnumerable{Com.GleekFramework.MigrationSdk.VersionInfo})">
             <summary>
             保存版本信息
             </summary>
             <param name="versionList">版本信息列表</param>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.ExecuteScripts(System.Collections.Generic.IEnumerable{System.String},System.Int32)">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.ExecuteScripts(System.Collections.Generic.IEnumerable{System.String},System.Int32)">
             <summary>
             执行数据库脚本（不带事务处理）
             </summary>
@@ -648,7 +628,7 @@
             <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.Providers.BaseDatabaseProvider.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32)">
+        <member name="M:Com.GleekFramework.MigrationSdk.Providers.MDatabaseProvider.Execute``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
             数据库操作执行方法（不带事务处理）
             </summary>
@@ -812,6 +792,48 @@
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.MigrationSdk.PgSQLDatabaseProvider.GetTableSchemaList(System.String)">
+            <summary>
+            获取表的摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider">
+            <summary>
+            SQLite数据库实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString">数据库链接字符串</param>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.GetConnection">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.InitializeDatabase">
+            <summary>
+            初始化数据库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.GetIndexSchemaList(System.String)">
+            <summary>
+            获取数据库索引摘要信息
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MigrationSdk.SQLiteDatabaseProvider.GetTableSchemaList(System.String)">
             <summary>
             获取表的摘要信息
             </summary>

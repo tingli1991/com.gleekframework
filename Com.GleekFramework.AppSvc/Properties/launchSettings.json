@@ -3,7 +3,7 @@
     "Com.GleekFramework.AppSvc": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:51033;http://localhost:51035",
+      "applicationUrl": "http://localhost:8081;",
       "environmentVariables": {
         "ENV": "dev", //环境
         "PORT": "8081", //主机的端口配置

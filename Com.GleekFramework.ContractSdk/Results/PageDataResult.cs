@@ -20,19 +20,19 @@ namespace Com.GleekFramework.ContractSdk
         /// 页码
         /// </summary>
         [JsonProperty("page_index"), JsonPropertyName("page_index")]
-        public int PageIndex { get; set; }
+        public long PageIndex { get; set; }
 
         /// <summary>
         /// 分页大小
         /// </summary>
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
-        public int PageSize { get; set; }
+        public long PageSize { get; set; }
 
         /// <summary>
         /// 总页数
         /// </summary>
         [JsonProperty("total_count"), JsonPropertyName("total_count")]
-        public int TotalCount { get; set; }
+        public long TotalCount { get; set; }
 
         /// <summary>
         /// 是否包含下一页

@@ -7,8 +7,8 @@
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
     <Description>基础开发工具包</Description>
+	<TargetFramework>net8.0</TargetFramework>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.CommonSdk.xml</DocumentationFile>

@@ -6,27 +6,30 @@
     <IsPackable>true</IsPackable>
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
+	<TargetFramework>net8.0</TargetFramework>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Description>版本迁移拓展工具包</Description>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.MigrationSdk.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Npgsql" Version="8.0.2" />
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
-    <PackageReference Include="MySqlConnector" Version="2.3.6" />
-    <PackageReference Include="FluentMigrator" Version="5.2.0" />
-    <PackageReference Include="FluentMigrator.Runner" Version="5.2.0" />
-    <PackageReference Include="FluentMigrator.Runner.MySql" Version="5.2.0" />
+    <PackageReference Include="Npgsql" Version="8.0.6" />
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="MySql.Data" Version="9.2.0" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+    <PackageReference Include="FluentMigrator" Version="7.0.0" />
+    <PackageReference Include="FluentMigrator.Runner" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
+    <PackageReference Include="FluentMigrator.Runner.MySql" Version="7.0.0" />
+    <PackageReference Include="FluentMigrator.Runner.SQLite" Version="7.0.0" />
+    <PackageReference Include="FluentMigrator.Runner.Postgres" Version="7.0.0" />
+    <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
   </ItemGroup>
 </Project>

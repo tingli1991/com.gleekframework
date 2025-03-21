@@ -17,7 +17,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
         {
-            return first.AndAlso(second, Expression.AndAlso);
+            return first.Combine(second, Expression.AndAlso);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Com.GleekFramework.CommonSdk
         /// <returns></returns>
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
         {
-            return first.AndAlso(second, Expression.OrElse);
+            return first.Combine(second, Expression.OrElse);
         }
 
         /// <summary>
@@ -40,19 +40,26 @@ namespace Com.GleekFramework.CommonSdk
         /// <param name="expr2"></param>
         /// <param name="func"></param>
         /// <returns></returns>
-        private static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> expr1, Expression<Func<T, bool>> expr2, Func<Expression, Expression, BinaryExpression> func)
+        private static Expression<Func<T, bool>> Combine<T>(this Expression<Func<T, bool>> expr1, Expression<Func<T, bool>> expr2, Func<Expression, Expression, BinaryExpression> func)
         {
+
             var parameter = Expression.Parameter(typeof(T));
+
+            //重写表达式中的参数
             var leftVisitor = new ReplaceExpressionVisitor(expr1.Parameters[0], parameter);
             var left = leftVisitor.Visit(expr1.Body);
+
+            //重写表达式中的参数
             var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
             var right = rightVisitor.Visit(expr2.Body);
+
+
             return Expression.Lambda<Func<T, bool>>(func(left, right), parameter);
         }
     }
 
     /// <summary>
-    /// 
+    /// 表达式参数替换访问器
     /// </summary>
     internal class ReplaceExpressionVisitor : ExpressionVisitor
     {

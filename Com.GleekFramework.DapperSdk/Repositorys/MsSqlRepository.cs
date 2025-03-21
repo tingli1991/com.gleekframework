@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ContractSdk;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -9,6 +10,11 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public partial class MsSqlRepository : DapperRepository, IBaseAutofac
     {
+        /// <summary>
+        /// MsSQL
+        /// </summary>
+        public override DatabaseType DatabaseType => DatabaseType.MsSQL;
+
         /// <summary>
         /// 配置文件名称
         /// </summary>

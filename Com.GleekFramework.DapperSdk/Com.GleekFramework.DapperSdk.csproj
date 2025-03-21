@@ -1,36 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Description>ORM(Dapper)拓展工具包</Description>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.DapperSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<TargetFramework>net8</TargetFramework>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<Description>ORM(Dapper)拓展工具包</Description>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.DapperSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Npgsql" Version="8.0.2" />
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
-    <PackageReference Include="MySqlConnector" Version="2.3.6" />
-    <PackageReference Include="DapperExtensions" Version="1.7.0" />
-    <PackageReference Include="System.Data.Common" Version="4.3.0" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.130" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Npgsql" Version="8.0.7" />
+		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="MySql.Data" Version="9.2.0" />
+		<PackageReference Include="MySqlConnector" Version="2.4.0" />
+		<PackageReference Include="EntityFramework" Version="6.5.1" />
+		<PackageReference Include="DapperExtensions" Version="1.7.0" />
+		<PackageReference Include="System.Data.Common" Version="4.3.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
+	</ItemGroup>
 
 </Project>

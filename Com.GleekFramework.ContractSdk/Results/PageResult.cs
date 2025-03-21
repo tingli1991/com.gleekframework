@@ -13,13 +13,13 @@ namespace Com.GleekFramework.ContractSdk
         /// 最大ID
         /// </summary>
         [JsonProperty("next_id"), JsonPropertyName("next_id")]
-        public int NextId { get; set; }
+        public long NextId { get; set; }
 
         /// <summary>
         /// 分页大小
         /// </summary>
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
-        public int PageSize { get; set; }
+        public long PageSize { get; set; }
 
         /// <summary>
         /// 分页列表

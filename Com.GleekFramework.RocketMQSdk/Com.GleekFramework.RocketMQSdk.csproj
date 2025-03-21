@@ -6,9 +6,9 @@
     <IsPackable>true</IsPackable>
     <Copyright>@2023 Gleek</Copyright>
     <Company>org.gleekframework</Company>
+	<TargetFramework>net8.0</TargetFramework>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Description>RocketMQ拓展工具包</Description>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Com.GleekFramework.RocketMQSdk.xml</DocumentationFile>

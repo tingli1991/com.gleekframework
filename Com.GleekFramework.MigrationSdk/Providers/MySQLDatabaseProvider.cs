@@ -10,7 +10,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// MySQL数据库实现类
     /// </summary>
-    public class MySQLDatabaseProvider : BaseDatabaseProvider
+    public class MySQLDatabaseProvider : MDatabaseProvider
     {
         /// <summary>
         /// 构造函数

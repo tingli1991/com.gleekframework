@@ -1,6 +1,7 @@
 using Com.GleekFramework.AttributeSdk;
 using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.DapperSdk;
 using Com.GleekFramework.HttpSdk;
 using Com.GleekFramework.KafkaSdk;
@@ -47,6 +48,7 @@ namespace Com.GleekFramework.AppSvc
             .UseGleekWebHostDefaults<Startup>()
             .AddRocketMQAccessOptions(config => config.Get<RocketAccessOptions>("RocketAccountOptions")) //Ìí¼ÓRocketÕËºÅÅäÖÃ
             .UseDapper(DatabaseConstant.DefaultMySQLHostsKey)
+            .UseDapperColumnMap("Com.GleekFramework.Models")
             .UseMigrations((config) => new MigrationOptions()
             {
                 DatabaseType = DatabaseType.MySQL,

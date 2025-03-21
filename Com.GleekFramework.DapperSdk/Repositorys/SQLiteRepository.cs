@@ -1,6 +1,7 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ContractSdk;
+using Microsoft.Data.Sqlite;
 using System.Data;
-using System.Data.SQLite;
 
 namespace Com.GleekFramework.DapperSdk
 {
@@ -9,6 +10,11 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public partial class SQLiteRepository : DapperRepository, IBaseAutofac
     {
+        /// <summary>
+        /// SQLite
+        /// </summary>
+        public override DatabaseType DatabaseType => DatabaseType.SQLite;
+
         /// <summary>
         /// 配置文件名称
         /// </summary>
@@ -20,7 +26,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         protected override IDbConnection GetConnection()
         {
-            return new SQLiteConnection(ConnectionString);
+            return new SqliteConnection(ConnectionString);
         }
     }
 }

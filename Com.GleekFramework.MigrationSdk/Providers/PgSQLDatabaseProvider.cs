@@ -11,7 +11,7 @@ namespace Com.GleekFramework.MigrationSdk
     /// <summary>
     /// PgSQL数据库实现类
     /// </summary>
-    public class PgSQLDatabaseProvider : BaseDatabaseProvider
+    public class PgSQLDatabaseProvider : MDatabaseProvider
     {
         /// <summary>
         /// 构造函数

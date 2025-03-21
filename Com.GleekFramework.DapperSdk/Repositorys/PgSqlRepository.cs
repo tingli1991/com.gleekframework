@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.ContractSdk;
 using Npgsql;
 using System.Data;
 
@@ -10,6 +11,11 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public partial class PgSqlRepository : DapperRepository, IBaseAutofac
     {
+        /// <summary>
+        /// PgSQL
+        /// </summary>
+        public override DatabaseType DatabaseType => DatabaseType.PgSQL;
+
         /// <summary>
         /// 配置文件名称
         /// </summary>

@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.ConfigSdk;
+using Com.GleekFramework.ContractSdk;
 
 namespace Com.GleekFramework.MigrationSdk
 {

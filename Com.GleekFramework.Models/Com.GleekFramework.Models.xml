@@ -309,6 +309,16 @@
             字符串集合
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.Models.ComAreaPageParam">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaPageParam.Keywords">
+            <summary>
+            搜索关键词
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.StudentParam">
             <summary>
             学员信息

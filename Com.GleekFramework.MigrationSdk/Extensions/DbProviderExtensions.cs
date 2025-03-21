@@ -1,4 +1,5 @@
-﻿using FluentMigrator.Runner;
+﻿using Com.GleekFramework.ContractSdk;
+using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Com.GleekFramework.MigrationSdk
@@ -49,6 +50,9 @@ namespace Com.GleekFramework.MigrationSdk
                     break;
                 case DatabaseType.PgSQL:
                     services.AddSingleton<IDatabaseProvider>(provider => new PgSQLDatabaseProvider(options.ConnectionString));
+                    break;
+                case DatabaseType.SQLite:
+                    services.AddSingleton<IDatabaseProvider>(provider => new SQLiteDatabaseProvider(options.ConnectionString));
                     break;
             }
             return services;

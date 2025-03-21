@@ -21,6 +21,6 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [FromQuery(Name = "page_size")]
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
-        public int PageSize { get; set; } = 20;
+        public long PageSize { get; set; } = 20;
     }
 }

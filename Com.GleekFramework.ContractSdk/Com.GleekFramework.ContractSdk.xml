@@ -4,6 +4,31 @@
         <name>Com.GleekFramework.ContractSdk</name>
     </assembly>
     <members>
+        <member name="T:Com.GleekFramework.ContractSdk.DatabaseType">
+            <summary>
+            数据库类型枚举
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.DatabaseType.MsSQL">
+            <summary>
+            MsSQL数据库
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.DatabaseType.MySQL">
+            <summary>
+            MySQL数据库
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.DatabaseType.PgSQL">
+            <summary>
+            PgSQL数据库
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.DatabaseType.SQLite">
+            <summary>
+            SQLite数据库
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ContractSdk.GlobalMessageCode">
             <summary>
             全局消息错误码
