@@ -29,27 +29,32 @@ namespace Com.GleekFramework.DapperSdk
             var lastArgumentInfo = expression.Arguments.LastOrDefault(); //最后一个元素参数
             if (declaringType == typeof(string) && expression.Object is MemberExpression columnNameExpression)
             {
+                object columnValue = "";//字段名称
                 var columnName = columnNameExpression.GetColumnName();//字段名称
-                if (lastArgumentInfo is ConstantExpression constantExpr)
+                switch (lastArgumentInfo)
                 {
-                    //字段值
-                    var columnValue = constantExpr.Value?.ToString();
-
-                    //生成属性的参数名称
-                    var propertyName = $"@P{paramCounter++}";
-
-                    // 根据方法名生成 LIKE 模式
-                    var likePatternValue = methodName switch
-                    {
-                        "Contains" => $"%{propertyName}%",
-                        "StartsWith" => $"{propertyName}%",
-                        "EndsWith" => $"%{propertyName}",
-                        _ => throw new NotSupportedException()
-                    };
-                    parameters.Add(propertyName, columnValue);
-                    builder.Append($"{columnName} {(isUnary ? "not " : "")}like {likePatternValue}");//拼接查询条件
-                    return builder.ToString();
+                    case ConstantExpression constantExpr:
+                        columnValue = constantExpr.Value?.ToString();
+                        break;
+                    case MemberExpression memberExpression1:
+                        columnValue = Expression.Lambda(memberExpression1).Compile().DynamicInvoke();
+                        break;
                 }
+
+                //生成属性的参数名称
+                var propertyName = $"@P{paramCounter++}";
+
+                // 根据方法名生成 LIKE 模式
+                var likeColumnValue = methodName switch
+                {
+                    "Contains" => $"%{columnValue}%",
+                    "StartsWith" => $"{columnValue}%",
+                    "EndsWith" => $"%{columnValue}",
+                    _ => throw new NotSupportedException()
+                };
+                parameters.Add(propertyName, likeColumnValue);
+                builder.Append($"{columnName} {(isUnary ? "not " : "")}like {propertyName}");//拼接查询条件
+                return builder.ToString();
             }
 
             if (declaringType == typeof(Enumerable) && lastArgumentInfo is MemberExpression memberExpression)

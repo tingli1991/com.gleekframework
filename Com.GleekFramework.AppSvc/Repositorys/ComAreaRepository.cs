@@ -45,7 +45,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
             var query = new QueryableBuilder<ComArea>()
                 //组合条件
-                .Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
+                //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
 
                 ////IN 和 NOT IN 场景
                 //.Where(e => ids.Contains(e.Id))
@@ -60,8 +60,15 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 //.Where(e => !string.IsNullOrEmpty(e.Name))
 
                 //LIKE 查询场景
+                //.Where(e => e.Name.Contains(columnName))
+                //.Where(e => !e.Name.Contains(columnName))
                 //.Where(e => e.Name.Contains("北京"))
-                //.Where(e => e.Name.StartsWith("北京"))
+                //.Where(e => !e.Name.Contains("北京"))
+
+                .Where(e => e.Name.StartsWith(columnName))
+                .Where(e => !e.Name.StartsWith(columnName))
+                .Where(e => e.Name.StartsWith("北京"))
+                .Where(e => !e.Name.StartsWith("北京"))
                 //.Where(e => e.Name.EndsWith("北京"))
 
                 //排序
