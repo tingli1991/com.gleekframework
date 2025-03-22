@@ -68,66 +68,78 @@
             </summary>
             <typeparam name="TEntity">查询的实体类型</typeparam>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`1.CountSQL">
+        <member name="T:Com.GleekFramework.DapperSdk.QueryableBuilder`2">
+            <summary>
+             查询构建器，支持条件过滤、排序和分页功能
+            </summary>
+            <typeparam name="TEntity">查询的实体类型</typeparam>
+            <typeparam name="TResult">返回的实体类型</typeparam>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.CountSQL">
             <summary>
             Count执行脚本
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Type">
+        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Type">
             <summary>
             实体类的类型
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`1.ExecuteSQL">
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.ExecuteSQL">
             <summary>
             SQL执行脚本
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`1.TakeCount">
+        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`2.TakeCount">
             <summary>
             要取的元素数量
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`1.SkipCount">
+        <member name="P:Com.GleekFramework.DapperSdk.QueryableBuilder`2.SkipCount">
             <summary>
             要跳过的元素数量
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Parameters">
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Parameters">
             <summary>
             SQL参数列表
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`1.FilterExpression">
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Selector">
+            <summary>
+            存储选择器表达式，用于选择查询结果
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.FilterExpression">
             <summary>
             存储过滤条件表达式
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`1.OrderExpressions">
+        <member name="F:Com.GleekFramework.DapperSdk.QueryableBuilder`2.OrderExpressions">
             <summary>
             存储排序表达式和排序方向（升序或降序）
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.#ctor">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.#ctor">
             <summary>
             构造函数
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Skip(System.Int64)">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Skip(System.Int64)">
             <summary>
             跳过序列中指定数量的元素
             </summary>
             <param name="count">要跳过的元素数量</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Take(System.Int64)">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Take(System.Int64)">
             <summary>
             从序列中取指定数量的连续元素
             </summary>
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Page(System.Int64,System.Int64)">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Page(System.Int64,System.Int64)">
             <summary>
             设置分页参数
             </summary>
@@ -135,14 +147,21 @@
             <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Select(System.Linq.Expressions.Expression{System.Func{`0,`1}})">
+            <summary>
+            设置查询结果的选择器
+            </summary>
+            <param name="selector">选择器的Lambda表达式</param>
+            <returns>新的查询构建器实例。</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             添加过滤条件
             </summary>
             <param name="predicate">过滤条件的Lambda表达式</param>
             <returns>当前查询构建器实例</returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
             添加升序条件
             </summary>
@@ -150,7 +169,7 @@
             <param name="keySelector">排序字段的Lambda表达式</param>
             <returns>当前查询构建器实例。</returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
             添加降序条件
             </summary>
@@ -158,11 +177,44 @@
             <param name="keySelector">排序字段的Lambda表达式</param>
             <returns>当前查询构建器实例。</returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`1.Build(Com.GleekFramework.ContractSdk.DatabaseType)">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Build(Com.GleekFramework.ContractSdk.DatabaseType)">
             <summary>
             构建SQL脚本
             </summary>
             <param name="databaseType">数据库类型</param>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.SelectExpressionVisitor">
+            <summary>
+            SELECT表达式访问器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.DapperSdk.SelectExpressionVisitor.SourceType">
+            <summary>
+            源对象类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SelectExpressionVisitor.Columns">
+            <summary>
+            最终显示的列集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SelectExpressionVisitor.#ctor(System.Type)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SelectExpressionVisitor.GetSelectValues">
+            <summary>
+            获取解析后的字段列表（例如 "t0.Name, t0.Age"）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SelectExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            访问成员
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.WhereExpressionVisitor">
             <summary>
@@ -536,6 +588,16 @@
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefault``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="E"></typeparam>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="query">查询构造器</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefaultAsync``1(System.String,System.Object,System.Int32)">
             <summary>
             获取单条记录信息
@@ -550,6 +612,16 @@
             <summary>
             获取单条记录信息
             </summary>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="query">查询构造器</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetFirstOrDefaultAsync``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int32)">
+            <summary>
+            获取单条记录信息
+            </summary>
+            <typeparam name="E">实体模型</typeparam>
             <typeparam name="T">返回结果</typeparam>
             <param name="query">查询构造器</param>
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
@@ -574,6 +646,16 @@
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetList``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="E">实体模型</typeparam>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="query">查询构造器</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetListAsync``1(System.String,System.Object,System.Int32)">
             <summary>
             获取列表
@@ -593,6 +675,16 @@
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetListAsync``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int32)">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="E">实体模型</typeparam>
+            <typeparam name="T">返回结果</typeparam>
+            <param name="query">查询构造器</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageList``1(Com.GleekFramework.DapperSdk.QueryableBuilder{``0},System.Int64,System.Int64,System.Int32)">
             <summary>
             获取分页列表
@@ -603,10 +695,35 @@
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageList``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int64,System.Int64,System.Int32)">
+            <summary>
+            获取分页列表
+            </summary>
+            <typeparam name="E"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="query">查询构造器</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">分页大小</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageListAsync``1(Com.GleekFramework.DapperSdk.QueryableBuilder{``0},System.Int64,System.Int64,System.Int32)">
             <summary>
             获取分页列表
             </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query">查询构造器</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">分页大小</param>
+            <param name="timeoutSeconds">超时时间(单位：秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.GetPageListAsync``2(Com.GleekFramework.DapperSdk.QueryableBuilder{``0,``1},System.Int64,System.Int64,System.Int32)">
+            <summary>
+            获取分页列表
+            </summary>
+            <typeparam name="E"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="query">查询构造器</param>
             <param name="pageIndex">页码</param>
             <param name="pageSize">分页大小</param>

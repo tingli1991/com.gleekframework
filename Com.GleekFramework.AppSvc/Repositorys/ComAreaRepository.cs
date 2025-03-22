@@ -43,7 +43,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var ids = new long[] { 1, 2 };
             var names = new string[] { "北京市", "京", "市" };
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
-            var query = new QueryableBuilder<ComArea>()
+            var query = new QueryableBuilder<ComArea, ComArea>()
                 //组合条件
                 //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
 
