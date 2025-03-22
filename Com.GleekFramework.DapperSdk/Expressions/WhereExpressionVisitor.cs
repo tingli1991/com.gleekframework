@@ -13,17 +13,17 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 参数计数器
         /// </summary>
-        private int _paramCounter;
-
-        /// <summary>
-        /// SQL参数
-        /// </summary>
-        private readonly Dictionary<string, object> _parameters;
+        private long ParamCounter;
 
         /// <summary>
         /// WHERE子句
         /// </summary>
-        private readonly StringBuilder _whereClause = new StringBuilder();
+        private readonly StringBuilder WhereClause = new();
+
+        /// <summary>
+        /// SQL参数
+        /// </summary>
+        private readonly Dictionary<string, object> Parameters;
 
         /// <summary>
         /// 构造函数
@@ -31,7 +31,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="parameters">SQL参数</param>
         public WhereExpressionVisitor(Dictionary<string, object> parameters)
         {
-            _parameters = parameters;
+            Parameters = parameters;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         public string GetWhereClause()
         {
-            var whereClauseStr = _whereClause.ToString();
+            var whereClauseStr = WhereClause.ToString();
             if (whereClauseStr.IsNotNull() && whereClauseStr.StartsWith("(") && whereClauseStr.EndsWith(")"))
             {
                 whereClauseStr = whereClauseStr.TrimStart("(").TrimEnd(")");
@@ -50,62 +50,57 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 处理一元运算符
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="unaryExpression"></param>
         /// <returns></returns>
-        protected override Expression VisitUnary(UnaryExpression node)
+        protected override Expression VisitUnary(UnaryExpression unaryExpression)
         {
-            if (node.NodeType == ExpressionType.Not)
+            if (unaryExpression.NodeType != ExpressionType.Not)
             {
-                var operand = node.Operand;
-                switch (operand)
-                {
-                    case MemberExpression memberExpr:
-                        if (memberExpr.Type == typeof(bool))
-                        {
-                            _whereClause.Append($"{memberExpr.GetColumnName()}=0");
-                            return node;
-                        }
-                        break;
-                    case MethodCallExpression methodCallExpression:
-                        var containsValueString = methodCallExpression.GetContainsSQL(true);
-                        if (!containsValueString.IsNullOrEmpty())
-                        {
-                            _whereClause.Append(containsValueString);
-                            return node;
-                        }
-                        break;
-                }
+                return base.VisitUnary(unaryExpression);
             }
-            return base.VisitUnary(node);
+
+            switch (unaryExpression.Operand)
+            {
+                case MemberExpression memberExpression:
+                    if (memberExpression.Type == typeof(bool))
+                    {
+                        var propertyName = $"@P{ParamCounter++}";//参数名称
+                        Parameters.Add(propertyName, false);//追加参数名称
+                        WhereClause.Append($"{memberExpression.GetColumnName()}={propertyName}");
+                        return unaryExpression;
+                    }
+                    break;
+                case MethodCallExpression methodCallExpression:
+                    var methodCallWhereValues = methodCallExpression.HandlerWhereValues(Parameters, ref ParamCounter, true);
+                    WhereClause.Append(methodCallWhereValues);
+                    return unaryExpression;
+            }
+            return base.VisitUnary(unaryExpression);
         }
 
         /// <summary>
         /// 访问方法调用表达式
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="methodCallExpression"></param>
         /// <returns></returns>
-        protected override Expression VisitMethodCall(MethodCallExpression node)
+        protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
         {
-            var containsValueString = node.GetContainsSQL();
-            if (!containsValueString.IsNullOrEmpty())
-            {
-                _whereClause.Append(containsValueString);
-                return node;
-            }
-            return base.VisitMethodCall(node);
+            var methodCallWhereValues = methodCallExpression.HandlerWhereValues(Parameters, ref ParamCounter);
+            WhereClause.Append(methodCallWhereValues);
+            return methodCallExpression;
         }
 
         /// <summary>
         /// 访问二元表达式
         /// </summary>
-        protected override Expression VisitBinary(BinaryExpression node)
+        protected override Expression VisitBinary(BinaryExpression binaryExpression)
         {
-            _whereClause.Append("(");
-            Visit(node.Left);
-            _whereClause.Append(node.ToOperator());
-            Visit(node.Right);
-            _whereClause.Append(")");
-            return node;
+            WhereClause.Append("(");
+            Visit(binaryExpression.Left);
+            WhereClause.Append(binaryExpression.ToOperator());
+            Visit(binaryExpression.Right);
+            WhereClause.Append(")");
+            return binaryExpression;
         }
 
         /// <summary>
@@ -113,7 +108,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         protected override Expression VisitMember(MemberExpression node)
         {
-            _whereClause.Append(node.GetColumnName());
+            WhereClause.Append(node.GetColumnName());
             return node;
         }
 
@@ -122,9 +117,9 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            var paramName = $"@p{_paramCounter++}";
-            _whereClause.Append(paramName);
-            _parameters.Add(paramName, node.Value);
+            var propertyName = $"@P{ParamCounter++}";//参数名称
+            WhereClause.Append(propertyName);
+            Parameters.Add(propertyName, node.Value);
             return node;
         }
     }

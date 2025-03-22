@@ -39,12 +39,34 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             //var response = await DefaultRepository.GetPageListAsync<ComArea>(param.PageIndex, param.PageSize, predicateGroup);
 
             //使用示例
+            var columnName = "北京";//变量值
             var ids = new long[] { 1, 2 };
+            var names = new string[] { "北京市", "京", "市" };
+            var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
             var query = new QueryableBuilder<ComArea>()
+                //组合条件
                 .Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
-                .Where(e => ids.Contains(e.Id))
-                .OrderBy(e => e.Version)
-                .OrderBy(e => e.CreateTime)
+
+                ////IN 和 NOT IN 场景
+                //.Where(e => ids.Contains(e.Id))
+                //.Where(e => !ids.Contains(e.Id))
+                //.Where(e => names.Contains(e.Name))
+                //.Where(e => !names.Contains(e.Name))
+                //.Where(e => enums.Contains(e.Level))
+                //.Where(e => !enums.Contains(e.Level))
+
+                //空和非空
+                //.Where(e => string.IsNullOrEmpty(e.Name))
+                //.Where(e => !string.IsNullOrEmpty(e.Name))
+
+                //LIKE 查询场景
+                //.Where(e => e.Name.Contains("北京"))
+                //.Where(e => e.Name.StartsWith("北京"))
+                //.Where(e => e.Name.EndsWith("北京"))
+
+                //排序
+                //.OrderBy(e => e.Version)
+                //.OrderBy(e => e.CreateTime)
                 .OrderByDescending(e => e.UpdateTime);
 
             var dataList = await DefaultRepository.GetListAsync(query);//查询列表

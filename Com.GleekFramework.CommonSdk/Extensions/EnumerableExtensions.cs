@@ -226,7 +226,8 @@ namespace Com.GleekFramework.CommonSdk
             for (int pageIndex = 1; pageIndex <= sourceList.ToPageCount(pageSize); pageIndex++)
             {
                 dic.Add(pageIndex, sourceList.ToPageList(pageIndex, pageSize));
-            };
+            }
+            ;
             return dic;
         }
 
@@ -247,7 +248,8 @@ namespace Com.GleekFramework.CommonSdk
             {
                 var pageList = sourceList.ToPageList(pageIndex, pageSize);
                 dic.Add(pageIndex, pageList.Select(value => value.SerializeBinary()));
-            };
+            }
+            ;
             return dic;
         }
     }

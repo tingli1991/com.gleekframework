@@ -140,82 +140,89 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="databaseType">数据库类型</param>
         public void Build(DatabaseType databaseType)
         {
-            //重新计算参数
-            Parameters = [];
-            CountSQL = new StringBuilder();
-            ExecuteSQL = new StringBuilder();
-
-            //SELECT
-            ExecuteSQL.Append($"select {Type.GetColumnsSQL()}");
-
-            //FROM
-            ExecuteSQL.Append($" from {Type.GetTableName()}");
-
-            //COUNT
-            CountSQL.Append($"select count(1) from {Type.GetTableName()}");
-
-            //WHERE
-            if (FilterExpression != null)
+            try
             {
-                var whereVisitor = new WhereExpressionVisitor(Parameters);
-                whereVisitor.Visit(FilterExpression);
-                ExecuteSQL.Append($" where {whereVisitor.GetWhereClause()}");
-                CountSQL.Append($" where {whereVisitor.GetWhereClause()}");
-            }
+                //重新计算参数
+                Parameters = [];
+                CountSQL = new StringBuilder();
+                ExecuteSQL = new StringBuilder();
 
-            //ORDER BY
-            if (OrderExpressions.Any())
-            {
-                var orderBuilder = new StringBuilder();
-                foreach (var (expression, isAscending) in OrderExpressions)
+                //SELECT
+                ExecuteSQL.Append($"select {Type.HandlerSelectValues()}");
+
+                //FROM
+                ExecuteSQL.Append($" from {Type.GetTableName()}");
+
+                //COUNT
+                CountSQL.Append($"select count(1) from {Type.GetTableName()}");
+
+                //WHERE
+                if (FilterExpression != null)
                 {
-                    var orderVisitor = new OrderExpressionVisitor();
-                    orderVisitor.Visit(expression);
-                    orderBuilder.Append($"{orderVisitor.GetOrderClause()} {(isAscending ? "asc" : "desc")},");
+                    var whereVisitor = new WhereExpressionVisitor(Parameters);
+                    whereVisitor.Visit(FilterExpression);
+                    ExecuteSQL.Append($" where {whereVisitor.GetWhereClause()}");
+                    CountSQL.Append($" where {whereVisitor.GetWhereClause()}");
                 }
-                ExecuteSQL.Append($" order by {orderBuilder.ToString().TrimEnd(',', ' ').TrimEnd()}");
-            }
 
-
-            if (TakeCount > 0 && SkipCount <= 0)
-            {
-                //TAKE(读取的元素数量)
-                switch (databaseType)
+                //ORDER BY
+                if (OrderExpressions.Any())
                 {
-                    case DatabaseType.MySQL:
-                    case DatabaseType.PgSQL:
-                    case DatabaseType.SQLite:
-                        ExecuteSQL.Append($" limit {TakeCount}");
-                        break;
-                    case DatabaseType.MsSQL:
-                        ExecuteSQL.Replace("select ", $"select top {TakeCount} ");
-                        break;
-                    default:
-                        throw new Exception($"{databaseType} 暂不支持读取的元素数量");
+                    var orderBuilder = new StringBuilder();
+                    foreach (var (expression, isAscending) in OrderExpressions)
+                    {
+                        var orderVisitor = new OrderExpressionVisitor();
+                        orderVisitor.Visit(expression);
+                        orderBuilder.Append($"{orderVisitor.GetOrderClause()} {(isAscending ? "asc" : "desc")},");
+                    }
+                    ExecuteSQL.Append($" order by {orderBuilder.ToString().TrimEnd(',', ' ').TrimEnd()}");
                 }
-            }
-            else
-            {
-                if (TakeCount > 0 || SkipCount > 0)
+
+
+                if (TakeCount > 0 && SkipCount <= 0)
                 {
-                    //PAGING|SKIP
+                    //TAKE(读取的元素数量)
                     switch (databaseType)
                     {
                         case DatabaseType.MySQL:
                         case DatabaseType.PgSQL:
                         case DatabaseType.SQLite:
-                            ExecuteSQL.Append($" limit {TakeCount} offset {SkipCount}");
+                            ExecuteSQL.Append($" limit {TakeCount}");
                             break;
                         case DatabaseType.MsSQL:
-                            ExecuteSQL.Append($"offset {SkipCount} rows fetch next {TakeCount} rows only");
+                            ExecuteSQL.Replace("select ", $"select top {TakeCount} ");
                             break;
                         default:
-                            throw new Exception($"{databaseType} 暂不支持分页查询！");
+                            throw new Exception($"{databaseType} 暂不支持读取的元素数量");
                     }
                 }
+                else
+                {
+                    if (TakeCount > 0 || SkipCount > 0)
+                    {
+                        //PAGING|SKIP
+                        switch (databaseType)
+                        {
+                            case DatabaseType.MySQL:
+                            case DatabaseType.PgSQL:
+                            case DatabaseType.SQLite:
+                                ExecuteSQL.Append($" limit {TakeCount} offset {SkipCount}");
+                                break;
+                            case DatabaseType.MsSQL:
+                                ExecuteSQL.Append($"offset {SkipCount} rows fetch next {TakeCount} rows only");
+                                break;
+                            default:
+                                throw new Exception($"{databaseType} 暂不支持分页查询！");
+                        }
+                    }
+                }
+                TakeCount = 0;//清空要取的元素数量
+                SkipCount = 0;//清空要跳过的元素数量
             }
-            TakeCount = 0;//清空要取的元素数量
-            SkipCount = 0;//清空要跳过的元素数量
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

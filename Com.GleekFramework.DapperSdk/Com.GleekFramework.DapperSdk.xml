@@ -169,19 +169,19 @@
             WHERE条件表达式访问器，用于将Lambda表达式转换为SQL条件
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor._paramCounter">
+        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.ParamCounter">
             <summary>
             参数计数器
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor._parameters">
-            <summary>
-            SQL参数
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor._whereClause">
+        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.WhereClause">
             <summary>
             WHERE子句
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.Parameters">
+            <summary>
+            SQL参数
             </summary>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
@@ -199,14 +199,14 @@
             <summary>
             处理一元运算符
             </summary>
-            <param name="node"></param>
+            <param name="unaryExpression"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
             <summary>
             访问方法调用表达式
             </summary>
-            <param name="node"></param>
+            <param name="methodCallExpression"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)">
@@ -247,19 +247,11 @@
             SQL表达式拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.GetColumnsSQL(System.Type)">
+        <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.HandlerSelectValues(System.Type)">
             <summary>
             获取查询
             </summary>
             <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.GetContainsSQL(System.Linq.Expressions.MethodCallExpression,System.Boolean)">
-            <summary>
-            获取In和Not In查询的拼接字符
-            </summary>
-            <param name="methodCallExpression">方法访问器</param>
-            <param name="isNotIn">是否是not in查询入口</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.GetColumnName(System.Linq.Expressions.MemberExpression)">
@@ -281,6 +273,51 @@
             转换成操作类型
             </summary>
             <param name="binaryExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions">
+            <summary>
+            WHERE方法条件表达式拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandlerWhereValues(System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean)">
+            <summary>
+            处理方法条件查询条件
+            </summary>
+            <param name="expression">方法访问器</param>
+            <param name="parameters">请求参数</param>
+            <param name="paramCounter">参数计数器</param>
+            <param name="isUnary">是否来源于一元运算符的计算入口</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleEnumCollectionValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Enum},System.Int64@)">
+            <summary>
+            处理枚举类型参数(非字符串类型)
+            </summary>
+            <param name="parameters">查询参数</param>
+            <param name="paramCounter">参数计数器</param>
+            <param name="builder">查询条件</param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleDefaultCollectionValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.IEnumerable,System.Int64@)">
+            <summary>
+            处理枚集合型参数
+            </summary>
+            <param name="parameters">查询参数</param>
+            <param name="paramCounter">参数计数器</param>
+            <param name="builder">查询条件</param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.AppendCollectionParameters``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Int64@)">
+            <summary>
+            追加参数(非字符串类型)
+            </summary>
+            <param name="parameters">查询参数</param>
+            <param name="paramCounter">参数计数器</param>
+            <param name="builder">查询条件</param>
+            <param name="values"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
