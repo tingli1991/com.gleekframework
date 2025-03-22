@@ -12,7 +12,17 @@ namespace Com.GleekFramework.DapperSdk
     ///  查询构建器，支持条件过滤、排序和分页功能
     /// </summary>
     /// <typeparam name="TEntity">查询的实体类型</typeparam>
-    public class QueryableBuilder<TEntity>
+    public class QueryableBuilder<TEntity> : QueryableBuilder<TEntity, TEntity>
+    {
+
+    }
+
+    /// <summary>
+    ///  查询构建器，支持条件过滤、排序和分页功能
+    /// </summary>
+    /// <typeparam name="TEntity">查询的实体类型</typeparam>
+    /// <typeparam name="TResult">返回的实体类型</typeparam>
+    public class QueryableBuilder<TEntity, TResult>
     {
         /// <summary>
         /// Count执行脚本
@@ -45,6 +55,11 @@ namespace Com.GleekFramework.DapperSdk
         public Dictionary<string, object> Parameters;
 
         /// <summary>
+        /// 存储选择器表达式，用于选择查询结果
+        /// </summary>
+        private Expression<Func<TEntity, TResult>> Selector;
+
+        /// <summary>
         /// 存储过滤条件表达式
         /// </summary>
         private Expression<Func<TEntity, bool>> FilterExpression;
@@ -68,7 +83,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         /// <param name="count">要跳过的元素数量</param>
         /// <returns></returns>
-        public QueryableBuilder<TEntity> Skip(long count = 1)
+        public QueryableBuilder<TEntity, TResult> Skip(long count = 1)
         {
             SkipCount = count;
             return this;
@@ -79,7 +94,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public QueryableBuilder<TEntity> Take(long count = 1)
+        public QueryableBuilder<TEntity, TResult> Take(long count = 1)
         {
             TakeCount = count;
             return this;
@@ -91,9 +106,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
-        public QueryableBuilder<TEntity> Page(long pageIndex = 1, long pageSize = 20)
+        public QueryableBuilder<TEntity, TResult> Page(long pageIndex = 1, long pageSize = 20)
         {
             return Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+
+        /// <summary>
+        /// 设置查询结果的选择器
+        /// </summary>
+        /// <param name="selector">选择器的Lambda表达式</param>
+        /// <returns>新的查询构建器实例。</returns>
+        public QueryableBuilder<TEntity, TResult> Select(Expression<Func<TEntity, TResult>> selector)
+        {
+            // 创建一个新的查询构建器实例，并复制当前的过滤条件、排序条件和联表信息
+            Selector = selector;
+            return this;
         }
 
         /// <summary>
@@ -101,7 +128,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         /// <param name="predicate">过滤条件的Lambda表达式</param>
         /// <returns>当前查询构建器实例</returns>
-        public QueryableBuilder<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
+        public QueryableBuilder<TEntity, TResult> Where(Expression<Func<TEntity, bool>> predicate)
         {
             // 如果已有过滤条件，则使用AND逻辑组合新条件
             FilterExpression = FilterExpression == null ? predicate : FilterExpression.And(predicate);
@@ -114,7 +141,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <typeparam name="TKey">排序字段的类型</typeparam>
         /// <param name="keySelector">排序字段的Lambda表达式</param>
         /// <returns>当前查询构建器实例。</returns>
-        public QueryableBuilder<TEntity> OrderBy<TKey>(Expression<Func<TEntity, TKey>> keySelector)
+        public QueryableBuilder<TEntity, TResult> OrderBy<TKey>(Expression<Func<TEntity, TKey>> keySelector)
         {
             // 将排序表达式和排序方向存储到列表中
             OrderExpressions.Add((keySelector.Body, true));
@@ -127,7 +154,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <typeparam name="TKey">排序字段的类型</typeparam>
         /// <param name="keySelector">排序字段的Lambda表达式</param>
         /// <returns>当前查询构建器实例。</returns>
-        public QueryableBuilder<TEntity> OrderByDescending<TKey>(Expression<Func<TEntity, TKey>> keySelector)
+        public QueryableBuilder<TEntity, TResult> OrderByDescending<TKey>(Expression<Func<TEntity, TKey>> keySelector)
         {
             // 将排序表达式和排序方向存储到列表中
             OrderExpressions.Add((keySelector.Body, false));
@@ -148,7 +175,10 @@ namespace Com.GleekFramework.DapperSdk
                 ExecuteSQL = new StringBuilder();
 
                 //SELECT
-                ExecuteSQL.Append($"select {Type.HandlerSelectValues()}");
+                var selectorVisitor = new SelectExpressionVisitor(Type);
+                selectorVisitor.Visit(Selector);
+
+                ExecuteSQL.Append($"select {selectorVisitor.GetSelectValues()}");
 
                 //FROM
                 ExecuteSQL.Append($" from {Type.GetTableName()}");

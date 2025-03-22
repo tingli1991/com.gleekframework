@@ -93,6 +93,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 获取单条记录信息
         /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <typeparam name="T">返回结果</typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public T GetFirstOrDefault<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            using var db = GetConnection();
+            query.Take(1).Build(DatabaseType);
+            return db.QueryFirstOrDefault<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
+        }
+
+        /// <summary>
+        /// 获取单条记录信息
+        /// </summary>
         /// <typeparam name="T">返回结果</typeparam>
         /// <param name="sql">sql语句</param>
         /// <param name="param">参数对象</param>
@@ -109,6 +124,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultAsync<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            using var db = GetConnection();
+            query.Take(1).Build(DatabaseType);
+            return await db.QueryFirstOrDefaultAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
+        }
+
+        /// <summary>
+        /// 获取单条记录信息
+        /// </summary>
+        /// <typeparam name="E">实体模型</typeparam>
+        /// <typeparam name="T">返回结果</typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public async Task<T> GetFirstOrDefaultAsync<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             using var db = GetConnection();
             query.Take(1).Build(DatabaseType);
@@ -143,6 +173,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 获取列表
         /// </summary>
+        /// <typeparam name="E">实体模型</typeparam>
+        /// <typeparam name="T">返回结果</typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public IEnumerable<T> GetList<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            using var db = GetConnection();
+            query.Build(DatabaseType);
+            return db.Query<T>(query.ExecuteSQL.ToString(), query.Parameters, null, true, timeoutSeconds);
+        }
+
+        /// <summary>
+        /// 获取列表
+        /// </summary>
         /// <typeparam name="T">返回结果</typeparam>
         /// <param name="sql">sql语句</param>
         /// <param name="param">参数对象</param>
@@ -159,6 +204,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetListAsync<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            using var db = GetConnection();
+            query.Build(DatabaseType);
+            return await db.QueryAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
+        }
+
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <typeparam name="E">实体模型</typeparam>
+        /// <typeparam name="T">返回结果</typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> GetListAsync<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             using var db = GetConnection();
             query.Build(DatabaseType);
@@ -194,12 +254,69 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 获取分页列表
         /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">分页大小</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public PageDataResult<T> GetPageList<E, T>(QueryableBuilder<E, T> query, long pageIndex = 1, long pageSize = 20, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
+        {
+            //编译查询构造器
+            query.Page(pageIndex, pageSize).Build(DatabaseType);
+
+            //执行查询
+            using var connection = GetConnection();
+            var results = connection.Query<T>(query.ExecuteSQL.ToString(), query.Parameters, null, true, timeoutSeconds);
+            var totalCount = connection.ExecuteScalar<int>(query.CountSQL.ToString(), query.Parameters, null, timeoutSeconds);
+            return new PageDataResult<T>()
+            {
+                Results = results,
+                PageSize = pageSize,
+                PageIndex = pageIndex,
+                TotalCount = totalCount,
+            };
+        }
+
+        /// <summary>
+        /// 获取分页列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="query">查询构造器</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">分页大小</param>
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
         public async Task<PageDataResult<T>> GetPageListAsync<T>(QueryableBuilder<T> query, long pageIndex = 1, long pageSize = 20, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
+        {
+            //编译查询构造器
+            query.Page(pageIndex, pageSize).Build(DatabaseType);
+
+            //执行查询
+            using var connection = GetConnection();
+            var results = await connection.QueryAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
+            var totalCount = await connection.ExecuteScalarAsync<int>(query.CountSQL.ToString(), query.Parameters, null, timeoutSeconds);
+            return new PageDataResult<T>()
+            {
+                Results = results,
+                PageSize = pageSize,
+                PageIndex = pageIndex,
+                TotalCount = totalCount,
+            };
+        }
+
+        /// <summary>
+        /// 获取分页列表
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query">查询构造器</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">分页大小</param>
+        /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
+        /// <returns></returns>
+        public async Task<PageDataResult<T>> GetPageListAsync<E, T>(QueryableBuilder<E, T> query, long pageIndex = 1, long pageSize = 20, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
         {
             //编译查询构造器
             query.Page(pageIndex, pageSize).Build(DatabaseType);
