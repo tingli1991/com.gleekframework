@@ -94,11 +94,22 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         protected override Expression VisitBinary(BinaryExpression expression)
         {
-            WhereClause.Append("(");
+            //处理左子表达式
+            var leftNeedParen = expression.IsNeedParenthesis(expression.Left);//判定左子表达式是否需要添加括号
+            if (leftNeedParen) WhereClause.Append("(");
             Visit(expression.Left);
+            if (leftNeedParen) WhereClause.Append(")");
+
+            //添加当前的运算符
             WhereClause.Append(expression.ToOperator());
+
+            //处理右子表达式
+            var rightNeedParen = expression.IsNeedParenthesis(expression.Right);//判定左子表达式是否需要添加括号
+            if (rightNeedParen) WhereClause.Append("(");
             Visit(expression.Right);
-            WhereClause.Append(")");
+            if (rightNeedParen) WhereClause.Append(")");
+
+            //返回表达式
             return expression;
         }
 

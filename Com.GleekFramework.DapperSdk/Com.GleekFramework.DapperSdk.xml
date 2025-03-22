@@ -199,20 +199,22 @@
             <summary>
             处理一元运算符
             </summary>
-            <param name="unaryExpression"></param>
+            <param name="expression"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
             <summary>
             访问方法调用表达式
             </summary>
-            <param name="methodCallExpression"></param>
+            <param name="expression"></param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)">
             <summary>
             访问二元表达式
             </summary>
+            <param name="expression">表达式</param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)">
             <summary>
@@ -246,6 +248,27 @@
             <summary>
             SQL表达式拓展类
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.IsNeedParenthesis(System.Linq.Expressions.BinaryExpression,System.Linq.Expressions.Expression)">
+            <summary>
+            判断子表达式是否需要括号包裹
+            </summary>
+            <param name="parent">父级表达式</param>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.GetPrecedence(System.Linq.Expressions.ExpressionType)">
+            <summary>
+            获取表达式类型的运算符优先级（数值越大优先级越高）
+            <para>优先级规则参考标准SQL运算符优先级设计：</para>
+            <list type="bullet">
+            <item>1. 算术运算符 > 比较运算符 > 逻辑运算符</item>
+            <item>2. 同级运算符按标准优先级处理（如 AND 高于 OR）</item>
+            <item>3. 未明确列出的运算符默认优先级最低</item>
+            </list>
+            </summary>
+            <param name="nodeType">表达式节点类型</param>
+            <returns>优先级数值（0表示最低优先级）</returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.SQLExpressionExtensions.HandlerSelectValues(System.Type)">
             <summary>
