@@ -29,10 +29,7 @@ namespace Com.GleekFramework.DapperSdk
         /// 构造函数
         /// </summary>
         /// <param name="parameters">SQL参数</param>
-        public WhereExpressionVisitor(Dictionary<string, object> parameters)
-        {
-            Parameters = parameters;
-        }
+        public WhereExpressionVisitor(Dictionary<string, object> parameters) => Parameters = parameters;
 
         /// <summary>
         /// 获取生成的WHERE子句
