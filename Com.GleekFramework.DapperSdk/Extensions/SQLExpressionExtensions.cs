@@ -1,9 +1,7 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Com.GleekFramework.DapperSdk
 {
@@ -62,25 +60,6 @@ namespace Com.GleekFramework.DapperSdk
                 // 未处理的运算符类型默认最低优先级
                 _ => 0,
             };
-        }
-
-        /// <summary>
-        /// 获取查询
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static string HandlerSelectValues(this Type type)
-        {
-            if (type == null)
-            {
-                throw new NullReferenceException(nameof(type));
-            }
-
-            var builder = new StringBuilder();
-            var propertyInfoList = type.GetPropertyInfoList();
-            var columnList = propertyInfoList.Select(e => e.GetCustomAttribute<ColumnAttribute>()?.Name ?? e.Name);
-            builder.AppendJoin(",", columnList);
-            return builder.ToString();
         }
 
         /// <summary>

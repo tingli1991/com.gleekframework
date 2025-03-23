@@ -1,49 +1,79 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Com.GleekFramework.DapperSdk
 {
     /// <summary>
-    /// SELECT表达式访问器
+    /// SELECT访问器
     /// </summary>
-    public class SelectExpressionVisitor : ExpressionVisitor
+    /// <typeparam name="TEntity">查询的实体类型</typeparam>
+    /// <typeparam name="TResult">返回的实体类型</typeparam>
+    public class SelectExpressionVisitor<TEntity, TResult>
     {
         /// <summary>
-        /// 源对象类型
+        /// 需要查询显示的列
         /// </summary>
-        private Type SourceType { get; set; }
+        private IEnumerable<string> Columns = new List<string>();
 
         /// <summary>
-        /// 最终显示的列集合
+        /// 获取SELECT的显示列脚本
         /// </summary>
-        private readonly List<string> Columns = new List<string>();
+        /// <returns></returns>
+        public string GetSelectColumns() => string.Join(",", Columns.Distinct());
 
         /// <summary>
-        /// 构造函数
+        /// 访问成员表达式
         /// </summary>
-        /// <param name="type"></param>
-        public SelectExpressionVisitor(Type type) => SourceType = type;
-
-        /// <summary>
-        /// 获取解析后的字段列表（例如 "t0.Name, t0.Age"）
-        /// </summary>
-        public string GetSelectValues()
+        public void Visit()
         {
-            return Columns.Any() ? string.Join(",", Columns) : SourceType.HandlerSelectValues(); // 无字段时返回全表
+            var resultType = typeof(TResult);//返回的实体类型
+            var entityType = typeof(TEntity);//查询的实体类型
+            var allEntityColumnDic = GetAllColumnDic(entityType);//查询实体的所有列字典
+            if (entityType == resultType)
+            {
+                // 处理匿名类型或显式指定类型
+                Columns = allEntityColumnDic.Values.Distinct();
+            }
+            else
+            {
+                var propertyInfoList = resultType.GetPropertyInfoList();
+                foreach (var propertyInfo in propertyInfoList)
+                {
+                    var columnAttribute = propertyInfo.GetCustomAttribute<ColumnAttribute>();
+                    if (!string.IsNullOrEmpty(columnAttribute?.Name))
+                    {
+                        Columns = Columns.Add(columnAttribute.Name);
+                    }
+                    else
+                    {
+                        var propertyName = propertyInfo.Name;//当前对象的属性名称
+                        if (allEntityColumnDic.ContainsKey(propertyName))
+                        {
+                            //使用查询实体的列名称
+                            Columns = Columns.Add(allEntityColumnDic[propertyName]);
+                        }
+                        else
+                        {
+                            //使用当前对象的属性名称作为字段列
+                            Columns = Columns.Add(propertyName);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
-        /// 访问成员
+        /// 获取指定类型的所有列字典
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="type">类型</param>
         /// <returns></returns>
-        protected override Expression VisitMember(MemberExpression expression)
+        private static Dictionary<string, string> GetAllColumnDic(Type type)
         {
-            var columnName = expression.GetColumnName();//列名称
-            Columns.Add($"{columnName ?? expression.Member.Name}");
-            return base.VisitMember(expression);
+            var propertyInfoList = type.GetPropertyInfoList();
+            return propertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);
         }
     }
 }

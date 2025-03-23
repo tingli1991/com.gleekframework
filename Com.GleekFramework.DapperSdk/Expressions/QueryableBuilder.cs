@@ -30,14 +30,14 @@ namespace Com.GleekFramework.DapperSdk
         public StringBuilder CountSQL;
 
         /// <summary>
-        /// 实体类的类型
-        /// </summary>
-        private Type Type { get; set; }
-
-        /// <summary>
         /// SQL执行脚本
         /// </summary>
         public StringBuilder ExecuteSQL;
+
+        /// <summary>
+        /// 查询的实体类型
+        /// </summary>
+        public Type EntityType { get; set; }
 
         /// <summary>
         /// 要取的元素数量
@@ -55,11 +55,6 @@ namespace Com.GleekFramework.DapperSdk
         public Dictionary<string, object> Parameters;
 
         /// <summary>
-        /// 存储选择器表达式，用于选择查询结果
-        /// </summary>
-        private Expression<Func<TEntity, TResult>> Selector;
-
-        /// <summary>
         /// 存储过滤条件表达式
         /// </summary>
         private Expression<Func<TEntity, bool>> FilterExpression;
@@ -67,16 +62,12 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 存储排序表达式和排序方向（升序或降序）
         /// </summary>
-        private readonly List<(Expression expression, bool isAscending)> OrderExpressions = new List<(Expression expression, bool isAscending)>();
+        private readonly List<(Expression expression, bool isAscending)> OrderExpressions = [];
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public QueryableBuilder()
-        {
-            //计算当前实体类的类型
-            Type = typeof(TEntity);
-        }
+        public QueryableBuilder() => EntityType = typeof(TEntity);
 
         /// <summary>
         /// 跳过序列中指定数量的元素
@@ -112,18 +103,6 @@ namespace Com.GleekFramework.DapperSdk
         }
 
         /// <summary>
-        /// 设置查询结果的选择器
-        /// </summary>
-        /// <param name="selector">选择器的Lambda表达式</param>
-        /// <returns>新的查询构建器实例。</returns>
-        public QueryableBuilder<TEntity, TResult> Select(Expression<Func<TEntity, TResult>> selector)
-        {
-            // 创建一个新的查询构建器实例，并复制当前的过滤条件、排序条件和联表信息
-            Selector = selector;
-            return this;
-        }
-
-        /// <summary>
         /// 添加过滤条件
         /// </summary>
         /// <param name="predicate">过滤条件的Lambda表达式</param>
@@ -136,15 +115,30 @@ namespace Com.GleekFramework.DapperSdk
         }
 
         /// <summary>
+        /// 添加过滤条件
+        /// </summary>
+        /// <param name="condition">条件</param>
+        /// <param name="predicate">过滤条件的Lambda表达式</param>
+        /// <returns>当前查询构建器实例</returns>
+        public QueryableBuilder<TEntity, TResult> WhereIf(bool condition, Expression<Func<TEntity, bool>> predicate)
+        {
+            if (!condition)
+            {
+                return this;
+            }
+            return Where(predicate);
+        }
+
+        /// <summary>
         /// 添加升序条件
         /// </summary>
         /// <typeparam name="TKey">排序字段的类型</typeparam>
-        /// <param name="keySelector">排序字段的Lambda表达式</param>
+        /// <param name="orderExpression">排序字段的Lambda表达式</param>
         /// <returns>当前查询构建器实例。</returns>
-        public QueryableBuilder<TEntity, TResult> OrderBy<TKey>(Expression<Func<TEntity, TKey>> keySelector)
+        public QueryableBuilder<TEntity, TResult> OrderBy<TKey>(Expression<Func<TEntity, TKey>> orderExpression)
         {
             // 将排序表达式和排序方向存储到列表中
-            OrderExpressions.Add((keySelector.Body, true));
+            OrderExpressions.Add((orderExpression.Body, true));
             return this;
         }
 
@@ -167,92 +161,85 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="databaseType">数据库类型</param>
         public void Build(DatabaseType databaseType)
         {
-            try
+            //重新计算参数
+            Parameters = [];
+            CountSQL = new StringBuilder();
+            ExecuteSQL = new StringBuilder();
+
+            //SELECT
+            var selectExpression = new SelectExpressionVisitor<TEntity, TResult>();
+            selectExpression.Visit();
+            ExecuteSQL.Append($"select {selectExpression.GetSelectColumns()}");
+
+
+            //FROM
+            ExecuteSQL.Append($" from {EntityType.GetTableName()}");
+
+            //COUNT
+            CountSQL.Append($"select count(1) from {EntityType.GetTableName()}");
+
+            //WHERE
+            if (FilterExpression != null)
             {
-                //重新计算参数
-                Parameters = [];
-                CountSQL = new StringBuilder();
-                ExecuteSQL = new StringBuilder();
+                var whereVisitor = new WhereExpressionVisitor(Parameters);
+                whereVisitor.Visit(FilterExpression);
+                ExecuteSQL.Append($" where {whereVisitor.GetWhereClause()}");
+                CountSQL.Append($" where {whereVisitor.GetWhereClause()}");
+            }
 
-                //SELECT
-                var selectorVisitor = new SelectExpressionVisitor(Type);
-                selectorVisitor.Visit(Selector);
-
-                ExecuteSQL.Append($"select {selectorVisitor.GetSelectValues()}");
-
-                //FROM
-                ExecuteSQL.Append($" from {Type.GetTableName()}");
-
-                //COUNT
-                CountSQL.Append($"select count(1) from {Type.GetTableName()}");
-
-                //WHERE
-                if (FilterExpression != null)
+            //ORDER BY
+            if (OrderExpressions.Any())
+            {
+                var orderBuilder = new StringBuilder();
+                foreach (var (expression, isAscending) in OrderExpressions)
                 {
-                    var whereVisitor = new WhereExpressionVisitor(Parameters);
-                    whereVisitor.Visit(FilterExpression);
-                    ExecuteSQL.Append($" where {whereVisitor.GetWhereClause()}");
-                    CountSQL.Append($" where {whereVisitor.GetWhereClause()}");
+                    var orderVisitor = new OrderExpressionVisitor();
+                    orderVisitor.Visit(expression);
+                    orderBuilder.Append($"{orderVisitor.GetOrderClause()} {(isAscending ? "asc" : "desc")},");
                 }
+                ExecuteSQL.Append($" order by {orderBuilder.ToString().TrimEnd(',', ' ').TrimEnd()}");
+            }
 
-                //ORDER BY
-                if (OrderExpressions.Any())
+
+            if (TakeCount > 0 && SkipCount <= 0)
+            {
+                //TAKE(读取的元素数量)
+                switch (databaseType)
                 {
-                    var orderBuilder = new StringBuilder();
-                    foreach (var (expression, isAscending) in OrderExpressions)
-                    {
-                        var orderVisitor = new OrderExpressionVisitor();
-                        orderVisitor.Visit(expression);
-                        orderBuilder.Append($"{orderVisitor.GetOrderClause()} {(isAscending ? "asc" : "desc")},");
-                    }
-                    ExecuteSQL.Append($" order by {orderBuilder.ToString().TrimEnd(',', ' ').TrimEnd()}");
+                    case DatabaseType.MySQL:
+                    case DatabaseType.PgSQL:
+                    case DatabaseType.SQLite:
+                        ExecuteSQL.Append($" limit {TakeCount}");
+                        break;
+                    case DatabaseType.MsSQL:
+                        ExecuteSQL.Replace("select ", $"select top {TakeCount} ");
+                        break;
+                    default:
+                        throw new Exception($"{databaseType} 暂不支持读取的元素数量");
                 }
-
-
-                if (TakeCount > 0 && SkipCount <= 0)
+            }
+            else
+            {
+                if (TakeCount > 0 || SkipCount > 0)
                 {
-                    //TAKE(读取的元素数量)
+                    //PAGING|SKIP
                     switch (databaseType)
                     {
                         case DatabaseType.MySQL:
                         case DatabaseType.PgSQL:
                         case DatabaseType.SQLite:
-                            ExecuteSQL.Append($" limit {TakeCount}");
+                            ExecuteSQL.Append($" limit {TakeCount} offset {SkipCount}");
                             break;
                         case DatabaseType.MsSQL:
-                            ExecuteSQL.Replace("select ", $"select top {TakeCount} ");
+                            ExecuteSQL.Append($"offset {SkipCount} rows fetch next {TakeCount} rows only");
                             break;
                         default:
-                            throw new Exception($"{databaseType} 暂不支持读取的元素数量");
+                            throw new Exception($"{databaseType} 暂不支持分页查询！");
                     }
                 }
-                else
-                {
-                    if (TakeCount > 0 || SkipCount > 0)
-                    {
-                        //PAGING|SKIP
-                        switch (databaseType)
-                        {
-                            case DatabaseType.MySQL:
-                            case DatabaseType.PgSQL:
-                            case DatabaseType.SQLite:
-                                ExecuteSQL.Append($" limit {TakeCount} offset {SkipCount}");
-                                break;
-                            case DatabaseType.MsSQL:
-                                ExecuteSQL.Append($"offset {SkipCount} rows fetch next {TakeCount} rows only");
-                                break;
-                            default:
-                                throw new Exception($"{databaseType} 暂不支持分页查询！");
-                        }
-                    }
-                }
-                TakeCount = 0;//清空要取的元素数量
-                SkipCount = 0;//清空要跳过的元素数量
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            TakeCount = 0;//清空要取的元素数量
+            SkipCount = 0;//清空要跳过的元素数量
         }
     }
 }

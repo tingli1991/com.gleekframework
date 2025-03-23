@@ -264,6 +264,76 @@
             备注
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.Models.ComAreaModel">
+            <summary>
+            区域模型
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Name">
+            <summary>
+            地区名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Level">
+            <summary>
+            地区级别
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Lng">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Lat">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.ParentId">
+            <summary>
+            父级
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Version">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.IsDeleted">
+            <summary>
+            死否删除
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Extend">
+            <summary>
+            透传字段
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaModel.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.WeatherForecastModel">
             <summary>
              天气模型

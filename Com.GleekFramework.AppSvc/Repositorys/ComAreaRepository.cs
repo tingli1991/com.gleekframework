@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.AutofacSdk;
+using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.DapperSdk;
 using Com.GleekFramework.Models;
@@ -43,7 +44,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var ids = new long[] { 1, 2 };
             var names = new string[] { "北京市", "京", "市" };
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
-            var query = new QueryableBuilder<ComArea, ComArea>()
+            var query = new QueryableBuilder<ComArea, ComAreaModel>()
                 //组合条件
                 //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
 
@@ -65,21 +66,26 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 //.Where(e => e.Name.Contains("北京"))
                 //.Where(e => !e.Name.Contains("北京"))
 
-                .Where(e => e.Name.StartsWith(columnName))
-                .Where(e => !e.Name.StartsWith(columnName))
-                .Where(e => e.Name.StartsWith("北京"))
-                .Where(e => !e.Name.StartsWith("北京"))
-                //.Where(e => e.Name.EndsWith("北京"))
+                //.Where(e => e.Name.StartsWith(columnName))
+                //.Where(e => !e.Name.StartsWith(columnName))
+                //.Where(e => e.Name.StartsWith("北京"))
+                //.Where(e => !e.Name.StartsWith("北京"))
 
-                //排序
-                //.OrderBy(e => e.Version)
-                //.OrderBy(e => e.CreateTime)
-                .OrderByDescending(e => e.UpdateTime);
+                .Where(e => !e.IsDeleted)
+                .WhereIf(param.IsNotNull(), e => e.Code.Contains(param.Keywords) || e.Name.Contains(param.Keywords));
+
+
+            //.Where(e => e.Name.EndsWith("北京"))
+
+            //排序
+            //.OrderBy(e => e.Version)
+            //.OrderBy(e => e.CreateTime)
+            //.OrderByDescending(e => e.UpdateTime);
 
             var dataList = await DefaultRepository.GetListAsync(query);//查询列表
             var pageList = await DefaultRepository.GetPageListAsync(query);//查询分页列表
             var fistInfo = await DefaultRepository.GetFirstOrDefaultAsync(query);//查询单条数据
-            return pageList;
+            return null;
         }
     }
 }
