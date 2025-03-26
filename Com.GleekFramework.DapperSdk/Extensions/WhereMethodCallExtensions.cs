@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace Com.GleekFramework.DapperSdk
@@ -12,6 +13,32 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public static class WhereMethodCallExtensions
     {
+        /// <summary>
+        /// 获取成员值
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public static object GetMemberValue(this MemberExpression node)
+        {
+            // 递归获取闭包实例和属性值
+            var target = GetClosureInstance(node.Expression);
+            if (target == null)
+            {
+                return null;
+            }
+
+            // 通过反射获取属性或字段的值
+            if (node.Member is PropertyInfo prop)
+            {
+                return prop.GetValue(target);
+            }
+            else if (node.Member is FieldInfo field)
+            {
+                return field.GetValue(target);
+            }
+            return null;
+        }
+
         /// <summary>
         /// 处理方法条件查询条件
         /// </summary>
@@ -27,6 +54,18 @@ namespace Com.GleekFramework.DapperSdk
             var methodName = expression.Method.Name;//方法名称
             var declaringType = expression.Method.DeclaringType;//声明类型
             var lastArgumentInfo = expression.Arguments.LastOrDefault(); //最后一个元素参数
+            if (declaringType == typeof(string) && expression.Object == null && lastArgumentInfo is MemberExpression memberExpressionStr)
+            {
+                var columnName = memberExpressionStr.GetColumnName();//字段名称
+                switch (methodName)
+                {
+                    case "IsNullOrEmpty"://非空判断
+                        builder.Append($"({columnName} is {(isUnary ? $"not null and {columnName}!=''" : $"null or {columnName}=''")})");
+                        break;
+                }
+                return builder.ToString();
+            }
+
             if (declaringType == typeof(string) && expression.Object is MemberExpression columnNameExpression)
             {
                 object columnValue = "";//字段名称
@@ -62,9 +101,6 @@ namespace Com.GleekFramework.DapperSdk
                 var columnName = memberExpression.GetColumnName();//字段名称
                 switch (methodName)
                 {
-                    case "IsNullOrEmpty"://非空判断
-                        builder.Append($"({columnName} is {(isUnary ? $"not null and {columnName}!=''" : $" null or {columnName}=''")})");
-                        break;
                     case "Contains"://IN 和 NOT IN查询
                         builder.Append($"{columnName} {(isUnary ? "not " : "")}in (");//拼接查询条件
                         var collection = expression.Object ?? expression.Arguments[0]; //集合对象(如 list)
@@ -135,6 +171,46 @@ namespace Com.GleekFramework.DapperSdk
             if (builder.Length > 0 && builder[^1] == ',')
             {
                 builder.Length--;
+            }
+        }
+
+        /// <summary>
+        /// 获取成员值
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        private static object GetMemberValue(this MemberExpression node, object parent)
+        {
+            // 从父对象中提取字段或属性的值
+            if (node.Member is PropertyInfo prop)
+            {
+                return prop.GetValue(parent);
+            }
+            else if (node.Member is FieldInfo field)
+            {
+                return field.GetValue(parent);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 获取闭包实例
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        private static object GetClosureInstance(this Expression expression)
+        {
+            // 递归解析闭包实例
+            switch (expression)
+            {
+                case MemberExpression memberExpr:
+                    var parent = GetClosureInstance(memberExpr.Expression);
+                    return GetMemberValue(memberExpr, parent);
+                case ConstantExpression constantExpr:
+                    return constantExpr.Value;
+                default:
+                    return null;
             }
         }
     }

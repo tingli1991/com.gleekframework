@@ -389,6 +389,16 @@
             搜索关键词
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaPageParam.CreateBeginTime">
+            <summary>
+            创建开始时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.Models.ComAreaPageParam.CreateEndTime">
+            <summary>
+            创建结束时间
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.Models.StudentParam">
             <summary>
             学员信息

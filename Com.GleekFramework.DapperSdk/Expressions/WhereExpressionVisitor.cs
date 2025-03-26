@@ -37,10 +37,10 @@ namespace Com.GleekFramework.DapperSdk
         public string GetWhereClause()
         {
             var whereClauseStr = WhereClause.ToString();
-            if (whereClauseStr.IsNotNull() && whereClauseStr.StartsWith("(") && whereClauseStr.EndsWith(")"))
-            {
-                whereClauseStr = whereClauseStr.TrimStart("(").TrimEnd(")");
-            }
+            //if (whereClauseStr.IsNotNull() && whereClauseStr.StartsWith("(") && whereClauseStr.EndsWith(")"))
+            //{
+            //    whereClauseStr = whereClauseStr.TrimStart("(").TrimEnd(")");
+            //}
             return whereClauseStr;
         }
 
@@ -118,7 +118,17 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         protected override Expression VisitMember(MemberExpression expression)
         {
-            WhereClause.Append(expression.GetColumnName());
+            var memberValue = expression.GetMemberValue();
+            if (memberValue != null)
+            {
+                var propertyName = $"@P{ParamCounter++}";//参数名称
+                Parameters.Add(propertyName, memberValue);
+                WhereClause.Append(propertyName);
+            }
+            else
+            {
+                WhereClause.Append(expression.GetColumnName());
+            }
             return expression;
         }
 

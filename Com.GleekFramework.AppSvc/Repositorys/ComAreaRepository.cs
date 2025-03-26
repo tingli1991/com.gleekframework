@@ -45,42 +45,43 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var names = new string[] { "北京市", "京", "市" };
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
             var query = new QueryableBuilder<ComArea, ComAreaModel>()
-                //组合条件
-                //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
+                .Where(e => !e.IsDeleted)
 
-                ////IN 和 NOT IN 场景
-                //.Where(e => ids.Contains(e.Id))
-                //.Where(e => !ids.Contains(e.Id))
-                //.Where(e => names.Contains(e.Name))
-                //.Where(e => !names.Contains(e.Name))
-                //.Where(e => enums.Contains(e.Level))
-                //.Where(e => !enums.Contains(e.Level))
+                //组合条件
+                .Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
+
+                //IN 和 NOT IN 场景
+                .Where(e => ids.Contains(e.Id))
+                .Where(e => !ids.Contains(e.Id))
+                .Where(e => names.Contains(e.Name))
+                .Where(e => !names.Contains(e.Name))
+                .Where(e => enums.Contains(e.Level))
+                .Where(e => !enums.Contains(e.Level))
 
                 //空和非空
-                //.Where(e => string.IsNullOrEmpty(e.Name))
-                //.Where(e => !string.IsNullOrEmpty(e.Name))
+                .Where(e => string.IsNullOrEmpty(e.Name))
+                .Where(e => !string.IsNullOrEmpty(e.Name))
 
                 //LIKE 查询场景
-                //.Where(e => e.Name.Contains(columnName))
-                //.Where(e => !e.Name.Contains(columnName))
-                //.Where(e => e.Name.Contains("北京"))
-                //.Where(e => !e.Name.Contains("北京"))
+                .Where(e => e.Name.Contains(columnName))
+                .Where(e => !e.Name.Contains(columnName))
+                .Where(e => e.Name.Contains("北京"))
+                .Where(e => !e.Name.Contains("北京"))
 
-                //.Where(e => e.Name.StartsWith(columnName))
-                //.Where(e => !e.Name.StartsWith(columnName))
-                //.Where(e => e.Name.StartsWith("北京"))
-                //.Where(e => !e.Name.StartsWith("北京"))
+                .Where(e => e.Name.StartsWith(columnName))
+                .Where(e => !e.Name.StartsWith(columnName))
+                .Where(e => e.Name.StartsWith("北京"))
+                .Where(e => !e.Name.StartsWith("北京"))
 
-                .Where(e => !e.IsDeleted)
-                .WhereIf(param.IsNotNull(), e => e.Code.Contains(param.Keywords) || e.Name.Contains(param.Keywords));
+                .WhereIf(param.CreateBeginTime.HasValue, e => e.CreateTime >= param.CreateBeginTime)
+                .WhereIf(param.CreateEndTime.HasValue, e => e.CreateTime >= param.CreateEndTime.Value)
+                .WhereIf(param.Keywords.IsNotNull(), e => e.Code.Contains(param.Keywords) || e.Name.Contains(param.Keywords))
+                .Where(e => e.Name.EndsWith("北京"))
 
-
-            //.Where(e => e.Name.EndsWith("北京"))
-
-            //排序
-            //.OrderBy(e => e.Version)
-            //.OrderBy(e => e.CreateTime)
-            //.OrderByDescending(e => e.UpdateTime);
+                //排序
+                .OrderBy(e => e.Version)
+                .OrderBy(e => e.CreateTime)
+                .OrderByDescending(e => e.UpdateTime);
 
             var dataList = await DefaultRepository.GetListAsync(query);//查询列表
             var pageList = await DefaultRepository.GetPageListAsync(query);//查询分页列表

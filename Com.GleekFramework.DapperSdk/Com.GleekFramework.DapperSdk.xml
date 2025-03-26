@@ -341,6 +341,13 @@
             WHERE方法条件表达式拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetMemberValue(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            获取成员值
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandlerWhereValues(System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean)">
             <summary>
             处理方法条件查询条件
@@ -379,6 +386,21 @@
             <param name="paramCounter">参数计数器</param>
             <param name="builder">查询条件</param>
             <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetMemberValue(System.Linq.Expressions.MemberExpression,System.Object)">
+            <summary>
+            获取成员值
+            </summary>
+            <param name="node"></param>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetClosureInstance(System.Linq.Expressions.Expression)">
+            <summary>
+            获取闭包实例
+            </summary>
+            <param name="expression"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
