@@ -130,6 +130,23 @@ namespace Com.GleekFramework.DapperSdk
         }
 
         /// <summary>
+        /// 排序
+        /// </summary>
+        /// <typeparam name="TKey">排序字段的类型</typeparam>
+        /// <param name="orderDic">排序规则字典</param>
+        /// <returns>当前查询构建器实例。</returns>
+        public QueryableBuilder<TEntity, TResult> Order<TKey>(Dictionary<string, string> orderDic)
+        {
+            if (orderDic.IsNullOrEmpty())
+            {
+                return this;
+            }
+            var orderExpression = new OrderExpressionConverter<TEntity>();
+            OrderExpressions.AddRange(orderExpression.Convert(orderDic));
+            return this;
+        }
+
+        /// <summary>
         /// 添加升序条件
         /// </summary>
         /// <typeparam name="TKey">排序字段的类型</typeparam>

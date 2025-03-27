@@ -39,28 +39,25 @@
             ORACLEE默认的链接字符串名称
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.OrderExpressionVisitor">
+        <member name="T:Com.GleekFramework.DapperSdk.OrderExpressionConverter`1">
             <summary>
-            排序表达式访问器
+            排序表达式转换类
             </summary>
+            <typeparam name="TEntity">查询的实体类型</typeparam>
         </member>
-        <member name="F:Com.GleekFramework.DapperSdk.OrderExpressionVisitor._orderClause">
+        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionConverter`1.Convert(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            排序
+            转换方法
             </summary>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionVisitor.GetOrderClause">
-            <summary>
-            
-            </summary>
+            <param name="orderDic"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)">
+        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionConverter`1.ParseSortDirection(System.String)">
             <summary>
-            访问成员表达式
+            解析排序的方向
             </summary>
-            <param name="node"></param>
-            <returns></returns>
+            <param name="direction"></param>
+            <returns>是否为升序，true：升序，false：降序</returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.QueryableBuilder`1">
             <summary>
@@ -157,6 +154,14 @@
             <param name="predicate">过滤条件的Lambda表达式</param>
             <returns>当前查询构建器实例</returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Order``1(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            排序
+            </summary>
+            <typeparam name="TKey">排序字段的类型</typeparam>
+            <param name="orderDic">排序规则字典</param>
+            <returns>当前查询构建器实例。</returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
             添加升序条件
@@ -178,6 +183,29 @@
             构建SQL脚本
             </summary>
             <param name="databaseType">数据库类型</param>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.OrderExpressionVisitor">
+            <summary>
+            排序表达式访问器
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.OrderExpressionVisitor._orderClause">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionVisitor.GetOrderClause">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.OrderExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            访问成员表达式
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.SelectExpressionVisitor`2">
             <summary>
