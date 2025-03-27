@@ -39,12 +39,18 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             //}
             //var response = await DefaultRepository.GetPageListAsync<ComArea>(param.PageIndex, param.PageSize, predicateGroup);
 
+            /// <summary>
+            /// 排序参数集合
+            /// </summary>
+            var orders = new Dictionary<string, string>() { { "create_time", "asc"}, { "update_time", "desc" } };
+
             //使用示例
             var columnName = "北京";//变量值
             var ids = new long[] { 1, 2 };
             var names = new string[] { "北京市", "京", "市" };
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
             var query = new QueryableBuilder<ComArea, ComAreaModel>()
+                .Order(orders)
                 .Where(e => !e.IsDeleted)
 
                 //组合条件

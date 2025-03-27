@@ -154,11 +154,10 @@
             <param name="predicate">过滤条件的Lambda表达式</param>
             <returns>当前查询构建器实例</returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Order``1(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Com.GleekFramework.DapperSdk.QueryableBuilder`2.Order(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             排序
             </summary>
-            <typeparam name="TKey">排序字段的类型</typeparam>
             <param name="orderDic">排序规则字典</param>
             <returns>当前查询构建器实例。</returns>
         </member>

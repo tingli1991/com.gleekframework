@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Com.GleekFramework.CommonSdk;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Com.GleekFramework.DapperSdk
@@ -17,12 +20,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public List<(Expression expression, bool isAscending)> Convert(Dictionary<string, string> orderDic)
         {
+            var type = typeof(TEntity);
+            var parameter = Expression.Parameter(type);
             var orderExpressionList = new List<(Expression, bool)>();
-            var parameter = Expression.Parameter(typeof(TEntity), "x");
-            foreach (var kvp in orderDic)
+            var propertyInfoList = type.GetPropertyInfoList();//属性列表
+            foreach (var order in orderDic)
             {
-                var propertyExpression = Expression.Property(parameter, kvp.Key);//构建属性访问表达式
-                var isAscending = ParseSortDirection(kvp.Value);//解析排序方向
+                var propertyName = order.Key;//属性名称
+                var propertyInfo = propertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<ColumnAttribute>()?.Name == propertyName || e.Name == propertyName);
+                if (propertyInfo == null)
+                {
+                    throw new ArgumentException(propertyName);
+                }
+
+                var propertyExpression = Expression.Property(parameter, propertyInfo.Name);//构建属性访问表达式
+                var isAscending = ParseSortDirection(order.Value);//解析排序方向
                 orderExpressionList.Add((propertyExpression, isAscending));
             }
             return orderExpressionList;
