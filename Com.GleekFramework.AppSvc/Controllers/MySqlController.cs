@@ -22,7 +22,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="param">请求参数</param>
         /// <returns></returns>
         [HttpGet("pages")]
-        public async Task<PageDataResult<ComArea>> GetPageListAsync(ComAreaPageParam param)
+        public async Task<PageDataResult<ComAreaModel>> GetPageListAsync(ComAreaPageParam param)
         {
             return await ComAreaRepository.GetPageListAsync(param);
         }

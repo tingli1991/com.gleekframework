@@ -21,7 +21,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
         /// </summary>
         /// <param name="param">请求参数</param>
         /// <returns></returns>
-        public async Task<PageDataResult<ComArea>> GetPageListAsync(ComAreaPageParam param)
+        public async Task<PageDataResult<ComAreaModel>> GetPageListAsync(ComAreaPageParam param)
         {
             ////1.创建顶层条件组（AND逻辑）
             //var predicateGroup = new PredicateGroup { Operator = GroupOperator.And, Predicates = [] };
@@ -42,7 +42,12 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             /// <summary>
             /// 排序参数集合
             /// </summary>
-            var orders = new Dictionary<string, string>() { { "create_time", "asc"}, { "update_time", "desc" } };
+            var orders = new Dictionary<string, string>() 
+            { 
+                { "create_time", "asc"}, 
+                { "update_time", "desc" },
+                { "version", "desc" }
+            };
 
             //使用示例
             var columnName = "北京";//变量值
@@ -92,7 +97,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var dataList = await DefaultRepository.GetListAsync(query);//查询列表
             var pageList = await DefaultRepository.GetPageListAsync(query);//查询分页列表
             var fistInfo = await DefaultRepository.GetFirstOrDefaultAsync(query);//查询单条数据
-            return null;
+            return pageList;
         }
     }
 }
