@@ -64,18 +64,6 @@
             基础控制器
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.AttributeSdk.AllowAuthorizeExtensions">
-            <summary>
-            允许用户授权范围拓展类
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.AllowAuthorizeExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
-            <summary>
-            获取允许用户授权范围特性
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
         <member name="T:Com.GleekFramework.AttributeSdk.ModelValidExtensions">
             <summary>
             模型验证扩展方法
@@ -166,6 +154,13 @@
             <typeparam name="T"></typeparam>
             <param name="contextAccessor"></param>
             <param name="userAuthKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            获取允许用户授权范围特性
+            </summary>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions">

@@ -115,7 +115,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         public static IServiceCollection AddNewtonsoftJson(this IServiceCollection services)
         {
-            services.AddControllers(options => { }).AddNewtonsoftJson(options =>
+            services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss:ffffff";//设置时间格式
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();//不添加驼峰
