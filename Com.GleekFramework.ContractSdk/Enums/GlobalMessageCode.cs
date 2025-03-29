@@ -44,9 +44,9 @@ namespace Com.GleekFramework.ContractSdk
         PARAM_REQUIRED = 100004,
 
         /// <summary>
-        /// 超过200长度的最大限制
+        /// 超出[1,200]长度的区间限制
         /// </summary>
-        [Description("超过200长度的最大限制")]
+        [Description("超出[1,200]长度的区间限制")]
         EXCEED_PPER_LIMIT_200 = 100005,
 
         /// <summary>

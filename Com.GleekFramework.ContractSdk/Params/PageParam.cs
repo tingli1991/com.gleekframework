@@ -23,7 +23,7 @@ namespace Com.GleekFramework.ContractSdk
         [FromQuery(Name = "page_size")]
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
         [Required(ErrorMessage = nameof(GlobalMessageCode.PARAM_REQUIRED))]
-        [MaxLength(200, ErrorMessage = nameof(GlobalMessageCode.EXCEED_PPER_LIMIT_200))]
+        [Range(1, 200, ErrorMessage = nameof(GlobalMessageCode.EXCEED_PPER_LIMIT_200))]
         public long PageSize { get; set; } = 20;
     }
 }
