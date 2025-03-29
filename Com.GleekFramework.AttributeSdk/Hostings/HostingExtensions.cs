@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -73,6 +74,17 @@ namespace Com.GleekFramework.AttributeSdk
                 ResponseWriter = (context, result) => context.Response.WriteAsync(callback == null ? "ok" : callback(), Encoding.UTF8)
             }));
             return builder;
+        }
+
+        /// <summary>
+        /// 添加全局过滤器
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddGlobalAttribute<T>(this IServiceCollection services) where T : IFilterMetadata
+        {
+            services.AddControllers(options => options.Filters.Add<T>());
+            return services;
         }
 
         /// <summary>

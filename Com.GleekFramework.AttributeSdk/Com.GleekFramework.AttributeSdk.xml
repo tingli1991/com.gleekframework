@@ -191,6 +191,13 @@
             <param name="callback">输出的内容(默认为：ok)</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddGlobalAttribute``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加全局过滤器
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加全局异常
