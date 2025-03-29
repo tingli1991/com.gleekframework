@@ -4,6 +4,21 @@
         <name>Com.GleekFramework.AttributeSdk</name>
     </assembly>
     <members>
+        <member name="T:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute">
+            <summary>
+            允许用户授权范围特性
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyToken">
+            <summary>
+            是否验证令牌过期
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyStatus">
+            <summary>
+            是否验证用户状态(只有验证令牌的的同时才会验证状态)
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.AttributeSdk.GlobalExceptionAttribute">
             <summary>
             全局异常过滤器
@@ -48,6 +63,18 @@
             <summary>
             基础控制器
             </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.AllowAuthorizeExtensions">
+            <summary>
+            允许用户授权范围拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AllowAuthorizeExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            获取允许用户授权范围特性
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.ModelValidExtensions">
             <summary>
