@@ -19,7 +19,9 @@ namespace Com.GleekFramework.AttributeSdk
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;//获取当前Action和Controller的描述信息
             var methodAllowAuthorizeAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<AllowAuthorizeAttribute>();//方法上的匿名函数特性
             var controllerAllowAuthorizeAttribute = actionDescriptor.ControllerTypeInfo.GetCustomAttribute<AllowAuthorizeAttribute>();//控制器上的匿名函数特性
-            return methodAllowAuthorizeAttribute ?? controllerAllowAuthorizeAttribute ?? new AllowAuthorizeAttribute();
+            var allowAuthorizeAttribute = methodAllowAuthorizeAttribute ?? controllerAllowAuthorizeAttribute ?? new AllowAuthorizeAttribute();
+            allowAuthorizeAttribute.VerifyStatus = allowAuthorizeAttribute.VerifyToken && allowAuthorizeAttribute.VerifyStatus;//修正状态验证的逻辑
+            return allowAuthorizeAttribute;
         }
     }
 }
