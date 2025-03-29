@@ -111,7 +111,7 @@
             <param name="source"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.ToResultAsync``1(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}})">
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.ToResultAsync``1(System.Threading.Tasks.Task{``0})">
             <summary>
             转换成数据返回模型
             </summary>

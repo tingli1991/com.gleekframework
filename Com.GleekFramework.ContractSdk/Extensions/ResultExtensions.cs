@@ -1,6 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Com.GleekFramework.ContractSdk
@@ -40,10 +39,10 @@ namespace Com.GleekFramework.ContractSdk
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static async Task<ContractResult<IEnumerable<T>>> ToResultAsync<T>(this Task<IEnumerable<T>> source)
+        public static async Task<ContractResult<T>> ToResultAsync<T>(this Task<T> source)
         {
-            var dataList = await source;
-            return new ContractResult<IEnumerable<T>>().SetSuceccful(dataList);
+            var data = await source;
+            return new ContractResult<T>().SetSuceccful(data);
         }
 
         /// <summary>
