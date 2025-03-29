@@ -85,8 +85,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public T GetFirstOrDefault<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Take(1).Build(DatabaseType);
+            using var db = GetConnection();
             return db.QueryFirstOrDefault<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
@@ -100,8 +100,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public T GetFirstOrDefault<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Take(1).Build(DatabaseType);
+            using var db = GetConnection();
             return db.QueryFirstOrDefault<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
@@ -125,8 +125,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultAsync<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Take(1).Build(DatabaseType);
+            using var db = GetConnection();
             return await db.QueryFirstOrDefaultAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
@@ -140,8 +140,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultAsync<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Take(1).Build(DatabaseType);
+            using var db = GetConnection();
             return await db.QueryFirstOrDefaultAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
@@ -165,8 +165,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public IEnumerable<T> GetList<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Build(DatabaseType);
+            using var db = GetConnection();
             return db.Query<T>(query.ExecuteSQL.ToString(), query.Parameters, null, true, timeoutSeconds);
         }
 
@@ -180,8 +180,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public IEnumerable<T> GetList<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Build(DatabaseType);
+            using var db = GetConnection();
             return db.Query<T>(query.ExecuteSQL.ToString(), query.Parameters, null, true, timeoutSeconds);
         }
 
@@ -205,8 +205,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetListAsync<T>(QueryableBuilder<T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Build(DatabaseType);
+            using var db = GetConnection();
             return await db.QueryAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
@@ -220,8 +220,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetListAsync<E, T>(QueryableBuilder<E, T> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
-            using var db = GetConnection();
             query.Build(DatabaseType);
+            using var db = GetConnection();
             return await db.QueryAsync<T>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
