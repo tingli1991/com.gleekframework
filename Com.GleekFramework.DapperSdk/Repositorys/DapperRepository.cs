@@ -73,7 +73,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param">参数对象</param>
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
-        public T GetFirstOrDefault<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public T GetFirstOrDefault<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
             => Open(db => db.QueryFirstOrDefault<T>(sql, param, null, timeoutSeconds));
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param">参数对象</param>
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
-        public async Task<T> GetFirstOrDefaultAsync<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<T> GetFirstOrDefaultAsync<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
         => await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(sql, param, null, timeoutSeconds));
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param">参数对象</param>
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
-        public IEnumerable<T> GetList<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public IEnumerable<T> GetList<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
             => Open(db => db.Query<T>(sql, param, null, true, timeoutSeconds));
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="param">参数对象</param>
         /// <param name="timeoutSeconds">超时时间(单位：秒)</param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetListAsync<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<IEnumerable<T>> GetListAsync<T>(string sql, object param = null, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
             => await OpenAsync(db => db.QueryAsync<T>(sql, param, null, timeoutSeconds));
 
         /// <summary>

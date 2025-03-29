@@ -21,7 +21,7 @@ namespace Com.GleekFramework.DapperSdk
         public List<(Expression expression, bool isAscending)> Convert(Dictionary<string, string> orderDic)
         {
             var type = typeof(TEntity);
-            var parameter = Expression.Parameter(type);
+            var parameter = Expression.Parameter(type, "x");
             var orderExpressionList = new List<(Expression, bool)>();
             var propertyInfoList = type.GetPropertyInfoList();//属性列表
             foreach (var order in orderDic)
@@ -33,7 +33,7 @@ namespace Com.GleekFramework.DapperSdk
                     throw new ArgumentException(propertyName);
                 }
 
-                var propertyExpression = Expression.Property(parameter, propertyInfo.Name);//构建属性访问表达式
+                var propertyExpression = Expression.Property(parameter, propertyInfo);//构建属性访问表达式
                 var isAscending = ParseSortDirection(order.Value);//解析排序方向
                 orderExpressionList.Add((propertyExpression, isAscending));
             }
