@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Com.GleekFramework.ContractSdk
@@ -21,6 +22,7 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [FromQuery(Name = "page_size")]
         [JsonProperty("page_size"), JsonPropertyName("page_size")]
+        [MaxLength(200, ErrorMessage = nameof(GlobalMessageCode.EXCEED_PPER_LIMIT_200))]
         public long PageSize { get; set; } = 20;
     }
 }

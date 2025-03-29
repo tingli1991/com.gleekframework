@@ -44,6 +44,12 @@ namespace Com.GleekFramework.ContractSdk
         PARAM_REQUIRED = 100004,
 
         /// <summary>
+        /// 超过200长度的最大限制
+        /// </summary>
+        [Description("超过200长度的最大限制")]
+        EXCEED_PPER_LIMIT_200 = 100005,
+
+        /// <summary>
         ///  未知错误(系统异常)
         /// </summary>
         [Description("未知错误")]

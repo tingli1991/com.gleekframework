@@ -64,6 +64,11 @@
             参数必填
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.EXCEED_PPER_LIMIT_200">
+            <summary>
+            超过200长度的最大限制
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ERROR">
             <summary>
              未知错误(系统异常)
