@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.GleekFramework.Models",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.GleekFramework.AppSvc", "Com.GleekFramework.AppSvc\Com.GleekFramework.AppSvc.csproj", "{E186947D-A54E-4AD3-8026-E8E1354B0B3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.GleekFramework.SecuritySdk", "Com.GleekFramework.SecuritySdk\Com.GleekFramework.SecuritySdk.csproj", "{E8B1A9C1-A528-52AF-466D-C7DEBFE07948}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,10 @@ Global
 		{E186947D-A54E-4AD3-8026-E8E1354B0B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E186947D-A54E-4AD3-8026-E8E1354B0B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E186947D-A54E-4AD3-8026-E8E1354B0B3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B1A9C1-A528-52AF-466D-C7DEBFE07948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B1A9C1-A528-52AF-466D-C7DEBFE07948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B1A9C1-A528-52AF-466D-C7DEBFE07948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B1A9C1-A528-52AF-466D-C7DEBFE07948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +185,7 @@ Global
 		{1E86AC2A-5B4F-44AC-B17E-CEC58094FBA2} = {9EF98734-69A5-4656-9D31-D08006427CC9}
 		{0E372A8B-0AAF-48AC-AA84-3304553009DB} = {114E1EE6-FCC3-42F0-AE1F-9A5115904135}
 		{E186947D-A54E-4AD3-8026-E8E1354B0B3E} = {114E1EE6-FCC3-42F0-AE1F-9A5115904135}
+		{E8B1A9C1-A528-52AF-466D-C7DEBFE07948} = {9EF98734-69A5-4656-9D31-D08006427CC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFAC6C0E-B75B-461A-A656-14DB05DB30A2}

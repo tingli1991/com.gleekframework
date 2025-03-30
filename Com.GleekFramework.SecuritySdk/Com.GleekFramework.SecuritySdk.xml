@@ -4,5 +4,78 @@
         <name>Com.GleekFramework.SecuritySdk</name>
     </assembly>
     <members>
+        <member name="T:Com.GleekFramework.SecuritySdk.RandomStringGenerator">
+            <summary>
+            安全随机字符串生成器（线程安全）
+            默认预置字符集：数字、大写字母、小写字母、常用特殊符号
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.NUMBERS">
+            <summary>
+            数字
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.UPPER_LETTERS">
+            <summary>
+            大写字母
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.LOWER_LETTERS">
+            <summary>
+            小写字母
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.SPECIAL_SYMBOLS">
+            <summary>
+            特殊字符
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.GenAppId(System.Int32)">
+            <summary>
+            生成应用ID（默认16位，包含数字+大写字母）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.GenAppSecret(System.Int32)">
+            <summary>
+            生成应用密钥（默认32位，包含四类字符）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.Generate(System.Int32,System.String)">
+            <summary>
+            通用随机字符串生成方法
+            </summary>
+            <param name="length">字符串长度</param>
+            <param name="allowedChars">允许的字符集合</param>
+        </member>
+        <member name="T:Com.GleekFramework.SecuritySdk.Md5ComputeHash">
+            <summary>
+            跨语言兼容的MD5哈希计算工具类
+            注意：MD5不适用于安全敏感场景，建议优先使用SHA256等更安全的哈希算法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5ComputeHash.ComputeHash(System.Byte[])">
+            <summary>
+            计算字节数组的MD5哈希值（基础方法）
+            </summary>
+            <param name="input">输入字节数组</param>
+            <returns>16字节MD5哈希值</returns>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5ComputeHash.ComputeHashString(System.String)">
+            <summary>
+            计算字符串的MD5哈希值（UTF8编码）
+            </summary>
+            <param name="input">输入字符串</param>
+            <returns>32字符小写十六进制字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5ComputeHash.Verify(System.String,System.String)">
+            <summary>
+            验证字符串与指定哈希值是否匹配
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5ComputeHash.BytesToHex(System.ReadOnlySpan{System.Byte})">
+            <summary>
+            将字节数组转换为十六进制字符串（性能优化版本）
+            </summary>
+        </member>
     </members>
 </doc>
