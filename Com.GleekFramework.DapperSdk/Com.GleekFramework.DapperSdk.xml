@@ -835,7 +835,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Insert``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -854,7 +854,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -872,7 +872,7 @@
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Update``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             更新多条数据
             </summary>
@@ -889,7 +889,7 @@
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             更新多条数据
             </summary>
@@ -906,7 +906,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Delete``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>
@@ -923,7 +923,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>

@@ -372,7 +372,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize">分页大小</param>
         /// <param name="timeoutSeconds">超时时间</param>
         /// <returns></returns>
-        public void Insert<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void InsertMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -440,7 +440,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task InsertAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task InsertManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -499,7 +499,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entitys"></param>
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
-        public void Update<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void UpdateMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -558,7 +558,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entitys"></param>
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
-        public async Task UpdateAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task UpdateManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -610,7 +610,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public void Delete<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void DeleteMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -648,7 +648,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task DeleteAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task DeleteManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
