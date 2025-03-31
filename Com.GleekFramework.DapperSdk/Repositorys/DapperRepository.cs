@@ -2,7 +2,6 @@
 using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ContractSdk;
 using Dapper;
-using DapperExtensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -341,19 +340,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public dynamic InsertOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public long Insert<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
-                return null;
+                return 0L;
             }
 
-            if (entity is IVersionTable versionInfo)
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
             {
                 //赋值版本号
                 versionInfo.Version = SnowflakeService.GetVersionNo();
             }
-            return Open(db => db.Insert(entity, null, timeoutSeconds));
+            var builder = new SqlBuilder<T>();
+            var sql = builder.GenInsertSQL();
+            return Open(db => db.ExecuteScalar<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
         }
 
         /// <summary>
@@ -364,7 +365,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize">分页大小</param>
         /// <param name="timeoutSeconds">超时时间</param>
         /// <returns></returns>
-        public void InsertMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void Insert<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -375,15 +376,21 @@ namespace Com.GleekFramework.DapperSdk
             {
                 foreach (var versionInfo in versionInfoList)
                 {
+                    if (versionInfo.Version <= 0)
+                    {
+                        continue;
+                    }
+
                     //赋值版本号
                     versionInfo.Version = SnowflakeService.GetVersionNo();
                 }
             }
 
+            var sql = new SqlBuilder<T>().GenInsertSQL();
             entitys.ForEach(pageSize, (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                conn.Insert(pageList, null, timeoutSeconds);
+                conn.Execute(sql, pageList, null, timeoutSeconds);
             });
         }
 
@@ -394,20 +401,22 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task<dynamic> InsertOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<long> InsertAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
-                return null;
+                return 0L;
             }
 
-            if (entity is IVersionTable versionInfo)
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
             {
                 //赋值版本号
                 versionInfo.Version = SnowflakeService.GetVersionNo();
             }
 
-            return await OpenAsync(db => db.InsertAsync(entity, null, timeoutSeconds));
+            var builder = new SqlBuilder<T>();
+            var sql = builder.GenInsertSQL();
+            return await OpenAsync(db => db.ExecuteScalarAsync<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
         }
 
         /// <summary>
@@ -418,7 +427,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task InsertManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task InsertAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -429,15 +438,21 @@ namespace Com.GleekFramework.DapperSdk
             {
                 foreach (var versionInfo in versionInfoList)
                 {
+                    if (versionInfo.Version <= 0)
+                    {
+                        continue;
+                    }
+
                     //赋值版本号
                     versionInfo.Version = SnowflakeService.GetVersionNo();
                 }
             }
 
+            var sql = new SqlBuilder<T>().GenInsertSQL();
             await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                await conn.InsertAsync(pageList, null, timeoutSeconds);
+                await conn.ExecuteAsync(sql, pageList, null, timeoutSeconds);
             });
         }
 
@@ -447,20 +462,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
-        public bool UpdateOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public bool Update<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
                 return false;
             }
 
-            if (entity is IVersionTable versionInfo)
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
             {
                 //赋值版本号
                 versionInfo.Version = SnowflakeService.GetVersionNo();
             }
 
-            return Open(db => db.Update(entity, null, timeoutSeconds));
+            var sql = new SqlBuilder<T>().GenUpdateSQL();
+            return Open(db => db.Execute(sql, entity, null, timeoutSeconds) > 0);
         }
 
         /// <summary>
@@ -470,7 +486,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entitys"></param>
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
-        public void UpdateMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void Update<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -481,15 +497,21 @@ namespace Com.GleekFramework.DapperSdk
             {
                 foreach (var versionInfo in versionInfoList)
                 {
+                    if (versionInfo.Version <= 0)
+                    {
+                        continue;
+                    }
+
                     //赋值版本号
                     versionInfo.Version = SnowflakeService.GetVersionNo();
                 }
             }
 
+            var sql = new SqlBuilder<T>().GenUpdateSQL();
             entitys.ForEach(pageSize, (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                conn.Update(pageList, null, timeoutSeconds);
+                conn.Execute(sql, pageList, null, timeoutSeconds);
             });
         }
 
@@ -499,20 +521,21 @@ namespace Com.GleekFramework.DapperSdk
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
-        public async Task<bool> UpdateOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<bool> UpdateAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
                 return false;
             }
 
-            if (entity is IVersionTable versionInfo)
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
             {
                 //赋值版本号
                 versionInfo.Version = SnowflakeService.GetVersionNo();
             }
 
-            return await OpenAsync(db => db.UpdateAsync(entity, null, timeoutSeconds));
+            var sql = new SqlBuilder<T>().GenUpdateSQL();
+            return await OpenAsync(db => db.ExecuteAsync(sql, entity, null, timeoutSeconds)) > 0;
         }
 
         /// <summary>
@@ -522,7 +545,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entitys"></param>
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
-        public async Task UpdateManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task UpdateAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
@@ -533,15 +556,21 @@ namespace Com.GleekFramework.DapperSdk
             {
                 foreach (var versionInfo in versionInfoList)
                 {
+                    if (versionInfo.Version <= 0)
+                    {
+                        continue;
+                    }
+
                     //赋值版本号
                     versionInfo.Version = SnowflakeService.GetVersionNo();
                 }
             }
 
+            var sql = new SqlBuilder<T>().GenUpdateSQL();
             await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                await conn.UpdateAsync(pageList, null, timeoutSeconds);
+                await conn.ExecuteAsync(sql, pageList, null, timeoutSeconds);
             });
         }
 
@@ -551,28 +580,14 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public bool DeleteOne<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public bool Delete<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
                 return false;
             }
-            return Open(db => db.Delete(entity, null, timeoutSeconds));
-        }
-
-        /// <summary>
-        /// 根据条件删除
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public bool DeleteOne(object param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
-        {
-            if (param == null)
-            {
-                return false;
-            }
-            return Open(db => db.Delete<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+            var sql = new SqlBuilder<T>().GenDeleteSQL();
+            return Open(db => db.Execute(sql, entity, null, timeoutSeconds) > 0);
         }
 
         /// <summary>
@@ -582,63 +597,19 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public void DeleteMany<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public void Delete<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
                 return;
             }
 
+            var sql = new SqlBuilder<T>().GenDeleteSQL();
             entitys.ForEach(pageSize, (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                conn.Delete(entitys, null, timeoutSeconds);
+                conn.Execute(sql, pageList, null, timeoutSeconds);
             });
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public bool DeleteById<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
-        {
-            if (primaryKey <= 0)
-            {
-                return false;
-            }
-
-            var type = typeof(T);
-            var tableName = type.GetTableName<T>();//获取表名称
-            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
-
-            // 数据库脚本
-            var sql = @$"delete from {tableName} where {primaryColumnName}=@PrimaryKey";
-            return Open(db => db.Execute(sql, new { PrimaryKey = primaryKey }, null, timeoutSeconds) > 0);
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="primaryKeys">主键Id集合</param>
-        /// <param name="pageSize"></param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public void DeleteByIds<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
-        {
-            if (primaryKeys.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            var type = typeof(T);
-            var tableName = type.GetTableName<T>();//获取表名称
-            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
-            var sql = @$"delete from {tableName} where {primaryColumnName} in @PrimaryKeys";
-            primaryKeys.ForEach(pageSize, (pageIndex, pageList) => Open(db => db.ExecuteAsync(sql, new { PrimaryKeys = pageList }, null, timeoutSeconds)));
         }
 
         /// <summary>
@@ -647,28 +618,14 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteOneAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<bool> DeleteAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
                 return false;
             }
-            return await OpenAsync(db => db.DeleteAsync(entity, null, timeoutSeconds));
-        }
-
-        /// <summary>
-        /// 根据条件删除数据
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public async Task<bool> DeleteOneAsync(object param, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
-        {
-            if (param == null)
-            {
-                return false;
-            }
-            return await OpenAsync(db => db.DeleteAsync<object>(predicate: param, transaction: null, commandTimeout: timeoutSeconds));
+            var sql = new SqlBuilder<T>().GenDeleteSQL();
+            return await OpenAsync(db => db.ExecuteAsync(sql, entity, null, timeoutSeconds)) > 0;
         }
 
         /// <summary>
@@ -678,63 +635,19 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="pageSize"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task DeleteManyAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task DeleteAsync<T>(IEnumerable<T> entitys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entitys.IsNullOrEmpty())
             {
                 return;
             }
 
+            var sql = new SqlBuilder<T>().GenDeleteSQL();
             await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
             {
                 using var conn = GetConnection();
-                await conn.DeleteAsync(entitys, null, timeoutSeconds);
+                await conn.ExecuteAsync(sql, pageList, null, timeoutSeconds);
             });
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public async Task<bool> DeleteByIdAsync<T>(long primaryKey, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
-        {
-            if (primaryKey <= 0)
-            {
-                return false;
-            }
-
-            var type = typeof(T);
-            var tableName = type.GetTableName<T>();//获取表名称
-            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
-
-            // 数据库脚本
-            var sql = @$"delete from {tableName} where {primaryColumnName}=@PrimaryKey";
-            return await OpenAsync(async db => await db.ExecuteAsync(sql, new { PrimaryKey = primaryKey }, null, timeoutSeconds) > 0);
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="primaryKeys">主键Id集合</param>
-        /// <param name="pageSize"></param>
-        /// <param name="timeoutSeconds"></param>
-        /// <returns></returns>
-        public async Task DeleteByIdsAsync<T>(IEnumerable<long> primaryKeys, int pageSize = 2000, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : ITable
-        {
-            if (primaryKeys.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            var type = typeof(T);
-            var tableName = type.GetTableName<T>();//获取表名称
-            var primaryColumnName = type.GetPrimaryColumnName<T>();//主键字段名称
-            var sql = @$"delete from {tableName} where {primaryColumnName} in @PrimaryKeys";
-            await primaryKeys.ForEachAsync(pageSize, async (pageIndex, pageList) => await OpenAsync(db => db.ExecuteAsync(sql, new { PrimaryKeys = pageList }, null, timeoutSeconds)));
         }
 
         /// <summary>

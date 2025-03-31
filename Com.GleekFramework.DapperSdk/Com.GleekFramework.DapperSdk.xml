@@ -183,6 +183,62 @@
             </summary>
             <param name="databaseType">数据库类型</param>
         </member>
+        <member name="T:Com.GleekFramework.DapperSdk.SqlBuilder`1">
+            <summary>
+            SQL构建器
+            </summary>
+            <typeparam name="T">新实体类型</typeparam>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.TableName">
+            <summary>
+            数据库名称
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.PropertyInfoList">
+            <summary>
+            属性列表
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.ColumnMappingList">
+            <summary>
+            属性的映射关系列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenInsertSQL">
+            <summary>
+            编译插入脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenUpdateSQL">
+            <summary>
+            生成更新SQL脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenDeleteSQL">
+            <summary>
+            生成删除SQL脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GetIdentitySQL(Com.GleekFramework.ContractSdk.DatabaseType)">
+            <summary>
+            生成获取主键Id返回值的查询脚本
+            </summary>
+            <param name="databaseType">数据库类型</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.DapperSdk.OrderExpressionVisitor">
             <summary>
             排序表达式访问器
@@ -765,7 +821,7 @@
             <param name="timeoutSeconds">超时时间(单位：秒)</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertOne``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Insert``1(``0,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -774,7 +830,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Insert``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -784,7 +840,7 @@
             <param name="timeoutSeconds">超时时间</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertOneAsync``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertAsync``1(``0,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -793,7 +849,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.InsertAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             插入单条数据
             </summary>
@@ -803,7 +859,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateOne``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Update``1(``0,System.Int32)">
             <summary>
             更新单条数据
             </summary>
@@ -811,7 +867,7 @@
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Update``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             更新多条数据
             </summary>
@@ -820,7 +876,7 @@
             <param name="pageSize"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateOneAsync``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateAsync``1(``0,System.Int32)">
             <summary>
             更新单条数据
             </summary>
@@ -828,7 +884,7 @@
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             更新多条数据
             </summary>
@@ -837,7 +893,7 @@
             <param name="pageSize"></param>
             <param name="timeoutSeconds"></param>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Delete``1(``0,System.Int32)">
             <summary>
             删除单条数据
             </summary>
@@ -845,15 +901,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOne(System.Object,System.Int32)">
-            <summary>
-            根据条件删除
-            </summary>
-            <param name="param"></param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteMany``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Delete``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>
@@ -862,26 +910,7 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteById``1(System.Int64,System.Int32)">
-            <summary>
-            批量删除
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="primaryKey">主键</param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIds``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
-            <summary>
-            批量删除
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="primaryKeys">主键Id集合</param>
-            <param name="pageSize"></param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync``1(``0,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteAsync``1(``0,System.Int32)">
             <summary>
             删除单条数据
             </summary>
@@ -889,38 +918,11 @@
             <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteOneAsync(System.Object,System.Int32)">
-            <summary>
-            根据条件删除数据
-            </summary>
-            <param name="param"></param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
             删除多条数据
             </summary>
             <param name="entitys"></param>
-            <param name="pageSize"></param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIdAsync``1(System.Int64,System.Int32)">
-            <summary>
-            批量删除
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="primaryKey">主键</param>
-            <param name="timeoutSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.DeleteByIdsAsync``1(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Int32)">
-            <summary>
-            批量删除
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="primaryKeys">主键Id集合</param>
             <param name="pageSize"></param>
             <param name="timeoutSeconds"></param>
             <returns></returns>

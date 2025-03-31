@@ -20,7 +20,6 @@
 		<PackageReference Include="MySql.Data" Version="9.2.0" />
 		<PackageReference Include="MySqlConnector" Version="2.4.0" />
 		<PackageReference Include="EntityFramework" Version="6.5.1" />
-		<PackageReference Include="DapperExtensions" Version="1.7.0" />
 		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />

@@ -28,7 +28,37 @@ namespace Com.GleekFramework.AppSvc.Repositorys
         /// <returns></returns>
         public async Task<PageDataResult<ComAreaModel>> GetPageListAsync(ComAreaPageParam param)
         {
-            var version = SnowflakeService.GetVersionNo();
+            var comAreaInfo = new ComArea()
+            {
+                Code = "test",
+                IsDeleted = false,
+                Name = "测试名称",
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                Extend = "拓展字段",
+                Remark = "测试备注",
+                ParentId = 0,
+                Lat = "",
+                Lng = "",
+                Level = AreaLevel.Province,
+                Version = SnowflakeService.GetVersionNo()
+            };
+            var id = await DefaultRepository.InsertAsync(comAreaInfo);
+
+            //var comAreaInfo = new ComArea()
+            //{
+            //    Code = "test",
+            //    IsDeleted = false,
+            //    Name = "测试名称",
+            //    CreateTime = DateTime.Now,
+            //    UpdateTime = DateTime.Now,
+            //    Extend = "拓展字段",
+            //    Remark = "测试备注",
+            //    ParentId = 0,
+            //    Level = AreaLevel.Province,
+            //    Version = SnowflakeService.GetVersionNo()
+            //};
+            //var comAreaResponse = await DefaultRepository.InsertOneAsync(comAreaInfo);
 
             ////1.创建顶层条件组（AND逻辑）
             //var predicateGroup = new PredicateGroup { Operator = GroupOperator.And, Predicates = [] };
