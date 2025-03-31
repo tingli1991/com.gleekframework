@@ -27,6 +27,11 @@ namespace Com.GleekFramework.DapperSdk
         private readonly string TableName;
 
         /// <summary>
+        /// 主键属性信息
+        /// </summary>
+        public PropertyInfo KeyPropertyInfo;
+
+        /// <summary>
         /// 属性列表
         /// </summary>
         private readonly IEnumerable<PropertyInfo> PropertyInfoList;
@@ -44,6 +49,7 @@ namespace Com.GleekFramework.DapperSdk
             Type = typeof(T);//初始化实体类型
             TableName = Type.GetTableName();//数据库名称
             PropertyInfoList = Type.GetPropertyInfoList();//实体属性列表
+            KeyPropertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);//主键属性
             ColumnMappingList = PropertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);//列的映射关系列表
         }
 

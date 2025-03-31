@@ -340,11 +340,11 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public long Insert<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public T Insert<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
-                return 0L;
+                return null;
             }
 
             if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
@@ -352,9 +352,16 @@ namespace Com.GleekFramework.DapperSdk
                 //赋值版本号
                 versionInfo.Version = SnowflakeService.GetVersionNo();
             }
+
             var builder = new SqlBuilder<T>();
             var sql = builder.GenInsertSQL();
-            return Open(db => db.ExecuteScalar<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
+            var responseId = Open(db => db.ExecuteScalar<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
+            if (responseId > 0)
+            {
+                entity.SetPropertyValue(builder.KeyPropertyInfo.Name, responseId);
+                return entity;
+            }
+            return null;
         }
 
         /// <summary>
@@ -401,11 +408,11 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task<long> InsertAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<T> InsertAsync<T>(T entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
         {
             if (entity == null)
             {
-                return 0L;
+                return null;
             }
 
             if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
@@ -416,7 +423,13 @@ namespace Com.GleekFramework.DapperSdk
 
             var builder = new SqlBuilder<T>();
             var sql = builder.GenInsertSQL();
-            return await OpenAsync(db => db.ExecuteScalarAsync<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
+            var responseId = await OpenAsync(db => db.ExecuteScalarAsync<long>($"{sql}{builder.GetIdentitySQL(DatabaseType)}", entity, null, timeoutSeconds));
+            if (responseId > 0)
+            {
+                entity.SetPropertyValue(builder.KeyPropertyInfo.Name, responseId);
+                return entity;
+            }
+            return null;
         }
 
         /// <summary>

@@ -199,6 +199,11 @@
             数据库名称
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.KeyPropertyInfo">
+            <summary>
+            主键属性信息
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.PropertyInfoList">
             <summary>
             属性列表
