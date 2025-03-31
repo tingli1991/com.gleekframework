@@ -111,7 +111,7 @@ namespace Com.GleekFramework.MigrationSdk
         public static (byte Scale, byte Precision) GetPrecisionInfo(this PropertyInfo propertyInfo)
         {
             var precisionAttribute = PropertyAttributeProvider.GetCustomAttribute<PrecisionAttribute>(propertyInfo);
-            return (precisionAttribute?.Scale ?? 0, precisionAttribute?.Precision ?? 0);
+            return (precisionAttribute?.Scale ?? 0, precisionAttribute?.Precision ?? 30);
         }
 
         /// <summary>

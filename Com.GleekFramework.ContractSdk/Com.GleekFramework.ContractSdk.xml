@@ -270,7 +270,12 @@
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.Sequence">
             <summary>
-            自增开始位置
+            自增序号(默认从最小序号开始)
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.MaxSequence">
+            <summary>
+            最大序号(上限位置)
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.lock">
@@ -283,33 +288,25 @@
             随机因子
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.RefDateTime">
+            <summary>
+            重新计数的时间点
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.PersonCode">
             <summary>
             机器码
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ContractSdk.SnowflakeProvider.RefSequence">
-            <summary>
-            重新计数的时间点
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetSerialNo(System.Int32)">
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetSerialNo">
             <summary>
             获取流水号
             </summary>
-            <param name="suffix">流水号前缀</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.NextSnowflakeNo(System.Int32)">
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.NextSnowflakeNo">
             <summary>
             生成雪花编号
-            </summary>
-            <param name="suffix">流水号前缀</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetCurrentTimeSpan">
-            <summary>
-            生成当前时间戳
             </summary>
             <returns></returns>
         </member>
@@ -419,18 +416,16 @@
             雪花算法实现类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetSerialNo(System.Int32)">
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetSerialNo">
             <summary>
             获取流水号
             </summary>
-            <param name="suffix">流水号前缀</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetVersionNo(System.Int32)">
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeService.GetVersionNo">
             <summary>
             获取版本号
             </summary>
-            <param name="suffix">流水号前缀</param>
             <returns></returns>
         </member>
     </members>

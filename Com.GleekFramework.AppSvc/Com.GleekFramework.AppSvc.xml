@@ -449,6 +449,11 @@
             区域仓储
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.SnowflakeService">
+            <summary>
+            流水号生成服务
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.DefaultRepository">
             <summary>
             默认测试仓储(读写)

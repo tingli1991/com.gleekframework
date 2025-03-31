@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.CommonSdk.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -197,50 +198,8 @@ namespace Com.GleekFramework.NacosSdk
                 return new Uri($"{conf.Scheme}://{conf?.IP}:{conf.Port}");
             }
 
-            var currentIp = GetCurrentIP();
+            var currentIp = NetworkProvider.GetIPAddress();
             return new Uri($"{conf.Scheme}://{currentIp}:{conf.Port}");
-        }
-
-        /// <summary>
-        /// 获取当前服务器的Ip地址
-        /// </summary>
-        /// <returns></returns>
-        private static string GetCurrentIP()
-        {
-            try
-            {
-                var ipAddress = "";
-                var addressInfo = NetworkInterface.GetAllNetworkInterfaces()
-                    .Select(e => e.GetIPProperties())
-                    .SelectMany(e => e.UnicastAddresses)
-                    .Where(e => e.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(e.Address))
-                    .FirstOrDefault();
-
-                if (addressInfo != null && addressInfo.Address != null)
-                {
-                    //绑定Ip地址
-                    ipAddress = $"{addressInfo.Address}";
-                }
-
-                if (string.IsNullOrEmpty(ipAddress))
-                {
-                    var hoostAddresses = Dns.GetHostAddresses(Dns.GetHostName())
-                    .Where(e => e.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(e))
-                    .FirstOrDefault();
-
-                    if (hoostAddresses != null)
-                    {
-                        //绑定Ip地址
-                        ipAddress = $"{hoostAddresses}";
-                    }
-                }
-                return ipAddress;
-            }
-            catch
-            {
-
-            }
-            return "127.0.0.1";
         }
     }
 }

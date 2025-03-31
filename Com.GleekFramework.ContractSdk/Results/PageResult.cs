@@ -13,7 +13,7 @@ namespace Com.GleekFramework.ContractSdk
         /// 最大ID
         /// </summary>
         [JsonProperty("next_id"), JsonPropertyName("next_id")]
-        public long NextId { get; set; }
+        public decimal NextId { get; set; }
 
         /// <summary>
         /// 分页大小

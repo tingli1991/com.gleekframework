@@ -12,6 +12,11 @@ namespace Com.GleekFramework.AppSvc.Repositorys
     public class ComAreaRepository : IBaseAutofac
     {
         /// <summary>
+        /// 流水号生成服务
+        /// </summary>
+        public SnowflakeService SnowflakeService { get; set; }
+
+        /// <summary>
         /// 默认测试仓储(读写)
         /// </summary>
         public DefaultRepository DefaultRepository { get; set; }
@@ -23,6 +28,8 @@ namespace Com.GleekFramework.AppSvc.Repositorys
         /// <returns></returns>
         public async Task<PageDataResult<ComAreaModel>> GetPageListAsync(ComAreaPageParam param)
         {
+            var version = SnowflakeService.GetVersionNo();
+
             ////1.创建顶层条件组（AND逻辑）
             //var predicateGroup = new PredicateGroup { Operator = GroupOperator.And, Predicates = [] };
 
@@ -42,9 +49,9 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             /// <summary>
             /// 排序参数集合
             /// </summary>
-            var orders = new Dictionary<string, string>() 
-            { 
-                { "create_time", "asc"}, 
+            var orders = new Dictionary<string, string>()
+            {
+                { "create_time", "asc"},
                 { "update_time", "desc" },
                 { "version", "desc" }
             };

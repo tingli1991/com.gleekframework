@@ -272,12 +272,6 @@
             <param name="conf">服务端配置</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.NacosSdk.HttpClientExtensions.GetCurrentIP">
-            <summary>
-            获取当前服务器的Ip地址
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Com.GleekFramework.NacosSdk.NacosAuthExtensions">
             <summary>
             登录授权拓展

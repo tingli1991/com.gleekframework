@@ -50,6 +50,6 @@ namespace Com.GleekFramework.ContractSdk
         /// 分页总页数
         /// </summary>
         [JsonProperty("page_count"), JsonPropertyName("page_count")]
-        public int PageCount { get { return (int)Math.Ceiling((decimal)TotalCount / (PageSize <= 0 ? 1 : PageSize)); } }
+        public long PageCount { get { return (long)Math.Ceiling((decimal)TotalCount / (PageSize <= 0 ? 1 : PageSize)); } }
     }
 }

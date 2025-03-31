@@ -13,6 +13,6 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [Column("version")]
         [Comment("版本号")]
-        public long Version { get; set; }
+        public decimal Version { get; set; }
     }
 }

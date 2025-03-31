@@ -14,7 +14,7 @@ namespace Com.GleekFramework.Models
     /// </summary>
     [Table("com_area")]
     [Comment("地区信息表")]
-    public class ComArea : ITable
+    public class ComArea : ITable, IVersionTable
     {
         /// <summary>
         /// 主键
@@ -88,11 +88,11 @@ namespace Com.GleekFramework.Models
         /// 主键
         /// </summary>
         [ProtoMember(8)]
+        //[Precision(0, 30)]
         [Column("version")]
         [Comment("版本号")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [JsonProperty("version"), JsonPropertyName("version")]
-        public long Version { get; set; }
+        public decimal Version { get; set; }
 
         /// <summary>
         /// 死否删除

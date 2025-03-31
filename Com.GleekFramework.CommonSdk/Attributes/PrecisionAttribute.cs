@@ -5,7 +5,7 @@ namespace Com.GleekFramework.CommonSdk
     /// <summary>
     /// 精度特性
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     public class PrecisionAttribute : Attribute
     {
         /// <summary>
