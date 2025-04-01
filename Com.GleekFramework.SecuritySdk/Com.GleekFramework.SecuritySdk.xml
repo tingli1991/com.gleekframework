@@ -15,9 +15,9 @@
             数字
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.UPPER_LETTERS">
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.SPECIAL_SYMBOLS">
             <summary>
-            大写字母
+            特殊字符
             </summary>
         </member>
         <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.LOWER_LETTERS">
@@ -25,19 +25,19 @@
             小写字母
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.SPECIAL_SYMBOLS">
+        <member name="F:Com.GleekFramework.SecuritySdk.RandomStringGenerator.UPPER_LETTERS">
             <summary>
-            特殊字符
+            大写字母
             </summary>
         </member>
         <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.GenAppId(System.Int32)">
             <summary>
-            生成应用ID（默认16位，包含数字+大写字母）
+            生成应用ID(默认16位,包含数字+小写字母+大写字母)
             </summary>
         </member>
         <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.GenAppSecret(System.Int32)">
             <summary>
-            生成应用密钥（默认32位，包含四类字符）
+            生成应用密钥(默认16位,包含数字+小写字母+大写字母+特殊字符)
             </summary>
         </member>
         <member name="M:Com.GleekFramework.SecuritySdk.RandomStringGenerator.Generate(System.Int32,System.String)">

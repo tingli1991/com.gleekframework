@@ -1,5 +1,5 @@
-﻿using System.Security.Cryptography;
-using System;
+﻿using System;
+using System.Security.Cryptography;
 
 namespace Com.GleekFramework.SecuritySdk
 {
@@ -15,9 +15,9 @@ namespace Com.GleekFramework.SecuritySdk
         public const string NUMBERS = "0123456789";
 
         /// <summary>
-        /// 大写字母
+        /// 特殊字符
         /// </summary>
-        public const string UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public const string SPECIAL_SYMBOLS = "@$%&*";
 
         /// <summary>
         /// 小写字母
@@ -25,24 +25,24 @@ namespace Com.GleekFramework.SecuritySdk
         public const string LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz";
 
         /// <summary>
-        /// 特殊字符
+        /// 大写字母
         /// </summary>
-        public const string SPECIAL_SYMBOLS = "!@#$%^&*()-_=+[]{}|;:,.<>/?";
+        public const string UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         /// <summary>
-        /// 生成应用ID（默认16位，包含数字+大写字母）
+        /// 生成应用ID(默认16位,包含数字+小写字母+大写字母)
         /// </summary>
         public static string GenAppId(int length = 16)
         {
-            return Generate(length, NUMBERS + UPPER_LETTERS + LOWER_LETTERS);
+            return Generate(length, NUMBERS + LOWER_LETTERS + UPPER_LETTERS);
         }
 
         /// <summary>
-        /// 生成应用密钥（默认32位，包含四类字符）
+        /// 生成应用密钥(默认16位,包含数字+小写字母+大写字母+特殊字符)
         /// </summary>
         public static string GenAppSecret(int length = 32)
         {
-            return Generate(length, NUMBERS + UPPER_LETTERS + LOWER_LETTERS + SPECIAL_SYMBOLS);
+            return Generate(length, NUMBERS + LOWER_LETTERS + UPPER_LETTERS + SPECIAL_SYMBOLS);
         }
 
         /// <summary>
