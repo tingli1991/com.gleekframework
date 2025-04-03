@@ -13,8 +13,8 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// SQL构建器
     /// </summary>
-    /// <typeparam name="T">新实体类型</typeparam>
-    public class SqlBuilder<T>
+    /// <typeparam name="E">新实体类型</typeparam>
+    public class SqlBuilder<E>
     {
         /// <summary>
         /// 类型
@@ -46,7 +46,7 @@ namespace Com.GleekFramework.DapperSdk
         /// </summary>
         public SqlBuilder()
         {
-            Type = typeof(T);//初始化实体类型
+            Type = typeof(E);//初始化实体类型
             TableName = Type.GetTableName();//数据库名称
             PropertyInfoList = Type.GetPropertyInfoList();//实体属性列表
             KeyPropertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);//主键属性
@@ -85,11 +85,46 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 生成更新SQL脚本
         /// </summary>
+        /// <typeparam name="T">返回实体</typeparam>
+        /// <param name="entity">更新实体</param>
+        /// <param name="id">主键</param>
+        /// <returns></returns>
+        public (string UpdateSQL, Dictionary<string, object> UpdateParamters) GenUpdateSQL<T>(E entity, long id) where T : class
+        {
+            var propertyInfo = typeof(T).GetPropertyInfoList().FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
+            var updateSQL = GenUpdateSQL(propertyInfo);//更新脚本
+            var paramters = entity.GetType().GetPropertyInfoList().ToDictionary(k => k.Name, v => entity.GetPropertyValue(v.Name));
+            if (!paramters.ContainsKey(propertyInfo.Name))
+            {
+                paramters.Add(propertyInfo.Name, id);
+            }
+            else
+            {
+                paramters[propertyInfo.Name] = id;
+            }
+            return (updateSQL, paramters);
+        }
+
+        /// <summary>
+        /// 生成更新SQL脚本
+        /// </summary>
         /// <returns></returns>
         public string GenUpdateSQL()
         {
-            var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null)
-                ?? throw new ArgumentNullException(nameof(PropertyInfo));
+            var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
+            return GenUpdateSQL(propertyInfo);
+        }
+
+        /// <summary>
+        /// 生成更新SQL脚本
+        /// </summary>
+        /// <returns></returns>
+        public string GenUpdateSQL(PropertyInfo propertyInfo)
+        {
+            if (propertyInfo == null)
+            {
+                throw new ArgumentNullException(nameof(PropertyInfo));
+            }
 
             var setClauses = PropertyInfoList
                 .Where(e => e.Name != propertyInfo.Name)

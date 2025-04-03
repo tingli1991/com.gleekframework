@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.ContractSdk;
 using Newtonsoft.Json;
 using ProtoBuf;
 using System;
@@ -11,16 +12,17 @@ namespace Com.GleekFramework.Models
     /// <summary>
     /// 区域模型
     /// </summary>
-    public class ComAreaModel
+    [Table("com_area")]
+    public class ComAreaModel : IVersionTable
     {
-        /// <summary>
-        /// 主键
-        /// </summary>
-        [Key]
-        [Comment("主键")]
-        [ProtoMember(1)]
-        [JsonProperty("id"), JsonPropertyName("id")]
-        public long Id { get; set; }
+        ///// <summary>
+        ///// 主键
+        ///// </summary>
+        //[Key]
+        //[Comment("主键")]
+        //[ProtoMember(1)]
+        //[JsonProperty("id"), JsonPropertyName("id")]
+        //public long Id { get; set; }
 
         /// <summary>
         /// 编码
@@ -88,7 +90,7 @@ namespace Com.GleekFramework.Models
         [Comment("版本号")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [JsonProperty("version"), JsonPropertyName("version")]
-        public long Version { get; set; }
+        public decimal Version { get; set; }
 
         /// <summary>
         /// 死否删除

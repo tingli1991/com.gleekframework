@@ -187,7 +187,7 @@
             <summary>
             SQL构建器
             </summary>
-            <typeparam name="T">新实体类型</typeparam>
+            <typeparam name="E">新实体类型</typeparam>
         </member>
         <member name="F:Com.GleekFramework.DapperSdk.SqlBuilder`1.Type">
             <summary>
@@ -231,7 +231,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenUpdateSQL``1(`0,System.Int64)">
+            <summary>
+            生成更新SQL脚本
+            </summary>
+            <typeparam name="T">返回实体</typeparam>
+            <param name="entity">更新实体</param>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenUpdateSQL">
+            <summary>
+            生成更新SQL脚本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GenUpdateSQL(System.Reflection.PropertyInfo)">
             <summary>
             生成更新SQL脚本
             </summary>
@@ -931,7 +946,7 @@
             <typeparam name="E"></typeparam>
             <typeparam name="T"></typeparam>
             <param name="entity"></param>
-            <param name="timeoutSeconds"></param>
+            <param name="timeoutSeconds">超时时间</param>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateManyAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>

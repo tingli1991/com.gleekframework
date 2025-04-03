@@ -269,11 +269,6 @@
             区域模型
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.Models.ComAreaModel.Id">
-            <summary>
-            主键
-            </summary>
-        </member>
         <member name="P:Com.GleekFramework.Models.ComAreaModel.Code">
             <summary>
             编码
