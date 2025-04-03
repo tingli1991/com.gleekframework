@@ -45,6 +45,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             };
             comAreaInfo = await DefaultRepository.InsertAsync(comAreaInfo);
             comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo);
+            comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo.Id, comAreaInfo);
 
             //var comAreaInfo = new ComArea()
             //{

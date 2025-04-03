@@ -504,8 +504,8 @@ namespace Com.GleekFramework.DapperSdk
             var isSuccess = Update(entity, timeoutSeconds);
             if (isSuccess)
             {
-                var query = new SqlBuilder<T>().GenQuerySQL();
-                return Open(db => db.QueryFirstOrDefault<T>(query.SQL, entity, null, timeoutSeconds));
+                var (SQL, PropertyName) = new SqlBuilder<T>().GenQuerySQL();
+                return Open(db => db.QueryFirstOrDefault<T>(SQL, entity, null, timeoutSeconds));
             }
             return default;
         }
@@ -528,9 +528,9 @@ namespace Com.GleekFramework.DapperSdk
             var isSuccess = Update(entity, timeoutSeconds);
             if (isSuccess)
             {
-                var query = new SqlBuilder<T>().GenQuerySQL();
-                var paramters = new Dictionary<string, object>() { { query.PropertyName, id } };
-                return Open(db => db.QueryFirstOrDefault<T>(query.SQL, paramters, null, timeoutSeconds));
+                var (SQL, PropertyName) = new SqlBuilder<T>().GenQuerySQL();
+                var paramters = new Dictionary<string, object>() { { PropertyName, id } };
+                return Open(db => db.QueryFirstOrDefault<T>(SQL, paramters, null, timeoutSeconds));
             }
             return default;
         }
@@ -606,8 +606,8 @@ namespace Com.GleekFramework.DapperSdk
             var isSuccess = await UpdateAsync(entity, timeoutSeconds);
             if (isSuccess)
             {
-                var query = new SqlBuilder<T>().GenQuerySQL();
-                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(query.SQL, entity, null, timeoutSeconds));
+                var (SQL, PropertyName) = new SqlBuilder<T>().GenQuerySQL();
+                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(SQL, entity, null, timeoutSeconds));
             }
             return default;
         }
@@ -630,10 +630,9 @@ namespace Com.GleekFramework.DapperSdk
             var isSuccess = await UpdateAsync(entity, timeoutSeconds);
             if (isSuccess)
             {
-                var db = GetConnection();
-                var query = new SqlBuilder<T>().GenQuerySQL();
-                var paramters = new Dictionary<string, object>() { { query.PropertyName, id } };
-                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(query.SQL, paramters, null, timeoutSeconds));
+                var (SQL, PropertyName) = new SqlBuilder<T>().GenQuerySQL();
+                var paramters = new Dictionary<string, object>() { { PropertyName, id } };
+                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(SQL, paramters, null, timeoutSeconds));
             }
             return default;
         }
