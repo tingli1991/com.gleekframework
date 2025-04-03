@@ -493,6 +493,37 @@ namespace Com.GleekFramework.DapperSdk
         }
 
         /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <typeparam name="U">更新的实体</typeparam>
+        /// <typeparam name="T">返回的实体</typeparam>
+        /// <param name="entity"></param>
+        /// <param name="timeoutSeconds"></param>
+        public T Update<U, T>(U entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            if (entity == null)
+            {
+                return default;
+            }
+
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
+            var db = GetConnection();
+            var sql = new SqlBuilder<U>().GenUpdateSQL();
+            var isSuccess = db.Execute(sql, entity, null, timeoutSeconds) > 0;
+            if (isSuccess)
+            {
+                var query = new SqlBuilder<T>().GenQuerySQL();
+                return db.QueryFirstOrDefault<T>(query, entity, null, timeoutSeconds);
+            }
+            return default;
+        }
+
+        /// <summary>
         /// 更新多条数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -549,6 +580,37 @@ namespace Com.GleekFramework.DapperSdk
 
             var sql = new SqlBuilder<T>().GenUpdateSQL();
             return await OpenAsync(db => db.ExecuteAsync(sql, entity, null, timeoutSeconds)) > 0;
+        }
+
+        /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="timeoutSeconds"></param>
+        public async Task<T> UpdateAsync<U, T>(U entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        {
+            if (entity == null)
+            {
+                return default;
+            }
+
+            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
+            var db = GetConnection();
+            var sql = new SqlBuilder<U>().GenUpdateSQL();
+            var isSuccess = await db.ExecuteAsync(sql, entity, null, timeoutSeconds) > 0;
+            if (isSuccess)
+            {
+                var query = new SqlBuilder<T>().GenQuerySQL();
+                return await db.QueryFirstOrDefaultAsync<T>(query, entity, null, timeoutSeconds);
+            }
+            return default;
         }
 
         /// <summary>

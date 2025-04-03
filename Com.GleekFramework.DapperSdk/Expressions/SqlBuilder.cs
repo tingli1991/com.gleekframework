@@ -68,6 +68,20 @@ namespace Com.GleekFramework.DapperSdk
             return $"insert into {TableName} ({string.Join(",", columns)}) values ({string.Join(",", parameterList)});";
         }
 
+
+        /// <summary>
+        /// 生成查询SQL脚本
+        /// </summary>
+        /// <returns></returns>
+        public string GenQuerySQL()
+        {
+            var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null)
+                ?? throw new ArgumentNullException(nameof(PropertyInfo));
+
+            var columns = PropertyInfoList.Select(e => $"{ColumnMappingList[e.Name]}");
+            return $"select {string.Join(",")} from {TableName} where {ColumnMappingList[propertyInfo.Name]}=@{propertyInfo.Name}";
+        }
+
         /// <summary>
         /// 生成更新SQL脚本
         /// </summary>
