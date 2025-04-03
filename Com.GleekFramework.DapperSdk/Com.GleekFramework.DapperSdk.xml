@@ -882,7 +882,17 @@
             <summary>
             更新单条数据
             </summary>
-            <typeparam name="U">更新的实体</typeparam>
+            <typeparam name="E">更新的实体</typeparam>
+            <typeparam name="T">返回的实体</typeparam>
+            <param name="entity"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.Update``2(System.Int64,``0,System.Int32)">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="id">主键Id</param>
+            <typeparam name="E">更新的实体</typeparam>
             <typeparam name="T">返回的实体</typeparam>
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>
@@ -908,7 +918,17 @@
             <summary>
             更新单条数据
             </summary>
-            <typeparam name="U"></typeparam>
+            <typeparam name="E"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <param name="timeoutSeconds"></param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.DapperRepository.UpdateAsync``2(System.Int64,``0,System.Int32)">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="id">主键</param>
+            <typeparam name="E"></typeparam>
             <typeparam name="T"></typeparam>
             <param name="entity"></param>
             <param name="timeoutSeconds"></param>

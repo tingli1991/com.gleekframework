@@ -43,7 +43,8 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 Level = AreaLevel.Province,
                 Version = SnowflakeService.GetVersionNo()
             };
-            var id = await DefaultRepository.InsertAsync(comAreaInfo);
+            comAreaInfo = await DefaultRepository.InsertAsync(comAreaInfo);
+            comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo);
 
             //var comAreaInfo = new ComArea()
             //{

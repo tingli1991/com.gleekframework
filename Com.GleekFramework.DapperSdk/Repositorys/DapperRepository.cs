@@ -495,30 +495,42 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 更新单条数据
         /// </summary>
-        /// <typeparam name="U">更新的实体</typeparam>
+        /// <typeparam name="E">更新的实体</typeparam>
         /// <typeparam name="T">返回的实体</typeparam>
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
-        public T Update<U, T>(U entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public T Update<E, T>(E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
         {
-            if (entity == null)
+            var isSuccess = Update(entity, timeoutSeconds);
+            if (isSuccess)
+            {
+                var query = new SqlBuilder<T>().GenQuerySQL();
+                return Open(db => db.QueryFirstOrDefault<T>(query.SQL, entity, null, timeoutSeconds));
+            }
+            return default;
+        }
+
+        /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <param name="id">主键Id</param>
+        /// <typeparam name="E">更新的实体</typeparam>
+        /// <typeparam name="T">返回的实体</typeparam>
+        /// <param name="entity"></param>
+        /// <param name="timeoutSeconds"></param>
+        public T Update<E, T>(long id, E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
+        {
+            if (id <= 0)
             {
                 return default;
             }
 
-            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
-            {
-                //赋值版本号
-                versionInfo.Version = SnowflakeService.GetVersionNo();
-            }
-
-            var db = GetConnection();
-            var sql = new SqlBuilder<U>().GenUpdateSQL();
-            var isSuccess = db.Execute(sql, entity, null, timeoutSeconds) > 0;
+            var isSuccess = Update(entity, timeoutSeconds);
             if (isSuccess)
             {
                 var query = new SqlBuilder<T>().GenQuerySQL();
-                return db.QueryFirstOrDefault<T>(query, entity, null, timeoutSeconds);
+                var paramters = new Dictionary<string, object>() { { query.PropertyName, id } };
+                return Open(db => db.QueryFirstOrDefault<T>(query.SQL, paramters, null, timeoutSeconds));
             }
             return default;
         }
@@ -585,30 +597,43 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 更新单条数据
         /// </summary>
-        /// <typeparam name="U"></typeparam>
+        /// <typeparam name="E"></typeparam>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <param name="timeoutSeconds"></param>
-        public async Task<T> UpdateAsync<U, T>(U entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class
+        public async Task<T> UpdateAsync<E, T>(E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
         {
-            if (entity == null)
+            var isSuccess = await UpdateAsync(entity, timeoutSeconds);
+            if (isSuccess)
+            {
+                var query = new SqlBuilder<T>().GenQuerySQL();
+                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(query.SQL, entity, null, timeoutSeconds));
+            }
+            return default;
+        }
+
+        /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <typeparam name="E"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="timeoutSeconds"></param>
+        public async Task<T> UpdateAsync<E, T>(long id, E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
+        {
+            if (id <= 0)
             {
                 return default;
             }
 
-            if (entity is IVersionTable versionInfo && versionInfo.Version <= 0)
-            {
-                //赋值版本号
-                versionInfo.Version = SnowflakeService.GetVersionNo();
-            }
-
-            var db = GetConnection();
-            var sql = new SqlBuilder<U>().GenUpdateSQL();
-            var isSuccess = await db.ExecuteAsync(sql, entity, null, timeoutSeconds) > 0;
+            var isSuccess = await UpdateAsync(entity, timeoutSeconds);
             if (isSuccess)
             {
+                var db = GetConnection();
                 var query = new SqlBuilder<T>().GenQuerySQL();
-                return await db.QueryFirstOrDefaultAsync<T>(query, entity, null, timeoutSeconds);
+                var paramters = new Dictionary<string, object>() { { query.PropertyName, id } };
+                return await OpenAsync(db => db.QueryFirstOrDefaultAsync<T>(query.SQL, paramters, null, timeoutSeconds));
             }
             return default;
         }
