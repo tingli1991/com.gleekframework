@@ -32,26 +32,57 @@
         <member name="T:Com.GleekFramework.ContractSdk.GlobalMessageCode">
             <summary>
             全局消息错误码
+            【1到3位 表示系统】【4到6位 表示模块】【7到10位 表示具体错误标志】
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.FAIL">
             <summary>
-            业务处理失败
+            操作失败
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SUCCESS">
             <summary>
-             业务处理成功
+             操作成功
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_ERROR">
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.NO_DATA_AVAILABLE">
             <summary>
-            请求参数错误
+            暂无数据
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.TOKEN_INVALID">
+            <summary>
+            登录无效
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ERROR">
+            <summary>
+             未知错误
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.STATUS_UNAVAILABLE">
+            <summary>
+            状态不可用
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SIGN_ERROR">
             <summary>
             签名失败
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.FREQUENT_OPERATION">
+            <summary>
+            操作频繁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ILLEGAL_REQUEST">
+            <summary>
+            非法请求
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_ERROR">
+            <summary>
+            请求参数错误
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_VALIDATE_FAIL">
@@ -67,11 +98,6 @@
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.EXCEED_PPER_LIMIT_200">
             <summary>
             超出[1,200]长度的区间限制
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ERROR">
-            <summary>
-             未知错误(系统异常)
             </summary>
         </member>
         <member name="T:Com.GleekFramework.ContractSdk.MessageExtensions">
