@@ -13,16 +13,17 @@ namespace Com.GleekFramework.Models
     /// 区域模型
     /// </summary>
     [Table("com_area")]
+    [Serializable, ProtoContract]
     public class ComAreaModel : IVersionTable
     {
-        ///// <summary>
-        ///// 主键
-        ///// </summary>
-        //[Key]
-        //[Comment("主键")]
-        //[ProtoMember(1)]
-        //[JsonProperty("id"), JsonPropertyName("id")]
-        //public long Id { get; set; }
+        /// <summary>
+        /// 主键
+        /// </summary>
+        [Key]
+        [Comment("主键")]
+        [ProtoMember(1)]
+        [JsonProperty("id"), JsonPropertyName("id")]
+        public long Id { get; set; }
 
         /// <summary>
         /// 编码

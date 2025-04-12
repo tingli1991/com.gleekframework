@@ -50,7 +50,7 @@
             账号主题拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQAccessOptions(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketAccessOptions})">
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQOptions(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.RocketMQSdk.RocketAccessOptions})">
             <summary>
             添加账号配置信息
             </summary>
@@ -58,7 +58,7 @@
             <param name="callback">账号配置选项</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
+        <member name="M:Com.GleekFramework.RocketMQSdk.AccessHostingExtensions.AddRocketMQOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.RocketMQSdk.RocketAccessOptions)">
             <summary>
             添加账号配置信息
             </summary>

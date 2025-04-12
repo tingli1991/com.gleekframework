@@ -45,6 +45,40 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.ConfigController">
+            <summary>
+            配置测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.Summaries">
+            <summary>
+            注入配置信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.ConfitOptions">
+            <summary>
+            测试配置
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.DependencyService">
+            <summary>
+            测试依赖注入
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.AddAsync(Com.GleekFramework.Models.WeatherForecastParam)">
+            <summary>
+            新增方法
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.GetAsync(System.Int32)">
+            <summary>
+            获取天气预报
+            </summary>
+            <param name="id">id(用于测试字段必填)</param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.KafkaController">
             <summary>
             Kafka测试控制器
@@ -92,6 +126,73 @@
             </summary>
             <param name="param">请求参数</param>
             <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController">
+            <summary>
+            对象存储控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.S3ProtocolService">
+            <summary>
+            S3协议服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadFileAsync(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file">要上传的文件</param>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文本内容
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadContentAsync(Com.GleekFramework.Models.ComAreaModel)">
+            <summary>
+            上传对象
+            </summary>
+            <param name="param">要上传的文本内容</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.DownloadFileAsync(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.GetContentAsync(System.String,System.String)">
+            <summary>
+            下载文本内容
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.GetObjectAsync(System.String,System.String)">
+            <summary>
+            下载对象
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.DeleteFileAsync(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
         </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.QueueController">
             <summary>
@@ -157,6 +258,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RocketController">
+            <summary>
+            RocketMQ测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RocketController.RocketClientService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RocketController.ExecuteAsync">
+            <summary>
+            测试执行方法
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.StackController">
             <summary>
             本地栈测试控制器
@@ -176,56 +293,6 @@
             <summary>
             生产测试
             </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Com.GleekFramework.AppSvc.Controllers.TestController">
-            <summary>
-            测试控制器
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.TestController.RocketClientService">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.AppSvc.Controllers.TestController.ExecuteAsync">
-            <summary>
-            测试执行方法
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController">
-            <summary>
-            天气预报控制器
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.Summaries">
-            <summary>
-            注入配置信息
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.ConfitOptions">
-            <summary>
-            测试配置
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.DependencyService">
-            <summary>
-            测试依赖注入
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.AddAsync(Com.GleekFramework.Models.WeatherForecastParam)">
-            <summary>
-            新增方法
-            </summary>
-            <param name="param">请求参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.AppSvc.Controllers.WeatherForecastController.GetAsync(System.Int32)">
-            <summary>
-            获取天气预报
-            </summary>
-            <param name="id">id(用于测试字段必填)</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.AppSvc.KafkaCustomerHandler">

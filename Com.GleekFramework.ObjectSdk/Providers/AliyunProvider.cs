@@ -1,4 +1,4 @@
-﻿using Com.GleekFramework.AutofacSdk;
+﻿using Aliyun.OSS;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Threading.Tasks;
@@ -6,10 +6,24 @@ using System.Threading.Tasks;
 namespace Com.GleekFramework.ObjectSdk
 {
     /// <summary>
-    /// 阿里云OSS服务
+    /// 阿里云对象存储实现类
     /// </summary>
-    public partial class AliyunOSSService : IBaseAutofac
+    public class AliyunProvider : StorageObject
     {
+        /// <summary>
+        /// 单例实例
+        /// </summary>
+        private AliyunProvider()
+        {
+            // 构造函数是私有的，防止外部实例化
+        }
+
+        /// <summary>
+        /// 创建阿里云OSS客户端
+        /// </summary>
+        /// <returns>OssClient 实例</returns>
+        private static OssClient CreateClient() => new(Options.Endpoint, Options.AccessKey, Options.SecretKey);
+
         /// <summary>
         /// 上传文本内容到阿里云OSS
         /// </summary>
@@ -19,7 +33,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<bool> PutContentAsync(string fileKey, string content, string bucketName = "")
         {
-            return await AliyunProvider.PutContentAsync(fileKey, content, bucketName);
+            using var stream = content.ToStream();
+            return await PutStreamAsync(fileKey, stream, bucketName);
         }
 
         /// <summary>
@@ -32,7 +47,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>上传是否成功</returns>
         public static async Task<bool> PutObjectAsync<T>(string fileKey, T value, string bucketName = "") where T : class
         {
-            return await AliyunProvider.PutObjectAsync(fileKey, value, bucketName);
+            using var stream = value.SerializeObject();
+            return await PutStreamAsync(fileKey, stream, bucketName);
         }
 
         /// <summary>
@@ -44,7 +60,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>上传成功的文件路径</returns>
         public static async Task<bool> PutStreamAsync(string fileKey, IFormFile file, string bucketName = "")
         {
-            return await AliyunProvider.PutStreamAsync(fileKey, file, bucketName);
+            using var stream = file.OpenReadStream();
+            return await PutStreamAsync(fileKey, stream, bucketName);
         }
 
         /// <summary>
@@ -56,7 +73,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>上传成功的文件路径</returns>
         public static async Task<bool> PutStreamAsync(string fileKey, string filePath, string bucketName = "")
         {
-            return await AliyunProvider.PutStreamAsync(fileKey, filePath, bucketName);
+            using var stream = filePath.OpenStream();
+            return await PutStreamAsync(fileKey, stream, bucketName);
         }
 
         /// <summary>
@@ -68,7 +86,12 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>上传成功的文件路径</returns>
         public static async Task<bool> PutStreamAsync(string fileKey, Stream stream, string bucketName = "")
         {
-            return await AliyunProvider.PutStreamAsync(fileKey, stream, bucketName);
+            return await ExecuteAsync(bucketName, async (newBucketName) =>
+            {
+                var client = CreateClient();
+                var result = client.PutObject(newBucketName, fileKey, stream);
+                return await Task.FromResult(result != null);
+            });
         }
 
         /// <summary>
@@ -79,7 +102,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>内容字符串</returns>
         public static async Task<string> GetContentAsync(string fileKey, string bucketName = "")
         {
-            return await AliyunProvider.GetContentAsync(fileKey, bucketName);
+            using var stream = await GetStreamAsync(fileKey, bucketName);
+            return await stream.ToContentAsync();
         }
 
         /// <summary>
@@ -91,7 +115,8 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<T> GetObjectAsync<T>(string fileKey, string bucketName = "") where T : class
         {
-            return await AliyunProvider.GetObjectAsync<T>(fileKey, bucketName);
+            using var stream = await GetStreamAsync(fileKey, bucketName);
+            return stream.DeserializeObject<T>();
         }
 
         /// <summary>
@@ -103,7 +128,10 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<bool> DownloadAsync(string fileKey, string filePath, string bucketName = "")
         {
-            return await AliyunProvider.DownloadAsync(fileKey, filePath, bucketName);
+            using var stream = await GetStreamAsync(fileKey, bucketName);
+            using var fileStream = File.Create(filePath);
+            await stream.CopyToAsync(fileStream);
+            return true;
         }
 
         /// <summary>
@@ -114,7 +142,12 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns>内容字符串</returns>
         public static async Task<Stream> GetStreamAsync(string fileKey, string bucketName = "")
         {
-            return await AliyunProvider.GetStreamAsync(fileKey, bucketName);
+            return await ExecuteAsync(bucketName, async (newBucketName) =>
+            {
+                var client = CreateClient();
+                var response = client.GetObject(newBucketName, fileKey);
+                return await Task.FromResult(response.Content);
+            });
         }
 
         /// <summary>
@@ -125,7 +158,12 @@ namespace Com.GleekFramework.ObjectSdk
         /// <returns></returns>
         public static async Task<bool> DeleteAsync(string fileKey, string bucketName = "")
         {
-            return await AliyunProvider.DeleteAsync(fileKey, bucketName);
+            return await ExecuteAsync(bucketName, async (newBucketName) =>
+            {
+                var client = CreateClient();
+                client.DeleteObject(newBucketName, fileKey);
+                return await Task.FromResult(true);
+            });
         }
     }
 }

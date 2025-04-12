@@ -9,7 +9,7 @@ namespace Com.GleekFramework.CommonSdk
     public static partial class ProtobufExtensions
     {
         /// <summary>
-        ///序列化成二进制
+        /// 序列化成二进制
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
@@ -18,14 +18,12 @@ namespace Com.GleekFramework.CommonSdk
         {
             if (value == null)
             {
-                return new byte[0];
+                return [];
             }
 
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Serializer.Serialize(ms, value);
-                return ms.ToArray();
-            }
+            using MemoryStream ms = new();
+            Serializer.Serialize(ms, value);
+            return ms.ToArray();
         }
 
         /// <summary>
@@ -42,10 +40,8 @@ namespace Com.GleekFramework.CommonSdk
                 return result;
             }
 
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                return Serializer.Deserialize<T>(ms);
-            }
+            using MemoryStream ms = new(bytes);
+            return Serializer.Deserialize<T>(ms);
         }
     }
 }

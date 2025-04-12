@@ -4,207 +4,523 @@
         <name>Com.GleekFramework.ObjectSdk</name>
     </assembly>
     <members>
-        <member name="T:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions">
+        <member name="T:Com.GleekFramework.ObjectSdk.StreamExtensions">
             <summary>
-            阿里云主机拓展类
+            文件流拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions.UseAliyunOSS(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.ObjectSdk.AliyunOSSOptions})">
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.ToContent(System.Byte[])">
             <summary>
-            添加账号配置信息
+            将字节流转换成文本内容
+            </summary>
+            <param name="bytes">字节流</param>
+            <returns>包含字符串内容的内存流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.ToContentAsync(System.IO.Stream)">
+            <summary>
+            将文件流转换成文本内容
+            </summary>
+            <param name="stream">文件流</param>
+            <returns>包含字符串内容的内存流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.SerializeObject``1(``0)">
+            <summary>
+            序列化成二进制
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.DeserializeObject``1(System.IO.Stream)">
+            <summary>
+            反序列化为数据模型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.OpenStream(System.String)">
+            <summary>
+            将字符串内容转换为流
+            </summary>
+            <param name="filePath">本地文件存放目录</param>
+            <returns>包含字符串内容的内存流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.StreamExtensions.ToStream(System.String)">
+            <summary>
+            将字符串内容转换为流
+            </summary>
+            <param name="content">字符串内容</param>
+            <returns>包含字符串内容的内存流</returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.HostingStorageExtensions">
+            <summary>
+            对象存储主机
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.HostingStorageExtensions.UseObjectStorage(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.ObjectSdk.ObjectStorageOptions)">
+            <summary>
+            使用对象存储配置
+            </summary>
+            <param name="configuration">配置</param>
+            <param name="options">账号配置选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.HostingStorageExtensions.UseObjectStorage(Microsoft.Extensions.Hosting.IHostBuilder,System.Func{Microsoft.Extensions.Configuration.IConfiguration,Com.GleekFramework.ObjectSdk.ObjectStorageOptions})">
+            <summary>
+            使用对象存储配置
             </summary>
             <param name="builder"></param>
             <param name="callback">账号配置选项</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunHostingExtensions.AddAccessOptions(Microsoft.Extensions.Configuration.IConfigurationBuilder,Com.GleekFramework.ObjectSdk.AliyunOSSOptions)">
+        <member name="T:Com.GleekFramework.ObjectSdk.ObjectStorageOptions">
             <summary>
-            添加账号配置信息
+            整个对象存储的配置项
             </summary>
-            <param name="configuration"></param>
-            <param name="options">账号配置选项</param>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.Endpoint">
+            <summary>
+            终结点地址
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.AccessKey">
+            <summary>
+            访问密钥
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.SecretKey">
+            <summary>
+            密钥
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.DefaultBucketName">
+            <summary>
+            默认存储桶名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.Instance">
+            <summary>
+            静态实例，用于全局访问
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.ObjectStorageOptions.Initialize(Com.GleekFramework.ObjectSdk.ObjectStorageOptions)">
+            <summary>
+            初始化静态配置
+            </summary>
+            <param name="options">配置项</param>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.AliyunProvider">
+            <summary>
+            阿里云对象存储实现类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.#ctor">
+            <summary>
+            单例实例
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.CreateClient">
+            <summary>
+            创建阿里云OSS客户端
+            </summary>
+            <returns>OssClient 实例</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.PutContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文本内容到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="content">内容字符串</param>
+            <param name="bucketName">存储桶名称</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSOptions">
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.PutObjectAsync``1(System.String,``0,System.String)">
             <summary>
-            阿里云OSS
+            上传对象到阿里云OSS
+            </summary>
+            <typeparam name="T">要上传的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="value">实例对象</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传是否成功</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.PutStreamAsync(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="file">要上传的文件</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.PutStreamAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.PutStreamAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            上传文件流到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="stream">文件流</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.GetContentAsync(System.String,System.String)">
+            <summary>
+            获取阿里云OSS中对象的内容
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.GetObjectAsync``1(System.String,System.String)">
+            <summary>
+            获取阿里云OSS中对象的对象实例
+            </summary>
+            <typeparam name="T">要接收的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.DownloadAsync(System.String,System.String,System.String)">
+            <summary>
+            下载阿里云OSS中的文件到本地
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.GetStreamAsync(System.String,System.String)">
+            <summary>
+            获取阿里云OSS中对象的文件流
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunProvider.DeleteAsync(System.String,System.String)">
+            <summary>
+            删除阿里云OSS中的对象
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.S3ProtocolProvider">
+            <summary>
+            基于S3协议的对象存储实现类
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.Endpoint">
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.#ctor">
             <summary>
-            上传/下载是使用的终结点地址
+            单例实例
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AccessKey">
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.CreateClient">
             <summary>
-            SDK AppID
+            创建AmazonS3客户端
+            </summary>
+            <returns> AmazonS3Client实例</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.PutContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文本内容到S3存储桶
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="content">内容字符串</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.PutObjectAsync``1(System.String,``0,System.String)">
+            <summary>
+            上传对象到S3存储桶
+            </summary>
+            <typeparam name="T">要上传的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="value">实例对象</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传是否成功</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.PutStreamAsync(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件到S3存储桶
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="file">要上传的文件</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.PutStreamAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件到S3存储桶
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.PutStreamAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            上传文件流到S3存储桶
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="stream">文件流</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.GetContentAsync(System.String,System.String)">
+            <summary>
+            获取S3存储桶中对象的文本内容
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.GetObjectAsync``1(System.String,System.String)">
+            <summary>
+            获取S3存储桶中对象的对象实例
+            </summary>
+            <typeparam name="T">要接收的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.DownloadAsync(System.String,System.String,System.String)">
+            <summary>
+            下载S3存储桶中的文件到本地
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.GetStreamAsync(System.String,System.String)">
+            <summary>
+            获取S3存储桶中的文件流
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolProvider.DeleteAsync(System.String,System.String)">
+            <summary>
+            删除S3存储桶中的对象
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.StorageObject">
+            <summary>
+            对象存储提供程序基类，封装公共逻辑
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.AccessSecret">
-            <summary>
-            App Key
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSOptions.BucketUrl">
-            <summary>
-            Bucket 域名
-            </summary>
-        </member>
-        <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSProvider">
-            <summary>
-            OSS实现类
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Options">
+        <member name="P:Com.GleekFramework.ObjectSdk.StorageObject.Options">
             <summary>
             配置信息
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Http.IFormFile})">
+        <member name="M:Com.GleekFramework.ObjectSdk.StorageObject.ExecuteAsync``1(System.String,System.Func{System.String,System.Threading.Tasks.Task{``0}})">
             <summary>
-            上传文件到OSS
+            处理包装器
             </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="filePath">文件路径</param>
-            <param name="files">文件列表</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径</param>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.String)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径</param>
-            <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutObjectAsync(System.String,System.String,System.IO.Stream)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
-            <param name="stream"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.PutContentAsync(System.String,System.String,System.String)">
-            <summary>
-            上传支付穿
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称</param>
-            <param name="content">字符串内容</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.GetContentAsync(System.String,System.String)">
-            <summary>
-            获取对象的内容
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Download(System.String,System.String,System.String)">
-            <summary>
-            下载文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径(格式：d:/www)</param>
-            <param name="fileName">要下载的文件</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSProvider.Download(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            下载文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径(格式：d:/www)</param>
-            <param name="fileNames">要下载的文件集合</param>
-            <returns></returns>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="bucketName">存储桶名称</param>
+            <param name="func">要执行的异步方法</param>
+            <returns>异步方法的执行结果</returns>
         </member>
         <member name="T:Com.GleekFramework.ObjectSdk.AliyunOSSService">
             <summary>
             阿里云OSS服务
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Http.IFormFile})">
-            <summary>
-            上传文件到OSS
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="filePath">文件路径</param>
-            <param name="files">文件列表</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径</param>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.String)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径</param>
-            <param name="fullName">文件名称(格式：d://xxx.jpg)</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync(System.String,System.String,System.IO.Stream)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
-            <param name="stream"></param>
-            <returns></returns>
-        </member>
         <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutContentAsync(System.String,System.String,System.String)">
             <summary>
-            上传支付穿
+            上传文本内容到阿里云OSS
             </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称</param>
-            <param name="content">字符串内容</param>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="content">内容字符串</param>
+            <param name="bucketName">存储桶名称</param>
             <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutObjectAsync``1(System.String,``0,System.String)">
+            <summary>
+            上传对象到阿里云OSS
+            </summary>
+            <typeparam name="T">要上传的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="value">实例对象</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传是否成功</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutStreamAsync(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="file">要上传的文件</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutStreamAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.PutStreamAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            上传文件流到阿里云OSS
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="stream">文件流</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
         </member>
         <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.GetContentAsync(System.String,System.String)">
             <summary>
-            获取对象的内容
+            获取阿里云OSS中对象的内容
             </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="fileName">文件名称(格式：sss/xxx.jpg)</param>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.GetObjectAsync``1(System.String,System.String)">
+            <summary>
+            获取阿里云OSS中对象的对象实例
+            </summary>
+            <typeparam name="T">要接收的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.Download(System.String,System.String,System.String)">
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.DownloadAsync(System.String,System.String,System.String)">
             <summary>
-            下载文件
+            下载阿里云OSS中的文件到本地
             </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径(格式：d:/www)</param>
-            <param name="fileName">要下载的文件</param>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.Download(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.GetStreamAsync(System.String,System.String)">
             <summary>
-            下载文件
+            获取阿里云OSS中对象的文件流
             </summary>
-            <param name="bucketName">Bucket名称</param>
-            <param name="path">文件存放路径(格式：d:/www)</param>
-            <param name="fileNames">要下载的文件集合</param>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.AliyunOSSService.DeleteAsync(System.String,System.String)">
+            <summary>
+            删除阿里云OSS中的对象
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.ObjectSdk.S3ProtocolService">
+            <summary>
+            S3协议服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.PutContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文本内容到S3存储
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="content">内容字符串</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.PutObjectAsync``1(System.String,``0,System.String)">
+            <summary>
+            上传对象到S3存储
+            </summary>
+            <typeparam name="T">要上传的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="value">实例对象</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传是否成功</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.PutStreamAsync(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件到S3存储
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="file">要上传的文件</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.PutStreamAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文件到S3存储
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.PutStreamAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            上传文件流到S3存储
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="stream">文件流</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>上传成功的文件路径</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.GetContentAsync(System.String,System.String)">
+            <summary>
+            获取S3存储中对象的内容
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.GetObjectAsync``1(System.String,System.String)">
+            <summary>
+            获取S3存储中对象的对象实例
+            </summary>
+            <typeparam name="T">要接收的对象类型，必须标记 [ProtoContract] 特性</typeparam>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.DownloadAsync(System.String,System.String,System.String)">
+            <summary>
+            下载S3存储中的文件到本地
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="filePath">本地文件路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.GetStreamAsync(System.String,System.String)">
+            <summary>
+            获取S3存储中对象的文件流
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
+            <returns>内容字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.ObjectSdk.S3ProtocolService.DeleteAsync(System.String,System.String)">
+            <summary>
+            删除S3存储中的对象
+            </summary>
+            <param name="fileKey">桶的存放路径</param>
+            <param name="bucketName">存储桶名称</param>
             <returns></returns>
         </member>
     </members>

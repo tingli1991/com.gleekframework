@@ -4,6 +4,12 @@
     "AccessKey": "AKlmo32fjRkls31",
     "InstanceId": "i-0f2g1h2j3k4l5m"
   },
+  "ObjectStorageOptions": {
+    "AccessKey": "ykUaCHx4ipdk6LKoELYk",
+    "Endpoint": "http://127.0.0.1:9000/",
+    "DefaultBucketName": "gleek.fromework",
+    "SecretKey": "M9rDftpPY8pjvLuefjPxcRGFB2RRlwM6bxnvzGW6"
+  },
   "KafkaConnectionStrings": {
     "DefaultClientHosts": "127.0.0.1:9092"
   },

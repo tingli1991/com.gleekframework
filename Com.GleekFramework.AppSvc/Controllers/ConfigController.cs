@@ -8,10 +8,10 @@ using System.ComponentModel.DataAnnotations;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// 天气预报控制器
+    /// 配置测试控制器
     /// </summary>
-    [Route("weather-forecast")]
-    public class WeatherForecastController : BaseController
+    [Route("config")]
+    public class ConfigController : BaseController
     {
         /// <summary>
         /// 注入配置信息

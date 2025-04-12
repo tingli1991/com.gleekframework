@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Com.GleekFramework.AppSvc.Controllers
 {
     /// <summary>
-    /// 测试控制器
+    /// RocketMQ测试控制器
     /// </summary>
-    [Route("test")]
-    public class TestController : BaseController
+    [Route("rocket")]
+    public class RocketController : BaseController
     {
         /// <summary>
         /// 

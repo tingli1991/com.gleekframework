@@ -11,17 +11,18 @@
     <Description>对象存储开发工具包</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.ObjectSdk.xml</DocumentationFile>
     <UserSecretsId>2661ac34-096c-45ae-950d-86e0d1a7892f</UserSecretsId>
+    <DocumentationFile>Com.GleekFramework.ObjectSdk.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.416.6" />
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.14.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
     <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
+    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
   </ItemGroup>
 
 </Project>

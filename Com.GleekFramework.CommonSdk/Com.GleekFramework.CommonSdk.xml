@@ -1097,12 +1097,12 @@
             </summary>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.ProtobufExtensions.SerializeBinary``1(``0)">
-             <summary>
+            <summary>
             序列化成二进制
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="value"></param>
-             <returns></returns>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.ProtobufExtensions.DeserializeObject``1(System.Byte[])">
             <summary>
