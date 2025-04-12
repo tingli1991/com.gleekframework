@@ -11,6 +11,17 @@ namespace Com.GleekFramework.CommonSdk
         /// <summary>
         /// 单模型映射方法
         /// </summary>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="source">原数据实例</param>
+        /// <returns></returns>
+        public static TTarget Map<TTarget>(this object source) where TTarget : class
+        {
+            return DataMapper<object, TTarget>.Map(source);
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
         /// <typeparam name="TSource">原数据类型</typeparam>
         /// <typeparam name="TTarget">目标数据类型</typeparam>
         /// <param name="source">原数据实例</param>
@@ -20,6 +31,18 @@ namespace Com.GleekFramework.CommonSdk
             where TTarget : class
         {
             return DataMapper<TSource, TTarget>.Map(source);
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="sources">原数据实例集合</param>
+        /// <returns></returns>
+        public static IEnumerable<TTarget> Map<TTarget>(this IEnumerable<object> sources)
+            where TTarget : class
+        {
+            return DataMapper<object, TTarget>.MapList(sources);
         }
 
         /// <summary>
@@ -43,11 +66,36 @@ namespace Com.GleekFramework.CommonSdk
         /// <typeparam name="TTarget">目标数据类型</typeparam>
         /// <param name="source">原数据实例</param>
         /// <returns></returns>
+        public static async Task<TTarget> MapAsync<TTarget>(Task<object> source)
+            where TTarget : class
+        {
+            return (await source).Map<object, TTarget>();
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
+        /// <typeparam name="TSource">原数据类型</typeparam>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="source">原数据实例</param>
+        /// <returns></returns>
         public static async Task<TTarget> MapAsync<TSource, TTarget>(Task<TSource> source)
             where TTarget : class
             where TSource : class
         {
             return (await source).Map<TSource, TTarget>();
+        }
+
+        /// <summary>
+        /// 单模型映射方法
+        /// </summary>
+        /// <typeparam name="TTarget">目标数据类型</typeparam>
+        /// <param name="sourceList">原数据实例</param>
+        /// <returns></returns>
+        public static async Task<IEnumerable<TTarget>> MapAsync<TTarget>(Task<IEnumerable<object>> sourceList)
+            where TTarget : class
+        {
+            return (await sourceList).Map<object, TTarget>();
         }
 
         /// <summary>
