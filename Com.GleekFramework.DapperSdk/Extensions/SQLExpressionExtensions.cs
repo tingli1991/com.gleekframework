@@ -74,17 +74,6 @@ namespace Com.GleekFramework.DapperSdk
         }
 
         /// <summary>
-        /// 实际应根据自定义属性获取表名
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns></returns>
-        public static string GetTableName(this Type type)
-        {
-            var tableAttribute = type.GetCustomAttribute<TableAttribute>();
-            return tableAttribute?.Name ?? type.Name;
-        }
-
-        /// <summary>
         /// 转换成操作类型
         /// </summary>
         /// <param name="binaryExpression"></param>
