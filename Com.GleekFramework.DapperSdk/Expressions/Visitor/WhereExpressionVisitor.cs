@@ -34,15 +34,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 获取生成的WHERE子句
         /// </summary>
-        public string GetWhereClause()
-        {
-            var whereClauseStr = WhereClause.ToString();
-            //if (whereClauseStr.IsNotNull() && whereClauseStr.StartsWith("(") && whereClauseStr.EndsWith(")"))
-            //{
-            //    whereClauseStr = whereClauseStr.TrimStart("(").TrimEnd(")");
-            //}
-            return whereClauseStr;
-        }
+        public string GetWhereClause() => WhereClause.ToString();
 
         /// <summary>
         /// 处理一元运算符

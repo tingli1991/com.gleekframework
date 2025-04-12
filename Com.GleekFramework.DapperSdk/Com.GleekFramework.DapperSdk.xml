@@ -380,24 +380,6 @@
             访问常量表达式
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.DapperSdk.PropertyExtensions">
-            <summary>
-            属性拓展
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.PropertyExtensions.GetPrimaryColumnName``1(System.Type)">
-            <summary>
-            获取主键名称
-            </summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.PropertyExtensions.GetTableName``1(System.Type)">
-            <summary>
-            获取表名
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Com.GleekFramework.DapperSdk.SQLExpressionExtensions">
             <summary>
             SQL表达式拓展类
@@ -443,6 +425,23 @@
             转换成操作类型
             </summary>
             <param name="binaryExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.DapperSdk.TablePropertyExtensions">
+            <summary>
+            表的属性拓展
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetPrimaryName``1(``0)">
+            <summary>
+            获取主键字段名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetTableName``1(``0)">
+            <summary>
+            获取表名
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions">
