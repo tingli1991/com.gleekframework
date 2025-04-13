@@ -392,14 +392,6 @@
             数据模型映射拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``1(System.Object)">
-            <summary>
-            单模型映射方法
-            </summary>
-            <typeparam name="TTarget">目标数据类型</typeparam>
-            <param name="source">原数据实例</param>
-            <returns></returns>
-        </member>
         <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``2(``0)">
             <summary>
             单模型映射方法
@@ -407,14 +399,6 @@
             <typeparam name="TSource">原数据类型</typeparam>
             <typeparam name="TTarget">目标数据类型</typeparam>
             <param name="source">原数据实例</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``1(System.Collections.Generic.IEnumerable{System.Object})">
-            <summary>
-            单模型映射方法
-            </summary>
-            <typeparam name="TTarget">目标数据类型</typeparam>
-            <param name="sources">原数据实例集合</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.Map``2(System.Collections.Generic.IEnumerable{``0})">
@@ -426,15 +410,6 @@
             <param name="sources">原数据实例集合</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``1(System.Threading.Tasks.Task{System.Object})">
-            <summary>
-            单模型映射方法
-            </summary>
-            <typeparam name="TSource">原数据类型</typeparam>
-            <typeparam name="TTarget">目标数据类型</typeparam>
-            <param name="source">原数据实例</param>
-            <returns></returns>
-        </member>
         <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``2(System.Threading.Tasks.Task{``0})">
             <summary>
             单模型映射方法
@@ -442,14 +417,6 @@
             <typeparam name="TSource">原数据类型</typeparam>
             <typeparam name="TTarget">目标数据类型</typeparam>
             <param name="source">原数据实例</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``1(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{System.Object}})">
-            <summary>
-            单模型映射方法
-            </summary>
-            <typeparam name="TTarget">目标数据类型</typeparam>
-            <param name="sourceList">原数据实例</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.CommonSdk.DataMapperExtensions.MapAsync``2(System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}})">
