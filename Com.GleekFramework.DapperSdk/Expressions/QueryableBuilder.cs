@@ -187,7 +187,6 @@ namespace Com.GleekFramework.DapperSdk
             selectExpression.Visit();
             ExecuteSQL.Append($"select {selectExpression.GetSelectColumns()}");
 
-
             //FROM
             ExecuteSQL.Append($" from {EntityType.GetTableName()}");
 

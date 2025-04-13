@@ -311,13 +311,6 @@
             访问成员表达式
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.SelectExpressionVisitor`2.GetAllColumnDic(System.Type)">
-            <summary>
-            获取指定类型的所有列字典
-            </summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
         <member name="T:Com.GleekFramework.DapperSdk.WhereExpressionVisitor">
             <summary>
             WHERE条件表达式访问器，用于将Lambda表达式转换为SQL条件
@@ -424,6 +417,20 @@
             <summary>
             表的属性拓展
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetColumnIgnoreDic(System.Type)">
+            <summary>
+            获取所有被忽略的列字典
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetAllColumnDic(System.Type)">
+            <summary>
+            获取指定类型的所有列字典
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetPrimaryName(System.Type)">
             <summary>

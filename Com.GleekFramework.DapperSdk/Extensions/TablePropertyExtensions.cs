@@ -1,5 +1,6 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,6 +12,33 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     public static class TablePropertyExtensions
     {
+        /// <summary>
+        /// 获取所有被忽略的列字典
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetColumnIgnoreDic(this Type type)
+        {
+            var propertyInfoList = type.GetPropertyInfoList();
+            var ignorgePropertyInfoList = propertyInfoList.Where(e => e.GetCustomAttribute<ColumnIgnoreAttribute>() != null);
+            if (ignorgePropertyInfoList.IsNotNull())
+            {
+                return ignorgePropertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);
+            }
+            return [];
+        }
+
+        /// <summary>
+        /// 获取指定类型的所有列字典
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetAllColumnDic(this Type type)
+        {
+            var propertyInfoList = type.GetPropertyInfoList();
+            return propertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);
+        }
+
         /// <summary>
         /// 获取主键字段名称
         /// </summary>

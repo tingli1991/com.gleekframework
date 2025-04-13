@@ -1,5 +1,4 @@
 ﻿using Com.GleekFramework.CommonSdk;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -31,17 +30,25 @@ namespace Com.GleekFramework.DapperSdk
         {
             var resultType = typeof(TResult);//返回的实体类型
             var entityType = typeof(TEntity);//查询的实体类型
-            var allEntityColumnDic = GetAllColumnDic(entityType);//查询实体的所有列字典
+            var allEntityColumnDic = entityType.GetAllColumnDic();//查询实体的所有列字典
             if (entityType == resultType)
             {
-                // 处理匿名类型或显式指定类型
-                Columns = allEntityColumnDic.Values.Distinct();
+                var columnIgnoreDic = entityType.GetColumnIgnoreDic();//获取被忽略的列字典
+                Columns = allEntityColumnDic.Values.Distinct();// 处理匿名类型或显式指定类型
+                Columns = Columns.Except(columnIgnoreDic.Values.Distinct());//移除被忽略的列
             }
             else
             {
                 var propertyInfoList = resultType.GetPropertyInfoList();
+                var columnIgnoreDic = resultType.GetColumnIgnoreDic();//获取被忽略的列字典
                 foreach (var propertyInfo in propertyInfoList)
                 {
+                    if (columnIgnoreDic.ContainsKey(propertyInfo.Name))
+                    {
+                        //如果当前对象的属性被忽略，则跳过
+                        continue;
+                    }
+
                     var columnAttribute = propertyInfo.GetCustomAttribute<ColumnAttribute>();
                     if (!string.IsNullOrEmpty(columnAttribute?.Name))
                     {
@@ -63,17 +70,6 @@ namespace Com.GleekFramework.DapperSdk
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// 获取指定类型的所有列字典
-        /// </summary>
-        /// <param name="type">类型</param>
-        /// <returns></returns>
-        private static Dictionary<string, string> GetAllColumnDic(Type type)
-        {
-            var propertyInfoList = type.GetPropertyInfoList();
-            return propertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);
         }
     }
 }

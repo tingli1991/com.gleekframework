@@ -20,6 +20,11 @@
             </summary>
             <param name="key">键</param>
         </member>
+        <member name="T:Com.GleekFramework.CommonSdk.ColumnIgnoreAttribute">
+            <summary>
+            忽略列属性
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.CommentAttribute">
             <summary>
             表备注特性
