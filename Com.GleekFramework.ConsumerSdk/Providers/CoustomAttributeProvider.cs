@@ -64,26 +64,26 @@ namespace Com.GleekFramework.ConsumerSdk
                     if (!AttributeCache.ContainsKey(cacheKey))
                     {
                         var classAttributeList = type.GetCustomAttributes<T>(false);
-                        if (classAttributeList.IsNotNull())
+                        if (classAttributeList.IsNotEmpty())
                         {
                             attributeList = attributeList.Union(classAttributeList);
                         }
 
                         var methodAttributeList = type.GetMethods().SelectMany(e => e.GetCustomAttributes(attributeType, false).Select(p => p as T)).Where(e => e != null);
-                        if (methodAttributeList.IsNotNull())
+                        if (methodAttributeList.IsNotEmpty())
                         {
                             var fullNameList = attributeList.Select(e => e.GetType().FullName);
                             attributeList = attributeList.Union(methodAttributeList.Where(e => !fullNameList.Contains(e.GetType().FullName)));
                         }
 
                         var propertyAttributeList = type.GetProperties().SelectMany(e => e.GetCustomAttributes(attributeType, false).Select(p => p as T)).Where(e => e != null);
-                        if (propertyAttributeList.IsNotNull())
+                        if (propertyAttributeList.IsNotEmpty())
                         {
                             var fullNameList = attributeList.Select(e => e.GetType().FullName);
                             attributeList = attributeList.Union(propertyAttributeList.Where(e => !fullNameList.Contains(e.GetType().FullName)));
                         }
 
-                        if (attributeList.IsNotNull())
+                        if (attributeList.IsNotEmpty())
                         {
                             AttributeCache.Add(cacheKey, attributeList);
                         }

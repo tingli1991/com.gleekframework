@@ -31,7 +31,7 @@ namespace Com.GleekFramework.DapperSdk
                 .Distinct()
                 .ToList();
 
-            if (!assemblyTypeList.IsNotNull())
+            if (!assemblyTypeList.IsNotEmpty())
                 return builder;
 
             assemblyTypeList.ForEach(type => SqlMapper.SetTypeMap(type, new ColumnTypeMapper(type)));

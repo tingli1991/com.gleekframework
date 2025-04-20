@@ -44,7 +44,7 @@ namespace Com.GleekFramework.NacosSdk
 
             var host = "";//主机地址
             var serviceHostList = await GetServiceHostListAsync(serviceName);
-            if (serviceHostList.IsNotNull())
+            if (serviceHostList.IsNotEmpty())
             {
                 var serviceHostInfo = serviceHostList.Next();
                 host = $"{serviceHostInfo.Ip}:{serviceHostInfo.Port}";

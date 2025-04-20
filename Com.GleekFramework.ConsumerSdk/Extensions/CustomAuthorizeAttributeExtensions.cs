@@ -21,7 +21,7 @@ namespace Com.GleekFramework.ConsumerSdk
         {
             ContractResult result = default;//返回结果
             var isSuccess = true;//是否处理成功
-            if (coustomAttributeList.IsNotNull())
+            if (coustomAttributeList.IsNotEmpty())
             {
                 foreach (var coustomAttribute in coustomAttributeList.OrderBy(e => e.Order))
                 {

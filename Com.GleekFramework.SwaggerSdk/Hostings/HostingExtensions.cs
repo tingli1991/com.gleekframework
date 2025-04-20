@@ -42,7 +42,7 @@ namespace Com.GleekFramework.SwaggerSdk
                 });
 
                 var xmlDocumentFileList = DocumentProvider.GetXmlDocumentFileList();
-                if (xmlDocumentFileList.IsNotNull())
+                if (xmlDocumentFileList.IsNotEmpty())
                 {
                     foreach (var documentFileName in xmlDocumentFileList)
                     {

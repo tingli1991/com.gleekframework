@@ -60,7 +60,7 @@ namespace Com.GleekFramework.AttributeSdk
         {
             var dataDic = new Dictionary<string, Enum>();
             var errorFieldsAndMsgList = modelState.Where(e => e.Value.Errors.AnyOf()).Select(x => new { x.Key, x.Value.Errors });
-            if (errorFieldsAndMsgList.IsNotNull())
+            if (errorFieldsAndMsgList.IsNotEmpty())
             {
                 foreach (var errorFieldsAndMsg in errorFieldsAndMsgList)
                 {

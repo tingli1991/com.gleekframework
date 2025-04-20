@@ -1,4 +1,5 @@
 ﻿using Com.GleekFramework.CommonSdk;
+using Com.GleekFramework.CommonSdk.Extensions;
 using Com.GleekFramework.ContractSdk;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,8 @@ namespace Com.GleekFramework.DapperSdk
         {
             Type = typeof(E);//初始化实体类型
             TableName = Type.GetTableName();//数据库名称
-            PropertyInfoList = Type.GetPropertyInfoList();//实体属性列表
+            var columnIgnoreDic = Type.GetColumnIgnoreDic();//获取被忽略的列字典
+            PropertyInfoList = Type.GetPropertyInfoList().WhereIf(columnIgnoreDic.IsNotEmpty(), e => !columnIgnoreDic.ContainsKey(e.Name));//实体属性列表
             KeyPropertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);//主键属性
             ColumnMappingList = PropertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);//列的映射关系列表
         }
@@ -60,8 +62,7 @@ namespace Com.GleekFramework.DapperSdk
         public string GenInsertSQL()
         {
             var propertieInfoList = PropertyInfoList
-               .Where(e => e.GetCustomAttribute<KeyAttribute>() == null
-               && e.GetCustomAttribute<DatabaseGeneratedAttribute>()?.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity);
+               .Where(e => e.GetCustomAttribute<KeyAttribute>() == null && e.GetCustomAttribute<DatabaseGeneratedAttribute>()?.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity);
 
             var parameterList = propertieInfoList.Select(e => "@" + e.Name);//新增的参数列表
             var columns = propertieInfoList.Select(e => ColumnMappingList[e.Name]);//新增的参数列
@@ -93,7 +94,10 @@ namespace Com.GleekFramework.DapperSdk
         {
             var propertyInfo = typeof(T).GetPropertyInfoList().FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
             var updateSQL = GenUpdateSQL(propertyInfo);//更新脚本
-            var paramters = entity.GetType().GetPropertyInfoList().ToDictionary(k => k.Name, v => entity.GetPropertyValue(v.Name));
+
+            var columnIgnoreDic = Type.GetColumnIgnoreDic();//获取被忽略的列字典
+            var propertyInfoList = entity.GetType().GetPropertyInfoList().WhereIf(columnIgnoreDic.IsNotEmpty(), e => !columnIgnoreDic.ContainsKey(e.Name));//实体属性列表
+            var paramters = propertyInfoList.ToDictionary(k => k.Name, v => entity.GetPropertyValue(v.Name));
             if (!paramters.ContainsKey(propertyInfo.Name))
             {
                 paramters.Add(propertyInfo.Name, id);

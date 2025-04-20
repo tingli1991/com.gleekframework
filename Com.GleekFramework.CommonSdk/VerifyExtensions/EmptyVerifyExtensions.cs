@@ -39,12 +39,12 @@ namespace Com.GleekFramework.CommonSdk
         }
 
         /// <summary>
-        /// 判断袁术不为空
+        /// 判断元素不为空
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static bool IsNotNull<T>(this IEnumerable<T> source)
+        public static bool IsNotEmpty<T>(this IEnumerable<T> source)
         {
             return source != null && source.Any();
         }

@@ -58,7 +58,7 @@ namespace Com.GleekFramework.MigrationSdk
                     databaseProvider.ExecuteScripts(executeScripts);//分批执行数据库脚本语句
 
                     var executeSqlFiles = await upgrationAttribute.Service.ExecuteSqlFilesAsync();
-                    if (executeSqlFiles.IsNotNull())
+                    if (executeSqlFiles.IsNotEmpty())
                     {
                         var filePaths = executeSqlFiles.Select(e => Path.Combine(AppContext.BaseDirectory, "Scripts", e));
                         var executeSqlFileScripts = filePaths.SelectMany(e => File.ReadAllLines(e));//需要执行的Sql文件存放的所有脚本

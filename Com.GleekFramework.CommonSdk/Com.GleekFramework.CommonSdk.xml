@@ -1162,6 +1162,22 @@
             <param name="condition">判断条件</param>
             <param name="sorting">排序值</param>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Func{``0,System.Boolean})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="source">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
+        <member name="M:Com.GleekFramework.CommonSdk.Extensions.QueryableExtensions.WhereIf``2(``1,System.Boolean,System.Func{``0,System.Boolean})">
+            <summary>
+            条件过滤
+            </summary>
+            <param name="source">可查询以应用筛选</param>
+            <param name="condition">判断条件</param>
+            <param name="predicate">用于筛选查询的表达式</param>
+        </member>
         <member name="T:Com.GleekFramework.CommonSdk.Extensions.NetworkProvider">
             <summary>
             网络实现类
@@ -2069,9 +2085,9 @@
             <param name="source"></param>
             <returns>true：表示为空，false：表示不为空</returns>
         </member>
-        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNotNull``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Com.GleekFramework.CommonSdk.EmptyVerifyExtensions.IsNotEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            判断袁术不为空
+            判断元素不为空
             </summary>
             <typeparam name="T"></typeparam>
             <param name="source"></param>

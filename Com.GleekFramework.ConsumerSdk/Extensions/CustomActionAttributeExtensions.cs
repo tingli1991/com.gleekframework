@@ -20,7 +20,7 @@ namespace Com.GleekFramework.ConsumerSdk
         public static async Task<ContractResult> OnActionExecutingAsync(this IEnumerable<CustomActionAttribute> coustomAttributeList, CustomActionExecutingContext context)
         {
             ContractResult result = default;//返回结果
-            if (coustomAttributeList.IsNotNull())
+            if (coustomAttributeList.IsNotEmpty())
             {
                 foreach (var coustomAttribute in coustomAttributeList.OrderBy(e => e.Order))
                 {
@@ -50,7 +50,7 @@ namespace Com.GleekFramework.ConsumerSdk
             }
             else
             {
-                if (coustomAttributeList.IsNotNull())
+                if (coustomAttributeList.IsNotEmpty())
                 {
                     foreach (var coustomAttribute in coustomAttributeList.OrderBy(e => e.Order))
                     {

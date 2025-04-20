@@ -21,7 +21,7 @@ namespace Com.GleekFramework.DapperSdk
         {
             var propertyInfoList = type.GetPropertyInfoList();
             var ignorgePropertyInfoList = propertyInfoList.Where(e => e.GetCustomAttribute<ColumnIgnoreAttribute>() != null);
-            if (ignorgePropertyInfoList.IsNotNull())
+            if (ignorgePropertyInfoList.IsNotEmpty())
             {
                 return ignorgePropertyInfoList.ToDictionary(k => k.Name, v => v.GetCustomAttribute<ColumnAttribute>()?.Name ?? v.Name);
             }

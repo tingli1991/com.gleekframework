@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
@@ -66,6 +67,29 @@ namespace Com.GleekFramework.CommonSdk.Extensions
             where TQueryable : IQueryable<T>
         {
             return condition ? (TQueryable)DynamicQueryableExtensions.OrderBy(query, sorting) : query;
+        }
+
+        /// <summary>
+        /// 条件过滤
+        /// </summary>
+        /// <param name="source">可查询以应用筛选</param>
+        /// <param name="condition">判断条件</param>
+        /// <param name="predicate">用于筛选查询的表达式</param>
+        public static IEnumerable<T> WhereIf<T>(this IEnumerable<T> source, bool condition, Func<T, bool> predicate)
+        {
+            return condition ? source.Where(predicate) : source;
+        }
+
+        /// <summary>
+        /// 条件过滤
+        /// </summary>
+        /// <param name="source">可查询以应用筛选</param>
+        /// <param name="condition">判断条件</param>
+        /// <param name="predicate">用于筛选查询的表达式</param>
+        public static IEnumerable WhereIf<T, IEnumerable>(this IEnumerable source, bool condition, Func<T, bool> predicate)
+            where IEnumerable : IEnumerable<T>
+        {
+            return condition ? (IEnumerable)source.Where(predicate) : source;
         }
     }
 }
