@@ -24,6 +24,7 @@ namespace Com.GleekFramework.Models
         [Comment("主键")]
         [ProtoMember(1)]
         [JsonProperty("id"), JsonPropertyName("id")]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace Com.GleekFramework.Models
         /// 主键
         /// </summary>
         [ProtoMember(8)]
-        //[Precision(0, 30)]
+        [Precision(0, 30)]
         [Column("version")]
         [Comment("版本号")]
         [JsonProperty("version"), JsonPropertyName("version")]

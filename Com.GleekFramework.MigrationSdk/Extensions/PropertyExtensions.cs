@@ -115,9 +115,9 @@ namespace Com.GleekFramework.MigrationSdk
         }
 
         /// <summary>
-        /// 
+        /// 获取数据库生成的选项
         /// </summary>
-        /// <param name="propertyInfo"></param>
+        /// <param name="propertyInfo">属性信息</param>
         /// <returns></returns>
         public static DatabaseGeneratedOption GetDatabaseGenerated(this PropertyInfo propertyInfo)
         {

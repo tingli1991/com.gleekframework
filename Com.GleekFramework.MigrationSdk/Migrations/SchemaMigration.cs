@@ -49,7 +49,7 @@ namespace Com.GleekFramework.MigrationSdk
                 var databaseTableSchemaColumnList = databaseTableSchemaList.Where(e => e.TableName.EqualIgnoreCases(tableName));//当前表下面的所有列
                 var isFirstCreateTableSchema = FirstCreateTableSchema(Create, typeInfo, propertyInfoList, databaseTableSchemaColumnList);//首次创建表结构
 
-                AlertTableOrdinaryColumns(alterTableColumnAsTypeSyntax, propertyInfoList, databaseTableSchemaColumnList);//构建表的普通列(排除Id主键和基础列)
+                AlertTableOrdinaryColumns(alterTableColumnAsTypeSyntax, propertyInfoList, databaseTableSchemaColumnList);//构建表的普通列(排除主键和基础列)
                 AlertTableBaseColumns(alterTableColumnAsTypeSyntax, isFirstCreateTableSchema, propertyInfoList);//构建表的基础字段
                 AlertTableIndexs(Create, typeInfo, propertyInfoList, databaseIndexSchemaList);//构建表的索引 
             }
@@ -95,7 +95,7 @@ namespace Com.GleekFramework.MigrationSdk
         /// <param name="databaseTableSchemaColumnList">已存在的表结构列表</param>
         private static void AlertTableOrdinaryColumns(IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax alter, IEnumerable<PropertyInfo> propertyInfoList, IEnumerable<TableSchemaModel> databaseTableSchemaColumnList)
         {
-            var ordinaryColumnPropertyInfoList = propertyInfoList.Where(e => !e.Name.EqualIgnoreCases(MigrationConstant.Id) && !MigrationConstant.BaseColumns.ContainsIgnoreCases(e.Name));
+            var ordinaryColumnPropertyInfoList = propertyInfoList.Where(e => !e.IsPrimaryKey() && !MigrationConstant.BaseColumns.ContainsIgnoreCases(e.Name));
             if (ordinaryColumnPropertyInfoList.IsNullOrEmpty())
             {
                 return;
@@ -132,8 +132,8 @@ namespace Com.GleekFramework.MigrationSdk
 
             var tableName = typeInfo.GetTableName();//表名称
             var tableComment = typeInfo.GetTableComment();//表的描述
-            var primaryPropertyInfo = propertyInfoList.FirstOrDefault(e => e.Name.EqualIgnoreCases(MigrationConstant.Id));
-            create.Table(tableName).WithDescription(tableComment).WithIdColumn(primaryPropertyInfo);
+            var primaryPropertyInfo = propertyInfoList.FirstOrDefault(e => e.IsPrimaryKey());
+            create.Table(tableName).WithDescription(tableComment).WithPrimaryColumn(primaryPropertyInfo);
             return isFirstCreateTableSchema;
         }
 

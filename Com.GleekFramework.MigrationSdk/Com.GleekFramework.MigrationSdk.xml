@@ -69,11 +69,6 @@
             版本变更常量配置
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.MigrationSdk.MigrationConstant.Id">
-            <summary>
-            主键字段名称
-            </summary>
-        </member>
         <member name="F:Com.GleekFramework.MigrationSdk.MigrationConstant.ExcludeClassNames">
             <summary>
             需要排除的类名称集合
@@ -86,12 +81,12 @@
         </member>
         <member name="T:Com.GleekFramework.MigrationSdk.ColumnExtensions">
             <summary>
-            字段列的拓展类ss
+            字段列的拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.MigrationSdk.ColumnExtensions.WithIdColumn(FluentMigrator.Builders.Create.Table.ICreateTableWithColumnSyntax,System.Reflection.PropertyInfo)">
+        <member name="M:Com.GleekFramework.MigrationSdk.ColumnExtensions.WithPrimaryColumn(FluentMigrator.Builders.Create.Table.ICreateTableWithColumnSyntax,System.Reflection.PropertyInfo)">
             <summary>
-            创建id列
+            创建主键
             </summary>
             <param name="tableWithColumnSyntax"></param>
             <param name="propertyInfo"></param>
@@ -234,9 +229,9 @@
         </member>
         <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetDatabaseGenerated(System.Reflection.PropertyInfo)">
             <summary>
-            
+            获取数据库生成的选项
             </summary>
-            <param name="propertyInfo"></param>
+            <param name="propertyInfo">属性信息</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.MigrationSdk.PropertyExtensions.GetDefaultValue(System.Reflection.PropertyInfo)">

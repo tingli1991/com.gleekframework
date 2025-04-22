@@ -8,14 +8,9 @@ namespace Com.GleekFramework.MigrationSdk
     public static partial class MigrationConstant
     {
         /// <summary>
-        /// 主键字段名称
-        /// </summary>
-        public const string Id = "Id";
-
-        /// <summary>
         /// 需要排除的类名称集合
         /// </summary>
-        public static readonly List<string> ExcludeClassNames = new List<string>() { "ITable" };
+        public static readonly List<string> ExcludeClassNames = new List<string>() { "ITable", "IVersionTable" };
 
         /// <summary>
         /// 基础列

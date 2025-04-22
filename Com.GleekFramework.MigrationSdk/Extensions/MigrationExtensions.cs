@@ -1,6 +1,4 @@
-﻿using Com.GleekFramework.CommonSdk;
-using Com.GleekFramework.NLogSdk;
-using FluentMigrator.Runner;
+﻿using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;

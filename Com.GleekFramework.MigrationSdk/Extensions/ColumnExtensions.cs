@@ -7,17 +7,17 @@ using System.Reflection;
 namespace Com.GleekFramework.MigrationSdk
 {
     /// <summary>
-    /// 字段列的拓展类ss
+    /// 字段列的拓展类
     /// </summary>
     public static partial class ColumnExtensions
     {
         /// <summary>
-        /// 创建id列
+        /// 创建主键
         /// </summary>
         /// <param name="tableWithColumnSyntax"></param>
         /// <param name="propertyInfo"></param>
         /// <returns></returns>
-        public static ICreateTableColumnOptionOrWithColumnSyntax WithIdColumn(this ICreateTableWithColumnSyntax tableWithColumnSyntax, PropertyInfo propertyInfo)
+        public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryColumn(this ICreateTableWithColumnSyntax tableWithColumnSyntax, PropertyInfo propertyInfo)
         {
             if (propertyInfo == null)
             {
@@ -26,13 +26,26 @@ namespace Com.GleekFramework.MigrationSdk
 
             var comment = propertyInfo.GetComment();//字段备注
             var columnName = propertyInfo.GetColumnName();//列的名称
-            return tableWithColumnSyntax
-                .WithColumn(columnName)
-                .AsInt64()
-                .NotNullable()
-                .PrimaryKey()
-                .Identity()
-                .WithColumnDescription(comment);
+            var databaseGenerated = propertyInfo.GetCustomAttribute<DatabaseGeneratedAttribute>();//获取数据库生成的属性
+            if (databaseGenerated != null && databaseGenerated.DatabaseGeneratedOption == DatabaseGeneratedOption.None)
+            {
+                return tableWithColumnSyntax
+                    .WithColumn(columnName)
+                    .AsInt64()
+                    .NotNullable()
+                    .PrimaryKey()
+                    .WithColumnDescription(comment);
+            }
+            else
+            {
+                return tableWithColumnSyntax
+                    .WithColumn(columnName)
+                    .AsInt64()
+                    .NotNullable()
+                    .PrimaryKey()
+                    .Identity()
+                    .WithColumnDescription(comment);
+            }
         }
 
         /// <summary>
@@ -137,7 +150,6 @@ namespace Com.GleekFramework.MigrationSdk
                     columnSyntax.Identity();
                     break;
                 case DatabaseGeneratedOption.Computed:
-
                     break;
             }
 
