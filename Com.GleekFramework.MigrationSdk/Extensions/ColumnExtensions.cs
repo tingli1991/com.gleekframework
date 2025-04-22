@@ -26,25 +26,42 @@ namespace Com.GleekFramework.MigrationSdk
 
             var comment = propertyInfo.GetComment();//字段备注
             var columnName = propertyInfo.GetColumnName();//列的名称
-            var databaseGenerated = propertyInfo.GetCustomAttribute<DatabaseGeneratedAttribute>();//获取数据库生成的属性
-            if (databaseGenerated != null && databaseGenerated.DatabaseGeneratedOption == DatabaseGeneratedOption.None)
+            if (propertyInfo.Equals<string>())
             {
+                var maxLength = propertyInfo.GetMaxLength();
                 return tableWithColumnSyntax
-                    .WithColumn(columnName)
-                    .AsInt64()
-                    .NotNullable()
-                    .PrimaryKey()
-                    .WithColumnDescription(comment);
+                   .WithColumn(columnName)
+                   .AsString(maxLength)
+                   .NotNullable()
+                   .PrimaryKey()
+                   .WithColumnDescription(comment);
+            }
+            else if (propertyInfo.Equals<long>())
+            {
+                var databaseGenerated = propertyInfo.GetCustomAttribute<DatabaseGeneratedAttribute>();//获取数据库生成的属性
+                if (databaseGenerated != null && databaseGenerated.DatabaseGeneratedOption == DatabaseGeneratedOption.None)
+                {
+                    return tableWithColumnSyntax
+                        .WithColumn(columnName)
+                        .AsInt64()
+                        .NotNullable()
+                        .PrimaryKey()
+                        .WithColumnDescription(comment);
+                }
+                else
+                {
+                    return tableWithColumnSyntax
+                        .WithColumn(columnName)
+                        .AsInt64()
+                        .NotNullable()
+                        .PrimaryKey()
+                        .Identity()
+                        .WithColumnDescription(comment);
+                }
             }
             else
             {
-                return tableWithColumnSyntax
-                    .WithColumn(columnName)
-                    .AsInt64()
-                    .NotNullable()
-                    .PrimaryKey()
-                    .Identity()
-                    .WithColumnDescription(comment);
+                throw new Exception($"不支持的主键类型映射：{propertyInfo.PropertyType.FullName}");
             }
         }
 
