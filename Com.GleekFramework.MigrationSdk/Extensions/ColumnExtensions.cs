@@ -34,6 +34,7 @@ namespace Com.GleekFramework.MigrationSdk
                    .AsString(maxLength)
                    .NotNullable()
                    .PrimaryKey()
+                   .WithDefaultValue(string.Empty)//默认值
                    .WithColumnDescription(comment);
             }
             else if (propertyInfo.Equals<long>())
@@ -46,6 +47,7 @@ namespace Com.GleekFramework.MigrationSdk
                         .AsInt64()
                         .NotNullable()
                         .PrimaryKey()
+                        .WithDefaultValue(0)//默认值
                         .WithColumnDescription(comment);
                 }
                 else
