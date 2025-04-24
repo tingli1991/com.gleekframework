@@ -361,7 +361,7 @@ namespace Com.GleekFramework.DapperSdk
                 entity.SetPropertyValue(builder.KeyPropertyInfo.Name, responseId);
                 return entity;
             }
-            return null;
+            return entity;
         }
 
         /// <summary>
@@ -379,23 +379,22 @@ namespace Com.GleekFramework.DapperSdk
                 return;
             }
 
-            if (entitys is IEnumerable<IVersionTable> versionInfoList)
-            {
-                foreach (var versionInfo in versionInfoList)
-                {
-                    if (versionInfo.Version <= 0)
-                    {
-                        continue;
-                    }
-
-                    //赋值版本号
-                    versionInfo.Version = SnowflakeService.GetVersionNo();
-                }
-            }
-
             var sql = new SqlBuilder<T>().GenInsertSQL();
             entitys.ForEach(pageSize, (pageIndex, pageList) =>
             {
+                if (pageList is IEnumerable<IVersionTable> versionInfoList)
+                {
+                    foreach (var versionInfo in versionInfoList)
+                    {
+                        if (versionInfo.Version > 0)
+                        {
+                            continue;
+                        }
+
+                        //赋值版本号
+                        versionInfo.Version = SnowflakeService.GetVersionNo();
+                    }
+                }
                 using var conn = GetConnection();
                 conn.Execute(sql, pageList, null, timeoutSeconds);
             });
@@ -429,7 +428,7 @@ namespace Com.GleekFramework.DapperSdk
                 entity.SetPropertyValue(builder.KeyPropertyInfo.Name, responseId);
                 return entity;
             }
-            return null;
+            return entity;
         }
 
         /// <summary>
@@ -447,23 +446,23 @@ namespace Com.GleekFramework.DapperSdk
                 return;
             }
 
-            if (entitys is IEnumerable<IVersionTable> versionInfoList)
-            {
-                foreach (var versionInfo in versionInfoList)
-                {
-                    if (versionInfo.Version <= 0)
-                    {
-                        continue;
-                    }
-
-                    //赋值版本号
-                    versionInfo.Version = SnowflakeService.GetVersionNo();
-                }
-            }
-
             var sql = new SqlBuilder<T>().GenInsertSQL();
             await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
             {
+                if (pageList is IEnumerable<IVersionTable> versionInfoList)
+                {
+                    foreach (var versionInfo in versionInfoList)
+                    {
+                        if (versionInfo.Version > 0)
+                        {
+                            continue;
+                        }
+
+                        //赋值版本号
+                        versionInfo.Version = SnowflakeService.GetVersionNo();
+                    }
+                }
+
                 using var conn = GetConnection();
                 await conn.ExecuteAsync(sql, pageList, null, timeoutSeconds);
             });
@@ -501,6 +500,17 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         public T Update<E, T>(E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            if (entity is IVersionTable versionInfo)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
             var isSuccess = Update(entity, timeoutSeconds);
             if (isSuccess)
             {
@@ -560,23 +570,23 @@ namespace Com.GleekFramework.DapperSdk
                 return;
             }
 
-            if (entitys is IEnumerable<IVersionTable> versionInfoList)
-            {
-                foreach (var versionInfo in versionInfoList)
-                {
-                    if (versionInfo.Version <= 0)
-                    {
-                        continue;
-                    }
-
-                    //赋值版本号
-                    versionInfo.Version = SnowflakeService.GetVersionNo();
-                }
-            }
-
             var sql = new SqlBuilder<T>().GenUpdateSQL();
             entitys.ForEach(pageSize, (pageIndex, pageList) =>
             {
+                if (pageList is IEnumerable<IVersionTable> versionInfoList)
+                {
+                    foreach (var versionInfo in versionInfoList)
+                    {
+                        if (versionInfo.Version > 0)
+                        {
+                            continue;
+                        }
+
+                        //赋值版本号
+                        versionInfo.Version = SnowflakeService.GetVersionNo();
+                    }
+                }
+
                 using var conn = GetConnection();
                 conn.Execute(sql, pageList, null, timeoutSeconds);
             });
@@ -614,6 +624,17 @@ namespace Com.GleekFramework.DapperSdk
         /// <param name="timeoutSeconds"></param>
         public async Task<T> UpdateAsync<E, T>(E entity, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS) where T : class where E : class
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            if (entity is IVersionTable versionInfo)
+            {
+                //赋值版本号
+                versionInfo.Version = SnowflakeService.GetVersionNo();
+            }
+
             var isSuccess = await UpdateAsync(entity, timeoutSeconds);
             if (isSuccess)
             {
@@ -672,23 +693,23 @@ namespace Com.GleekFramework.DapperSdk
                 return;
             }
 
-            if (entitys is IEnumerable<IVersionTable> versionInfoList)
-            {
-                foreach (var versionInfo in versionInfoList)
-                {
-                    if (versionInfo.Version <= 0)
-                    {
-                        continue;
-                    }
-
-                    //赋值版本号
-                    versionInfo.Version = SnowflakeService.GetVersionNo();
-                }
-            }
-
             var sql = new SqlBuilder<T>().GenUpdateSQL();
             await entitys.ForEachAsync(pageSize, async (pageIndex, pageList) =>
             {
+                if (pageList is IEnumerable<IVersionTable> versionInfoList)
+                {
+                    foreach (var versionInfo in versionInfoList)
+                    {
+                        if (versionInfo.Version > 0)
+                        {
+                            continue;
+                        }
+
+                        //赋值版本号
+                        versionInfo.Version = SnowflakeService.GetVersionNo();
+                    }
+                }
+
                 using var conn = GetConnection();
                 await conn.ExecuteAsync(sql, pageList, null, timeoutSeconds);
             });
