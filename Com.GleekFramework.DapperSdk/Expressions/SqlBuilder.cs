@@ -62,7 +62,7 @@ namespace Com.GleekFramework.DapperSdk
         public string GenInsertSQL()
         {
             var propertieInfoList = PropertyInfoList
-               .Where(e => e.GetCustomAttribute<KeyAttribute>() == null && e.GetCustomAttribute<DatabaseGeneratedAttribute>()?.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity);
+               .Where(e => e.GetCustomAttribute<DatabaseGeneratedAttribute>()?.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity);
 
             var parameterList = propertieInfoList.Select(e => "@" + e.Name);//新增的参数列表
             var columns = propertieInfoList.Select(e => ColumnMappingList[e.Name]);//新增的参数列
