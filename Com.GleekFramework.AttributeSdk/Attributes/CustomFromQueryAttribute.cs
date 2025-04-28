@@ -24,7 +24,11 @@ namespace Com.GleekFramework.AttributeSdk
         /// 验证失败时的错误消息
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="errorEnum"></param>
-        public CustomFromQueryAttribute(string name, Enum errorEnum) : base() => ErrorMessage = nameof(errorEnum);
+        /// <param name="errorMessage"></param>
+        public CustomFromQueryAttribute(string name, string errorMessage) : base()
+        {
+            Name = name;
+            ErrorMessage = errorMessage;
+        }
     }
 }

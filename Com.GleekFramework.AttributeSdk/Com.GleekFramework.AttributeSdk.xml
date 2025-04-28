@@ -34,23 +34,23 @@
             绑定资源
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute.#ctor(System.String,System.Enum)">
+        <member name="M:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute.#ctor(System.String,System.String)">
             <summary>
             验证失败时的错误消息
             </summary>
             <param name="name"></param>
-            <param name="errorEnum"></param>
+            <param name="errorMessage"></param>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute">
             <summary>
             必填验证
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute.#ctor(System.Enum)">
+        <member name="M:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute.#ctor(System.String)">
             <summary>
             验证失败时的错误消息
             </summary>
-            <param name="errorEnum"></param>
+            <param name="errorMessage"></param>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.GlobalExceptionAttribute">
             <summary>
