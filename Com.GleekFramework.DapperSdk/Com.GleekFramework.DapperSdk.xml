@@ -425,6 +425,12 @@
             表的属性拓展
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetPrimaryName(System.Type)">
+            <summary>
+            获取主键字段名称
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetTableName(System.Type)">
             <summary>
             实际应根据自定义属性获取表名
