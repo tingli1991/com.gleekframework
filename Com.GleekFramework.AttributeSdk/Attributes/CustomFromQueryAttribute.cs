@@ -8,7 +8,7 @@ namespace Com.GleekFramework.AttributeSdk.Attributes
     /// 从查询字符串中获取参数，并且该参数为必填项
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
-    class CustomFromQueryAttribute : ValidationAttribute, IBindingSourceMetadata, IModelNameProvider, IFromQueryMetadata
+    public class CustomFromQueryAttribute : ValidationAttribute, IBindingSourceMetadata, IModelNameProvider, IFromQueryMetadata
     {
         /// <summary>
         /// 属性名称
