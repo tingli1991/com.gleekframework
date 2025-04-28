@@ -47,7 +47,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="id">id(ÓÃÓÚ²âÊÔ×Ö¶Î±ØÌî)</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([Required] int id)
+        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([System.ComponentModel.DataAnnotations.Required] int id)
         {
             return await Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
             {
