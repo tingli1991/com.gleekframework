@@ -85,6 +85,12 @@
             绑定资源  
             </summary>  
         </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.Object)">
+            <summary>  
+            验证失败时的错误消息  
+            </summary>
+            <param name="errorMessage"></param>  
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.String,System.Object)">
             <summary>  
             验证失败时的错误消息  
@@ -106,6 +112,12 @@
             <summary>  
             绑定资源  
             </summary>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.Object)">
+            <summary>  
+            验证失败时的错误消息
+            </summary>
+            <param name="errorMessage"></param>  
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.String,System.Object)">
             <summary>  

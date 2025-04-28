@@ -22,6 +22,15 @@ namespace Com.GleekFramework.AttributeSdk
 
         /// <summary>  
         /// 验证失败时的错误消息  
+        /// </summary>
+        /// <param name="errorMessage"></param>  
+        public QueryRequiredAttribute(object errorMessage) : base()
+        {
+            ErrorMessage = errorMessage?.ToString();
+        }
+
+        /// <summary>  
+        /// 验证失败时的错误消息  
         /// </summary>  
         /// <param name="name"></param>  
         /// <param name="errorMessage"></param>  
