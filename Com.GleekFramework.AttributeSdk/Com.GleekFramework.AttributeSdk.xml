@@ -72,7 +72,7 @@
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute">
             <summary>  
-            从查询字符串中获取参数，并且该参数为必填项  
+            Query必填验证
             </summary>  
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.Name">
@@ -88,6 +88,28 @@
         <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.String,System.Object)">
             <summary>  
             验证失败时的错误消息  
+            </summary>  
+            <param name="name"></param>  
+            <param name="errorMessage"></param>  
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute">
+            <summary>  
+            路由必填验证
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.Name">
+            <summary>  
+            属性名称  
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.BindingSource">
+            <summary>  
+            绑定资源  
+            </summary>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.String,System.Object)">
+            <summary>  
+            验证失败时的错误消息
             </summary>  
             <param name="name"></param>  
             <param name="errorMessage"></param>  
