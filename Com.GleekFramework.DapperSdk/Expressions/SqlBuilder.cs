@@ -134,7 +134,7 @@ namespace Com.GleekFramework.DapperSdk
                 .Where(e => e.Name != propertyInfo.Name)
                 .Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
 
-            return $"update {TableName} set {string.Join(",", setClauses)} where {propertyInfo.Name}=@{propertyInfo.Name}";
+            return $"update {TableName} set {string.Join(",", setClauses)} where {ColumnMappingList[propertyInfo.Name]}=@{propertyInfo.Name}";
         }
 
         /// <summary>
