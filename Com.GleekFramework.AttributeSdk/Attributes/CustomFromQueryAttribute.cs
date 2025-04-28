@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
-namespace Com.GleekFramework.AttributeSdk.Attributes
+namespace Com.GleekFramework.AttributeSdk
 {
     /// <summary>
     /// 从查询字符串中获取参数，并且该参数为必填项

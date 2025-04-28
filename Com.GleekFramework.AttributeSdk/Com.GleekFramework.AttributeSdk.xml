@@ -19,22 +19,22 @@
             是否验证用户状态(只有验证令牌的的同时才会验证状态)
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.AttributeSdk.Attributes.CustomFromQueryAttribute">
+        <member name="T:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute">
             <summary>
             从查询字符串中获取参数，并且该参数为必填项
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AttributeSdk.Attributes.CustomFromQueryAttribute.Name">
+        <member name="P:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute.Name">
             <summary>
             属性名称
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AttributeSdk.Attributes.CustomFromQueryAttribute.BindingSource">
+        <member name="P:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute.BindingSource">
             <summary>
             绑定资源
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.Attributes.CustomFromQueryAttribute.#ctor(System.Enum)">
+        <member name="M:Com.GleekFramework.AttributeSdk.CustomFromQueryAttribute.#ctor(System.Enum)">
             <summary>
             验证失败时的错误消息
             </summary>
