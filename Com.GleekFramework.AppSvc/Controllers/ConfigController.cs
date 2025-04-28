@@ -46,8 +46,8 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// </summary>
         /// <param name="id">id(用于测试字段必填)</param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([System.ComponentModel.DataAnnotations.Required] int id)
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([RouteRequired("id", "请输入Id")] int id)
         {
             return await Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
             {

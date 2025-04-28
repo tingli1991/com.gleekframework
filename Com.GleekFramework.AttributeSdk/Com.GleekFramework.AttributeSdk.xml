@@ -77,7 +77,7 @@
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.Name">
             <summary>  
-            属性名称  
+            Query名称
             </summary>  
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.BindingSource">
@@ -87,16 +87,16 @@
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.Object)">
             <summary>  
-            验证失败时的错误消息  
+            构造函数  
             </summary>
-            <param name="errorMessage"></param>  
+            <param name="errorMessage">错误消息</param>  
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.String,System.Object)">
             <summary>  
-            验证失败时的错误消息  
+            构造函数  
             </summary>  
-            <param name="name"></param>  
-            <param name="errorMessage"></param>  
+            <param name="name">Query名称</param>  
+            <param name="errorMessage">错误消息</param>  
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute">
             <summary>  
@@ -105,7 +105,7 @@
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.Name">
             <summary>  
-            属性名称  
+            路由名称  
             </summary>  
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.BindingSource">
@@ -115,16 +115,16 @@
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.Object)">
             <summary>  
-            验证失败时的错误消息
+            构造函数
             </summary>
-            <param name="errorMessage"></param>  
+            <param name="errorMessage">错误消息</param>  
         </member>
         <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.String,System.Object)">
             <summary>  
-            验证失败时的错误消息
+            构造函数
             </summary>  
-            <param name="name"></param>  
-            <param name="errorMessage"></param>  
+            <param name="name">路由名称</param>  
+            <param name="errorMessage">错误消息</param>  
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.BaseController">
             <summary>

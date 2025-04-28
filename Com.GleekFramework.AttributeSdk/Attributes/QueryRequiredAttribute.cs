@@ -8,10 +8,10 @@ namespace Com.GleekFramework.AttributeSdk
     /// Query必填验证
     /// </summary>  
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
-    public class QueryRequiredAttribute : ValidationAttribute, IBindingSourceMetadata, IModelNameProvider, IFromQueryMetadata
+    public class QueryRequiredAttribute : RequiredAttribute, IBindingSourceMetadata, IModelNameProvider, IFromQueryMetadata
     {
         /// <summary>  
-        /// 属性名称  
+        /// Query名称
         /// </summary>  
         public string Name { get; set; }
 
@@ -21,19 +21,19 @@ namespace Com.GleekFramework.AttributeSdk
         public BindingSource BindingSource { get; }
 
         /// <summary>  
-        /// 验证失败时的错误消息  
+        /// 构造函数  
         /// </summary>
-        /// <param name="errorMessage"></param>  
+        /// <param name="errorMessage">错误消息</param>  
         public QueryRequiredAttribute(object errorMessage) : base()
         {
             ErrorMessage = errorMessage?.ToString();
         }
 
         /// <summary>  
-        /// 验证失败时的错误消息  
+        /// 构造函数  
         /// </summary>  
-        /// <param name="name"></param>  
-        /// <param name="errorMessage"></param>  
+        /// <param name="name">Query名称</param>  
+        /// <param name="errorMessage">错误消息</param>  
         public QueryRequiredAttribute(string name, object errorMessage) : base()
         {
             Name = name;
