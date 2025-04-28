@@ -19,6 +19,17 @@
             是否验证用户状态(只有验证令牌的的同时才会验证状态)
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute">
+            <summary>
+            必填验证
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute.#ctor(System.Object)">
+            <summary>
+            验证失败时的错误消息
+            </summary>
+            <param name="errorMessage"></param>
+        </member>
         <member name="T:Com.GleekFramework.AttributeSdk.GlobalExceptionAttribute">
             <summary>
             全局异常过滤器
@@ -80,17 +91,6 @@
             </summary>  
             <param name="name"></param>  
             <param name="errorMessage"></param>  
-        </member>
-        <member name="T:Com.GleekFramework.AttributeSdk.RequiredAttribute">
-            <summary>
-            必填验证
-            </summary>
-        </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.RequiredAttribute.#ctor(System.Object)">
-            <summary>
-            验证失败时的错误消息
-            </summary>
-            <param name="errorMessage"></param>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.BaseController">
             <summary>
