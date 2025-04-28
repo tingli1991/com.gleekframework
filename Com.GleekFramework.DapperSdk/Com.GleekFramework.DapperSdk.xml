@@ -265,6 +265,13 @@
             <param name="databaseType">数据库类型</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.DapperSdk.SqlBuilder`1.GetKeyColumnName(System.Reflection.PropertyInfo)">
+            <summary>
+            获取主键列名
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.DapperSdk.OrderExpressionVisitor">
             <summary>
             排序表达式访问器
@@ -418,9 +425,9 @@
             表的属性拓展
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetColumnIgnoreDic(System.Type)">
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetTableName(System.Type)">
             <summary>
-            获取所有被忽略的列字典
+            实际应根据自定义属性获取表名
             </summary>
             <param name="type">类型</param>
             <returns></returns>
@@ -432,29 +439,11 @@
             <param name="type">类型</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetPrimaryName(System.Type)">
+        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetColumnIgnoreDic(System.Type)">
             <summary>
-            获取主键字段名称
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetPrimaryName``1(``0)">
-            <summary>
-            获取主键字段名称
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetTableName(System.Type)">
-            <summary>
-            实际应根据自定义属性获取表名
+            获取所有被忽略的列字典
             </summary>
             <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.TablePropertyExtensions.GetTableName``1(``0)">
-            <summary>
-            获取表名
-            </summary>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions">

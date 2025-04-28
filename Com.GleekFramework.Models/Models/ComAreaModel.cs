@@ -20,6 +20,7 @@ namespace Com.GleekFramework.Models
         /// 主键
         /// </summary>
         [Key]
+        [Column("id")]
         [Comment("主键")]
         [ProtoMember(1)]
         [JsonProperty("id"), JsonPropertyName("id")]

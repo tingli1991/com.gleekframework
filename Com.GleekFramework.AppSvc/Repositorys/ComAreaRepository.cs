@@ -44,6 +44,8 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 Version = SnowflakeService.GetVersionNo()
             };
             comAreaInfo = await DefaultRepository.InsertAsync(comAreaInfo);
+            var responseInfo = await DefaultRepository.UpdateAsync<ComAreaEditParam, ComAreaModel>(comAreaInfo.Id, new() { Remark = "啦啦啦啦" });
+
             //comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo);
             //comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo.Id, comAreaInfo);
             comAreaInfo = await DefaultRepository.UpdateAsync<ComAreaModel, ComArea>(comAreaInfo.Id, comAreaInfo.Map<ComArea, ComAreaModel>());

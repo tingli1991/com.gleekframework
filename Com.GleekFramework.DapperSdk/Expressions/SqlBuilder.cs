@@ -130,11 +130,8 @@ namespace Com.GleekFramework.DapperSdk
                 throw new ArgumentNullException(nameof(PropertyInfo));
             }
 
-            var setClauses = PropertyInfoList
-                .Where(e => e.Name != propertyInfo.Name)
-                .Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
-
-            return $"update {TableName} set {string.Join(",", setClauses)} where {ColumnMappingList[propertyInfo.Name]}=@{propertyInfo.Name}";
+            var setClauses = PropertyInfoList.Where(e => e.Name != propertyInfo.Name).Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
+            return $"update {TableName} set {string.Join(",", setClauses)} where {GetKeyColumnName(propertyInfo)}=@{propertyInfo.Name}";
         }
 
         /// <summary>
@@ -160,20 +157,49 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public string GetIdentitySQL(DatabaseType databaseType)
         {
-            switch (databaseType)
+            var databaseGeneratedAttribute = KeyPropertyInfo?.GetCustomAttribute<DatabaseGeneratedAttribute>();
+            if (databaseGeneratedAttribute == null || databaseGeneratedAttribute.DatabaseGeneratedOption == DatabaseGeneratedOption.Identity)
             {
-                case DatabaseType.MsSQL:
-                    return $"SELECT SCOPE_IDENTITY();";
-                case DatabaseType.MySQL:
-                    return $"SELECT LAST_INSERT_ID();";
-                case DatabaseType.PgSQL:
-                    var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
-                    return $"RETURNING {ColumnMappingList[propertyInfo.Name]};";
-                case DatabaseType.SQLite:
-                    return $"SELECT last_insert_rowid();";
-                default:
-                    throw new Exception($"{databaseType} 暂不支持读取的元素数量");
+                switch (databaseType)
+                {
+                    case DatabaseType.MsSQL:
+                        return $"SELECT SCOPE_IDENTITY();";
+                    case DatabaseType.MySQL:
+                        return $"SELECT LAST_INSERT_ID();";
+                    case DatabaseType.PgSQL:
+                        var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
+                        return $"RETURNING {ColumnMappingList[propertyInfo.Name]};";
+                    case DatabaseType.SQLite:
+                        return $"SELECT last_insert_rowid();";
+                    default:
+                        throw new Exception($"{databaseType} 暂不支持读取的元素数量");
+                }
             }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// 获取主键列名
+        /// </summary>
+        /// <param name="propertyInfo"></param>
+        /// <returns></returns>
+        private string GetKeyColumnName(PropertyInfo propertyInfo)
+        {
+            if (propertyInfo == null)
+            {
+                return "";
+            }
+
+            var columnName = ColumnMappingList.ContainsKey(propertyInfo.Name) ? ColumnMappingList[propertyInfo.Name] : "";
+            if (string.IsNullOrEmpty(columnName))
+            {
+                var columnAttribute = propertyInfo.GetCustomAttribute<ColumnAttribute>();
+                columnName = columnAttribute?.Name ?? propertyInfo.Name;
+            }
+            return columnName;
         }
     }
 }
