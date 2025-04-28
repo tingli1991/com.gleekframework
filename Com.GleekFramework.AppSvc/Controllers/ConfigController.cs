@@ -3,7 +3,6 @@ using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.ContractSdk;
 using Com.GleekFramework.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace Com.GleekFramework.AppSvc.Controllers
 {
@@ -44,10 +43,11 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <summary>
         /// 获取天气预报
         /// </summary>
-        /// <param name="id">id(用于测试字段必填)</param>
+        /// <param name="appId">Id</param>
+        /// <param name="status">状态</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([RouteRequired("id", "请输入Id")] int id)
+        [HttpGet("{app_id}/{status}")]
+        public async Task<IEnumerable<WeatherForecastModel>> GetAsync([RouteRequired("app_id", "请输入Id")] string appId, [RouteRequired("status", "请输入状态")] bool status)
         {
             return await Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
             {

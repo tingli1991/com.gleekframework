@@ -18,13 +18,13 @@ namespace Com.GleekFramework.AttributeSdk
         /// <summary>  
         /// 绑定资源  
         /// </summary>  
-        public BindingSource BindingSource { get; }
+        public BindingSource BindingSource => BindingSource.Path;
 
         /// <summary>  
         /// 构造函数
         /// </summary>
         /// <param name="errorMessage">错误消息</param>  
-        public RouteRequiredAttribute(object errorMessage) : base()
+        public RouteRequiredAttribute(object errorMessage)
         {
             ErrorMessage = errorMessage?.ToString();
         }
@@ -34,7 +34,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// </summary>  
         /// <param name="name">路由名称</param>  
         /// <param name="errorMessage">错误消息</param>  
-        public RouteRequiredAttribute(string name, object errorMessage) : base()
+        public RouteRequiredAttribute(string name, object errorMessage)
         {
             Name = name;
             ErrorMessage = errorMessage?.ToString();

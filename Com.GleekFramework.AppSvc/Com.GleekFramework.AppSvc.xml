@@ -72,11 +72,12 @@
             <param name="param">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.GetAsync(System.Int32)">
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.GetAsync(System.String,System.Boolean)">
             <summary>
             获取天气预报
             </summary>
-            <param name="id">id(用于测试字段必填)</param>
+            <param name="appId">Id</param>
+            <param name="status">状态</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.KafkaController">

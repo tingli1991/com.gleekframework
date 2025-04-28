@@ -18,7 +18,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <summary>  
         /// 绑定资源  
         /// </summary>  
-        public BindingSource BindingSource { get; }
+        public BindingSource BindingSource => BindingSource.Query;
 
         /// <summary>  
         /// 构造函数  
