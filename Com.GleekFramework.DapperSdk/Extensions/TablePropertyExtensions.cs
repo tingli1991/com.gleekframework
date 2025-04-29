@@ -20,7 +20,12 @@ namespace Com.GleekFramework.DapperSdk
         {
             var propertyInfoList = type.GetPropertyInfoList();
             var primaryPropertyInfo = propertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);//主键属性
-            return primaryPropertyInfo?.Name ?? primaryPropertyInfo.Name ?? "id";
+            if (primaryPropertyInfo != null)
+            {
+                var columnAttribute = primaryPropertyInfo.GetCustomAttribute<ColumnAttribute>();
+                return columnAttribute?.Name ?? primaryPropertyInfo.Name ?? "";
+            }
+            return "";
         }
 
         /// <summary>
