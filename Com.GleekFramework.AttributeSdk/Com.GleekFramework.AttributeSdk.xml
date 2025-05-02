@@ -191,6 +191,25 @@
             默认的用户授权键
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.REFRESH_TOKEN_EXPIRE_KEY">
+            <summary>
+            自动刷新令牌过期时间
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetRefreshTokenExpire(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            从上下文获取访问令牌
+            </summary>
+            <param name="contextAccessor">上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetRefreshTokenExpire(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取访问令牌是否自动过期开关
+            </summary>
+            <param name="httpContext">Http请求上下文</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             从上下文获取访问令牌

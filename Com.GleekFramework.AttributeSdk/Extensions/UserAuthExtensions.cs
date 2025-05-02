@@ -23,6 +23,35 @@ namespace Com.GleekFramework.AttributeSdk
         private const string DEFAULT_USER_AUTH_KEY = "AUTHORIZATION_KEY";
 
         /// <summary>
+        /// 自动刷新令牌过期时间
+        /// </summary>
+        private const string REFRESH_TOKEN_EXPIRE_KEY = "RefreshTokenExpire";
+
+        /// <summary>
+        /// 从上下文获取访问令牌
+        /// </summary>
+        /// <param name="contextAccessor">上下文</param>
+        /// <returns></returns>
+        public static bool GetRefreshTokenExpire(this IHttpContextAccessor contextAccessor)
+        {
+            return contextAccessor.GetRefreshTokenExpire();
+        }
+
+        /// <summary>
+        /// 获取访问令牌是否自动过期开关
+        /// </summary>
+        /// <param name="httpContext">Http请求上下文</param>
+        /// <returns></returns>
+        public static bool GetRefreshTokenExpire(this HttpContext httpContext)
+        {
+            if (httpContext.Items.ContainsKey(REFRESH_TOKEN_EXPIRE_KEY))
+            {
+                return (bool)httpContext.Items[REFRESH_TOKEN_EXPIRE_KEY];
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 从上下文获取访问令牌
         /// </summary>
         /// <param name="contextAccessor">上下文</param>
