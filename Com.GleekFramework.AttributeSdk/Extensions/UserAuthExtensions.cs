@@ -44,11 +44,23 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         public static bool GetRefreshTokenExpire(this HttpContext httpContext)
         {
-            if (httpContext.Items.ContainsKey(REFRESH_TOKEN_EXPIRE_KEY))
+            var isSuccess = false;
+            var headers = httpContext?.Request?.Headers;//请求头
+            if (headers == null)
             {
-                return (bool)httpContext.Items[REFRESH_TOKEN_EXPIRE_KEY];
+                return isSuccess;
             }
-            return false;
+
+            if (headers.ContainsKey(REFRESH_TOKEN_EXPIRE_KEY))
+            {
+                headers.TryGetValue(REFRESH_TOKEN_EXPIRE_KEY, out StringValues value);
+                if (string.IsNullOrEmpty(value))
+                {
+                    return isSuccess;
+                }
+                isSuccess = $"{value.ToString() ?? ""}".EqualIgnoreCases("true");
+            }
+            return isSuccess;
         }
 
         /// <summary>
