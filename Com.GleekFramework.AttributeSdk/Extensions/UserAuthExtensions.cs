@@ -34,7 +34,7 @@ namespace Com.GleekFramework.AttributeSdk
         /// <returns></returns>
         public static bool GetRefreshTokenExpire(this IHttpContextAccessor contextAccessor)
         {
-            return contextAccessor.GetRefreshTokenExpire();
+            return contextAccessor.HttpContext.GetRefreshTokenExpire();
         }
 
         /// <summary>
