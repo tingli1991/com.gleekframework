@@ -9,6 +9,7 @@ using Com.GleekFramework.MigrationSdk;
 using Com.GleekFramework.Models;
 using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.ObjectSdk;
+using Com.GleekFramework.QueueSdk;
 using Com.GleekFramework.RabbitMQSdk;
 using Com.GleekFramework.RocketMQSdk;
 
@@ -28,6 +29,7 @@ namespace Com.GleekFramework.AppSvc
             await CreateDefaultHostBuilder(args)
                  .Build()
                  .UseNacosService("org-gleek-fromework")
+                 .SubscribeQueue()
                  //.SubscribeRocketMQ(config => config.Get<RocketConsumerOptions>("RocketConnectionOptions"))//订阅Rocket消费服务
                  .SubscribeRabbitMQ(config => config.Get<RabbitConsumerOptions>(Models.ConfigConstant.RabbitConnectionOptionsKey))//订阅RabbitMQ消费服务
                  .SubscribeKafka(config => config.Get<KafkaConsumerOptions>(Models.ConfigConstant.KafkaConnectionOptionsKey))//订阅Kafka消费服务

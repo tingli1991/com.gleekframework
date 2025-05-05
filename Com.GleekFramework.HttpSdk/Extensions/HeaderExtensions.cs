@@ -130,12 +130,12 @@ namespace Com.GleekFramework.HttpSdk
         public static Dictionary<string, string> ToHeaders(this IHttpContextAccessor httpContext)
         {
             var headerDic = new Dictionary<string, string>();
-            if (httpContext == null)
+            var request = httpContext?.HttpContext?.Request;
+            if (request == null)
             {
                 return headerDic;
             }
 
-            var request = httpContext.HttpContext.Request;
             if (request.Host.HasValue)
             {
                 headerDic.AddHeader("x-host", request.Host.Value);

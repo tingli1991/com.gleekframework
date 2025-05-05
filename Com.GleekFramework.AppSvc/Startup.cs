@@ -2,6 +2,7 @@
 using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ConfigSdk;
 using Com.GleekFramework.Models;
+using Com.GleekFramework.QueueSdk;
 using Com.GleekFramework.SwaggerSdk;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -41,7 +42,12 @@ namespace Com.GleekFramework.AppSvc
             app.UseHealthChecks();//使用心跳检测
             app.UseAuthentication();//启用授权
             app.UseEndpoints(endpoints => endpoints.MapControllers());//启用终结点配置
-            app.RegisterApplicationStarted(() => Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}"));
+            app.RegisterApplicationStarted(async () =>
+            {
+                var queueClientService = app.ApplicationServices.GetRequiredService<QueueClientService>();
+                await queueClientService.PublishAsync(MessageType.CUSTOMER_TEST_QUEUE_NAME);
+                Console.Out.WriteLine($"服务启动成功：{EnvironmentProvider.GetHost()}");
+            });
         }
     }
 }
