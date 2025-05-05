@@ -125,12 +125,12 @@ namespace Com.GleekFramework.HttpSdk
         /// <returns>屏蔽完非中横线和大写字母的头部信息结果</returns>
         public static Dictionary<string, string> ToHeaders(this IHttpContextAccessor httpContext)
         {
+            var headerDic = new Dictionary<string, string>();
             if (httpContext == null)
             {
-                throw new NullReferenceException(nameof(httpContext));
+                return headerDic;
             }
 
-            var headerDic = new Dictionary<string, string>();
             var request = httpContext.HttpContext.Request;
             if (request.Host.HasValue)
             {
