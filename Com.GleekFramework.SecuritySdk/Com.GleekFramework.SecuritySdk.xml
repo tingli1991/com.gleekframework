@@ -53,7 +53,7 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String)" -->
-        <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5WithSalt(System.String,System.String)">
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String,System.String)">
             <summary>
             计算字符串的MD5哈希值（加盐）
             盐值将追加到原始字符串末尾

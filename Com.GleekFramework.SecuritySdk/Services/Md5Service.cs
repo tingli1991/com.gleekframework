@@ -39,7 +39,7 @@ namespace Com.GleekFramework.SecuritySdk
         /// <param name="input">原始字符串</param>
         /// <param name="salt">盐值</param>
         /// <returns>32字符小写的MD5哈希值</returns>
-        public static string ComputeMD5WithSalt(string input, string salt)
+        public static string ComputeMD5(string input, string salt)
         {
             // 处理空值（可根据需求调整）
             if (string.IsNullOrEmpty(input) && string.IsNullOrEmpty(salt))
