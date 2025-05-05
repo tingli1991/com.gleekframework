@@ -23,12 +23,11 @@ namespace Com.GleekFramework.QueueSdk
         /// <summary>
         /// 发布消息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="type">方法名称</param>
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public Task PublishAsync(Enum type, string serialNo = null, Dictionary<string, string> headers = null)
         {
             return PublishAsync(type, QueueConstant.DEFAULT_QUEUE_TOPIC, serialNo, headers);
         }
@@ -36,13 +35,12 @@ namespace Com.GleekFramework.QueueSdk
         /// <summary>
         /// 发布消息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="type">方法名称</param>
         /// <param name="topic">主题</param>
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, string topic, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public Task PublishAsync(Enum type, string topic, string serialNo = null, Dictionary<string, string> headers = null)
         {
             var messageBody = new MessageBody()
             {
