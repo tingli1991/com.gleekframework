@@ -1,7 +1,6 @@
 ﻿using Com.GleekFramework.CommonSdk;
 using Com.GleekFramework.ContractSdk;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 
@@ -20,6 +19,11 @@ namespace Com.GleekFramework.HttpSdk
         public static string GetSerialNo(this IHeaderDictionary headers)
         {
             var serialNo = SnowflakeProvider.GetSerialNo();
+            if (headers == null)
+            {
+                return serialNo;
+            }
+
             if (headers.ContainsKey(HttpConstant.HEADER_SERIAL_NO_KEY))
             {
                 serialNo = headers[HttpConstant.HEADER_SERIAL_NO_KEY];
