@@ -47,6 +47,28 @@
             <param name="length">字符串长度</param>
             <param name="allowedChars">允许的字符集合</param>
         </member>
+        <member name="T:Com.GleekFramework.SecuritySdk.Md5Service">
+            <summary>
+            MD5加密服务
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String)" -->
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5WithSalt(System.String,System.String)">
+            <summary>
+            计算字符串的MD5哈希值（加盐）
+            盐值将追加到原始字符串末尾
+            </summary>
+            <param name="input">原始字符串</param>
+            <param name="salt">盐值</param>
+            <returns>32字符小写的MD5哈希值</returns>
+        </member>
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.BytesToHex(System.Byte[])">
+            <summary>
+            将字节数组转换为十六进制字符串（小写）
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.SecuritySdk.Md5ComputeHash">
             <summary>
             跨语言兼容的MD5哈希计算工具类

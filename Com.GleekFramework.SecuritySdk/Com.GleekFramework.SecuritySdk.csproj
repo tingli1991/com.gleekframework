@@ -13,4 +13,8 @@
     <DocumentationFile>Com.GleekFramework.SecuritySdk.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+  </ItemGroup>
+
 </Project>
