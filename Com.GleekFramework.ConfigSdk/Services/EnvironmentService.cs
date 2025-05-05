@@ -80,5 +80,13 @@ namespace Com.GleekFramework.ConfigSdk
         /// <param name="name">环境变量参数名称</param>
         /// <returns></returns>
         public static string GetEnvironmentVariable(string name) => EnvironmentProvider.GetEnvironmentVariable(name);
+
+        /// <summary>
+        /// 获取环境变量值
+        /// </summary>
+        /// <param name="name">环境变量参数名称</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static T GetEnvironmentVariable<T>(string name, T defaultValue) => EnvironmentProvider.GetEnvironmentVariable<T>(name, defaultValue);
     }
 }

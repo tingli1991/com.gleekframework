@@ -94,6 +94,23 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取环境变量值
         /// </summary>
         /// <param name="name">环境变量参数名称</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static T GetEnvironmentVariable<T>(string name, T defaultValue)
+        {
+            var environmentVariable = GetEnvironmentVariable(name);
+            if (environmentVariable.IsNullOrEmpty())
+            {
+                // 未找到环境变量，直接给默认值
+                return defaultValue;
+            }
+            return environmentVariable.ToObject<T>();
+        }
+
+        /// <summary>
+        /// 获取环境变量值
+        /// </summary>
+        /// <param name="name">环境变量参数名称</param>
         /// <returns></returns>
         public static string GetEnvironmentVariable(string name)
         {

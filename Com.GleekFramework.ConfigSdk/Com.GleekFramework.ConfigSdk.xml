@@ -341,6 +341,14 @@
             <param name="name">环境变量参数名称</param>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable``1(System.String,``0)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
+            <param name="defaultValue">默认值</param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable(System.String)">
             <summary>
             获取环境变量值
@@ -492,6 +500,14 @@
             获取环境变量值
             </summary>
             <param name="name">环境变量参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetEnvironmentVariable``1(System.String,``0)">
+            <summary>
+            获取环境变量值
+            </summary>
+            <param name="name">环境变量参数名称</param>
+            <param name="defaultValue">默认值</param>
             <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.ConfigSdk.JsonConfigService">
