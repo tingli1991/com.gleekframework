@@ -131,6 +131,26 @@
             基础控制器
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.GrantType">
+            <summary>
+            授权模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.PASSWORD">
+            <summary>
+            密码模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.AUTHORIZATION_CODE">
+            <summary>
+            授权码模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.CLIENT_CREDENTIALS">
+            <summary>
+            客户端凭证模式
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.AttributeSdk.ModelValidExtensions">
             <summary>
             模型验证扩展方法
@@ -176,73 +196,112 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.AttributeSdk.UserAuthExtensions">
+        <member name="T:Com.GleekFramework.AttributeSdk.OAuthExtensions">
             <summary>
-            用户认证拓展类
+            认证拓展类
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.START_WITH_TOKEN_KEY">
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.TOKEN_KEY_FIELD">
             <summary>
-            
+            令牌键字段名
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.DEFAULT_USER_AUTH_KEY">
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.GRANT_TYPE_FIELD">
             <summary>
-            默认的用户授权键
+            授权模式字段名
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.AttributeSdk.UserAuthExtensions.REFRESH_TOKEN_EXPIRE_KEY">
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.START_WITH_TOKEN_KEY">
             <summary>
-            自动刷新令牌过期时间
+            访问令牌前缀
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetRefreshTokenExpire(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.CreateAccessToken(Microsoft.IdentityModel.Tokens.SigningCredentials,System.String,Com.GleekFramework.AttributeSdk.GrantType,System.Int32,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})">
+            <summary>
+            生成访问令牌
+            </summary>
+            <param name="gigningCredentials"></param>
+            <param name="tokenKey">令牌键</param>
+            <param name="grantType">授权模式</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="claims">声明集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessTokenHeaders(System.String)">
+            <summary>
+            获取访问令牌的头部信息
+            </summary>
+            <param name="accessToken">访问令牌</param>
+            <returns>包含 TokenKey 和 GrantType 的元组</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetTokenExpiryTime(System.String)">
+            <summary>
+            获取访问令牌的过期时间
+            </summary>
+            <param name="accessToken">访问令牌</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetTokenExpiryTime(Microsoft.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            获取访问令牌的过期时间
+            </summary>
+            <param name="securityToken">访问令牌</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             从上下文获取访问令牌
             </summary>
             <param name="contextAccessor">上下文</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetRefreshTokenExpire(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            获取访问令牌是否自动过期开关
-            </summary>
-            <param name="httpContext">Http请求上下文</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
-            <summary>
-            从上下文获取访问令牌
-            </summary>
-            <param name="contextAccessor">上下文</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.HttpContext)">
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             从上下文获取访问令牌
             </summary>
             <param name="httpContext">上下文</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.SetUserAuth``1(Microsoft.AspNetCore.Http.HttpContext,``0,System.String)">
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.SetUserInfo(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            转换授权对象
+            </summary>
+            <param name="contextAccessor">Http上下文</param>
+            <param name="userInfo">授权信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.SetUserInfo(Microsoft.AspNetCore.Http.HttpContext,System.Security.Claims.ClaimsPrincipal)">
             <summary>
             设置授权对象
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="httpContext"></param>
-            <param name="userAuthInfo"></param>
-            <param name="userAuthKey"></param>
+            <param name="httpContext">Http上下文</param>
+            <param name="userInfo">授权信息</param>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetUserAuth``1(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String)">
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetUserInfo``1(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             转换授权对象
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="contextAccessor"></param>
-            <param name="userAuthKey"></param>
+            <param name="contextAccessor">Http上下文</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.AttributeSdk.UserAuthExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetUserInfo``1(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            转换授权对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="httpContext">Http上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.ToAccessTokenClaims``1(``0)">
+            <summary>
+            转换为声明集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="userInfo">用户西西模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
             <summary>
             获取允许用户授权范围特性
             </summary>
