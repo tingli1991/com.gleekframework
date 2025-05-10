@@ -85,5 +85,11 @@ namespace Com.GleekFramework.ContractSdk
         /// </summary>
         [Description("超出[1,200]长度的区间限制")]
         EXCEED_PPER_LIMIT_200 = 1001001008,
+
+        /// <summary>
+        /// 令牌权限不足
+        /// </summary>
+        [Description("令牌权限不足")]
+        INSUFFICIENT_TOKEN_PERMISSIONS = 1001001009,
     }
 }

@@ -100,6 +100,11 @@
             超出[1,200]长度的区间限制
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.INSUFFICIENT_TOKEN_PERMISSIONS">
+            <summary>
+            令牌权限不足
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ContractSdk.MessageExtensions">
             <summary>
             消息类型拓展类
