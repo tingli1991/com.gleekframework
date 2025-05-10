@@ -264,7 +264,11 @@ namespace Com.GleekFramework.AttributeSdk
             var methodAllowAuthorizeAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<AllowAuthorizeAttribute>();//方法上的匿名函数特性
             var controllerAllowAuthorizeAttribute = actionDescriptor.ControllerTypeInfo.GetCustomAttribute<AllowAuthorizeAttribute>();//控制器上的匿名函数特性
             var allowAuthorizeAttribute = methodAllowAuthorizeAttribute ?? controllerAllowAuthorizeAttribute ?? new AllowAuthorizeAttribute();
-            allowAuthorizeAttribute.VerifyStatus = allowAuthorizeAttribute.VerifyToken && allowAuthorizeAttribute.VerifyStatus;//修正状态验证的逻辑
+            if (allowAuthorizeAttribute.VerifyUser && !allowAuthorizeAttribute.VerifyToken)
+            {
+                //如果验证用户为必填，那么TOKEN必须验证其有效期
+                allowAuthorizeAttribute.VerifyToken = true;
+            }
             return allowAuthorizeAttribute;
         }
     }

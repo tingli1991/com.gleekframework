@@ -9,6 +9,11 @@
             允许用户授权范围特性
             </summary>
         </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyUser">
+            <summary>
+            是否验证用户必填
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyToken">
             <summary>
             是否验证令牌过期
@@ -16,7 +21,7 @@
         </member>
         <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyStatus">
             <summary>
-            是否验证用户状态(只有验证令牌的的同时才会验证状态)
+            验证用户状态
             </summary>
         </member>
         <member name="T:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute">
