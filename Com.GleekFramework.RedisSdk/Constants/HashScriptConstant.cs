@@ -11,16 +11,16 @@
         public static readonly string Hset = $@"
 		if(redis.call('exists',KEYS[1])==1)
 		then
-			redis.call('hset',KEYS[1],ARGV[1],ARGV[2]);
+			local result=redis.call('hset',KEYS[1],ARGV[1],ARGV[2]);
 			if(redis.call('ttl',KEYS[1])==-1)
 			then
 			  redis.call('expire',KEYS[1],ARGV[3]);
 			end
-			return 'true'
+			return result == 1
 		else
-   			redis.call('hset',KEYS[1],ARGV[1],ARGV[2]);	
+   			local result=redis.call('hset',KEYS[1],ARGV[1],ARGV[2]);	
 			redis.call('expire',KEYS[1],ARGV[3]);
-			return 'true'
+			return result == 1
 		end";
 
         /// <summary>
@@ -29,16 +29,16 @@
         public static readonly string HsetNx = $@"
 		if(redis.call('exists',KEYS[1])==1)
 		then
-			local result=redis.call('htest',KEYS[1],ARGV[1],ARGV[2]);
+			local result=redis.call('hsetnx',KEYS[1],ARGV[1],ARGV[2]);
 			if(redis.call('ttl',KEYS[1])==-1)
 			then
 			  redis.call('expire',KEYS[1],ARGV[3]);
 			end
-			return result == 1 and 'true' or 'false'
+			return result == 1
 		else
-   			local result=redis.call('htest',KEYS[1],ARGV[1],ARGV[2]);
+   			local result=redis.call('hsetnx',KEYS[1],ARGV[1],ARGV[2]);
 			redis.call('expire',KEYS[1],ARGV[3]);
-			return result == 1 and 'true' or 'false'
+			return result == 1
 		end";
 
         /// <summary>

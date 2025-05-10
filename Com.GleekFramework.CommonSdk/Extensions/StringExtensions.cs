@@ -111,6 +111,17 @@ namespace Com.GleekFramework.CommonSdk
                     //特别针对Guid类型的处理
                     return (T)(object)Guid.Parse(value);
                 }
+                else if (typeof(T) == typeof(bool))
+                {
+                    if (value == "1")
+                    {
+                        return (T)(object)true;
+                    }
+                    else
+                    {
+                        return (T)(object)bool.Parse(value);
+                    }
+                }
                 else if (typeof(T).IsEnum)
                 {
                     //处理枚举类型的转换

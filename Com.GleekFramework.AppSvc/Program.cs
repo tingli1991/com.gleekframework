@@ -11,6 +11,7 @@ using Com.GleekFramework.NacosSdk;
 using Com.GleekFramework.ObjectSdk;
 using Com.GleekFramework.QueueSdk;
 using Com.GleekFramework.RabbitMQSdk;
+using Com.GleekFramework.RedisSdk;
 using Com.GleekFramework.RocketMQSdk;
 
 namespace Com.GleekFramework.AppSvc
@@ -45,6 +46,7 @@ namespace Com.GleekFramework.AppSvc
             Host.CreateDefaultBuilder(args)
             .UseAutofac()
             .UseConfig()
+            .UseCsRedis()
             .UseNacosConf()
             .UseHttpClient()
             .UseConfigAttribute()

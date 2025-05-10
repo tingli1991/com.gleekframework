@@ -1,4 +1,5 @@
-﻿using CSRedis;
+﻿using Com.GleekFramework.CommonSdk;
+using CSRedis;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,7 +35,13 @@ namespace Com.GleekFramework.RedisSdk
             {
                 return default;
             }
-            return (T)client.EvalSHA(sha, key, args);
+
+            var response = client.EvalSHA(sha, key, args);
+            if (response == null)
+            {
+                return default;
+            }
+            return response.ToString().ToObject<T>();
         }
 
         /// <summary>
@@ -52,7 +59,13 @@ namespace Com.GleekFramework.RedisSdk
             {
                 return default;
             }
-            return (T)(await client.EvalSHAAsync(sha, key, args));
+
+            var response = await client.EvalSHAAsync(sha, key, args);
+            if (response == null)
+            {
+                return default;
+            }
+            return response.ToString().ToObject<T>();
         }
 
         /// <summary>

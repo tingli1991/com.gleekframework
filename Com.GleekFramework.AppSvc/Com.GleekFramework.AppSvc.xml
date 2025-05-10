@@ -259,6 +259,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RedisController">
+            <summary>
+            Redis控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RedisController.RedisHashRepository">
+            <summary>
+            Redis哈希仓储类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RedisController.TestAsync">
+            <summary>
+            测试方法
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Com.GleekFramework.AppSvc.Controllers.RocketController">
             <summary>
             RocketMQ测试控制器

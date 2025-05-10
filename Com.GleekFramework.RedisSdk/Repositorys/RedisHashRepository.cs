@@ -142,7 +142,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="expireSeconds">过期时间(单位：秒)</param>
         /// <returns></returns>
         public async Task<bool> SetAsync<T>(string key, string field, T value, int expireSeconds = CacheConstant.EXPIRESECONDS)
-            => await Client.ExecuteScriptAsync<bool>(HashScriptConstant.Hset, key, field, value, expireSeconds);
+            => await Client.ExecuteScriptAsync<bool>(HashScriptConstant.Hset, key, field, value, (long)expireSeconds);
 
         /// <summary>
         /// 设置缓存
@@ -227,7 +227,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
         /// <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
         /// <returns></returns>
-        public long Increment(string key, string field, long value, int minExpireSeconds, int maxExpireSeconds)
+        public long Increment(string key, string field, long value = 1, int minExpireSeconds, int maxExpireSeconds)
             => Client.ExecuteScript<long>(HashScriptConstant.Increment, key, field, value, GetExpireSeconds(minExpireSeconds, maxExpireSeconds));
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="value">缓存值</param>
         /// <param name="expireSeconds">过期时间(单位：秒)</param>
         /// <returns></returns>
-        public async Task<long> IncrementAsync(string key, string field, long value, int expireSeconds = CacheConstant.EXPIRESECONDS)
+        public async Task<long> IncrementAsync(string key, string field, long value = 1, int expireSeconds = CacheConstant.EXPIRESECONDS)
             => await Client.ExecuteScriptAsync<long>(HashScriptConstant.Increment, key, field, value, expireSeconds);
 
         /// <summary>

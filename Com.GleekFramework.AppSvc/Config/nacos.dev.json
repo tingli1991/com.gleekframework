@@ -1,5 +1,5 @@
 {
-  "Switch": true,
+  "Switch": false,
   "UserName": "nacos",
   "ListenInterval": 15000,
   "Password": "ChinaNet910111",
