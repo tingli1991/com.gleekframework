@@ -215,7 +215,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="value">缓存值</param>
         /// <param name="expireSeconds">过期时间(单位：秒)</param>
         /// <returns></returns>
-        public long Increment(string key, string field, long value, int expireSeconds = CacheConstant.EXPIRESECONDS)
+        public long Increment(string key, string field, long value = 1, int expireSeconds = CacheConstant.EXPIRESECONDS)
             => Client.ExecuteScript<long>(HashScriptConstant.Increment, key, field, value, expireSeconds);
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Com.GleekFramework.RedisSdk
         /// <param name="minExpireSeconds">最小的超时时间(单位：秒)</param>
         /// <param name="maxExpireSeconds">最大的超时时间(单位：秒)</param>
         /// <returns></returns>
-        public long Increment(string key, string field, long value = 1, int minExpireSeconds, int maxExpireSeconds)
+        public long Increment(string key, string field, long value, int minExpireSeconds, int maxExpireSeconds)
             => Client.ExecuteScript<long>(HashScriptConstant.Increment, key, field, value, GetExpireSeconds(minExpireSeconds, maxExpireSeconds));
 
         /// <summary>
