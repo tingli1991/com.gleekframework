@@ -37,12 +37,12 @@
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.FAIL">
             <summary>
-            操作失败
+            失败
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SUCCESS">
             <summary>
-             操作成功
+             成功
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.NO_DATA_AVAILABLE">
@@ -50,19 +50,19 @@
             暂无数据
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.TOKEN_INVALID">
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.UNAUTHORIZED">
             <summary>
-            登录无效
+            未经授权
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.REJECTED_AUTHORIZED">
+            <summary>
+            授权被拒绝
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ERROR">
             <summary>
              未知错误
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.STATUS_UNAVAILABLE">
-            <summary>
-            状态不可用
             </summary>
         </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.SIGN_ERROR">
@@ -80,6 +80,16 @@
             非法请求
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.ACCOUNT_DISABLED">
+            <summary>
+            您的账号已被禁用
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_REQUIRED">
+            <summary>
+            参数必填
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_ERROR">
             <summary>
             请求参数错误
@@ -90,19 +100,9 @@
             参数验证失败
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.PARAM_REQUIRED">
-            <summary>
-            参数必填
-            </summary>
-        </member>
         <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.EXCEED_PPER_LIMIT_200">
             <summary>
             超出[1,200]长度的区间限制
-            </summary>
-        </member>
-        <member name="F:Com.GleekFramework.ContractSdk.GlobalMessageCode.INSUFFICIENT_TOKEN_PERMISSIONS">
-            <summary>
-            令牌权限不足
             </summary>
         </member>
         <member name="T:Com.GleekFramework.ContractSdk.MessageExtensions">

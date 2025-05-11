@@ -9,6 +9,11 @@
             允许用户授权范围特性
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute._verifyStatus">
+            <summary>
+            验证用户状态
+            </summary>
+        </member>
         <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyUser">
             <summary>
             是否验证用户必填
