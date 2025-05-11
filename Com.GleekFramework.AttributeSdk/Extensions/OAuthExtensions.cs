@@ -204,6 +204,23 @@ namespace Com.GleekFramework.AttributeSdk
                 return result;
             }
 
+            var accessToken = httpContext.GetAccessToken();
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                return result;
+            }
+
+            var accessTokenHeaders = accessToken.GetAccessTokenHeaders();
+            if (string.IsNullOrEmpty(accessTokenHeaders.TokenKey))
+            {
+                return result;
+            }
+
+            if (accessTokenHeaders.GrantType == GrantType.CLIENT_CREDENTIALS)
+            {
+                return result;
+            }
+
             var claimsInfoDic = httpContext.User.Claims.ToDictionary(k => k.Type, v => v.Value);
             if (claimsInfoDic == null || !claimsInfoDic.Any())
             {
