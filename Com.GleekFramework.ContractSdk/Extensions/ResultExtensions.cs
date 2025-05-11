@@ -65,11 +65,12 @@ namespace Com.GleekFramework.ContractSdk
         /// <param name="source"></param>
         /// <param name="error">错误码</param>
         /// <param name="serialNo">流水号</param>
-        public static ContractResult SetError(this ContractResult source, Enum error, string serialNo = "")
+        /// <param name="args">参数</param>
+        public static ContractResult SetError(this ContractResult source, Enum error, string serialNo = "", params string[] args)
         {
             source.Success = false;
             source.Code = $"{error.GetHashCode()}";
-            source.Message = error.GetDescription();
+            source.Message = error.GetDescription().SafeFormat(args);
             if (!string.IsNullOrWhiteSpace(serialNo))
             {
                 source.SerialNo = serialNo;
@@ -83,11 +84,11 @@ namespace Com.GleekFramework.ContractSdk
         /// <param name="source"></param>
         /// <param name="error">错误码</param>
         /// <param name="serialNo">流水号</param>
-        public static ContractResult<T> SetError<T>(this ContractResult<T> source, Enum error, string serialNo = "")
+        public static ContractResult<T> SetError<T>(this ContractResult<T> source, Enum error, string serialNo = "", params string[] args)
         {
             source.Success = false;
             source.Code = $"{error.GetHashCode()}";
-            source.Message = error.GetDescription();
+            source.Message = error.GetDescription().SafeFormat(args);
             if (!string.IsNullOrWhiteSpace(serialNo))
             {
                 source.SerialNo = serialNo;
@@ -101,15 +102,15 @@ namespace Com.GleekFramework.ContractSdk
         /// <param name="source"></param>
         /// <param name="serialNo"></param>
         /// <returns></returns>
-        public static ContractResult SetSuceccful(this ContractResult source, string serialNo = "")
+        public static ContractResult SetSuceccful(this ContractResult source, string serialNo = "", params string[] args)
         {
             source.Success = true;
             if (!string.IsNullOrWhiteSpace(serialNo))
             {
                 source.SerialNo = serialNo;
             }
-            source.Message = GlobalMessageCode.SUCCESS.GetDescription();
             source.Code = GlobalMessageCode.SUCCESS.GetHashCode().ToString();
+            source.Message = GlobalMessageCode.SUCCESS.GetDescription().SafeFormat(args);
             return source;
         }
 
@@ -119,7 +120,7 @@ namespace Com.GleekFramework.ContractSdk
         /// <param name="source">数据源</param>
         /// <param name="data"></param>
         /// <param name="serialNo"></param>
-        public static ContractResult<T> SetSuceccful<T>(this ContractResult<T> source, T data = default, string serialNo = "")
+        public static ContractResult<T> SetSuceccful<T>(this ContractResult<T> source, T data = default, string serialNo = "", params string[] args)
         {
             source.Success = true;
             if (data != null)
@@ -133,7 +134,7 @@ namespace Com.GleekFramework.ContractSdk
             }
 
             source.Code = $"{GlobalMessageCode.SUCCESS.GetHashCode()}";
-            source.Message = GlobalMessageCode.SUCCESS.GetDescription();
+            source.Message = GlobalMessageCode.SUCCESS.GetDescription().SafeFormat(args);
             return source;
         }
     }
