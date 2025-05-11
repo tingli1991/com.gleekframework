@@ -7,6 +7,11 @@
     public class AllowAuthorizeAttribute : Attribute
     {
         /// <summary>
+        /// 验证用户状态
+        /// </summary>
+        private bool? _verifyStatus;
+
+        /// <summary>
         /// 是否验证用户必填
         /// </summary>
         public bool VerifyUser { get; set; } = false;
@@ -19,6 +24,10 @@
         /// <summary>
         /// 验证用户状态
         /// </summary>
-        public bool VerifyStatus { get; set; } = false;
+        public bool VerifyStatus
+        {
+            get => _verifyStatus ?? VerifyUser;
+            set => _verifyStatus = value;
+        }
     }
 }
