@@ -175,7 +175,7 @@
             <param name="source">数据源</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError(Com.GleekFramework.ContractSdk.ContractResult,System.Enum,System.String,System.String[])">
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError(Com.GleekFramework.ContractSdk.ContractResult,System.Enum,System.String,System.Object[])">
             <summary>
             设置错误信息
             </summary>
@@ -183,30 +183,34 @@
             <param name="error">错误码</param>
             <param name="serialNo">流水号</param>
             <param name="args">参数</param>
+            <param name="args">格式化参数</param>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError``1(Com.GleekFramework.ContractSdk.ContractResult{``0},System.Enum,System.String,System.String[])">
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError``1(Com.GleekFramework.ContractSdk.ContractResult{``0},System.Enum,System.String,System.Object[])">
             <summary>
             设置错误信息
             </summary>
             <param name="source"></param>
             <param name="error">错误码</param>
             <param name="serialNo">流水号</param>
+            <param name="args">格式化参数</param>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful(Com.GleekFramework.ContractSdk.ContractResult,System.String,System.String[])">
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful(Com.GleekFramework.ContractSdk.ContractResult,System.String,System.Object[])">
             <summary>
             设置成功返回信息
             </summary>
             <param name="source"></param>
             <param name="serialNo"></param>
+            <param name="args">格式化参数</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful``1(Com.GleekFramework.ContractSdk.ContractResult{``0},``0,System.String,System.String[])">
+        <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetSuceccful``1(Com.GleekFramework.ContractSdk.ContractResult{``0},``0,System.String,System.Object[])">
             <summary>
             设置成功返回信息
             </summary>
             <param name="source">数据源</param>
             <param name="data"></param>
             <param name="serialNo"></param>
+            <param name="args">格式化参数</param>
         </member>
         <member name="T:Com.GleekFramework.ContractSdk.ITable">
             <summary>
