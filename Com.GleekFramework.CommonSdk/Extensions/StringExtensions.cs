@@ -106,12 +106,13 @@ namespace Com.GleekFramework.CommonSdk
                     return result;
                 }
 
-                if (typeof(T) == typeof(Guid))
+                var type = typeof(T);
+                if (type == typeof(Guid) || type == typeof(Guid?))
                 {
                     //特别针对Guid类型的处理
                     return (T)(object)Guid.Parse(value);
                 }
-                else if (typeof(T) == typeof(bool))
+                else if (typeof(T) == typeof(bool) || type == typeof(bool?))
                 {
                     if (value == "1")
                     {

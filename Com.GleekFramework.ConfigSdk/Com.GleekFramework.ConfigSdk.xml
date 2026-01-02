@@ -119,7 +119,7 @@
             Http请求协议(http或者https)
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.PROJECT">
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.Module">
             <summary>
             项目名称
             </summary>
@@ -280,9 +280,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetProject">
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetModule">
             <summary>
-            获取项目名称
+            获取模块
             </summary>
             <returns></returns>
         </member>
@@ -332,13 +332,6 @@
             <summary>
             获取版本升级开关
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable``1(System.String)">
-            <summary>
-            获取环境变量值
-            </summary>
-            <param name="name">环境变量参数名称</param>
             <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetEnvironmentVariable``1(System.String,``0)">
@@ -434,7 +427,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetProject">
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetModule">
             <summary>
             获取项目名称
             </summary>

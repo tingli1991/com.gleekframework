@@ -23,7 +23,7 @@
         /// <summary>
         /// 项目名称
         /// </summary>
-        public const string PROJECT = "PROJECT";
+        public const string Module = "Module";
 
         /// <summary>
         /// 版本号

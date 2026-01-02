@@ -26,10 +26,10 @@ namespace Com.GleekFramework.ConfigSdk
         public static string GetEnv() => GetEnvironmentVariable(EnvironmentConstant.ENV);
 
         /// <summary>
-        /// 获取项目名称
+        /// 获取模块
         /// </summary>
         /// <returns></returns>
-        public static string GetProject() => GetEnvironmentVariable(EnvironmentConstant.PROJECT);
+        public static string GetModule() => GetEnvironmentVariable(EnvironmentConstant.Module);
 
         /// <summary>
         /// 获取版本号
@@ -53,13 +53,13 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取主机的端口
         /// </summary>
         /// <returns></returns>
-        public static string GetPort() => $"{GetEnvironmentVariable(EnvironmentConstant.PORT) ?? "8080"}";
+        public static int GetPort() => GetEnvironmentVariable<int>(EnvironmentConstant.PORT, 80);
 
         /// <summary>
         /// 获取Http协议
         /// </summary>
         /// <returns></returns>
-        public static string GetScheme() => $"{GetEnvironmentVariable(EnvironmentConstant.SCHEME) ?? "http"}";
+        public static string GetScheme() => GetEnvironmentVariable(EnvironmentConstant.SCHEME, "http");
 
         /// <summary>
         /// 获取Swagger开关
@@ -83,20 +83,9 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取环境变量值
         /// </summary>
         /// <param name="name">环境变量参数名称</param>
-        /// <returns></returns>
-        public static T GetEnvironmentVariable<T>(string name)
-        {
-            var environmentVariable = GetEnvironmentVariable(name);
-            return environmentVariable.ToObject<T>();
-        }
-
-        /// <summary>
-        /// 获取环境变量值
-        /// </summary>
-        /// <param name="name">环境变量参数名称</param>
         /// <param name="defaultValue">默认值</param>
         /// <returns></returns>
-        public static T GetEnvironmentVariable<T>(string name, T defaultValue)
+        public static T GetEnvironmentVariable<T>(string name, T defaultValue = default)
         {
             var environmentVariable = GetEnvironmentVariable(name);
             if (environmentVariable.IsNullOrEmpty())
@@ -120,11 +109,8 @@ namespace Com.GleekFramework.ConfigSdk
                 {
                     if (!CacheDic.ContainsKey(name))
                     {
-                        //获取环境变量值
-                        var environmentVariable = Environment.GetEnvironmentVariable(name);
-
-                        //绑定环境变量值
-                        CacheDic.Add(name, environmentVariable ?? "");
+                        var environmentVariable = Environment.GetEnvironmentVariable(name);//获取环境变量值
+                        CacheDic.Add(name, environmentVariable ?? null);//绑定环境变量值
                     }
                 }
             }

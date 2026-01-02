@@ -17,7 +17,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取项目名称
         /// </summary>
         /// <returns></returns>
-        public string GetProject() => EnvironmentProvider.GetProject();
+        public string GetModule() => EnvironmentProvider.GetModule();
 
         /// <summary>
         /// 获取版本号
@@ -41,7 +41,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取主机的端口
         /// </summary>
         /// <returns></returns>
-        public static string GetPort() => EnvironmentProvider.GetPort();
+        public static int GetPort() => EnvironmentProvider.GetPort();
 
         /// <summary>
         /// 获取Http协议

@@ -39,7 +39,7 @@ namespace Com.GleekFramework.ConfigSdk
                     fileName = $"{fileName.Replace(".json", "")}.{envVariable}.json";
                 }
 
-                var projectVariable = EnvironmentProvider.GetProject();
+                var projectVariable = EnvironmentProvider.GetModule();
                 if (!string.IsNullOrEmpty(projectVariable))
                 {
                     //绑定项目名称

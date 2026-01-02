@@ -16,7 +16,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <summary>
         /// 端口
         /// </summary>
-        public int Port { get; set; } = int.Parse(EnvironmentProvider.GetPort());
+        public int Port { get; set; } = EnvironmentProvider.GetPort();
 
         /// <summary>
         /// 协议头
