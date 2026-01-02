@@ -119,7 +119,7 @@
             Http请求协议(http或者https)
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.Module">
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.MODULE">
             <summary>
             项目名称
             </summary>

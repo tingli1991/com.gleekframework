@@ -29,7 +29,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取模块
         /// </summary>
         /// <returns></returns>
-        public static string GetModule() => GetEnvironmentVariable(EnvironmentConstant.Module);
+        public static string GetModule() => GetEnvironmentVariable(EnvironmentConstant.MODULE);
 
         /// <summary>
         /// 获取版本号
