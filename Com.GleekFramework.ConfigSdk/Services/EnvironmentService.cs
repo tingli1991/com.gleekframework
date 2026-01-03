@@ -32,6 +32,12 @@ namespace Com.GleekFramework.ConfigSdk
         public string GetNacosUrl() => EnvironmentProvider.GetNacosUrl();
 
         /// <summary>
+        /// 获取Nacos开关
+        /// </summary>
+        /// <returns></returns>
+        public bool GetNacosSwitch() => EnvironmentProvider.GetNacosSwitch();
+
+        /// <summary>
         /// 获取主机的端口地址
         /// </summary>
         /// <returns></returns>

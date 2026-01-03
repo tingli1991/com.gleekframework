@@ -41,7 +41,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取Nacos开关
         /// </summary>
         /// <returns></returns>
-        public static bool GetNacosSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.NOCOS_SWITCH, true);
+        public static bool GetNacosSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.NOCOS_SWITCH, false);
 
         /// <summary>
         /// 获取Nacos项目主机地址

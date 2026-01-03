@@ -456,6 +456,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetNacosSwitch">
+            <summary>
+            获取Nacos开关
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentService.GetHost">
             <summary>
             获取主机的端口地址
