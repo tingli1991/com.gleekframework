@@ -53,7 +53,7 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取主机的端口
         /// </summary>
         /// <returns></returns>
-        public static int GetPort() => GetEnvironmentVariable<int>(EnvironmentConstant.PORT, 80);
+        public static int GetPort() => GetEnvironmentVariable<int>(EnvironmentConstant.PORT, 8080);
 
         /// <summary>
         /// 获取Http协议
@@ -65,19 +65,19 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取Swagger开关
         /// </summary>
         /// <returns></returns>
-        public static bool GetSwaggerSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.SWAGGER_SWITCH);
+        public static bool GetSwaggerSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.SWAGGER_SWITCH, true);
 
         /// <summary>
         /// 获取版本迁移开关
         /// </summary>
         /// <returns></returns>
-        public static bool GetMigrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.MIGRATION_SWITCH);
+        public static bool GetMigrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.MIGRATION_SWITCH, true);
 
         /// <summary>
         /// 获取版本升级开关
         /// </summary>
         /// <returns></returns>
-        public static bool GetUpgrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.UPGRATION_SWITCH);
+        public static bool GetUpgrationSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.UPGRATION_SWITCH, true);
 
         /// <summary>
         /// 获取环境变量值
