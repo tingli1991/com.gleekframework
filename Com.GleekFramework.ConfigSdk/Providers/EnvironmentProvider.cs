@@ -23,25 +23,31 @@ namespace Com.GleekFramework.ConfigSdk
         /// 获取环境值
         /// </summary>
         /// <returns></returns>
-        public static string GetEnv() => GetEnvironmentVariable(EnvironmentConstant.ENV);
+        public static string GetEnv() => GetEnvironmentVariable<string>(EnvironmentConstant.ENV, "dev");
 
         /// <summary>
         /// 获取模块
         /// </summary>
         /// <returns></returns>
-        public static string GetModule() => GetEnvironmentVariable(EnvironmentConstant.MODULE);
+        public static string GetModule() => GetEnvironmentVariable<string>(EnvironmentConstant.MODULE, "");
 
         /// <summary>
         /// 获取版本号
         /// </summary>
         /// <returns></returns>
-        public static string GetVersion() => GetEnvironmentVariable(EnvironmentConstant.VERSION);
+        public static string GetVersion() => GetEnvironmentVariable<string>(EnvironmentConstant.VERSION, "");
+
+        /// <summary>
+        /// 获取Nacos开关
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetNacosSwitch() => GetEnvironmentVariable<bool>(EnvironmentConstant.NOCOS_SWITCH, true);
 
         /// <summary>
         /// 获取Nacos项目主机地址
         /// </summary>
         /// <returns></returns>
-        public static string GetNacosUrl() => GetEnvironmentVariable(EnvironmentConstant.NOCOS_URL);
+        public static string GetNacosUrl() => GetEnvironmentVariable<string>(EnvironmentConstant.NOCOS_URL, "http://127.0.0.1:8848");
 
         /// <summary>
         /// 获取主机的端口地址

@@ -134,6 +134,11 @@
             Nacos地址
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.NOCOS_SWITCH">
+            <summary>
+            Nacos开关
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.ConfigSdk.EnvironmentConstant.SWAGGER_SWITCH">
             <summary>
             Swagger开关
@@ -289,6 +294,12 @@
         <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetVersion">
             <summary>
             获取版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.ConfigSdk.EnvironmentProvider.GetNacosSwitch">
+            <summary>
+            获取Nacos开关
             </summary>
             <returns></returns>
         </member>

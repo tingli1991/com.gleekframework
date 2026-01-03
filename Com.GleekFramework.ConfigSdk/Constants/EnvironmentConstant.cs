@@ -36,6 +36,11 @@
         public const string NOCOS_URL = "NACOS_URL";
 
         /// <summary>
+        /// Nacos开关
+        /// </summary>
+        public const string NOCOS_SWITCH = "NACOS_SWITCH";
+
+        /// <summary>
         /// Swagger开关
         /// </summary>
         public const string SWAGGER_SWITCH = "SWAGGER_SWITCH";

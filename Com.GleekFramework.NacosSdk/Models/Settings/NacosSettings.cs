@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Com.GleekFramework.ConfigSdk;
+using System.Collections.Generic;
 
 namespace Com.GleekFramework.NacosSdk
 {
@@ -20,7 +21,7 @@ namespace Com.GleekFramework.NacosSdk
         /// <summary>
         /// 开关(默认)
         /// </summary>
-        public bool Switch { get; set; } = true;
+        public bool Switch { get; set; } = EnvironmentProvider.GetNacosSwitch();
 
         /// <summary>
         /// 默认的命名空间Id
@@ -53,6 +54,6 @@ namespace Com.GleekFramework.NacosSdk
         /// <example>
         /// 10.1.12.123:8848,10.1.12.124:8848
         /// </example>
-        public IEnumerable<string> ServerAddresses { get; set; }
+        public IEnumerable<string> ServerAddresses { get; set; } = new List<string>() { EnvironmentProvider.GetNacosUrl() };
     }
 }
