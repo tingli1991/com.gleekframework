@@ -41,7 +41,7 @@ namespace Com.GleekFramework.RocketMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return await PublishAsync(host, topic, messageBody, deliverTimeMillis, serialNo, key);
         }
@@ -69,7 +69,7 @@ namespace Com.GleekFramework.RocketMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return await PublishAsync(host, topic, messageBody, deliverTimeMillis, serialNo, key);
         }

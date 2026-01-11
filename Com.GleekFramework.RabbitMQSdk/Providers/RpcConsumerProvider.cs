@@ -95,7 +95,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <returns></returns>
         private static async Task ClientCallbackAsync(BasicDeliverEventArgs eventArgs, IChannel channel, Task<ContractResult> response)
         {
-            var result = response;//返回结果
+            var result =await response;//返回结果
             var replyProps = new BasicProperties();
             replyProps.CorrelationId = eventArgs.BasicProperties.CorrelationId;
             var bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(result));

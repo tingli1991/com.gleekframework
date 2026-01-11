@@ -40,14 +40,14 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost("rpc")]
         public async Task RpcAsync()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
                 var param = new StudentParam() { Id = i, Name = $"张三_{i}" };
                 var headers = new Dictionary<string, string>() { { "test_header_key", "不符合规则的头部键值对" }, { "test-header-key", "正确的头部键值对" } };
-                var response = RabbitRpcClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
-                Console.WriteLine($"消息开始时间：{beginTime:yyyy-MM-dd HH:mm:ss}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                var response = await RabbitRpcClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
+                Console.WriteLine($"当前索引：{i}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}，返回结果：{response.JsonCompressAndEscape()}");
             }
             await Task.CompletedTask;
         }
@@ -59,14 +59,14 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost("work")]
         public async Task WorkAsync()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
                 var param = new StudentParam() { Id = i, Name = $"张三_{i}" };
                 var headers = new Dictionary<string, string>() { { "test_header_key", "不符合规则的头部键值对" }, { "test-header-key", "正确的头部键值对" } };
-                var response = RabbitWorkClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, RabbitQueueConstant.WorkCustomerQueue, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
-                Console.WriteLine($"消息开始时间：{beginTime:yyyy-MM-dd HH:mm:ss}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                var response = await RabbitWorkClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, RabbitQueueConstant.WorkCustomerQueue, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
+                Console.WriteLine($"当前索引：{i}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}，返回结果：{response.JsonCompressAndEscape()}");
             }
             await Task.CompletedTask;
         }
@@ -78,14 +78,14 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost("subscribe")]
         public async Task SubscribeAsync()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 var beginTime = DateTime.Now.ToCstTime();
                 var serialNo = SnowflakeService.GetSerialNo();
                 var param = new StudentParam() { Id = i, Name = $"张三_{i}" };
                 var headers = new Dictionary<string, string>() { { "test_header_key", "不符合规则的头部键值对" }, { "test-header-key", "正确的头部键值对" } };
-                var response = RabbitSubscribeClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, RabbitQueueConstant.WorkCustomerExchangeName, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
-                Console.WriteLine($"消息开始时间：{beginTime:yyyy-MM-dd HH:mm:ss}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}");
+                var response = await RabbitSubscribeClientService.PublishAsync(RabbitConfig.RabbitDefaultClientHosts, RabbitQueueConstant.WorkCustomerExchangeName, MessageType.TEST_QUERY_RPC_NAME, param, serialNo, headers);
+                Console.WriteLine($"当前索引：{i}，消息处理耗时：{(DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds}，返回结果：{response.JsonCompressAndEscape()}");
             }
             await Task.CompletedTask;
         }

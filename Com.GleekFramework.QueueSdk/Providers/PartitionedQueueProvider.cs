@@ -32,15 +32,15 @@ namespace Com.GleekFramework.QueueSdk
         /// 获取所有的剩余消息数量
         /// </summary>
         /// <returns></returns>
-        public static Task<long> GetSurplusMessageCountAsync()
+        public static async Task<long> GetSurplusMessageCountAsync()
         {
             if (PartitionedCacheList.IsNullOrEmpty())
             {
-                return Task.FromResult(0L);
+                return await Task.FromResult(0L);
             }
             else
             {
-                return Task.FromResult(PartitionedCacheList.Sum(e => e.Value.SurplusMessageCount));
+                return await Task.FromResult(PartitionedCacheList.Sum(e => e.Value.SurplusMessageCount));
             }
         }
 
@@ -50,11 +50,11 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="topic">主题</param>
         /// <param name="messageBody">消息内容</param>
         /// <returns></returns>
-        public static Task PublishAsync(string topic, MessageBody messageBody)
+        public static async Task PublishAsync(string topic, MessageBody messageBody)
         {
             var partitionedQueueSigle = GetPartitionedQueueSigle(topic);//获取分区队列单例对象
             var partitionIncrementKey = partitionedQueueSigle.GetPartitionIncrementKey();//自增的分区键(本机有效)
-            return partitionedQueueSigle.PublishAsync(messageBody, partitionIncrementKey);
+            await partitionedQueueSigle.PublishAsync(messageBody, partitionIncrementKey);
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="topic">主题</param>
         /// <param name="messageBodys">消息内容</param>
         /// <returns></returns>
-        public static Task PublishAsync(string topic, IEnumerable<MessageBody> messageBodys)
+        public static async Task PublishAsync(string topic, IEnumerable<MessageBody> messageBodys)
         {
             var partitionedQueueSigle = GetPartitionedQueueSigle(topic);//获取分区队列单例对象
             var partitionIncrementKey = partitionedQueueSigle.GetPartitionIncrementKey();//自增的分区键(本机有效)
-            return partitionedQueueSigle.PublishAsync(messageBodys, partitionIncrementKey);
+            await partitionedQueueSigle.PublishAsync(messageBodys, partitionIncrementKey);
         }
 
         /// <summary>
@@ -76,11 +76,11 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="topic">主题</param>
         /// <param name="messageBody">消息内容</param>
         /// <returns></returns>
-        public static Task PublishAsync<T>(string topic, MessageBody<T> messageBody) where T : class
+        public static async Task PublishAsync<T>(string topic, MessageBody<T> messageBody) where T : class
         {
             var partitionedQueueSigle = GetPartitionedQueueSigle(topic);//获取分区队列单例对象
             var partitionIncrementKey = partitionedQueueSigle.GetPartitionIncrementKey();//自增的分区键(本机有效)
-            return partitionedQueueSigle.PublishAsync(messageBody, partitionIncrementKey);
+            await partitionedQueueSigle.PublishAsync(messageBody, partitionIncrementKey);
         }
 
         /// <summary>
@@ -89,11 +89,11 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="topic">主题</param>
         /// <param name="messageBodys">消息内容</param>
         /// <returns></returns>
-        public static Task PublishAsync<T>(string topic, IEnumerable<MessageBody<T>> messageBodys) where T : class
+        public static async Task PublishAsync<T>(string topic, IEnumerable<MessageBody<T>> messageBodys) where T : class
         {
             var partitionedQueueSigle = GetPartitionedQueueSigle(topic);//获取分区队列单例对象
             var partitionIncrementKey = partitionedQueueSigle.GetPartitionIncrementKey();//自增的分区键(本机有效)
-            return partitionedQueueSigle.PublishAsync(messageBodys, partitionIncrementKey);
+            await partitionedQueueSigle.PublishAsync(messageBodys, partitionIncrementKey);
         }
 
         /// <summary>

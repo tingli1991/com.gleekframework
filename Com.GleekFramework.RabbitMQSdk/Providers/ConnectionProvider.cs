@@ -13,9 +13,14 @@ namespace Com.GleekFramework.RabbitMQSdk
     public static class ConnectionProvider
     {
         /// <summary>
-        /// 定义一个异步锁，初始为1表示只有一个线程可以进入
+        /// 通道的异步锁
         /// </summary>
-        private static readonly SemaphoreSlim AsyncLock = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim ChannelAsyncLock = new SemaphoreSlim(1, 1);
+
+        /// <summary>
+        /// 连接的异步锁
+        /// </summary>
+        private static readonly SemaphoreSlim ConnectionAsyncLock = new SemaphoreSlim(1, 1);
 
         /// <summary>
         /// 通道列表
@@ -34,11 +39,11 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <returns></returns>
         public static async Task<IChannel> GetChannelAsync(string host)
         {
-            try
+            if (!ChannelList.ContainsKey(host))
             {
-                if (!ChannelList.ContainsKey(host))
+                try
                 {
-                    await AsyncLock.WaitAsync();//获取异步锁
+                    await ChannelAsyncLock.WaitAsync();//获取异步锁
                     if (!CacheList.ContainsKey(host))
                     {
                         var connection = await GetConnectionAsync(host);
@@ -46,14 +51,15 @@ namespace Com.GleekFramework.RabbitMQSdk
                         ChannelList.Add(host, channel);
                     }
                 }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                AsyncLock.Release();//释放异步锁
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    //释放异步锁
+                    ChannelAsyncLock.Release();
+                }
             }
             return ChannelList[host];
         }
@@ -65,11 +71,11 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <returns></returns>
         private static async Task<IConnection> GetConnectionAsync(string host)
         {
-            try
+            if (!CacheList.ContainsKey(host))
             {
-                if (!CacheList.ContainsKey(host))
+                try
                 {
-                    await AsyncLock.WaitAsync();//获取异步锁
+                    await ConnectionAsyncLock.WaitAsync();//获取异步锁
                     if (!CacheList.ContainsKey(host))
                     {
                         var options = host.ToConnectionObject<RabbitConnectionOptions>();
@@ -89,14 +95,15 @@ namespace Com.GleekFramework.RabbitMQSdk
                         CacheList.Add(host, await factory.CreateConnectionAsync());
                     }
                 }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                AsyncLock.Release();//释放异步锁
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    //释放异步锁
+                    ConnectionAsyncLock.Release();
+                }
             }
             return CacheList[host];
         }

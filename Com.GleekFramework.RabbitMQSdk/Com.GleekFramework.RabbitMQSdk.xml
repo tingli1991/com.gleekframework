@@ -194,9 +194,14 @@
             连接对象实现类
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.AsyncLock">
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.ChannelAsyncLock">
             <summary>
-            定义一个异步锁，初始为1表示只有一个线程可以进入
+            通道的异步锁
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.ConnectionAsyncLock">
+            <summary>
+            连接的异步锁
             </summary>
         </member>
         <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.ChannelList">

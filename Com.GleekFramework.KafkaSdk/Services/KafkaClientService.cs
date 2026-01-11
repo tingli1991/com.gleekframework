@@ -45,7 +45,7 @@ namespace Com.GleekFramework.KafkaSdk
                 ActionKey = type.GetActionKey(),
                 SerialNo = HttpContextAccessor.GetSerialNo(serialNo),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return PublishAsync(host, topic, messageBody, messageBody.SerialNo, key);
         }
@@ -70,7 +70,7 @@ namespace Com.GleekFramework.KafkaSdk
                 ActionKey = type.GetActionKey(),
                 SerialNo = HttpContextAccessor.GetSerialNo(serialNo),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return PublishAsync(host, topic, messageBody, messageBody.SerialNo, key);
         }
@@ -97,7 +97,7 @@ namespace Com.GleekFramework.KafkaSdk
                 Headers = headers,
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             });
             return PublishManyAsync(host, topic, dataList, serialNo, key);
         }

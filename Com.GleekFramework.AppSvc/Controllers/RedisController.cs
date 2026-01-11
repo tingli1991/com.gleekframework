@@ -23,16 +23,9 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost("test")]
         public async Task<ContractResult> TestAsync()
         {
-            try
-            {
-                var isSuccess = await RedisHashRepository.SetAsync("hash_test", "hash_test_field", "hash_value", 500);
-                isSuccess = await RedisHashRepository.SetNxAsync("hash_test_nx", "hash_test_field", "hash_value", 500);
-                var number = await RedisHashRepository.IncrementAsync("hash_test_incr", "hash_test_field", 500);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            var isSuccess = await RedisHashRepository.SetAsync("hash_test", "hash_test_field", "hash_value", 500);
+            isSuccess = await RedisHashRepository.SetNxAsync("hash_test_nx", "hash_test_field", "hash_value", 500);
+            var number = await RedisHashRepository.IncrementAsync("hash_test_incr", "hash_test_field", 500);
             return await Task.FromResult(new ContractResult().SetSuceccful());
         }
     }

@@ -98,16 +98,9 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public R GetFirstOrDefault<R>(QueryableBuilder<T, R> query, int timeoutSeconds = DapperConstant.DEFAULT_TIMEOUT_SECONDS)
         {
-            try
-            {
-                query.Take(1).Build(DatabaseType);
-                using var db = GetConnection();
-                return db.QueryFirstOrDefault<R>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            query.Take(1).Build(DatabaseType);
+            using var db = GetConnection();
+            return db.QueryFirstOrDefault<R>(query.ExecuteSQL.ToString(), query.Parameters, null, timeoutSeconds);
         }
 
         /// <summary>

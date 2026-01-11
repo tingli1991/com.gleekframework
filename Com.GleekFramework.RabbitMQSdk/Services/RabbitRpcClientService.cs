@@ -37,7 +37,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="serialNo">流水编号</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync(string host, Enum type, string serialNo = null, Dictionary<string, string> headers = null)
+        public async Task<ContractResult> PublishAsync(string host, Enum type, string serialNo = null, Dictionary<string, string> headers = null)
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
             headers = HttpContextAccessor.ToHeaders().AddHeaders(headers);//转换头部信息
@@ -46,9 +46,9 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
-            return PublishAsync(host, messageBody, serialNo);
+            return await PublishAsync(host, messageBody, serialNo);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="serialNo">流水编号</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync<T>(string host, Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null)
+        public async Task<ContractResult> PublishAsync<T>(string host, Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null)
             where T : class
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
@@ -71,9 +71,9 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
-            return PublishAsync(host, messageBody, serialNo);
+            return await PublishAsync(host, messageBody, serialNo);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="serialNo">流水编号</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync(string host, string queueName, Enum type, string serialNo = null, Dictionary<string, string> headers = null)
+        public async Task<ContractResult> PublishAsync(string host, string queueName, Enum type, string serialNo = null, Dictionary<string, string> headers = null)
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
             headers = HttpContextAccessor.ToHeaders().AddHeaders(headers);//转换头部信息
@@ -94,9 +94,9 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
-            return PublishAsync(host, queueName, messageBody, serialNo);
+            return await PublishAsync(host, queueName, messageBody, serialNo);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="serialNo">流水编号</param>
         /// <param name="headers">头部喜喜</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync<T>(string host, string queueName, Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null)
+        public async Task<ContractResult> PublishAsync<T>(string host, string queueName, Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null)
             where T : class
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
@@ -120,9 +120,9 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
-            return PublishAsync(host, queueName, messageBody, serialNo);
+            return await PublishAsync(host, queueName, messageBody, serialNo);
         }
 
         /// <summary>
@@ -133,9 +133,9 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="data">消息内容</param>
         /// <param name="serialNo">业务流水号</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync<T>(string host, T data, string serialNo = null)
+        public async Task<ContractResult> PublishAsync<T>(string host, T data, string serialNo = null)
         {
-            return PublishAsync(host, RabbitConstant.DEFAULT_RPC_QUEUE_NAME, data, serialNo);
+            return await PublishAsync(host, RabbitConstant.DEFAULT_RPC_QUEUE_NAME, data, serialNo);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// </summary>
         /// <param name="eventArgs">回调事件参数</param>
         /// <returns></returns>
-        private Task ReceivedMessage(BasicDeliverEventArgs eventArgs)
+        private async Task ReceivedMessage(BasicDeliverEventArgs eventArgs)
         {
             var correlationId = eventArgs.BasicProperties.CorrelationId;
             if (CallbackTask.TryRemove(correlationId, out var tcs))
@@ -200,7 +200,6 @@ namespace Com.GleekFramework.RabbitMQSdk
                 var response = jsonValue.DeserializeObject<ContractResult>();
                 tcs.TrySetResult(response);
             }
-            return Task.CompletedTask;
         }
     }
 }

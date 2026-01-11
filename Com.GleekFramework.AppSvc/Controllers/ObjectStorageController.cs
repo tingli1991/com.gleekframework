@@ -26,7 +26,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>上传结果</returns>
         [HttpPost("upload/stream")]
-        public async Task<IActionResult> UploadFileAsync([System.ComponentModel.DataAnnotations.Required] IFormFile file, [System.ComponentModel.DataAnnotations.Required][FromForm] string fileKey, [FromForm] string bucketName = "")
+        public async Task<IActionResult> UploadFileAsync([Required] IFormFile file, [Required][FromForm] string fileKey, [FromForm] string bucketName = "")
         {
             if (file == null || file.Length == 0)
             {
@@ -56,7 +56,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>上传结果</returns>
         [HttpPost("upload/content")]
-        public async Task<IActionResult> UploadContentAsync([System.ComponentModel.DataAnnotations.Required][FromForm] string content, [System.ComponentModel.DataAnnotations.Required][FromForm] string fileKey, [FromForm] string bucketName = "")
+        public async Task<IActionResult> UploadContentAsync([Required][FromForm] string content, [Required][FromForm] string fileKey, [FromForm] string bucketName = "")
         {
             if (content == null || content.Length == 0)
             {
@@ -84,7 +84,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="param">要上传的文本内容</param>
         /// <returns>上传结果</returns>
         [HttpPost("upload/object")]
-        public async Task<IActionResult> UploadContentAsync([System.ComponentModel.DataAnnotations.Required] ComAreaModel param)
+        public async Task<IActionResult> UploadContentAsync([Required] ComAreaModel param)
         {
             if (param == null)
             {
@@ -110,7 +110,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>文件流</returns>
         [HttpGet("download/stream")]
-        public async Task<IActionResult> DownloadFileAsync([System.ComponentModel.DataAnnotations.Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
+        public async Task<IActionResult> DownloadFileAsync([Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
         {
             if (string.IsNullOrWhiteSpace(fileKey))
             {
@@ -132,7 +132,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>文件流</returns>
         [HttpGet("download/content")]
-        public async Task<IActionResult> GetContentAsync([System.ComponentModel.DataAnnotations.Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
+        public async Task<IActionResult> GetContentAsync([Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
         {
             if (string.IsNullOrWhiteSpace(fileKey))
             {
@@ -154,7 +154,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>文件流</returns>
         [HttpGet("download/object")]
-        public async Task<IActionResult> GetObjectAsync([System.ComponentModel.DataAnnotations.Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
+        public async Task<IActionResult> GetObjectAsync([Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
         {
             if (string.IsNullOrWhiteSpace(fileKey))
             {
@@ -176,7 +176,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         /// <param name="bucketName">存储桶名称（可选）</param>
         /// <returns>文件流</returns>
         [HttpGet("delete")]
-        public async Task<IActionResult> DeleteFileAsync([System.ComponentModel.DataAnnotations.Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
+        public async Task<IActionResult> DeleteFileAsync([Required][FromQuery] string fileKey, [FromQuery] string bucketName = "")
         {
             if (string.IsNullOrWhiteSpace(fileKey))
             {

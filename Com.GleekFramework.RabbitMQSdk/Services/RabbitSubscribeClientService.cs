@@ -40,7 +40,7 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = $"{type}",
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return await PublishAsync(host, exchangeName, messageBody, serialNo);
         }
@@ -66,7 +66,7 @@ namespace Com.GleekFramework.RabbitMQSdk
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             return await PublishAsync(host, exchangeName, messageBody, serialNo);
         }

@@ -53,7 +53,6 @@ namespace Com.GleekFramework.QueueSdk
             {
                 //设置分区队列的分区数量(必须在发起订阅之前，不能调整顺序)
                 PartitionedQueueProvider.PartitionCount = callback(AppConfig.Configuration);
-
                 SubscribeQueue();//发起订阅
                 NLogProvider.Info($"【Queue订阅】分区数量：{PartitionedQueueProvider.PartitionCount}");
             }).RegisterApplicationStopped(async () =>

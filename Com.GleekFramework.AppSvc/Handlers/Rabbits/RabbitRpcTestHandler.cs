@@ -24,7 +24,7 @@ namespace Com.GleekFramework.AppSvc
         public override async Task<ContractResult> ExecuteAsync(MessageBody messageBody)
         {
             var param = messageBody.GetData<StudentParam>();
-            Console.WriteLine(JsonConvert.SerializeObject(param));
+            //Console.WriteLine(JsonConvert.SerializeObject(param));
             return await Task.FromResult(new ContractResult().SetSuceccful(messageBody.SerialNo));
         }
     }

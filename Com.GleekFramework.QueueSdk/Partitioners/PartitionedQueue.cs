@@ -58,12 +58,11 @@ namespace Com.GleekFramework.QueueSdk
         /// </summary>
         /// <param name="messageBody">消息</param>
         /// <param name="partitionKey">分区键</param>
-        public Task PublishAsync(T messageBody, object partitionKey = null)
+        public async Task PublishAsync(T messageBody, object partitionKey = null)
         {
             var partitionIndex = messageBody.GetPartitionIndex(PartitionCount, partitionKey);
             var concurrentQueue = PartitionerQueues[partitionIndex];
             concurrentQueue.Enqueue(messageBody);
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -71,14 +70,14 @@ namespace Com.GleekFramework.QueueSdk
         /// </summary>
         /// <param name="messageBodys">消息</param>
         /// <param name="partitionKey">分区键</param>
-        public Task PublishAsync(IEnumerable<T> messageBodys, object partitionKey = null)
+        public async Task PublishAsync(IEnumerable<T> messageBodys, object partitionKey = null)
         {
             if (messageBodys.IsNullOrEmpty())
             {
-                return Task.CompletedTask;
+                return;
             }
             var partitionIndex = messageBodys.GetPartitionIndex(PartitionCount, partitionKey);
-            return messageBodys.ForEachAsync(messageBody => PublishAsync(messageBody, partitionKey));
+            await messageBodys.ForEachAsync(async messageBody => await PublishAsync(messageBody, partitionKey));
         }
 
         /// <summary>

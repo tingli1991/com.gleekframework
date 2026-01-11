@@ -29,9 +29,9 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <returns></returns>
         public static async Task<string> QueueDeclareAsync(IChannel channel, string queueName)
         {
-            try
+            if (!CacheList.ContainsKey(queueName))
             {
-                if (!CacheList.ContainsKey(queueName))
+                try
                 {
                     await AsyncLock.WaitAsync();//获取异步锁
                     if (!CacheList.ContainsKey(queueName))
@@ -41,14 +41,15 @@ namespace Com.GleekFramework.RabbitMQSdk
                         CacheList.Add(queueName, replyQueueName);
                     }
                 }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                AsyncLock.Release();//释放异步锁
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    //释放异步锁
+                    AsyncLock.Release();
+                }
             }
             return CacheList[queueName];
         }

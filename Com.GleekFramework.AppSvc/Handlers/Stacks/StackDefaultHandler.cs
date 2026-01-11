@@ -27,7 +27,7 @@ namespace Com.GleekFramework.AppSvc
             var param = messageBody.GetData<StudentParam>();
             var beginTime = messageBody.TimeStamp.ToDateTime();
             var totalMilliseconds = (DateTime.Now.ToCstTime() - beginTime).TotalMilliseconds;
-            Console.WriteLine($"主题：{Topic}，方法名称：{ActionKey}，耗时：{totalMilliseconds}，参数：{JsonConvert.SerializeObject(param)}");
+            //Console.WriteLine($"主题：{Topic}，方法名称：{ActionKey}，耗时：{totalMilliseconds}，参数：{JsonConvert.SerializeObject(param)}");
             return await Task.FromResult(new ContractResult().SetSuceccful(messageBody.SerialNo));
         }
     }

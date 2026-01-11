@@ -29,7 +29,7 @@ namespace Com.GleekFramework.AppSvc.Controllers
         [HttpPost]
         public async Task TestAsync()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 var serialNo = SnowflakeService.GetSerialNo();
                 var param = new StudentParam() { Id = i, Name = $"ÕÅÈý_{i}" };

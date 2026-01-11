@@ -28,9 +28,9 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishAsync<T>(Enum type, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
-            return PublishAsync(type, StackConstant.DEFAULT_STACK_TOPIC, serialNo, headers);
+            await PublishAsync(type, StackConstant.DEFAULT_STACK_TOPIC, serialNo, headers);
         }
 
         /// <summary>
@@ -42,16 +42,16 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, string topic, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishAsync<T>(Enum type, string topic, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
             var messageBody = new MessageBody()
             {
                 ActionKey = type.GetActionKey(),
                 SerialNo = HttpContextAccessor.GetSerialNo(serialNo),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
-            return PartitionedStackProvider.PublishAsync(topic, messageBody);
+            await PartitionedStackProvider.PublishAsync(topic, messageBody);
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishAsync<T>(Enum type, T data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
-            return PublishAsync(type, StackConstant.DEFAULT_STACK_TOPIC, data, serialNo, headers);
+            await PublishAsync(type, StackConstant.DEFAULT_STACK_TOPIC, data, serialNo, headers);
         }
 
         /// <summary>
@@ -78,17 +78,17 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishAsync<T>(Enum type, string topic, T data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishAsync<T>(Enum type, string topic, T data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
             var messageBody = new MessageBody<T>()
             {
                 Data = data,
                 ActionKey = type.GetActionKey(),
                 SerialNo = HttpContextAccessor.GetSerialNo(serialNo),
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
                 Headers = HttpContextAccessor.ToHeaders().AddHeaders(headers),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
             };
-            return PartitionedStackProvider.PublishAsync(topic, messageBody);
+            await PartitionedStackProvider.PublishAsync(topic, messageBody);
         }
 
         /// <summary>
@@ -100,9 +100,9 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishManyAsync<T>(Enum type, IEnumerable<T> data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishManyAsync<T>(Enum type, IEnumerable<T> data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
-            return PublishManyAsync(type, StackConstant.DEFAULT_STACK_TOPIC, data, serialNo, headers);
+            await PublishManyAsync(type, StackConstant.DEFAULT_STACK_TOPIC, data, serialNo, headers);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Com.GleekFramework.QueueSdk
         /// <param name="serialNo">流水号</param>
         /// <param name="headers">头部信息</param>
         /// <returns></returns>
-        public Task PublishManyAsync<T>(Enum type, string topic, IEnumerable<T> data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
+        public async Task PublishManyAsync<T>(Enum type, string topic, IEnumerable<T> data, string serialNo = null, Dictionary<string, string> headers = null) where T : class
         {
             serialNo = HttpContextAccessor.GetSerialNo(serialNo);//转换流水号
             headers = HttpContextAccessor.ToHeaders().AddHeaders(headers);//转换头部信息
@@ -125,9 +125,9 @@ namespace Com.GleekFramework.QueueSdk
                 Headers = headers,
                 SerialNo = serialNo,
                 ActionKey = type.GetActionKey(),
-                TimeStamp = DateTime.Now.ToCstTime().ToUnixTimeForMilliseconds()
+                TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             });
-            return PartitionedStackProvider.PublishAsync(topic, messageBodys);
+            await PartitionedStackProvider.PublishAsync(topic, messageBodys);
         }
     }
 }
