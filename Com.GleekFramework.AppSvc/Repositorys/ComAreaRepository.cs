@@ -79,11 +79,12 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 //.Where(e => !e.IsDeleted)
 
                 //组合条件
+                //.Where(e => e.Level == AreaLevel.Province)
                 //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1))
                 //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
 
                 ////IN 和 NOT IN 场景
-                .Where(e => ids.Contains(e.Id))
+                //.Where(e => ids.Contains(e.Id))
                 //.Where(e => !ids.Contains(e.Id))
                 //.Where(e => names.Contains(e.Name))
                 //.Where(e => !names.Contains(e.Name))
@@ -91,7 +92,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
                 //.Where(e => !enums.Contains(e.Level))
 
                 ////空和非空
-                //.Where(e => string.IsNullOrEmpty(e.Name))
+                .Where(e => string.IsNullOrEmpty(e.Name))
                 //.Where(e => !string.IsNullOrEmpty(e.Name))
 
                 ////LIKE 查询场景

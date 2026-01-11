@@ -20,198 +20,522 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public static object GetMemberValue(this MemberExpression node)
         {
-            // 递归获取闭包实例和属性值
-            var target = GetClosureInstance(node.Expression);
-            if (target == null)
+            if (node == null)
             {
                 return null;
             }
 
-            // 通过反射获取属性或字段的值
+            if (node.Expression is ParameterExpression)
+            {
+                //若成员引用的是参数（如 e.X），视为列，不去尝试解析
+                return null;
+            }
+
+            // 递归解析闭包实例
+            var parent = TryEvaluate(node.Expression, out var parentValue);
+            if (!parent)
+            {
+                return null;
+            }
+
             if (node.Member is PropertyInfo prop)
             {
-                return prop.GetValue(target);
+                return prop.GetValue(parentValue);
             }
             else if (node.Member is FieldInfo field)
             {
-                return field.GetValue(target);
+                return field.GetValue(parentValue);
             }
             return null;
         }
 
         /// <summary>
-        /// 处理方法条件查询条件
+        /// 处理Where方法调用表达式
         /// </summary>
-        /// <param name="expression">方法访问器</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="paramCounter">参数计数器</param>
-        /// <param name="isUnary">是否来源于一元运算符的计算入口</param>
+        /// <param name="expression"></param>
+        /// <param name="parameters"></param>
+        /// <param name="paramCounter"></param>
+        /// <param name="isUnary"></param>
         /// <returns></returns>
         public static string HandlerWhereValues(this MethodCallExpression expression, Dictionary<string, object> parameters, ref long paramCounter, bool isUnary = false)
         {
             var builder = new StringBuilder();
-            parameters = parameters ?? [];//非空的时候重新初始化
-            var methodName = expression.Method.Name;//方法名称
-            var declaringType = expression.Method.DeclaringType;//声明类型
-            var lastArgumentInfo = expression.Arguments.LastOrDefault(); //最后一个元素参数
+            parameters ??= new Dictionary<string, object>();
+            var methodName = expression.Method.Name;
+            var declaringType = expression.Method.DeclaringType;
+            var lastArgumentInfo = expression.Arguments.LastOrDefault();
             if (declaringType == typeof(string) && expression.Object == null && lastArgumentInfo is MemberExpression memberExpressionStr)
             {
-                var columnName = memberExpressionStr.GetColumnName();//字段名称
+                var columnName = memberExpressionStr.GetColumnName();
                 switch (methodName)
                 {
-                    case "IsNullOrEmpty"://非空判断
+                    case "IsNullOrEmpty":
                         builder.Append($"({columnName} is {(isUnary ? $"not null and {columnName}!=''" : $"null or {columnName}=''")})");
                         break;
                 }
                 return builder.ToString();
             }
 
+            // x.Prop.Contains/StartsWith/EndsWith(...)
             if (declaringType == typeof(string) && expression.Object is MemberExpression columnNameExpression)
             {
-                object columnValue = "";//字段名称
-                var columnName = columnNameExpression.GetColumnName();//字段名称
-                switch (lastArgumentInfo)
+                var columnName = columnNameExpression.GetColumnName();
+                if (!TryEvaluate(lastArgumentInfo, out var columnValue))
                 {
-                    case ConstantExpression constantExpr:
-                        columnValue = constantExpr.Value?.ToString();
-                        break;
-                    case MemberExpression memberExpression1:
-                        columnValue = Expression.Lambda(memberExpression1).Compile().DynamicInvoke();
-                        break;
+                    throw new NotSupportedException($"无法在构建时解析字符串方法参数：{methodName}");
                 }
 
-                //生成属性的参数名称
                 var propertyName = $"@P{paramCounter++}";
-
-                // 根据方法名生成 LIKE 模式
                 var likeColumnValue = methodName switch
                 {
                     "Contains" => $"%{columnValue}%",
                     "StartsWith" => $"{columnValue}%",
                     "EndsWith" => $"%{columnValue}",
-                    _ => throw new NotSupportedException()
+                    _ => throw new NotSupportedException($"字符串方法 {methodName} 不支持")
                 };
                 parameters.Add(propertyName, likeColumnValue);
-                builder.Append($"{columnName} {(isUnary ? "not " : "")}like {propertyName}");//拼接查询条件
+                builder.Append($"{columnName} {(isUnary ? "not " : "")}like {propertyName}");
                 return builder.ToString();
             }
 
-            if (declaringType == typeof(Enumerable) && lastArgumentInfo is MemberExpression memberExpression)
+            // 集合 Contains -> IN / NOT IN
+            if (methodName == "Contains")
             {
-                var columnName = memberExpression.GetColumnName();//字段名称
-                switch (methodName)
+                MemberExpression columnMember = null;
+                if (expression.Object is MemberExpression objMe && !IsEnumerableType(objMe.Type))
                 {
-                    case "Contains"://IN 和 NOT IN查询
-                        builder.Append($"{columnName} {(isUnary ? "not " : "")}in (");//拼接查询条件
-                        var collection = expression.Object ?? expression.Arguments[0]; //集合对象(如 list)
-                        var instances = Expression.Lambda(collection).Compile().DynamicInvoke();//编译表达式获取实际对象实例
-                        switch (instances)
+                    columnMember = objMe;
+                }
+                else
+                {
+                    columnMember = expression.Arguments.OfType<MemberExpression>().FirstOrDefault();
+                }
+
+                if (columnMember != null)
+                {
+                    Expression collectionExpr = null;
+                    if (expression.Object != null && !ReferenceEquals(expression.Object, columnMember))
+                    {
+                        collectionExpr = expression.Object;
+                    }
+                    else
+                    {
+                        collectionExpr = expression.Arguments.FirstOrDefault(a => !ReferenceEquals(a, columnMember));
+                    }
+
+                    if (collectionExpr == null)
+                    {
+                        throw new NotSupportedException("无法解析 Contains 的集合来源");
+                    }
+
+                    if (!TryEvaluate(collectionExpr, out var instancesObj))
+                    {
+                        throw new NotSupportedException("无法在构建时解析 Contains 的集合，请确保集合为闭包常量或可求值表达式");
+                    }
+
+                    var columnName = columnMember.GetColumnName();
+                    if (instancesObj == null)
+                    {
+                        builder.Append(isUnary ? "(1=1)" : "(1=0)");
+                        return builder.ToString();
+                    }
+
+                    if (instancesObj is IEnumerable instEnum)
+                    {
+                        builder.Append($"{columnName} {(isUnary ? "not " : "")}in (");
+                        HandleDefaultCollectionValues(parameters, builder, instEnum, ref paramCounter);
+                        if (builder.Length >= 4 && builder.ToString().EndsWith("in ("))
                         {
-                            case IEnumerable<Enum> enumValues:
-                                HandleEnumCollectionValues(parameters, builder, enumValues, ref paramCounter);
-                                break;
-                            case IEnumerable collectionValues:
-                                HandleDefaultCollectionValues(parameters, builder, collectionValues, ref paramCounter);
-                                break;
+                            builder.Length = 0;
+                            builder.Append(isUnary ? "(1=1)" : "(1=0)");
+                            return builder.ToString();
                         }
                         builder.Append(")");
-                        break;
-                    default:
-                        throw new NotSupportedException();
+                        return builder.ToString();
+                    }
+                    else
+                    {
+                        var p = $"@P{paramCounter++}";
+                        parameters.Add(p, instancesObj);
+                        builder.Append($"{columnName} {(isUnary ? "<>" : "=")} {p}");
+                        return builder.ToString();
+                    }
+                }
+
+                //static Enumerable.Contains(collection, column)
+                if (declaringType == typeof(Enumerable) && expression.Arguments.Count >= 2 && expression.Arguments[0] != null && expression.Arguments[1] is MemberExpression memberExpression)
+                {
+                    var columnName = memberExpression.GetColumnName();
+                    var collectionExpr = expression.Arguments[0];
+                    if (!TryEvaluate(collectionExpr, out var instancesObj))
+                    {
+                        throw new NotSupportedException("无法在构建时解析 Enumerable.Contains 的集合来源");
+                    }
+
+                    if (instancesObj is IEnumerable instEnum)
+                    {
+                        builder.Append($"{columnName} {(isUnary ? "not " : "")}in (");
+                        HandleDefaultCollectionValues(parameters, builder, instEnum, ref paramCounter);
+                        builder.Append(")");
+                        return builder.ToString();
+                    }
+                    else
+                    {
+                        var p = $"@P{paramCounter++}";
+                        parameters.Add(p, instancesObj);
+                        builder.Append($"{columnName} {(isUnary ? "<>" : "=")} {p}");
+                        return builder.ToString();
+                    }
                 }
             }
-            return builder.ToString();
+            throw new NotSupportedException($"方法 {expression.Method} 不被支持用于条件构建");
         }
 
         /// <summary>
-        /// 处理枚举类型参数(非字符串类型)
+        /// 尝试评估表达式，成功返回 true（value 可以为 null），失败返回 false。
+        /// 不会以异常作为常规控制流。
+        /// 针对 ReadOnlySpan<T>/ref struct 做特殊处理，转换为数组后返回。
         /// </summary>
-        /// <param name="parameters">查询参数</param>
-        /// <param name="paramCounter">参数计数器</param>
-        /// <param name="builder">查询条件</param>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        private static void HandleEnumCollectionValues(Dictionary<string, object> parameters, StringBuilder builder, IEnumerable<Enum> values, ref long paramCounter)
+        private static bool TryEvaluate(Expression expr, out object value)
         {
-            var intValues = values.Cast<Enum>().Select(e => e.GetHashCode());
-            AppendCollectionParameters(parameters, builder, intValues, ref paramCounter);
+            value = null;
+            if (expr == null)
+            {
+                return true;
+            }
+
+            switch (expr)
+            {
+                case ConstantExpression c:
+                    value = c.Value;
+                    return true;
+                case MemberExpression m:
+                    if (m.Expression is ParameterExpression) return false;
+                    if (!TryEvaluate(m.Expression, out var parent)) return false;
+                    if (parent == null)
+                    {
+                        if (m.Member is PropertyInfo || m.Member is FieldInfo)
+                        {
+                            value = null;
+                            return true;
+                        }
+                        return false;
+                    }
+                    if (m.Member is PropertyInfo pi)
+                    {
+                        value = pi.GetValue(parent);
+                        return true;
+                    }
+                    if (m.Member is FieldInfo fi)
+                    {
+                        value = fi.GetValue(parent);
+                        return true;
+                    }
+                    return false;
+
+                case UnaryExpression u when (u.NodeType == ExpressionType.Convert || u.NodeType == ExpressionType.ConvertChecked):
+                    return TryEvaluate(u.Operand, out value);
+                case NewArrayExpression na:
+                    {
+                        var list = new List<object>();
+                        foreach (var e in na.Expressions)
+                        {
+                            if (!TryEvaluate(e, out var ev)) return false;
+                            list.Add(ev);
+                        }
+                        value = list.ToArray();
+                        return true;
+                    }
+                case ListInitExpression li:
+                    {
+                        if (!TryEvaluate(li.NewExpression, out var created)) return false;
+                        if (!(created is IList list)) return false;
+                        foreach (var init in li.Initializers)
+                        {
+                            foreach (var a in init.Arguments)
+                            {
+                                if (!TryEvaluate(a, out var av)) return false;
+                                list.Add(av);
+                            }
+                        }
+                        value = list;
+                        return true;
+                    }
+                case NewExpression ne:
+                    {
+                        if (ne.Arguments == null || ne.Arguments.Count == 0)
+                        {
+                            try
+                            {
+                                value = Activator.CreateInstance(ne.Type);
+                                return true;
+                            }
+                            catch { return false; }
+                        }
+                        break;
+                    }
+                case MethodCallExpression mc:
+                    {
+                        try
+                        {
+                            // --- 新增：处理 op_Implicit 从数组/集合到 ReadOnlySpan<T> 的情况 ---
+                            if (mc.Method.IsSpecialName && mc.Method.ReturnType.IsGenericType && mc.Method.ReturnType.GetGenericTypeDefinition() == typeof(ReadOnlySpan<>))
+                            {
+                                // 通常形态： op_Implicit(array) -> ReadOnlySpan<T>
+                                if (mc.Arguments.Count == 1 && TryEvaluate(mc.Arguments[0], out var argVal))
+                                {
+                                    if (argVal is IEnumerable enumerable)
+                                    {
+                                        // 排除字符串
+                                        if (argVal is string)
+                                        {
+                                            value = argVal;
+                                            return true;
+                                        }
+
+                                        // 尝试作为枚举集合处理
+                                        if (TryConvertEnumCollection(enumerable, out var numericCollection))
+                                        {
+                                            // 成功转换为数值集合
+                                            value = numericCollection;
+                                        }
+                                        else
+                                        {
+                                            // 保持原始集合
+                                            value = argVal;
+                                        }
+                                        return true;
+                                    }
+                                }
+                            }
+
+                            if (mc.Method.DeclaringType == typeof(Enumerable) && mc.Method.Name == "Range" && mc.Arguments.Count == 2)
+                            {
+                                if (!TryEvaluate(mc.Arguments[0], out var s) || !TryEvaluate(mc.Arguments[1], out var c)) return false;
+                                value = Enumerable.Range(Convert.ToInt32(s), Convert.ToInt32(c)).ToArray();
+                                return true;
+                            }
+
+                            if (mc.Method.DeclaringType == typeof(Enumerable) && mc.Method.Name == "Repeat" && mc.Arguments.Count == 2)
+                            {
+                                if (!TryEvaluate(mc.Arguments[0], out var item) || !TryEvaluate(mc.Arguments[1], out var cnt)) return false;
+                                value = Enumerable.Repeat(item, Convert.ToInt32(cnt)).ToArray();
+                                return true;
+                            }
+
+                            if (TryEvaluate(mc.Object, out var srcObj) && srcObj is IEnumerable srcEnum)
+                            {
+                                switch (mc.Method.Name)
+                                {
+                                    case "ToArray":
+                                        value = srcEnum.Cast<object>().ToArray();
+                                        return true;
+                                    case "ToList":
+                                        value = srcEnum.Cast<object>().ToList();
+                                        return true;
+                                    case "AsEnumerable":
+                                        value = srcEnum;
+                                        return true;
+                                    case "Cast":
+                                        value = srcEnum.Cast<object>().ToArray();
+                                        return true;
+                                }
+                            }
+
+                            var argsOk = true;
+                            var argValues = new object[mc.Arguments.Count];
+                            for (int i = 0; i < mc.Arguments.Count; i++)
+                            {
+                                if (!TryEvaluate(mc.Arguments[i], out var av)) { argsOk = false; break; }
+                                argValues[i] = av;
+                            }
+                            object instance = null;
+                            if (mc.Object != null)
+                            {
+                                if (!TryEvaluate(mc.Object, out instance)) argsOk = false;
+                            }
+
+                            if (argsOk)
+                            {
+                                try
+                                {
+                                    value = mc.Method.Invoke(instance, argValues);
+                                    return true;
+                                }
+                                catch
+                                {
+                                }
+                            }
+                        }
+                        catch
+                        {
+                        }
+                    }
+                    break;
+            }
+
+            try
+            {
+                // special-case: ReadOnlySpan<T> (ref struct) -> try convert to array via MemoryExtensions.ToArray<T>
+                var t = expr.Type;
+                if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ReadOnlySpan<>))
+                {
+                    var elemType = t.GetGenericArguments()[0];
+                    var memExtType = typeof(MemoryExtensions);
+                    var toArrayMethod = memExtType.GetMethods(BindingFlags.Public | BindingFlags.Static)
+                        .FirstOrDefault(m => m.Name == "ToArray" && m.IsGenericMethodDefinition && m.GetParameters().Length == 1);
+                    if (toArrayMethod != null)
+                    {
+                        var gen = toArrayMethod.MakeGenericMethod(elemType);
+                        var call = Expression.Call(gen, expr);
+                        var convert = Expression.Convert(call, typeof(object));
+                        var lambda = Expression.Lambda<Func<object>>(convert);
+                        var func = lambda.Compile();
+                        value = func();
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                // 忽略并回退到普通编译回退
+            }
+
+            // 最后回退到强类型编译（仅当表达式不依赖参数时才会成功）
+            try
+            {
+                var convert = Expression.Convert(expr, typeof(object));
+                var lambda = Expression.Lambda<Func<object>>(convert);
+                var func = lambda.Compile();
+                value = func();
+                return true;
+            }
+            catch
+            {
+                value = null;
+                return false;
+            }
         }
 
         /// <summary>
-        /// 处理枚集合型参数
+        /// 
         /// </summary>
-        /// <param name="parameters">查询参数</param>
-        /// <param name="paramCounter">参数计数器</param>
-        /// <param name="builder">查询条件</param>
+        /// <param name="parameters"></param>
+        /// <param name="builder"></param>
         /// <param name="values"></param>
-        /// <returns></returns>
+        /// <param name="paramCounter"></param>
         private static void HandleDefaultCollectionValues(Dictionary<string, object> parameters, StringBuilder builder, IEnumerable values, ref long paramCounter)
         {
-            dynamic typedCollection = values;
-            AppendCollectionParameters(parameters, builder, typedCollection, ref paramCounter);
+            var list = values.Cast<object>().ToList();
+            AppendCollectionParameters(parameters, builder, list, ref paramCounter);
         }
 
         /// <summary>
-        /// 追加参数(非字符串类型)
+        /// 
         /// </summary>
-        /// <param name="parameters">查询参数</param>
-        /// <param name="paramCounter">参数计数器</param>
-        /// <param name="builder">查询条件</param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parameters"></param>
+        /// <param name="builder"></param>
         /// <param name="values"></param>
-        /// <returns></returns>
+        /// <param name="paramCounter"></param>
         private static void AppendCollectionParameters<T>(Dictionary<string, object> parameters, StringBuilder builder, IEnumerable<T> values, ref long paramCounter)
         {
+            var added = false;
             foreach (var value in values)
             {
-                var propertyName = $"@P{paramCounter++}";
-                parameters.Add(propertyName, value);
-                builder.Append($"{propertyName},");
+                if (value == null) continue;
+                var name = $"@P{paramCounter++}";
+                parameters.Add(name, value);
+                builder.Append($"{name},");
+                added = true;
             }
-
-            if (builder.Length > 0 && builder[^1] == ',')
-            {
-                builder.Length--;
-            }
+            if (added && builder.Length > 0 && builder[^1] == ',') builder.Length--;
         }
 
         /// <summary>
-        /// 获取成员值
+        /// 
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="parent"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
-        private static object GetMemberValue(this MemberExpression node, object parent)
+        private static bool IsEnumerableType(Type type)
         {
-            // 从父对象中提取字段或属性的值
-            if (node.Member is PropertyInfo prop)
-            {
-                return prop.GetValue(parent);
-            }
-            else if (node.Member is FieldInfo field)
-            {
-                return field.GetValue(parent);
-            }
-            return null;
+            if (type == typeof(string)) return false;
+            return typeof(IEnumerable).IsAssignableFrom(type);
         }
 
         /// <summary>
-        /// 获取闭包实例
+        /// 
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="enumerable"></param>
+        /// <param name="numericCollection"></param>
         /// <returns></returns>
-        private static object GetClosureInstance(this Expression expression)
+        private static bool TryConvertEnumCollection(IEnumerable enumerable, out object numericCollection)
         {
-            // 递归解析闭包实例
-            switch (expression)
+            numericCollection = null;
+
+            if (enumerable == null)
+                return false;
+
+            // 快速路径：检查常见集合类型
+            switch (enumerable)
             {
-                case MemberExpression memberExpr:
-                    var parent = GetClosureInstance(memberExpr.Expression);
-                    return GetMemberValue(memberExpr, parent);
-                case ConstantExpression constantExpr:
-                    return constantExpr.Value;
-                default:
-                    return null;
+                case IEnumerable<Enum> enumEnumerable:
+                    // 这是明确的枚举集合
+                    numericCollection = ConvertEnumEnumerable(enumEnumerable);
+                    return true;
             }
+
+            // 通用路径
+            var enumerator = enumerable.GetEnumerator();
+            if (!enumerator.MoveNext())
+                return false; // 空集合
+
+            object firstItem = enumerator.Current;
+            if (firstItem == null)
+                return false;
+
+            Type firstItemType = firstItem.GetType();
+            if (!firstItemType.IsEnum)
+                return false;
+
+            // 确定枚举的底层类型并创建合适的集合
+            Type underlyingType = Enum.GetUnderlyingType(firstItemType);
+
+            // 使用动态方法创建对应类型的列表
+            Type listType = typeof(List<>).MakeGenericType(underlyingType);
+            IList resultList = (IList)Activator.CreateInstance(listType);
+
+            // 添加第一个元素
+            resultList.Add(Convert.ChangeType(firstItem, underlyingType));
+
+            // 处理剩余元素
+            while (enumerator.MoveNext())
+            {
+                object item = enumerator.Current;
+                if (item == null || item.GetType() != firstItemType)
+                {
+                    return false;
+                }
+                resultList.Add(Convert.ChangeType(item, underlyingType));
+            }
+
+            numericCollection = resultList;
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enumEnumerable"></param>
+        /// <returns></returns>
+        private static List<long> ConvertEnumEnumerable(IEnumerable<Enum> enumEnumerable)
+        {
+            var result = new List<long>();
+            foreach (var enumValue in enumEnumerable)
+            {
+                result.Add(Convert.ToInt64(enumValue));
+            }
+            return result;
         }
     }
 }

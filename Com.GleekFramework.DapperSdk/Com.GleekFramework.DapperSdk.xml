@@ -517,68 +517,7 @@
             WHERE方法条件表达式拓展类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetMemberValue(System.Linq.Expressions.MemberExpression)">
-            <summary>
-            获取成员值
-            </summary>
-            <param name="node"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandlerWhereValues(System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean)">
-            <summary>
-            处理方法条件查询条件
-            </summary>
-            <param name="expression">方法访问器</param>
-            <param name="parameters">请求参数</param>
-            <param name="paramCounter">参数计数器</param>
-            <param name="isUnary">是否来源于一元运算符的计算入口</param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleEnumCollectionValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Enum},System.Int64@)">
-            <summary>
-            处理枚举类型参数(非字符串类型)
-            </summary>
-            <param name="parameters">查询参数</param>
-            <param name="paramCounter">参数计数器</param>
-            <param name="builder">查询条件</param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleDefaultCollectionValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.IEnumerable,System.Int64@)">
-            <summary>
-            处理枚集合型参数
-            </summary>
-            <param name="parameters">查询参数</param>
-            <param name="paramCounter">参数计数器</param>
-            <param name="builder">查询条件</param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.AppendCollectionParameters``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Int64@)">
-            <summary>
-            追加参数(非字符串类型)
-            </summary>
-            <param name="parameters">查询参数</param>
-            <param name="paramCounter">参数计数器</param>
-            <param name="builder">查询条件</param>
-            <param name="values"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetMemberValue(System.Linq.Expressions.MemberExpression,System.Object)">
-            <summary>
-            获取成员值
-            </summary>
-            <param name="node"></param>
-            <param name="parent"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetClosureInstance(System.Linq.Expressions.Expression)">
-            <summary>
-            获取闭包实例
-            </summary>
-            <param name="expression"></param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluate(System.Linq.Expressions.Expression,System.Object@)" -->
         <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
             <summary>
             Dapper仓储拓展类
