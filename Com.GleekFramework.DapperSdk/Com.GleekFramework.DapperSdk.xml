@@ -515,9 +515,143 @@
         <member name="T:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions">
             <summary>
             WHERE方法条件表达式拓展类
+            提供对LINQ表达式中Where相关方法的解析和SQL转换支持
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.GetMemberValue(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            获取成员表达式的值
+            </summary>
+            <param name="node">成员表达式节点</param>
+            <returns>成员值，若引用参数则返回null</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandlerWhereValues(System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean)">
+            <summary>
+            处理Where方法调用表达式
+            </summary>
+            <param name="expression">方法调用表达式</param>
+            <param name="parameters">参数字典</param>
+            <param name="paramCounter">参数计数器引用</param>
+            <param name="isUnary">是否为一元操作（取反）</param>
+            <returns>SQL条件字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleContainsMethod(System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean)">
+            <summary>
+            处理Contains方法调用
+            </summary>
+            <param name="expression">方法调用表达式</param>
+            <param name="parameters">参数字典</param>
+            <param name="paramCounter">参数计数器引用</param>
+            <param name="isUnary">是否为一元操作</param>
+            <returns>SQL条件字符串</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleInstanceContains(System.Linq.Expressions.MemberExpression,System.Linq.Expressions.MethodCallExpression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean,System.Text.StringBuilder)">
+            <summary>
+            处理实例Contains方法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleEnumerableContains(System.Linq.Expressions.MemberExpression,System.Linq.Expressions.Expression,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean,System.Text.StringBuilder)">
+            <summary>
+            处理Enumerable.Contains方法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.BuildContainsCondition(System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int64@,System.Boolean,System.Text.StringBuilder)">
+            <summary>
+            构建Contains条件的SQL
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluate(System.Linq.Expressions.Expression,System.Object@)" -->
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.EvaluateConstantExpression(System.Linq.Expressions.ConstantExpression,System.Object@)">
+            <summary>
+            评估常量表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.EvaluateUnaryExpression(System.Linq.Expressions.UnaryExpression,System.Object@)">
+            <summary>
+            评估一元表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluateMemberExpression(System.Linq.Expressions.MemberExpression,System.Object@)">
+            <summary>
+            尝试评估成员表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluateNewArrayExpression(System.Linq.Expressions.NewArrayExpression,System.Object@)">
+            <summary>
+            尝试评估数组创建表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluateListInitExpression(System.Linq.Expressions.ListInitExpression,System.Object@)">
+            <summary>
+            尝试评估列表初始化表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluateNewExpression(System.Linq.Expressions.NewExpression,System.Object@)">
+            <summary>
+            尝试评估对象创建表达式
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryEvaluateMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Object@)">
+            <summary>
+            尝试评估方法调用表达式
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleReadOnlySpanConversion(System.Linq.Expressions.MethodCallExpression,System.Object@)" -->
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleEnumerableConversion(System.Linq.Expressions.MethodCallExpression,System.Collections.IEnumerable,System.Object@)">
+            <summary>
+            处理集合转换方法
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.EvaluateGenericMethodCall(System.Linq.Expressions.MethodCallExpression,System.Object@)">
+            <summary>
+            通用方法调用评估
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryCompileAndEvaluate(System.Linq.Expressions.Expression,System.Object@)">
+            <summary>
+            尝试通过编译表达式获取值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.HandleDefaultCollectionValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.IEnumerable,System.Int64@)">
+            <summary>
+            处理默认集合值，构建SQL IN子句参数
+            </summary>
+            <param name="parameters">参数字典</param>
+            <param name="builder">SQL构建器</param>
+            <param name="values">集合值</param>
+            <param name="paramCounter">参数计数器引用</param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.AppendCollectionParameters``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Int64@)">
+            <summary>
+            添加集合参数到SQL构建器
+            </summary>
+            <param name="parameters">参数字典</param>
+            <param name="builder">SQL构建器</param>
+            <param name="values">参数值集合</param>
+            <param name="paramCounter">参数计数器引用</param>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.IsEnumerableType(System.Type)">
+            <summary>
+            判断类型是否为集合类型（排除字符串）
+            </summary>
+            <param name="type">要检查的类型</param>
+            <returns>是否为集合类型</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.TryConvertEnumCollection(System.Collections.IEnumerable,System.Object@)">
+            <summary>
+            尝试将枚举集合转换为数值集合
+            </summary>
+            <param name="enumerable">枚举集合</param>
+            <param name="numericCollection">输出的数值集合</param>
+            <returns>转换是否成功</returns>
+        </member>
+        <member name="M:Com.GleekFramework.DapperSdk.WhereMethodCallExtensions.ConvertEnumEnumerable(System.Collections.Generic.IEnumerable{System.Enum})">
+            <summary>
+            转换枚举可枚举对象为长整型列表
+            </summary>
+            <param name="enumEnumerable">枚举可枚举对象</param>
+            <returns>长整型列表</returns>
+        </member>
         <member name="T:Com.GleekFramework.DapperSdk.DapperHostingExtensions">
             <summary>
             Dapper仓储拓展类
