@@ -8,7 +8,7 @@
         "ENV": "dev", //环境
         "PORT": "8081", //主机的端口配置
         "SCHEME": "http", //Http请求协议(http或者https)
-        "PROJECT": "", //项目名称
+        "MODULE": "", //项目名称
         "VERSION": "v1.0.0.0", //程序版本号
         "NACOS_URL": "http://localhost:8848", //NACOS地址
         "SWAGGER_SWITCH": "true", //Swagger开关

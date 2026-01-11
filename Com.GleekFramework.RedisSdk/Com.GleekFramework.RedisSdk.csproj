@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-	<TargetFramework>net8.0</TargetFramework>
-    <Description>Redis拓展工具包</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.RedisSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<TargetFramework>net10.0</TargetFramework>
+		<Description>Redis拓展工具包</Description>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.RedisSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CSRedisCore" Version="3.8.802" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CSRedisCore" Version="3.8.807" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+	</ItemGroup>
 
 </Project>

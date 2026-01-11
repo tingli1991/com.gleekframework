@@ -1,28 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-	<TargetFramework>net8.0</TargetFramework>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Description>RabbitMQ拓展工具包</Description>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.RabbitMQSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<TargetFramework>net10.0</TargetFramework>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<Description>RabbitMQ拓展工具包</Description>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.RabbitMQSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.ConsumerSdk\Com.GleekFramework.ConsumerSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ConsumerSdk\Com.GleekFramework.ConsumerSdk.csproj" />
+	</ItemGroup>
 
 </Project>

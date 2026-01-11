@@ -1,5 +1,8 @@
 ﻿using RabbitMQ.Client;
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Com.GleekFramework.RabbitMQSdk
 {
@@ -9,9 +12,9 @@ namespace Com.GleekFramework.RabbitMQSdk
     public static partial class ReplyQueueProvider
     {
         /// <summary>
-        /// 对象锁
+        /// 定义一个异步锁，初始为1表示只有一个线程可以进入
         /// </summary>
-        private static readonly object @lock = new object();
+        private static readonly SemaphoreSlim AsyncLock = new SemaphoreSlim(1, 1);
 
         /// <summary>
         /// 缓存列表
@@ -24,19 +27,28 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="channel">通道</param>
         /// <param name="queueName">生产的队列名称</param>
         /// <returns></returns>
-        public static string QueueDeclare(IModel channel, string queueName)
+        public static async Task<string> QueueDeclareAsync(IChannel channel, string queueName)
         {
-            if (!CacheList.ContainsKey(queueName))
+            try
             {
-                lock (@lock)
+                if (!CacheList.ContainsKey(queueName))
                 {
+                    await AsyncLock.WaitAsync();//获取异步锁
                     if (!CacheList.ContainsKey(queueName))
                     {
                         var replyQueueName = $"{queueName}.reply";
-                        channel.QueueDeclare(queue: replyQueueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
+                        await channel.QueueDeclareAsync(queue: replyQueueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
                         CacheList.Add(queueName, replyQueueName);
                     }
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                AsyncLock.Release();//释放异步锁
             }
             return CacheList[queueName];
         }

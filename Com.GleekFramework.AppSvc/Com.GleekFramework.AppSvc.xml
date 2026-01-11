@@ -550,12 +550,12 @@
             <param name="param">请求参数</param>
             <returns></returns>
         </member>
-        <member name="T:Com.GleekFramework.AppSvc.DefaultRepository">
+        <member name="T:Com.GleekFramework.AppSvc.DefaultRepository`1">
             <summary>
             默认测试仓储(读写)
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.AppSvc.DefaultRepository.ConnectionName">
+        <member name="P:Com.GleekFramework.AppSvc.DefaultRepository`1.ConnectionName">
             <summary>
             配置文件名称
             </summary>

@@ -183,7 +183,6 @@
             <param name="error">错误码</param>
             <param name="serialNo">流水号</param>
             <param name="args">参数</param>
-            <param name="args">格式化参数</param>
         </member>
         <member name="M:Com.GleekFramework.ContractSdk.ResultExtensions.SetError``1(Com.GleekFramework.ContractSdk.ContractResult{``0},System.Enum,System.String,System.Object[])">
             <summary>
@@ -212,17 +211,37 @@
             <param name="serialNo"></param>
             <param name="args">格式化参数</param>
         </member>
+        <member name="T:Com.GleekFramework.ContractSdk.ICreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.ICreateTime.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
         <member name="T:Com.GleekFramework.ContractSdk.ITable">
             <summary>
             表定义基础接口
             </summary>
         </member>
-        <member name="T:Com.GleekFramework.ContractSdk.IVersionTable">
+        <member name="T:Com.GleekFramework.ContractSdk.IUpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.ContractSdk.IUpdateTime.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.ContractSdk.IVersion">
             <summary>
             版本号
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.ContractSdk.IVersionTable.Version">
+        <member name="P:Com.GleekFramework.ContractSdk.IVersion.Version">
             <summary>
             版本号
             </summary>
@@ -341,6 +360,12 @@
             <summary>
             机器码
             </summary>
+        </member>
+        <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetVersionNo">
+            <summary>
+            获取版本号
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Com.GleekFramework.ContractSdk.SnowflakeProvider.GetSerialNo">
             <summary>

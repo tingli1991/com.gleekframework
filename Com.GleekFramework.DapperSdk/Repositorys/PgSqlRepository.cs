@@ -9,7 +9,7 @@ namespace Com.GleekFramework.DapperSdk
     /// PgSQL数据仓储
     /// 连接字符串格式：User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=postgres;
     /// </summary>
-    public partial class PgSqlRepository : DapperRepository, IBaseAutofac
+    public partial class PgSqlRepository<T> : DapperRepository<T>, IBaseAutofac where T : ITable
     {
         /// <summary>
         /// PgSQL

@@ -344,16 +344,6 @@
             编辑模型
             </summary>
         </member>
-        <member name="P:Com.GleekFramework.Models.EditParam.Version">
-            <summary>
-            版本号
-            </summary>
-        </member>
-        <member name="P:Com.GleekFramework.Models.EditParam.UpdateTime">
-            <summary>
-            更新时间
-            </summary>
-        </member>
         <member name="P:Com.GleekFramework.Models.EditParam.Remark">
             <summary>
             备注

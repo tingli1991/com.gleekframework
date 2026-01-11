@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-	<TargetFramework>net8.0</TargetFramework>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Description>IOC(Autofac)开发工具包</Description>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.AutofacSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<TargetFramework>net10.0</TargetFramework>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<Description>IOC(Autofac)开发工具包</Description>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.AutofacSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="8.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="9.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
+	</ItemGroup>
 
 </Project>

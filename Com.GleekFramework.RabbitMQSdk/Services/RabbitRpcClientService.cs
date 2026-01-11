@@ -147,16 +147,16 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="data">消息内容</param>
         /// <param name="serialNo">业务流水号</param>
         /// <returns></returns>
-        public Task<ContractResult> PublishAsync<T>(string host, string queueName, T data, string serialNo = null)
+        public async Task<ContractResult> PublishAsync<T>(string host, string queueName, T data, string serialNo = null)
         {
-            var channel = ConnectionProvider.GetChannel(host);
-            var consumer = new EventingBasicConsumer(channel);
+            var channel = await ConnectionProvider.GetChannelAsync(host);
+            var consumer = new AsyncEventingBasicConsumer(channel);
 
-            var replyQueueName = ReplyQueueProvider.QueueDeclare(channel, queueName);
-            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            consumer.Received += (model, eventArgs) => ReceivedMessage(eventArgs);
-            channel.BasicConsume(consumer: consumer, queue: replyQueueName, autoAck: true);
-            return PublishAsync(channel, queueName, replyQueueName, data, serialNo);
+            var replyQueueName = await ReplyQueueProvider.QueueDeclareAsync(channel, queueName);
+            await channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+            consumer.ReceivedAsync += (model, eventArgs) => ReceivedMessage(eventArgs);
+            await channel.BasicConsumeAsync(consumer: consumer, queue: replyQueueName, autoAck: true);
+            return await PublishAsync(channel, queueName, replyQueueName, data, serialNo);
         }
 
         /// <summary>
@@ -169,21 +169,20 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="data">数据</param>
         /// <param name="serialNo">流水号</param>
         /// <returns></returns>
-        private Task<ContractResult> PublishAsync<T>(IModel channel, string queueName, string replyQueueName, T data, string serialNo = null)
+        private async Task<ContractResult> PublishAsync<T>(IChannel channel, string queueName, string replyQueueName, T data, string serialNo = null)
         {
-            var props = channel.CreateBasicProperties();
-            props.ReplyTo = replyQueueName;
-            props.CorrelationId = Guid.NewGuid().ToString();
+            var basicProperties = new BasicProperties
+            {
+                ReplyTo = replyQueueName,
+                CorrelationId = Guid.NewGuid().ToString()
+            };
             var jsonValue = JsonConvert.SerializeObject(data);
             var messageBytes = Encoding.UTF8.GetBytes(jsonValue);
 
             var cts = new TaskCompletionSource<ContractResult>();
-            CallbackTask.TryAdd(props.CorrelationId, cts);//这个必须在前
-            channel.BasicPublish(exchange: string.Empty, routingKey: queueName, basicProperties: props, body: messageBytes);
-
-            var task = cts.Task;
-            task.ContinueWith(e => e.Result.SerialNo = serialNo);
-            return task;
+            CallbackTask.TryAdd(basicProperties.CorrelationId, cts);//这个必须在前
+            await channel.BasicPublishAsync(exchange: string.Empty, routingKey: queueName, mandatory: false, basicProperties: basicProperties, body: messageBytes);
+            return await cts.Task;
         }
 
         /// <summary>

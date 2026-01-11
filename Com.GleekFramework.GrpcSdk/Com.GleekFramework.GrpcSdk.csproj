@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-    <Description>Grpc拓展工具包</Description>
-    <TargetFramework>net8.0</TargetFramework>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.GrpcSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<Description>Grpc拓展工具包</Description>
+		<TargetFramework>net10.0</TargetFramework>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.GrpcSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.76.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+	</ItemGroup>
 
 </Project>

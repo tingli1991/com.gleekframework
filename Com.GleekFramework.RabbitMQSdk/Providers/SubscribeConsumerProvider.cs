@@ -67,17 +67,17 @@ namespace Com.GleekFramework.RabbitMQSdk
             string exchangeName = options.ExchangeName;//交换机名称
 
             var connectionStrings = hostOptions.ToConnectionStrings();//转换成连接字符串
-            var channel = ConnectionProvider.GetChannel(connectionStrings);//获取通道
+            var channel = await ConnectionProvider.GetChannelAsync(connectionStrings);//获取通道
 
-            channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Fanout);
-            var queueName = channel.QueueDeclare().QueueName;//队列名称
-            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            channel.QueueBind(queue: queueName, exchange: exchangeName, routingKey: string.Empty);
+            await channel.ExchangeDeclareAsync(exchange: exchangeName, type: ExchangeType.Fanout);
+            var queueName = (await channel.QueueDeclareAsync()).QueueName;//队列名称
+            await channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+            await channel.QueueBindAsync(queue: queueName, exchange: exchangeName, routingKey: string.Empty);
 
-            var consumer = new EventingBasicConsumer(channel);
-            consumer.Shutdown += async (sender, eventArgs) => await eventArgs.ConsumerShutdownEventAsync(sender);
-            consumer.Received += async (sender, eventArgs) => await eventArgs.ReceivedMessageAsync<RabbitSubscribeHandler>(channel, awaitTask, autoAck);
-            channel.BasicConsume(queue: queueName, autoAck: autoAck, consumer: consumer);
+            var consumer = new AsyncEventingBasicConsumer(channel);
+            consumer.ShutdownAsync += async (sender, eventArgs) => await eventArgs.ConsumerShutdownEventAsync(sender);
+            consumer.ReceivedAsync += async (sender, eventArgs) => await eventArgs.ReceivedMessageAsync<RabbitSubscribeHandler>(channel, awaitTask, autoAck);
+            await channel.BasicConsumeAsync(queue: queueName, autoAck: autoAck, consumer: consumer);
             await new TaskCompletionSource<string>().Task;//阻塞当前线程
         }
     }

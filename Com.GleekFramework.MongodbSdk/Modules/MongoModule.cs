@@ -1,17 +1,13 @@
 ﻿using Autofac;
-using Com.GleekFramework.AutofacSdk;
 using Com.GleekFramework.CommonSdk;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Com.GleekFramework.MongodbSdk.Modules
 {
     /// <summary>
     /// Mongo 注入
     /// </summary>
-    public class MongoModule : Autofac.Module
+    public class MongoModule : Module
     {
         /// <summary>
         /// 加载

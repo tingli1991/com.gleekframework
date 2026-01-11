@@ -1,33 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-    <Description>测试数据模型</Description>
-    <TargetFramework>net8.0</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.Models.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<Description>测试数据模型</Description>
+		<TargetFramework>net10.0</TargetFramework>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.Models.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.MigrationSdk\Com.GleekFramework.MigrationSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.MongodbSdk\Com.GleekFramework.MongodbSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.RabbitMQSdk\Com.GleekFramework.RabbitMQSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.RedisSdk\Com.GleekFramework.RedisSdk.csproj" />
-    <ProjectReference Include="..\Com.GleekFramework.RocketMQSdk\Com.GleekFramework.RocketMQSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RedisSdk\Com.GleekFramework.RedisSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.MongodbSdk\Com.GleekFramework.MongodbSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RabbitMQSdk\Com.GleekFramework.RabbitMQSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RocketMQSdk\Com.GleekFramework.RocketMQSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.MigrationSdk\Com.GleekFramework.MigrationSdk.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Scripts\com_area.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Scripts\com_area.sql">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

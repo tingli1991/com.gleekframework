@@ -8,7 +8,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// MsSql仓储服务
     /// </summary>
-    public partial class MsSqlRepository : DapperRepository, IBaseAutofac
+    public partial class MsSqlRepository<T> : DapperRepository<T>, IBaseAutofac where T : ITable
     {
         /// <summary>
         /// MsSQL

@@ -52,7 +52,13 @@
             MD5加密服务
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String)" -->
+        <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String)">
+            <summary>
+            计算字符串的MD5哈希值（不加盐）
+            </summary>
+            <param name="input">原始字符串</param>
+            <returns>32字符小写的MD5哈希值</returns>
+        </member>
         <member name="M:Com.GleekFramework.SecuritySdk.Md5Service.ComputeMD5(System.String,System.String)">
             <summary>
             计算字符串的MD5哈希值（加盐）

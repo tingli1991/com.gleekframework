@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Com.GleekFramework.CommonSdk
@@ -9,6 +10,23 @@ namespace Com.GleekFramework.CommonSdk
     /// </summary>
     public static partial class ObjectExtensions
     {
+        /// <summary>
+        /// 转换为字典
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Dictionary<string, object> ToDictionary(this object obj)
+        {
+            var result = new Dictionary<string, object>();
+            if (obj == null)
+            {
+                return result;
+            }
+            var type = obj.GetType();
+            var propertyInfoList = type.GetPropertyInfoList();
+            return propertyInfoList.ToDictionary(k => k.Name, v => obj.GetPropertyValue(v.Name));
+        }
+
         /// <summary>
         /// 获取属性名称
         /// </summary>

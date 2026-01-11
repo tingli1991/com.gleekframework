@@ -22,7 +22,7 @@ namespace Com.GleekFramework.ContractSdk
         /// <returns></returns>
         public decimal GetVersionNo()
         {
-            return decimal.Parse(GetSerialNo());
+            return SnowflakeProvider.GetVersionNo();
         }
     }
 }

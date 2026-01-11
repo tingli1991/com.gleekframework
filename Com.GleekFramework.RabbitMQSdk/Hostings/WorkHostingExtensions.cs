@@ -70,7 +70,7 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="autoAck">是否自动应答</param>
         /// <param name="callback">业务回调处理</param>
         /// <returns></returns>
-        public static Task ReceivedMessageAsync<T>(this BasicDeliverEventArgs eventArgs, IModel channel, bool awaitTask, bool autoAck, Func<Task<ContractResult>, Task> callback = null) where T : RabbitHandler
+        public static Task ReceivedMessageAsync<T>(this BasicDeliverEventArgs eventArgs, IChannel channel, bool awaitTask, bool autoAck, Func<Task<ContractResult>, Task> callback = null) where T : RabbitHandler
         {
             try
             {
@@ -87,7 +87,7 @@ namespace Com.GleekFramework.RabbitMQSdk
                     if (!autoAck)
                     {
                         //手动应答
-                        channel.BasicAck(deliveryTag: eventArgs.DeliveryTag, multiple: false);
+                        await channel.BasicAckAsync(deliveryTag: eventArgs.DeliveryTag, multiple: false);
                     }
                 });
 

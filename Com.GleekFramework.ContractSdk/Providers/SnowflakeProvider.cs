@@ -40,6 +40,15 @@ namespace Com.GleekFramework.ContractSdk
         private static readonly string PersonCode = $"{Random.NextLong(1, 999)}".PadLeft(3, '0');
 
         /// <summary>
+        /// 获取版本号
+        /// </summary>
+        /// <returns></returns>
+        public static decimal GetVersionNo()
+        {
+            return decimal.Parse(GetSerialNo());
+        }
+
+        /// <summary>
         /// 获取流水号
         /// </summary>
         /// <returns></returns>

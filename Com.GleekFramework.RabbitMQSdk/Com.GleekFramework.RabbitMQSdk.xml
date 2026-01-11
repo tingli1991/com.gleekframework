@@ -34,7 +34,7 @@
             回调处理类
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.CallbackExtensions.ConsumerShutdownEventAsync(RabbitMQ.Client.ShutdownEventArgs,System.Object)">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.CallbackExtensions.ConsumerShutdownEventAsync(RabbitMQ.Client.Events.ShutdownEventArgs,System.Object)">
             <summary>
             关机事件
             </summary>
@@ -123,7 +123,7 @@
             <param name="callback">主机配置列表</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.ReceivedMessageAsync``1(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IModel,System.Boolean,System.Boolean,System.Func{System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult},System.Threading.Tasks.Task})">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.WorkHostingExtensions.ReceivedMessageAsync``1(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IChannel,System.Boolean,System.Boolean,System.Func{System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult},System.Threading.Tasks.Task})">
             <summary>
             接受消息回调处理方法
             </summary>
@@ -194,9 +194,9 @@
             连接对象实现类
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.lock">
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.AsyncLock">
             <summary>
-            对象锁
+            定义一个异步锁，初始为1表示只有一个线程可以进入
             </summary>
         </member>
         <member name="F:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.ChannelList">
@@ -209,14 +209,14 @@
             缓存列表
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetChannel(System.String)">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetChannelAsync(System.String)">
             <summary>
             获取连接通道
             </summary>
             <param name="host">主机配置</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetConnection(System.String)">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ConnectionProvider.GetConnectionAsync(System.String)">
             <summary>
             获取连接对象
             </summary>
@@ -228,9 +228,9 @@
             应答队列声明实现类
             </summary>
         </member>
-        <member name="F:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.lock">
+        <member name="F:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.AsyncLock">
             <summary>
-            对象锁
+            定义一个异步锁，初始为1表示只有一个线程可以进入
             </summary>
         </member>
         <member name="F:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.CacheList">
@@ -238,7 +238,7 @@
             缓存列表
             </summary>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.QueueDeclare(RabbitMQ.Client.IModel,System.String)">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.ReplyQueueProvider.QueueDeclareAsync(RabbitMQ.Client.IChannel,System.String)">
             <summary>
             声明应答的队列名称
             </summary>
@@ -271,7 +271,7 @@
             <param name="hostOptions">配置选项</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.ClientCallbackAsync(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IModel,System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult})">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RpcConsumerProvider.ClientCallbackAsync(RabbitMQ.Client.Events.BasicDeliverEventArgs,RabbitMQ.Client.IChannel,System.Threading.Tasks.Task{Com.GleekFramework.ContractSdk.ContractResult})">
             <summary>
             回调客户端
             </summary>
@@ -400,7 +400,7 @@
             <param name="serialNo">业务流水号</param>
             <returns></returns>
         </member>
-        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(RabbitMQ.Client.IModel,System.String,System.String,``0,System.String)">
+        <member name="M:Com.GleekFramework.RabbitMQSdk.RabbitRpcClientService.PublishAsync``1(RabbitMQ.Client.IChannel,System.String,System.String,``0,System.String)">
             <summary>
             推送消息
             </summary>

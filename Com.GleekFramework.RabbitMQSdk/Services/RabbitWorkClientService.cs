@@ -97,17 +97,17 @@ namespace Com.GleekFramework.RabbitMQSdk
                 VirtualHost = options.VirtualHost,
             };
 
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
+            using var connection = await factory.CreateConnectionAsync();
+            using var channel = await connection.CreateChannelAsync();
+            await channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+            await channel.QueueDeclareAsync(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             var jsonValue = JsonConvert.SerializeObject(data);
             var messageBytes = Encoding.UTF8.GetBytes(jsonValue);
 
-            var properties = channel.CreateBasicProperties();
+            var properties = new BasicProperties();
             properties.Persistent = true;
-            channel.BasicPublish(exchange: string.Empty, routingKey: queueName, basicProperties: properties, body: messageBytes);
+            await channel.BasicPublishAsync(exchange: string.Empty, routingKey: queueName, mandatory: false, basicProperties: properties, body: messageBytes);
             return await Task.FromResult(new ContractResult().SetSuceccful(serialNo));
         }
     }

@@ -63,14 +63,14 @@ namespace Com.GleekFramework.RabbitMQSdk
             string queueName = options.QueueName;//队列名称
 
             var connectionStrings = hostOptions.ToConnectionStrings();//转换成连接字符串
-            var channel = ConnectionProvider.GetChannel(connectionStrings);//获取通道
+            var channel = await ConnectionProvider.GetChannelAsync(connectionStrings);//获取通道
 
-            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
-            var consumer = new EventingBasicConsumer(channel);
-            consumer.Shutdown += async (sender, eventArgs) => await eventArgs.ConsumerShutdownEventAsync(sender);
-            consumer.Received += async (sender, eventArgs) => await eventArgs.ReceivedMessageAsync<RabbitWorkHandler>(channel, awaitTask, autoAck);
-            channel.BasicConsume(queue: queueName, autoAck: autoAck, consumer: consumer);
+            await channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+            await channel.QueueDeclareAsync(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
+            var consumer = new AsyncEventingBasicConsumer(channel);
+            consumer.ShutdownAsync += async (sender, eventArgs) => await eventArgs.ConsumerShutdownEventAsync(sender);
+            consumer.ReceivedAsync += async (sender, eventArgs) => await eventArgs.ReceivedMessageAsync<RabbitWorkHandler>(channel, awaitTask, autoAck);
+            await channel.BasicConsumeAsync(queue: queueName, autoAck: autoAck, consumer: consumer);
             await new TaskCompletionSource<string>().Task;//阻塞当前线程
         }
     }

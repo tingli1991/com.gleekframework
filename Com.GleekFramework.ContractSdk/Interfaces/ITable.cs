@@ -3,8 +3,7 @@
     /// <summary>
     /// 表定义基础接口
     /// </summary>
-    public interface ITable
+    public interface ITable : IVersion, IUpdateTime, ICreateTime
     {
-
     }
 }

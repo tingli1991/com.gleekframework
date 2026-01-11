@@ -1,29 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <Copyright>@2023 Gleek</Copyright>
-    <Company>org.gleekframework</Company>
-	<TargetFramework>net8.0</TargetFramework>
-    <Description>NLog拓展工具包</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Com.GleekFramework.NLogSdk.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>true</IsPackable>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<TargetFramework>net10.0</TargetFramework>
+		<Description>NLog拓展工具包</Description>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>Com.GleekFramework.NLogSdk.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <!--<ItemGroup>
+	<!--<ItemGroup>
     <Content Include="NLog.config" Pack="true" />
   </ItemGroup>-->
-  
-  <ItemGroup>
-    <PackageReference Include="NLog" Version="5.2.8" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NLog" Version="6.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+	</ItemGroup>
 
 </Project>

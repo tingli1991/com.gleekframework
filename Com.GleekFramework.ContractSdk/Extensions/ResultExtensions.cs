@@ -66,7 +66,6 @@ namespace Com.GleekFramework.ContractSdk
         /// <param name="error">错误码</param>
         /// <param name="serialNo">流水号</param>
         /// <param name="args">参数</param>
-        /// <param name="args">格式化参数</param>
         public static ContractResult SetError(this ContractResult source, Enum error, string serialNo = "", params object[] args)
         {
             source.Success = false;

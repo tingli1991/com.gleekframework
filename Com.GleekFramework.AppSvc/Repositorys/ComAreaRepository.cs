@@ -19,7 +19,7 @@ namespace Com.GleekFramework.AppSvc.Repositorys
         /// <summary>
         /// 默认测试仓储(读写)
         /// </summary>
-        public DefaultRepository DefaultRepository { get; set; }
+        public DefaultRepository<ComArea> DefaultRepository { get; set; }
 
         /// <summary>
         /// 获取分页列表
@@ -28,62 +28,40 @@ namespace Com.GleekFramework.AppSvc.Repositorys
         /// <returns></returns>
         public async Task<PageDataResult<ComAreaModel>> GetPageListAsync(ComAreaPageParam param)
         {
+            //新增
             var comAreaInfo = new ComArea()
             {
                 Code = "test",
                 IsDeleted = false,
                 Name = "测试名称",
-                CreateTime = DateTime.Now,
-                UpdateTime = DateTime.Now,
                 Extend = "拓展字段",
                 Remark = "测试备注",
                 ParentId = 0,
                 Lat = "",
                 Lng = "",
-                Level = AreaLevel.Province,
-                Version = SnowflakeService.GetVersionNo()
+                Level = AreaLevel.Province
             };
+            comAreaInfo = DefaultRepository.Insert(comAreaInfo);
+            DefaultRepository.InsertMany([comAreaInfo]);
             comAreaInfo = await DefaultRepository.InsertAsync(comAreaInfo);
-            var responseInfo = await DefaultRepository.UpdateAsync<ComAreaEditParam, ComAreaModel>(comAreaInfo.Id, new() { Remark = "啦啦啦啦" });
+            await DefaultRepository.InsertManyAsync([comAreaInfo]);
 
-            //comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo);
-            //comAreaInfo = await DefaultRepository.UpdateAsync<ComArea, ComArea>(comAreaInfo.Id, comAreaInfo);
-            comAreaInfo = await DefaultRepository.UpdateAsync<ComAreaModel, ComArea>(comAreaInfo.Id, comAreaInfo.Map<ComArea, ComAreaModel>());
+            //修改
+            comAreaInfo.Name = "测试名称修改";
+            DefaultRepository.Update(comAreaInfo);
+            DefaultRepository.Update(new { Name = "测试名称修改1" }, comAreaInfo.Id);
+            DefaultRepository.UpdateMany(new Dictionary<object, object>() { { comAreaInfo.Id, new { Name = "测试名称修改2" } } });
+            DefaultRepository.UpdateMany([comAreaInfo]);
 
-            //var comAreaInfo = new ComArea()
-            //{
-            //    Code = "test",
-            //    IsDeleted = false,
-            //    Name = "测试名称",
-            //    CreateTime = DateTime.Now,
-            //    UpdateTime = DateTime.Now,
-            //    Extend = "拓展字段",
-            //    Remark = "测试备注",
-            //    ParentId = 0,
-            //    Level = AreaLevel.Province,
-            //    Version = SnowflakeService.GetVersionNo()
-            //};
-            //var comAreaResponse = await DefaultRepository.InsertOneAsync(comAreaInfo);
+            comAreaInfo.Name = "测试名称修改异步";
+            await DefaultRepository.UpdateAsync(comAreaInfo);
+            await DefaultRepository.UpdateAsync(new { Name = "测试名称修改异步1" }, comAreaInfo.Id);
+            await DefaultRepository.UpdateManyAsync(new Dictionary<object, object>() { { comAreaInfo.Id, new { Name = "测试名称修改异步2" } } });
+            await DefaultRepository.UpdateManyAsync([comAreaInfo]);
 
-            ////1.创建顶层条件组（AND逻辑）
-            //var predicateGroup = new PredicateGroup { Operator = GroupOperator.And, Predicates = [] };
 
-            ////2.添加is_deleted=false条件
-            //predicateGroup.Predicates.Add(Predicates.Field<ComArea>(a => a.IsDeleted, Operator.Eq, false));
 
-            ////3. 创建嵌套条件组（OR逻辑，处理 app_id/name LIKE）
-            //if (param.Keywords.IsNotNull())
-            //{
-            //    var keywordPredicateGroup = new PredicateGroup { Operator = GroupOperator.Or, Predicates = [] };
-            //    keywordPredicateGroup.Predicates.Add(Predicates.Field<ComArea>(a => a.Code, Operator.Like, $"%{param.Keywords}%"));
-            //    keywordPredicateGroup.Predicates.Add(Predicates.Field<ComArea>(a => a.Name, Operator.Like, $"%{param.Keywords}%"));
-            //    predicateGroup.Predicates.Add(keywordPredicateGroup);
-            //}
-            //var response = await DefaultRepository.GetPageListAsync<ComArea>(param.PageIndex, param.PageSize, predicateGroup);
-
-            /// <summary>
-            /// 排序参数集合
-            /// </summary>
+            //排序参数集合
             var orders = new Dictionary<string, string>()
             {
                 { "create_time", "asc"},
@@ -98,48 +76,54 @@ namespace Com.GleekFramework.AppSvc.Repositorys
             var enums = new AreaLevel[] { AreaLevel.Province, AreaLevel.District, AreaLevel.City, AreaLevel.Street };
             var query = new QueryableBuilder<ComArea, ComAreaModel>()
                 .Order(orders)
-                .Where(e => !e.IsDeleted)
+                //.Where(e => !e.IsDeleted)
 
                 //组合条件
-                .Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
+                //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1))
+                //.Where(e => e.Id == 1 || (!e.IsDeleted && e.Id == 1) && ids.Contains(e.Id))
 
-                //IN 和 NOT IN 场景
+                ////IN 和 NOT IN 场景
                 .Where(e => ids.Contains(e.Id))
-                .Where(e => !ids.Contains(e.Id))
-                .Where(e => names.Contains(e.Name))
-                .Where(e => !names.Contains(e.Name))
-                .Where(e => enums.Contains(e.Level))
-                .Where(e => !enums.Contains(e.Level))
+                //.Where(e => !ids.Contains(e.Id))
+                //.Where(e => names.Contains(e.Name))
+                //.Where(e => !names.Contains(e.Name))
+                //.Where(e => enums.Contains(e.Level))
+                //.Where(e => !enums.Contains(e.Level))
 
-                //空和非空
-                .Where(e => string.IsNullOrEmpty(e.Name))
-                .Where(e => !string.IsNullOrEmpty(e.Name))
+                ////空和非空
+                //.Where(e => string.IsNullOrEmpty(e.Name))
+                //.Where(e => !string.IsNullOrEmpty(e.Name))
 
-                //LIKE 查询场景
-                .Where(e => e.Name.Contains(columnName))
-                .Where(e => !e.Name.Contains(columnName))
-                .Where(e => e.Name.Contains("北京"))
-                .Where(e => !e.Name.Contains("北京"))
+                ////LIKE 查询场景
+                //.Where(e => e.Name.Contains(columnName))
+                //.Where(e => !e.Name.Contains(columnName))
+                //.Where(e => e.Name.Contains("北京"))
+                //.Where(e => !e.Name.Contains("北京"))
 
-                .Where(e => e.Name.StartsWith(columnName))
-                .Where(e => !e.Name.StartsWith(columnName))
-                .Where(e => e.Name.StartsWith("北京"))
-                .Where(e => !e.Name.StartsWith("北京"))
+                //.Where(e => e.Name.StartsWith(columnName))
+                //.Where(e => !e.Name.StartsWith(columnName))
+                //.Where(e => e.Name.StartsWith("北京"))
+                //.Where(e => !e.Name.StartsWith("北京"))
 
-                .WhereIf(param.CreateBeginTime.HasValue, e => e.CreateTime >= param.CreateBeginTime)
-                .WhereIf(param.CreateEndTime.HasValue, e => e.CreateTime >= param.CreateEndTime.Value)
-                .WhereIf(param.Keywords.IsNotNull(), e => e.Code.Contains(param.Keywords) || e.Name.Contains(param.Keywords))
-                .Where(e => e.Name.EndsWith("北京"))
+                //.WhereIf(param.CreateBeginTime.HasValue, e => e.CreateTime >= param.CreateBeginTime)
+                //.WhereIf(param.CreateEndTime.HasValue, e => e.CreateTime >= param.CreateEndTime.Value)
+                //.WhereIf(param.Keywords.IsNotNull(), e => e.Code.Contains(param.Keywords) || e.Name.Contains(param.Keywords))
+                //.Where(e => e.Name.EndsWith("北京"))
 
-                //排序
+                ////排序
                 .OrderBy(e => e.Version)
                 .OrderBy(e => e.CreateTime)
                 .OrderByDescending(e => e.UpdateTime);
 
-            var dataList = await DefaultRepository.GetListAsync(query);//查询列表
-            var pageList = await DefaultRepository.GetPageListAsync(query);//查询分页列表
-            var fistInfo = await DefaultRepository.GetFirstOrDefaultAsync(query);//查询单条数据
-            return pageList;
+            var testComAreaInfo = DefaultRepository.GetFirstOrDefault(query);//查询单条记录
+            var testComAreaInfo1 = await DefaultRepository.GetFirstOrDefaultAsync(query);//查询单条记录
+
+            var comAreaInfoList = DefaultRepository.GetList(query);//获取列表
+            var comAreaInfoList1 = await DefaultRepository.GetListAsync(query);//查询列表
+
+            var comAreaInfoPageList = DefaultRepository.GetPageList(query);//查询分页列表
+            var comAreaInfoPageList1 = await DefaultRepository.GetPageListAsync(query);//查询分页列表
+            return comAreaInfoPageList;
         }
     }
 }

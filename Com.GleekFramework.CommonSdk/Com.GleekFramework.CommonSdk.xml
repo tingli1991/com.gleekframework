@@ -994,6 +994,13 @@
             对象拓展类
             </summary>
         </member>
+        <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.ToDictionary(System.Object)">
+            <summary>
+            转换为字典
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="M:Com.GleekFramework.CommonSdk.ObjectExtensions.GetPropertyValue``1(System.Object,System.String[])">
             <summary>
             获取属性名称

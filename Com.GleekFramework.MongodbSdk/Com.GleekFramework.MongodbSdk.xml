@@ -19,6 +19,11 @@
             链接字符串
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.MongodbSdk.MongodbClient._mongoClient">
+            <summary>
+            内部的 MongoClient 实例
+            </summary>
+        </member>
         <member name="M:Com.GleekFramework.MongodbSdk.MongodbClient.#ctor">
             <summary>
             构造函数
@@ -29,6 +34,24 @@
             构造函数
             </summary>
             <param name="connectionString">链接字符串</param>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbClient.GetDatabase(System.String,MongoDB.Driver.MongoDatabaseSettings)">
+            <summary>
+            获取数据库
+            </summary>
+            <param name="databaseName">数据库名称</param>
+            <param name="settings">数据库设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.MongodbSdk.MongodbClient.GetCollection``1(System.String,System.String,MongoDB.Driver.MongoDatabaseSettings)">
+            <summary>
+            获取集合
+            </summary>
+            <typeparam name="T">文档类型</typeparam>
+            <param name="collectionName">集合名称</param>
+            <param name="databaseName">数据库名称</param>
+            <param name="settings">数据库设置</param>
+            <returns></returns>
         </member>
         <member name="T:Com.GleekFramework.MongodbSdk.MongoConstant">
             <summary>

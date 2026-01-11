@@ -1,7 +1,7 @@
-﻿using Com.GleekFramework.CommonSdk;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using ZstdSharp;
 
 namespace Com.GleekFramework.DapperSdk
 {
@@ -26,15 +26,15 @@ namespace Com.GleekFramework.DapperSdk
         private readonly Dictionary<string, object> Parameters;
 
         /// <summary>
+        /// 获取生成的WHERE子句
+        /// </summary>
+        public string GetWhereClause() => WhereClause.ToString();
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="parameters">SQL参数</param>
         public WhereExpressionVisitor(Dictionary<string, object> parameters) => Parameters = parameters;
-
-        /// <summary>
-        /// 获取生成的WHERE子句
-        /// </summary>
-        public string GetWhereClause() => WhereClause.ToString();
 
         /// <summary>
         /// 处理一元运算符

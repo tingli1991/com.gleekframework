@@ -57,7 +57,7 @@ namespace Com.GleekFramework.RabbitMQSdk
 
                 var hostOptions = host.Map<RabbitHostOptions, RabbitConnectionOptions>();
                 hostOptions.VirtualHost = options.VirtualHost;
-                handlerGroupServiceList.ForEach(service => PullMessageBodyAsync(options.AwaitTask, service, hostOptions));
+                handlerGroupServiceList.ForEach(async service => await PullMessageBodyAsync(options.AwaitTask, service, hostOptions));
             });
         }
 
@@ -68,22 +68,22 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="options">处理服务</param>
         /// <param name="hostOptions">配置选项</param>
         /// <returns></returns>
-        private static Task PullMessageBodyAsync(bool awaitTask, dynamic options, RabbitConnectionOptions hostOptions)
+        private static async Task PullMessageBodyAsync(bool awaitTask, dynamic options, RabbitConnectionOptions hostOptions)
         {
             bool autoAck = options.AutoAck;//自动应答
             string queueName = options.QueueName;//队列名称
 
             var connectionStrings = hostOptions.ToConnectionStrings();//转换成连接字符串
-            var channel = ConnectionProvider.GetChannel(connectionStrings);//获取通道
+            var channel = await ConnectionProvider.GetChannelAsync(connectionStrings);//获取通道
 
-            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
+            await channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+            await channel.QueueDeclareAsync(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
-            var consumer = new EventingBasicConsumer(channel);
-            consumer.Shutdown += (sender, eventArgs) => eventArgs.ConsumerShutdownEventAsync(sender);
-            consumer.Received += (sender, eventArgs) => eventArgs.ReceivedMessageAsync<RabbitRpcHandler>(channel, awaitTask, autoAck, (response) => ClientCallbackAsync(eventArgs, channel, response));
-            channel.BasicConsume(queue: queueName, autoAck: autoAck, consumer: consumer);
-            return new TaskCompletionSource<string>().Task;//阻塞当前线程
+            var consumer = new AsyncEventingBasicConsumer(channel);
+            consumer.ShutdownAsync += (sender, eventArgs) => eventArgs.ConsumerShutdownEventAsync(sender);
+            consumer.ReceivedAsync += (sender, eventArgs) => eventArgs.ReceivedMessageAsync<RabbitRpcHandler>(channel, awaitTask, autoAck, (response) => ClientCallbackAsync(eventArgs, channel, response));
+            await channel.BasicConsumeAsync(queue: queueName, autoAck: autoAck, consumer: consumer);
+            await new TaskCompletionSource<string>().Task;//阻塞当前线程
         }
 
         /// <summary>
@@ -93,14 +93,13 @@ namespace Com.GleekFramework.RabbitMQSdk
         /// <param name="channel">通道</param>
         /// <param name="response">返回结果</param>
         /// <returns></returns>
-        private static Task ClientCallbackAsync(BasicDeliverEventArgs eventArgs, IModel channel, Task<ContractResult> response)
+        private static async Task ClientCallbackAsync(BasicDeliverEventArgs eventArgs, IChannel channel, Task<ContractResult> response)
         {
             var result = response;//返回结果
-            var replyProps = channel.CreateBasicProperties();
+            var replyProps = new BasicProperties();
             replyProps.CorrelationId = eventArgs.BasicProperties.CorrelationId;
             var bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(result));
-            channel.BasicPublish(exchange: string.Empty, routingKey: eventArgs.BasicProperties.ReplyTo, basicProperties: replyProps, body: bytes);
-            return Task.CompletedTask;
+            await channel.BasicPublishAsync(exchange: string.Empty, routingKey: eventArgs.BasicProperties.ReplyTo, mandatory: false, basicProperties: replyProps, body: bytes);
         }
     }
 }

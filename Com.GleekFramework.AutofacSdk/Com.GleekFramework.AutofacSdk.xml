@@ -14,6 +14,11 @@
             用于实现属性注入的基础接口类型
             </summary>
         </member>
+        <member name="F:Com.GleekFramework.AutofacSdk.AutofacConstant.BASEAUTOFAC_GENERIC_TYPE">
+            <summary>
+            用于实现属性注入的基础接口类型
+            </summary>
+        </member>
         <member name="F:Com.GleekFramework.AutofacSdk.AutofacConstant.CONTROLLERBASE_TYPE">
             <summary>
             基础控制器属性注入的基础接口类型
@@ -124,6 +129,12 @@
             依赖注入接口，IOC都要实现这个接口
             </summary>
         </member>
+        <member name="T:Com.GleekFramework.AutofacSdk.IBaseAutofac`1">
+            <summary>
+            依赖注入接口，IOC都要实现这个接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="T:Com.GleekFramework.AutofacSdk.DefaultModule">
             <summary>
             默认注入
@@ -138,6 +149,12 @@
         <member name="M:Com.GleekFramework.AutofacSdk.DefaultModule.RegisterAutofacBase(Autofac.ContainerBuilder)">
             <summary>
             注入所有的AutofacBase子类
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AutofacSdk.DefaultModule.RegisterAutofacGenericBase(Autofac.ContainerBuilder)">
+            <summary>
+            注入所有的Autofac泛型子类
             </summary>
             <param name="builder"></param>
         </member>

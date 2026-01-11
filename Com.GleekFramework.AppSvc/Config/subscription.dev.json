@@ -6,7 +6,7 @@
       {
         "Port": 5672,
         "UserName": "root",
-        "Host": "127.0.0.1",
+        "Host": "192.168.100.12",
         "Password": "ChinaNet910111"
       }
     ]
@@ -18,7 +18,7 @@
     "AwaitTask": false,
     "HostOptions": [
       {
-        "Host": "127.0.0.1:8080",
+        "Host": "192.168.100.12:8080",
         "Topics": [ "test_topic_01", "test_topic_02" ]
       }
     ]
@@ -29,7 +29,7 @@
     "GroupId": "com.gleekframework.kafka.test",
     "HostOptions": [
       {
-        "Host": "127.0.0.1:9092",
+        "Host": "192.168.100.12:9092",
         "Topics": [ "com.gleekframework.kafka.dev" ]
       }
     ]

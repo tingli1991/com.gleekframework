@@ -8,7 +8,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// SQLite数据仓储
     /// </summary>
-    public partial class SQLiteRepository : DapperRepository, IBaseAutofac
+    public partial class SQLiteRepository<T> : DapperRepository<T>, IBaseAutofac where T : ITable
     {
         /// <summary>
         /// SQLite

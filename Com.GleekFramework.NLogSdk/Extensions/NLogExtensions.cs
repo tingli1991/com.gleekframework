@@ -14,11 +14,7 @@ namespace Com.GleekFramework.NLogSdk
         /// <returns></returns>
         public static string Format(this DateTime content)
         {
-            if (content != null)
-            {
-                return content.ToString("yyyy-MM-dd HH:mm:ss.ffffff");
-            }
-            return string.Empty;
+            return content.ToString("yyyy-MM-dd HH:mm:ss.ffffff");
         }
     }
 }

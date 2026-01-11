@@ -12,7 +12,7 @@ namespace Com.GleekFramework.DapperSdk
     ///  查询构建器，支持条件过滤、排序和分页功能
     /// </summary>
     /// <typeparam name="TEntity">查询的实体类型</typeparam>
-    public class QueryableBuilder<TEntity> : QueryableBuilder<TEntity, TEntity>
+    public class QueryableBuilder<TEntity> : QueryableBuilder<TEntity, TEntity> where TEntity : ITable
     {
 
     }
@@ -22,7 +22,7 @@ namespace Com.GleekFramework.DapperSdk
     /// </summary>
     /// <typeparam name="TEntity">查询的实体类型</typeparam>
     /// <typeparam name="TResult">返回的实体类型</typeparam>
-    public class QueryableBuilder<TEntity, TResult>
+    public class QueryableBuilder<TEntity, TResult> where TEntity : ITable
     {
         /// <summary>
         /// Count执行脚本

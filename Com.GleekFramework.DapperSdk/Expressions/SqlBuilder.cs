@@ -61,9 +61,7 @@ namespace Com.GleekFramework.DapperSdk
         /// <returns></returns>
         public string GenInsertSQL()
         {
-            var propertieInfoList = PropertyInfoList
-               .Where(e => e.GetCustomAttribute<DatabaseGeneratedAttribute>()?.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity);
-
+            var propertieInfoList = PropertyInfoList.Where(e => !e.IsIncrementColumn());
             var parameterList = propertieInfoList.Select(e => "@" + e.Name);//新增的参数列表
             var columns = propertieInfoList.Select(e => ColumnMappingList[e.Name]);//新增的参数列
             return $"insert into {TableName} ({string.Join(",", columns)}) values ({string.Join(",", parameterList)});";
@@ -86,38 +84,8 @@ namespace Com.GleekFramework.DapperSdk
         /// <summary>
         /// 生成更新SQL脚本
         /// </summary>
-        /// <typeparam name="T">返回实体</typeparam>
-        /// <param name="entity">更新实体</param>
-        /// <param name="id">主键</param>
         /// <returns></returns>
-        public (string UpdateSQL, Dictionary<string, object> UpdateParamters) GenUpdateSQL<T>(E entity, long id) where T : class
-        {
-            var propertyInfo = typeof(T).GetPropertyInfoList().FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
-            var updateSQL = GenUpdateSQL(propertyInfo);//更新脚本
-
-            var columnIgnoreDic = Type.GetColumnIgnoreDic();//获取被忽略的列字典
-            var propertyInfoList = entity.GetType().GetPropertyInfoList().WhereIf(columnIgnoreDic.IsNotEmpty(), e => !columnIgnoreDic.ContainsKey(e.Name));//实体属性列表
-            var paramters = propertyInfoList.ToDictionary(k => k.Name, v => entity.GetPropertyValue(v.Name));
-            if (!paramters.ContainsKey(propertyInfo.Name))
-            {
-                paramters.Add(propertyInfo.Name, id);
-            }
-            else
-            {
-                paramters[propertyInfo.Name] = id;
-            }
-            return (updateSQL, paramters);
-        }
-
-        /// <summary>
-        /// 生成更新SQL脚本
-        /// </summary>
-        /// <returns></returns>
-        public string GenUpdateSQL()
-        {
-            var propertyInfo = PropertyInfoList.FirstOrDefault(e => e.GetCustomAttribute<KeyAttribute>() != null);
-            return GenUpdateSQL(propertyInfo);
-        }
+        public string GenUpdateSQL() => GenUpdateSQL(PropertyInfoList.GetKeyPropertyInfo());
 
         /// <summary>
         /// 生成更新SQL脚本
@@ -132,6 +100,91 @@ namespace Com.GleekFramework.DapperSdk
 
             var setClauses = PropertyInfoList.Where(e => e.Name != propertyInfo.Name).Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
             return $"update {TableName} set {string.Join(",", setClauses)} where {GetKeyColumnName(propertyInfo)}=@{propertyInfo.Name}";
+        }
+
+        /// <summary>
+        /// 生成更新SQL脚本
+        /// </summary>
+        /// <param name="fieldValues">需要更新的字典</param>
+        /// <param name="primaryValue">主键值</param>
+        /// <returns></returns>
+        public (string UpdateSQL, Dictionary<string, object> UpdateFieldValues) GenUpdateSQL(Dictionary<string, object> fieldValues, object primaryValue)
+        {
+            var type = typeof(E);
+            var propertyInfoList = type.GetPropertyInfoList();
+            var keyPropertyInfo = propertyInfoList.GetKeyPropertyInfo();
+            if (keyPropertyInfo == null)
+            {
+                throw new ArgumentNullException(nameof(PropertyInfo));
+            }
+
+            var primaryKeyValue = new KeyValuePair<string, object>(keyPropertyInfo.Name, primaryValue);
+            var primaryKeyFieldAndValue = propertyInfoList.GetColumnFieldAndValues(primaryKeyValue);
+            if (string.IsNullOrEmpty(primaryKeyFieldAndValue.Key))
+            {
+                throw new ArgumentNullException(nameof(primaryKeyValue));
+            }
+
+            type.ConversionInterfaceField(fieldValues);
+            var updateFieldValue = new Dictionary<string, object> { { primaryKeyFieldAndValue.Key, primaryKeyFieldAndValue.Value } };
+            foreach (var fieldValue in fieldValues)
+            {
+                var columnFieldAndValue = propertyInfoList.GetColumnFieldAndValues(fieldValue);
+                if (string.IsNullOrEmpty(columnFieldAndValue.Key))
+                {
+                    continue;
+                }
+                updateFieldValue.Add(columnFieldAndValue.Key, columnFieldAndValue.Value);
+            }
+            var setClauses = propertyInfoList.Where(e => e.Name != keyPropertyInfo.Name && updateFieldValue.Keys.Contains(e.Name)).Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
+            var sql = $"update {TableName} set {string.Join(",", setClauses)} where {GetKeyColumnName(keyPropertyInfo)}=@{keyPropertyInfo.Name}";
+            return (sql, updateFieldValue);
+        }
+
+        /// <summary>
+        /// 生成更新SQL脚本
+        /// </summary>
+        /// <param name="fieldValueList">需要更新的字典集合</param>
+        /// <returns></returns>
+        public (string UpdateSQL, IEnumerable<Dictionary<string, object>> UpdateFieldValues) GenUpdateSQL(Dictionary<object, Dictionary<string, object>> fieldValueList)
+        {
+            var type = typeof(E);
+            var propertyInfoList = type.GetPropertyInfoList();
+            var keyPropertyInfo = propertyInfoList.GetKeyPropertyInfo();
+            if (keyPropertyInfo == null)
+            {
+                throw new ArgumentNullException(nameof(PropertyInfo));
+            }
+
+            var updateFieldValues = new List<Dictionary<string, object>>();
+            foreach (var e in fieldValueList)
+            {
+                var primaryValue = e.Key;//主键值
+                var fieldValues = e.Value;//更新字段值
+                var primaryKeyValue = new KeyValuePair<string, object>(keyPropertyInfo.Name, primaryValue);
+                var primaryKeyFieldAndValue = propertyInfoList.GetColumnFieldAndValues(primaryKeyValue);
+                if (string.IsNullOrEmpty(primaryKeyFieldAndValue.Key))
+                {
+                    throw new ArgumentNullException(nameof(primaryKeyValue));
+                }
+
+                type.ConversionInterfaceField(fieldValues);
+                var updateFieldValue = new Dictionary<string, object> { { primaryKeyFieldAndValue.Key, primaryKeyFieldAndValue.Value } };
+                foreach (var fieldValue in fieldValues)
+                {
+                    var columnFieldAndValue = propertyInfoList.GetColumnFieldAndValues(fieldValue);
+                    if (string.IsNullOrEmpty(columnFieldAndValue.Key))
+                    {
+                        continue;
+                    }
+                    updateFieldValue.Add(columnFieldAndValue.Key, columnFieldAndValue.Value);
+                }
+                updateFieldValues.Add(updateFieldValue);
+            }
+            var firstFieldValue = updateFieldValues.FirstOrDefault();
+            var setClauses = propertyInfoList.Where(e => e.Name != keyPropertyInfo.Name && firstFieldValue.Keys.Contains(e.Name)).Select(e => $"{ColumnMappingList[e.Name]} = @{e.Name}");
+            var sql = $"update {TableName} set {string.Join(",", setClauses)} where {GetKeyColumnName(keyPropertyInfo)}=@{keyPropertyInfo.Name}";
+            return (sql, updateFieldValues);
         }
 
         /// <summary>

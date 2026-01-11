@@ -59,9 +59,9 @@ namespace Com.GleekFramework.CommonSdk
                 //执行回调方法
                 await callback(@SemaphoreSlim.CurrentCount);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -91,9 +91,9 @@ namespace Com.GleekFramework.CommonSdk
                 //执行回调方法
                 return await callback(@SemaphoreSlim.CurrentCount);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

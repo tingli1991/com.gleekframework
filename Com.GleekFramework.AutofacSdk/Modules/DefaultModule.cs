@@ -18,6 +18,7 @@ namespace Com.GleekFramework.AutofacSdk
         protected override void Load(ContainerBuilder builder)
         {
             RegisterAutofacBase(builder);//注入所有的AutofacBase子类
+            RegisterAutofacGenericBase(builder);//注入所有的Autofac泛型子类
             RegisterController(builder);//注册控制器的依赖关系
         }
 
@@ -27,8 +28,11 @@ namespace Com.GleekFramework.AutofacSdk
         /// <param name="builder"></param>
         private void RegisterAutofacBase(ContainerBuilder builder)
         {
+            //基础类型
+            var autofacType = AutofacConstant.BASEAUTOFAC_TYPE;
+
             //扫描当前执行目录下所有存在继承于IAutofacBase接口的程序集
-            var assemblyList = AssemblyProvider.GetAssemblyList(AutofacConstant.BASEAUTOFAC_TYPE);
+            var assemblyList = AssemblyProvider.GetAssemblyList(autofacType);
             if (assemblyList.IsNullOrEmpty())
             {
                 return;
@@ -36,10 +40,44 @@ namespace Com.GleekFramework.AutofacSdk
 
             //注入所有继承于IAutofacBase接口的实现类
             builder.RegisterAssemblyTypes(assemblyList.ToArray())
-                .Where(type => type != AutofacConstant.BASEAUTOFAC_TYPE && (AutofacConstant.BASEAUTOFAC_TYPE.IsAssignableFrom(type) || type.ImplementsGenericInterface(AutofacConstant.BASEAUTOFAC_TYPE)))
+                .Where(type => type != autofacType && (autofacType.IsAssignableFrom(type) || type.ImplementsGenericInterface(autofacType)))
                 .AsSelf()
                 .InstancePerLifetimeScope()
                 .PropertiesAutowired();
+        }
+
+        /// <summary>
+        /// 注入所有的Autofac泛型子类
+        /// </summary>
+        /// <param name="builder"></param>
+        private void RegisterAutofacGenericBase(ContainerBuilder builder)
+        {
+            //基础类型
+            var autofacType = AutofacConstant.BASEAUTOFAC_GENERIC_TYPE;
+
+            //扫描当前执行目录下所有存在继承于IAutofacBase接口的程序集
+            var assemblyList = AssemblyProvider.GetAssemblyList(autofacType);
+            if (assemblyList.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            //扫描所有的类型列表
+            var typeList = assemblyList.GetTypeList().Where(type => type != autofacType && (autofacType.IsAssignableFrom(type) || type.ImplementsGenericInterface(autofacType)));
+            if (typeList.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            //循环注入泛型实现
+            foreach (var type in typeList)
+            {
+                //注册你的MongoRepository以及其所有继承类
+                builder.RegisterGeneric(type)
+                .AsSelf()
+                .InstancePerLifetimeScope()
+                .PropertiesAutowired();//启用属性注入
+            }
         }
 
         /// <summary>

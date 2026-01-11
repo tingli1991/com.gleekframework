@@ -14,7 +14,7 @@ namespace Com.GleekFramework.Models
     /// </summary>
     [Table("com_area")]
     [Comment("地区信息表")]
-    public class ComArea : ITable, IVersionTable
+    public class ComArea : ITable, IVersion
     {
         /// <summary>
         /// 主键

@@ -9,6 +9,7 @@ namespace Com.GleekFramework.SecuritySdk
     /// </summary>
     public class Md5Service : IBaseAutofac
     {
+        /// <summary>
         /// 计算字符串的MD5哈希值（不加盐）
         /// </summary>
         /// <param name="input">原始字符串</param>

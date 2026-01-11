@@ -8,7 +8,7 @@ namespace Com.GleekFramework.DapperSdk
     /// <summary>
     /// MySql仓储服务
     /// </summary>
-    public partial class MySqlRepository : DapperRepository, IBaseAutofac
+    public partial class MySqlRepository<T> : DapperRepository<T>, IBaseAutofac where T : ITable
     {
         /// <summary>
         /// MySQL
@@ -24,7 +24,6 @@ namespace Com.GleekFramework.DapperSdk
         /// 获取连接对象
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         protected override IDbConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
