@@ -1,0 +1,592 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.Tests.AppSvc</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.AppSvc.Attributes.TestCustomActionAttribute">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Attributes.TestCustomActionAttribute.Order">
+            <summary>
+            排序(升序排序)
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Attributes.TestCustomActionAttribute.OnActionExecutingAsync(Com.GleekFramework.ConsumerSdk.CustomActionExecutingContext)">
+            <summary>
+            方法执行之前调用
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Attributes.TestCustomActionAttribute.OnActionExecutedAsync(Com.GleekFramework.ConsumerSdk.CustomActionExecutedContext)">
+            <summary>
+            方法执行完成之后调用
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Attributes.TestCustomAuthorizeAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Attributes.TestCustomAuthorizeAttribute.Order">
+            <summary>
+            排序(升序排序)
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Attributes.TestCustomAuthorizeAttribute.OnAuthorizationAsync(Com.GleekFramework.ConsumerSdk.CustomAuthorizationContext)">
+            <summary>
+            方法调用之前，比 CustomActionAttribute 更早
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.ConfigController">
+            <summary>
+            配置测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.Summaries">
+            <summary>
+            注入配置信息
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.ConfigOptions">
+            <summary>
+            配置选项
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ConfigController.DependencyService">
+            <summary>
+            服务依赖注入
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.AddAsync(Com.GleekFramework.Models.WeatherForecastParam)">
+            <summary>
+            添加天气预报
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ConfigController.GetAsync(System.String,System.Boolean)">
+            <summary>
+            获取天气预报
+            </summary>
+            <param name="appId">应用Id</param>
+            <param name="status">状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.KafkaController">
+            <summary>
+            Kafka测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.SnowflakeService">
+            <summary>
+            流水号生成器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.HttpClientFactory">
+            <summary>
+            Http客户端工厂类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.HttpContextAccessor">
+            <summary>
+            Http请求上下文
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.KafkaController.KafkaClientService">
+            <summary>
+            Kafka客户端服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.KafkaController.TestAsync">
+            <summary>
+            接口测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.MySqlController">
+            <summary>
+            MySQL测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.MySqlController.ComAreaRepository">
+            <summary>
+            区域仓储
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.MySqlController.GetPageListAsync(Com.GleekFramework.Models.ComAreaPageParam)">
+            <summary>
+            获取分页列表
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController">
+            <summary>
+            对象存储控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.S3ProtocolService">
+            <summary>
+            S3协议服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadFileAsync(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file">要上传的文件</param>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadContentAsync(System.String,System.String,System.String)">
+            <summary>
+            上传文本内容
+            </summary>
+            <param name="content">文本内容</param>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.UploadContentAsync(Com.GleekFramework.Models.ComAreaModel)">
+            <summary>
+            上传对象
+            </summary>
+            <param name="param">要上传的文本内容</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.DownloadFileAsync(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.GetContentAsync(System.String,System.String)">
+            <summary>
+            下载文本内容
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.GetObjectAsync(System.String,System.String)">
+            <summary>
+            下载对象
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.ObjectStorageController.DeleteFileAsync(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="fileKey">文件存储路径</param>
+            <param name="bucketName">存储桶名称（可选）</param>
+            <returns>文件流</returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.QueueController">
+            <summary>
+            本地队列测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.QueueController.SnowflakeService">
+            <summary>
+            流水号生成器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.QueueController.QueueClientService">
+            <summary>
+            客户端服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.QueueController.TestAsync">
+            <summary>
+            生产测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RabbitController">
+            <summary>
+            RabbitMQ测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.SnowflakeService">
+            <summary>
+            流水号生成器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.RabbitRpcClientService">
+            <summary>
+            RPC客户端服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.RabbitWorkClientService">
+            <summary>
+            工作模式可客户端
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RabbitController.RabbitSubscribeClientService">
+            <summary>
+            发布订阅模式客户端
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RabbitController.RpcAsync">
+            <summary>
+            RPC测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RabbitController.WorkAsync">
+            <summary>
+            Work测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RabbitController.SubscribeAsync">
+            <summary>
+            Subscribe测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RedisController">
+            <summary>
+            Redis控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RedisController.RedisHashRepository">
+            <summary>
+            Redis哈希仓储类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RedisController.TestAsync">
+            <summary>
+            测试方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.RocketController">
+            <summary>
+            RocketMQ测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.RocketController.RocketClientService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.RocketController.ExecuteAsync">
+            <summary>
+            测试执行方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Controllers.StackController">
+            <summary>
+            本地栈测试控制器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.StackController.SnowflakeService">
+            <summary>
+            流水号生成器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Controllers.StackController.StackClientService">
+            <summary>
+            客户端服务
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Controllers.StackController.TestAsync">
+            <summary>
+            生产测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.KafkaCustomerHandler">
+            <summary>
+            自定义Kafka消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.KafkaCustomerHandler.NLogService">
+            <summary>
+            日志服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.KafkaCustomerHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.KafkaCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.QueueCustomerHandler">
+            <summary>
+            自定义队列消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.QueueCustomerHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.QueueCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.QueueDefaultHandler">
+            <summary>
+            默认队列消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.QueueDefaultHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.QueueDefaultHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RabbitRpcCustomerHandler">
+            <summary>
+            队列测试方法定义类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitRpcCustomerHandler.ActionKey">
+            <summary>
+            定义方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitRpcCustomerHandler.QueueName">
+            <summary>
+            自定义RPC队列名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RabbitRpcCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RabbitRpcTestHandler">
+            <summary>
+            队列测试方法定义类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitRpcTestHandler.ActionKey">
+            <summary>
+            定义方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RabbitRpcTestHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RabbitSubscribeTestHandler">
+            <summary>
+            发布订阅模式消费 
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitSubscribeTestHandler.ActionKey">
+            <summary>
+            定义方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitSubscribeTestHandler.ExchangeName">
+            <summary>
+            交换机名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RabbitSubscribeTestHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RabbitWorkTestHandler">
+            <summary>
+            工作模式消费
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitWorkTestHandler.ActionKey">
+            <summary>
+            定义方法名称
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RabbitWorkTestHandler.QueueName">
+            <summary>
+            队列名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RabbitWorkTestHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody">消息内容</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.RocketTestHandler">
+            <summary>
+            测试消费
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.RocketTestHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.RocketTestHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.StackCustomerHandler">
+            <summary>
+            自定义栈消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.StackCustomerHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.StackCustomerHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.StackDefaultHandler">
+            <summary>
+            默认栈消费处理类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.StackDefaultHandler.ActionKey">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.StackDefaultHandler.ExecuteAsync(Com.GleekFramework.ContractSdk.MessageBody)">
+            <summary>
+            执行方法
+            </summary>
+            <param name="messageBody"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Program">
+            <summary>
+            程序类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Program.Main(System.String[])">
+            <summary>
+            程序主函数
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Program.CreateDefaultHostBuilder(System.String[])">
+            <summary>
+            创建系统主机
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository">
+            <summary>
+            区域仓储
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.SnowflakeService">
+            <summary>
+            流水号生成服务
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.DefaultRepository">
+            <summary>
+            默认测试仓储(读写)
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Repositorys.ComAreaRepository.GetPageListAsync(Com.GleekFramework.Models.ComAreaPageParam)">
+            <summary>
+            获取分页列表
+            </summary>
+            <param name="param">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.DefaultRepository`1">
+            <summary>
+            默认测试仓储(读写)
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.DefaultRepository`1.ConnectionName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.MongoOnlyRepository`1">
+            <summary>
+            自定义仓储
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Com.GleekFramework.AppSvc.MongoOnlyRepository`1.ConnectionName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AppSvc.Startup">
+            <summary>
+            程序激动类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AppSvc.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置服务
+            </summary>
+            <param name="app"></param>
+        </member>
+    </members>
+</doc>

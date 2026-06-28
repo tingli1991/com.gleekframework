@@ -1,0 +1,27 @@
+{
+  "Switch": false,
+  "UserName": "nacos",
+  "ListenInterval": 15000,
+  "Password": "ChinaNet910111",
+  "GroupName": "org-gleek-fromework",
+  "NamespaceId": "bc8b30e8-5bd4-42b2-9099-82031950928a",
+  "ServerAddresses": [
+    "http://localhost:8848/"
+  ],
+  "ConfigSettings": {
+    "RelativePath": true,
+    "ConfigPath": "Config/",
+    "ConfitOptions": [
+      {
+        "NamespaceId": "public",
+        "ConfigName": "share.dev.json",
+        "DataId": "org-gleek-fromework-share.json"
+      },
+      {
+        "PrivatePath": true,
+        "ConfigName": "appsettings.dev.json",
+        "DataId": "org-gleek-fromework-appsvc.json"
+      }
+    ]
+  }
+}

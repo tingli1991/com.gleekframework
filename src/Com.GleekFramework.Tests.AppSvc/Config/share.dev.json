@@ -1,0 +1,29 @@
+{
+  "RocketAccountOptions": {
+    "SecretKey": "SKnRjkl12s93dd",
+    "AccessKey": "{{YouAccessKey}}",
+    "InstanceId": "i-0f2g1h2j3k4l5m"
+  },
+  "ObjectStorageOptions": {
+    "AccessKey": "RfdVTt86grLKp56sySzw",
+    "Endpoint": "http://localhost:9001/",
+    "DefaultBucketName": "gleek.fromework",
+    "SecretKey": "XM8mtjTiW0tKfivGlKz9j8W3OQE9h9tbFUwZY52A"
+  },
+  "KafkaConnectionStrings": {
+    "DefaultClientHosts": "localhost:9092"
+  },
+  "RabbitConnectionStrings": {
+    "DefaultClientHosts": "Host=localhost;VirtualHost=/;Port=5672;UserName=root;Password={{YouPassword}};"
+  },
+  "MongoConnectionStrings": {
+    "DefaultClientHosts": "mongodb://root:{{YouPassword}}@localhost:27017;",
+    "DefaultClientOnlyHosts": "mongodb://root:{{YouPassword}}@localhost:27017;"
+  },
+  "ConnectionStrings": {
+    "RedisConnectionHost": "localhost:6379,password={{YouPassword}},defaultDatabase=0,poolsize=50,ssl=false,writeBuffer=10240",
+    "DefaultMySQLHosts": "server=localhost;port=3306;Database=gleek_fromework;UID=root;PWD={{YouPassword}};Command Timeout=180;",
+    "AuthCenterHosts": "server=localhost;port=3306;Database=gleek_fromework;UID=root;PWD={{YouPassword}};Command Timeout=180;",
+    "AuthCenterOnlyHosts": "server=localhost;port=3306;Database=gleek_fromework;UID=root;PWD={{YouPassword}};Command Timeout=180;"
+  }
+}

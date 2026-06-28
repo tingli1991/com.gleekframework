@@ -94,4 +94,7 @@ docs-temp
 # Verify Tests
 *.received.*
 /.sonarqube
-nupkgs/*
+nupkgs/
+
+# Local environment config (contains machine-specific settings)
+*.local.json

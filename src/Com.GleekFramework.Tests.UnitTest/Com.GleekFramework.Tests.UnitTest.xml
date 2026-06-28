@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.Tests.UnitTest</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.UnitTest.BaseUnitTest">
+            <summary>
+            单元测试基类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.UnitTest.BaseUnitTest.Container">
+            <summary>
+            Autofac 容器
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.UnitTest.BaseUnitTest.Configuration">
+            <summary>
+            配置对象
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.BaseUnitTest.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.BaseUnitTest.Initialize">
+            <summary>
+            初始化配置和 DI 容器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.BaseUnitTest.OnRegisterServices(Autofac.ContainerBuilder)">
+            <summary>
+            注册服务（子类可重写添加测试所需的服务注册）
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.BaseUnitTest.GetService``1">
+            <summary>
+            从 DI 容器获取服务
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.BaseUnitTest.Dispose">
+            <summary>
+            清理资源
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.BaseUnitTest.ContainerServiceProvider">
+            <summary>
+            将 IContainer 适配为 IServiceProvider
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests">
+            <summary>
+            程序集服务单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.AssemblyServiceResolveSucceed">
+            <summary>
+            通过 DI 获取 AssemblyService 实例
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.GetAssemblyWithExistingNameReturnsAssembly">
+            <summary>
+            加载已存在的程序集应返回非空结果
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.GetAssemblyWithNonExistentNameReturnsNull">
+            <summary>
+            加载不存在的程序集应返回 null（不抛异常）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.GetAssemblyListReturnsAssemblies">
+            <summary>
+            获取程序集列表应返回非空集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.GetAssemblyListByIBaseAutofacReturnsFilteredAssemblies">
+            <summary>
+            按类型筛选程序集，应返回包含 IBaseAutofac 实现的程序集
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.GetAssemblyListByNullTypeReturnsAllAssemblies">
+            <summary>
+            传入 null 类型过滤，应返回完整的程序集列表
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.CheckIsAssignableFromAssemblyHasIBaseAutofacReturnsTrue">
+            <summary>
+            检查程序集是否包含指定类型的子类，应返回 true
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.CheckIsAssignableFromNullAssemblyReturnsFalse">
+            <summary>
+            传入 null 程序集应返回 false，不抛异常
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.AssemblyServiceTests.CheckIsAssignableFromNoMatchTypeReturnsFalse">
+            <summary>
+            检查不包含指定类型的程序集应返回 false
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Assembly.DocumentServiceTests">
+            <summary>
+            文档服务单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.DocumentServiceTests.GetXmlDocumentFileListReturnsNonEmptyList">
+            <summary>
+            获取 XML 文档文件列表应返回非空集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.DocumentServiceTests.GetXmlDocumentFileListAllPathsEndWithXml">
+            <summary>
+            所有返回的文件路径应以 .xml 结尾
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.DocumentServiceTests.GetXmlDocumentFileListAllPathsAreAbsolute">
+            <summary>
+            所有返回的文件路径应为绝对路径
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.DocumentServiceTests.GetXmlDocumentFileListMultipleCallsReturnsSameResult">
+            <summary>
+            多次调用应返回相同的结果（缓存机制）
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests">
+            <summary>
+            编译库服务单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListReturnsNonEmptyList">
+            <summary>
+            获取编译库名称列表应返回非空集合
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListAllNamesAreValid">
+            <summary>
+            编译库名称不应为空或空白字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListContainsKnownAssembly">
+            <summary>
+            编译库名称应包含当前项目的核心程序集
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListExcludesMicrosoft">
+            <summary>
+            不包含以 Microsoft 开头的系统库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListExcludesSystem">
+            <summary>
+            不包含以 System 开头的系统库
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Assembly.LibraryServiceTests.GetCompileLibrarieNnameListMultipleCallsReturnsSameResult">
+            <summary>
+            多次调用应返回相同的结果（缓存机制）
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.Base64Md5ExtensionsTests">
+            <summary>
+            Base64 和 MD5 扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.DateTimeExtensionsTests">
+            <summary>
+            时间扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.EmptyVerifyExtensionsTests">
+            <summary>
+            空值验证扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.EnumExtensionsTests">
+            <summary>
+            枚举扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.RadomExtensionsTests">
+            <summary>
+            随机数扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Common.StringExtensionsTests">
+            <summary>
+            字符串扩展方法单元测试
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests">
+            <summary>
+            契约结果模型单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultDefaultSuccessIsFalse">
+            <summary>
+            ContractResult 默认 Success 为 false
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultDefaultCodeIsFail">
+            <summary>
+            ContractResult 默认 Code 为 FAIL 的哈希值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultSetSuccessWorks">
+            <summary>
+            设置 Success 后能正确读取
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultDefaultSerialNoIsNotEmpty">
+            <summary>
+            ContractResult 的 SerialNo 默认不为空
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultDefaultTimeStampIsPositive">
+            <summary>
+            ContractResult 的 TimeStamp 大于 0
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultDefaultMessageIsNotEmpty">
+            <summary>
+            ContractResult 的 Message 默认不为空
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultSerialNoIsUnique">
+            <summary>
+            ContractResult 的 SerialNo 每次创建不同
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultGenericInheritsFromBase">
+            <summary>
+            ContractResult(T) 继承自 ContractResult
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ContractResultTests.ContractResultGenericDataWorks">
+            <summary>
+            ContractResult(T) 设置 Data 后能正确读取
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests">
+            <summary>
+            格式化扩展方法单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_FormatsCorrectly">
+            <summary>
+            SafeFormat 正常格式化字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_InsufficientArgsKeepsPlaceholder">
+            <summary>
+            SafeFormat 参数个数不足时保留占位符
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_EmptyReturnsEmpty">
+            <summary>
+            SafeFormat 空字符串返回原值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_NullReturnsNull">
+            <summary>
+            SafeFormat null 返回 null
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_NoPlaceholdersReturnsOriginal">
+            <summary>
+            SafeFormat 无占位符返回原文
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_NullArgBecomesEmpty">
+            <summary>
+            SafeFormat 参数数组中包含 null 时转为空字符串
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_MultiplePlaceholders">
+            <summary>
+            SafeFormat 多占位符均正确替换
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.FormatExtensionsTests.SafeFormat_NoArgsReturnsOriginal">
+            <summary>
+            SafeFormat 无参数时返回原文
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests">
+            <summary>
+            消息扩展方法单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetData_FromMessageBodyObject_ReturnsData">
+            <summary>
+            GetData 从 MessageBody(object) 中提取 JSON 字符串数据
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetData_FromMessageBodyGeneric_ReturnsData">
+            <summary>
+            GetData 从 MessageBody(T) 中提取数据
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetData_NullDataReturnsNull">
+            <summary>
+            GetData Data 为 null 时返回 null
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetData_FromMessageBodyObjectNullData_ReturnsNull">
+            <summary>
+            GetData Data 为 null 时返回 null（MessageBody(object) 类型）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetDataAsync_ReturnsData">
+            <summary>
+            GetDataAsync 异步获取数据
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.GetData_InvalidType_ThrowsException">
+            <summary>
+            GetData 非 MessageBody(object) 或 MessageBody(T) 时抛异常
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.MessageExtensionsTests.MessageBody_PropertiesSetCorrectly">
+            <summary>
+            MessageBody 属性赋值正确
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.Person">
+            <summary>
+            测试用人员类
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.UnitTest.Tests.Contract.Person.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.UnitTest.Tests.Contract.Person.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests">
+            <summary>
+            分页结果模型单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageResult_PropertiesSetCorrectly">
+            <summary>
+            PageResult 属性赋值正确
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageDataResult_PagingCalculationsCorrect">
+            <summary>
+            PageDataResult 计算分页属性
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageDataResult_EdgeCases">
+            <summary>
+            PageDataResult HasNext 和 HasPrevious 边界值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageDataResult_ZeroPageSizeProtection">
+            <summary>
+            PageDataResult PageSize 为 0 时 PageCount 使用除数 1
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageParam_DefaultPageSizeIs20">
+            <summary>
+            PageParam 默认 PageSize 为 20
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.PageResultTests.PageParam_DefaultNextIdIsNull">
+            <summary>
+            PageParam NextId 默认 null
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests">
+            <summary>
+            结果扩展方法单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccful_SuccessIsTrue">
+            <summary>
+            SetSuceccful 后 Success 为 true
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccful_CodeIsSuccess">
+            <summary>
+            SetSuceccful 后 Code 为 SUCCESS 的哈希值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccful_MessageIsSuccess">
+            <summary>
+            SetSuceccful 后 Message 为"成功"
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccful_WithSerialNo">
+            <summary>
+            SetSuceccful 带流水号参数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccful_WithFormatArgs">
+            <summary>
+            SetSuceccful 带格式化参数
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetSuceccfulGeneric_DataWorks">
+            <summary>
+            SetSuceccful(T) 后 Data 正确
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetError_SuccessIsFalse">
+            <summary>
+            SetError 后 Success 为 false
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetError_CodeMatches">
+            <summary>
+            SetError 后 Code 为对应错误码的哈希值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetError_MessageMatches">
+            <summary>
+            SetError 后 Message 为错误描述的枚举描述
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetError_WithSerialNo">
+            <summary>
+            SetError 带流水号后 SerialNo 正确
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.IsSuceccful_ReturnsCorrectStatus">
+            <summary>
+            IsSuceccful 返回 Success 的值
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.IsSuceccful_NullReturnsFalse">
+            <summary>
+            IsSuceccful 对 null 返回 false
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.ResultExtensionsTests.SetErrorGeneric_Works">
+            <summary>
+            SetError 泛型后 Success 为 false 且 Data 为 default
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests">
+            <summary>
+            雪花算法服务单元测试
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetSerialNo_ReturnsNotEmpty">
+            <summary>
+            GetSerialNo 返回不为空
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetSerialNo_LengthIs28">
+            <summary>
+            GetSerialNo 返回 28 位长度（yyMMddHHmmssffff + 3位机器码 + 9位序号）
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetSerialNo_IsUnique">
+            <summary>
+            多次获取流水号不重复
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetVersionNo_IsPositive">
+            <summary>
+            GetVersionNo 返回大于 0
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetVersionNo_IsUnique">
+            <summary>
+            多次获取版本号不重复
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.UnitTest.Tests.Contract.SnowflakeServiceTests.GetSerialNo_StartsWithDate">
+            <summary>
+            流水号以日期开头
+            </summary>
+        </member>
+    </members>
+</doc>

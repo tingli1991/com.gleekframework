@@ -1,0 +1,15 @@
+{
+  "AllowedHosts": "*",
+  "Summaries": [
+    "Freezingss",
+    "Bracing"
+  ],
+  "ConfigOptions": {
+    "Id": 11111,
+    "Name": "张三",
+    "Arrays": [
+      "1",
+      "你好"
+    ]
+  }
+}

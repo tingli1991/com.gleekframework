@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 页面标题，应包含核心关键词 -->
+  <title>GleekFramework - 高性能常用且极简的NET组件库</title>
+
+  <!-- 为搜索引擎爬虫设置指令 -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- 网页的logo 图标 -->
+  <link rel="icon" href="/images/logo/favicon.ico" />
+
+  <!-- 兼容IE浏览器 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!-- 确保网页适配不同设备 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+  <!-- 其他SEO相关标签 -->
+  <meta name="keywords" content="NET框架,NET微服务框架,NET微服务架构,NET组件库" />
+
+  <!-- Meta 描述标签，包含关键词，简洁描述网站或页面内容 -->
+  <meta name="description" content="GleekFramework是一套针对.NET应用开发的高性能、极简的微服务框架。适合追求轻便、快速上手和高性能应用的开发者。" />
+
+  <!-- 设置默认的网站样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fc78fd801acfa5b8cb0729fecb521c34";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+
+<body>
+  <nav class="app-nav no-badge">
+    <ul>
+      <li>
+        <img src="/images/language/language.svg" alt="language" class="emoji" loading="lazy"></a>
+        <ul>
+          <li>
+            <a href="/docs/en-us/" title=" English">
+              <img src="/images/language/en.png" alt="cn" class="emoji" loading="lazy">
+              <span> English</span>
+            </a>
+          </li>
+          <li style="width:100px;">
+            <a href="/docs/zh-cn/" title=" 简体中文">
+              <img src="/images/language/cn.png" alt="cn" class="emoji" loading="lazy">
+              <span> 简体中文</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      el: "#app",
+      maxLevel: 3,
+      homepage: '',
+      subMaxLevel: 3,
+      coverpage: true,
+      loadSidebar: true,
+      onlyCover: true,
+      notFoundPage: '/docs/_404.md',
+      routerMode: 'history',//路由模式，默认  hash
+      search: {
+        depth: 3,// 搜索标题的最大层级, 1 - 6
+        pathNamespaces: ['/', '/zh-cn/', '/en-us/'],//使用不同的索引作为路径前缀（namespaces）
+        pathNamespaces: /^(\/(zh-cn|ru-ru))?(\/(v1|v2))?/,
+        // 支持本地化
+        noData: {
+          '/en-us/': 'No Results',
+          '/zh-cn/': '找不到结果',
+        },
+        // 支持本地化
+        placeholder: {
+          '/en-us/': 'Search',
+          '/zh-cn/': '搜索',
+        }
+      },
+      footer: {
+        style: 'text-align: right;',
+        auth: '<strong style="font-size:13px;"><a style="color: black;text-decoration: none;" href="https://github.com/tingli1991" target="_blank">&nbsp;ζ๓ 蜗·牛</a></strong>',
+        copy: '<span style="font-size:13px;">Copyright &copy; 2024 &nbsp 💖 &nbsp<a style="color: black;text-decoration: none;" href="https://beian.miit.gov.cn/#" target="_blank">渝ICP备2024030243号-1</a></span>'
+      }
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+</body>
+
+</html>

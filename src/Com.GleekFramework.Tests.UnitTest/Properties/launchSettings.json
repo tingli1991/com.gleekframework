@@ -1,0 +1,19 @@
+{
+  "profiles": {
+    "Com.GleekFramework.Tests.UnitTest": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENV": "local",
+        "PORT": "8082",
+        "SCHEME": "http",
+        "MODULE": "",
+        "VERSION": "v1.0.0.0",
+        "NACOS_SWITCH": "false",
+        "SWAGGER_SWITCH": "false",
+        "MIGRATION_SWITCH": "false",
+        "UPGRATION_SWITCH": "false",
+        "NACOS_URL": "http://localhost:8848"
+      }
+    }
+  }
+}

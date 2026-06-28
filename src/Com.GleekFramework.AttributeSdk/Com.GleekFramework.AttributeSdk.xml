@@ -1,0 +1,449 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.GleekFramework.AttributeSdk</name>
+    </assembly>
+    <members>
+        <member name="T:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute">
+            <summary>
+            允许用户授权范围特性
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute._verifyStatus">
+            <summary>
+            验证用户状态
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyUser">
+            <summary>
+            是否验证用户必填
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyToken">
+            <summary>
+            是否验证令牌过期
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.AllowAuthorizeAttribute.VerifyStatus">
+            <summary>
+            验证用户状态
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute">
+            <summary>
+            必填验证
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.CustomRequiredAttribute.#ctor(System.Object)">
+            <summary>
+            验证失败时的错误消息
+            </summary>
+            <param name="errorMessage"></param>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.GlobalExceptionAttribute">
+            <summary>
+            全局异常过滤器
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.GlobalExceptionAttribute.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            发生异常时调用
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.ModelValidAttribute">
+            <summary>
+            模型验证过滤器
+            具体的验证规则请参见命名空间：System.ComponentModel.DataAnnotations
+            微软官方地址：https://docs.microsoft.com/zh-cn/dotnet/api/system.componentmodel.dataannotations?view=net-5.0
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.ModelValidAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            方法调用之前出发
+            </summary>
+            <param name="context">上下文</param>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.ModelValidAttribute.GetModelStateErrorDic(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            获取模型验证信息
+            </summary>
+            <param name="modelState">模型状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.ModelValidAttribute.ToEnum(System.Type,System.String)">
+            <summary>
+            枚举转换
+            </summary>
+            <param name="type">错误类型</param>
+            <param name="enumNameOrValue">枚举名称或者枚举值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute">
+            <summary>  
+            Query必填验证
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.Name">
+            <summary>  
+            Query名称
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.BindingSource">
+            <summary>  
+            绑定资源  
+            </summary>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.Object)">
+            <summary>  
+            构造函数  
+            </summary>
+            <param name="errorMessage">错误消息</param>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.QueryRequiredAttribute.#ctor(System.String,System.Object)">
+            <summary>  
+            构造函数  
+            </summary>  
+            <param name="name">Query名称</param>  
+            <param name="errorMessage">错误消息</param>  
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute">
+            <summary>  
+            路由必填验证
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.Name">
+            <summary>  
+            路由名称  
+            </summary>  
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.BindingSource">
+            <summary>  
+            绑定资源  
+            </summary>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.Object)">
+            <summary>  
+            构造函数
+            </summary>
+            <param name="errorMessage">错误消息</param>  
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.RouteRequiredAttribute.#ctor(System.String,System.Object)">
+            <summary>  
+            构造函数
+            </summary>  
+            <param name="name">路由名称</param>  
+            <param name="errorMessage">错误消息</param>  
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.BaseController">
+            <summary>
+            基础控制器
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.GrantType">
+            <summary>
+            授权模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.PASSWORD">
+            <summary>
+            密码模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.AUTHORIZATION_CODE">
+            <summary>
+            授权码模式
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.GrantType.CLIENT_CREDENTIALS">
+            <summary>
+            客户端凭证模式
+            </summary>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.ModelValidExtensions">
+            <summary>
+            模型验证扩展方法
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.ModelValidExtensions.Type">
+            <summary>
+            错误信息枚举
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.ModelValidExtensions.Add``2(Microsoft.AspNetCore.Mvc.Filters.FilterCollection)">
+            <summary>
+            注入模型验证
+            </summary>
+            <typeparam name="TFilterType"></typeparam>
+            <typeparam name="EnumType"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions">
+            <summary>
+            日志收集扩展
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions.Level">
+            <summary>
+            日志级别
+            </summary>
+        </member>
+        <member name="P:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions.ExclActionList">
+            <summary>
+            排除的接口路径配置
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddlewareExtensions.UseNLogMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder,NLog.LogLevel,System.Boolean,System.Collections.Generic.IEnumerable{System.String},System.Object[])">
+            <summary>
+            接口日志收集
+            </summary>
+            <param name="app"></param>
+            <param name="level">日志级别</param>
+            <param name="isSaveContent">是否保存Content字段</param>
+            <param name="exclActionList"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.OAuthExtensions">
+            <summary>
+            认证拓展类
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.TOKEN_KEY_FIELD">
+            <summary>
+            令牌键字段名
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.GRANT_TYPE_FIELD">
+            <summary>
+            授权模式字段名
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.OAuthExtensions.START_WITH_TOKEN_KEY">
+            <summary>
+            访问令牌前缀
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.CreateAccessToken(Microsoft.IdentityModel.Tokens.SigningCredentials,System.String,Com.GleekFramework.AttributeSdk.GrantType,System.Int32,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})">
+            <summary>
+            生成访问令牌
+            </summary>
+            <param name="gigningCredentials"></param>
+            <param name="tokenKey">令牌键</param>
+            <param name="grantType">授权模式</param>
+            <param name="expireSeconds">过期时间</param>
+            <param name="claims">声明集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessTokenHeaders(System.String)">
+            <summary>
+            获取访问令牌的头部信息
+            </summary>
+            <param name="accessToken">访问令牌</param>
+            <returns>包含 TokenKey 和 GrantType 的元组</returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetTokenExpiryTime(System.String)">
+            <summary>
+            获取访问令牌的过期时间
+            </summary>
+            <param name="accessToken">访问令牌</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetTokenExpiryTime(Microsoft.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            获取访问令牌的过期时间
+            </summary>
+            <param name="securityToken">访问令牌</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            从上下文获取访问令牌
+            </summary>
+            <param name="contextAccessor">上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAccessToken(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            从上下文获取访问令牌
+            </summary>
+            <param name="httpContext">上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.SetUserInfo(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            转换授权对象
+            </summary>
+            <param name="contextAccessor">Http上下文</param>
+            <param name="userInfo">授权信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.SetUserInfo(Microsoft.AspNetCore.Http.HttpContext,System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            设置授权对象
+            </summary>
+            <param name="httpContext">Http上下文</param>
+            <param name="userInfo">授权信息</param>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetUserInfo``1(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            转换授权对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contextAccessor">Http上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetUserInfo``1(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            转换授权对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="httpContext">Http上下文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.ToAccessTokenClaims``1(``0)">
+            <summary>
+            转换为声明集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="userInfo">用户信息模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.OAuthExtensions.GetAllowAuthorizeAttribute(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            获取允许用户授权范围特性
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions">
+            <summary>
+            Web主题拓展类
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseGleekConsumerHostDefaults(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用默认的消费者主机
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseGleekWebHostDefaults``1(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            使用默认的Web主机
+            </summary>
+            <typeparam name="Startup"></typeparam>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.UseHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{System.String})">
+            <summary>
+            使用心跳检测
+            </summary>
+            <param name="builder"></param>
+            <param name="callback">输出的内容(默认为：ok)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddGlobalAttribute``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加全局过滤器
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddGlobalExceptionAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加全局异常
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddModelValidAttribute``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加模型验证
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.AttributeHostingExtensions.AddNewtonsoftJson(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加默认的JSON配置参数
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.NLogMiddleware">
+            <summary>
+            接口日志收集中间件
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.NLogMiddleware._next">
+            <summary>
+            请求管道
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            中间件执行方法
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddleware.GetResponseBodyJsonStr(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取返回结果的JSON字符串
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddleware.ConvertObject(System.String,System.String)">
+            <summary>
+            转换对象
+            </summary>
+            <param name="requestJson">请求参数</param>
+            <param name="responseJson">返回结果</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NLogMiddleware.GetSerialNo(Microsoft.AspNetCore.Http.IHeaderDictionary,System.Object,System.Object)">
+            <summary>
+            获取业务流水号
+            </summary>
+            <param name="headers"></param>
+            <param name="request">请求参数</param>
+            <param name="response">返回结果的Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.GleekFramework.AttributeSdk.NotEqualAttribute">
+            <summary>
+            不等于模型验证
+            </summary>
+        </member>
+        <member name="F:Com.GleekFramework.AttributeSdk.NotEqualAttribute._value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NotEqualAttribute.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Com.GleekFramework.AttributeSdk.NotEqualAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

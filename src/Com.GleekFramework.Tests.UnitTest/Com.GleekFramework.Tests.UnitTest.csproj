@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<Nullable>disable</Nullable>
+		<IsPackable>false</IsPackable>
+		<NoWarn>CS1591;xUnit1048</NoWarn>
+		<Copyright>@2023 Gleek</Copyright>
+		<Company>org.gleekframework</Company>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFramework>net10.0</TargetFramework>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="6.0.4">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Com.GleekFramework.HttpSdk\Com.GleekFramework.HttpSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RedisSdk\Com.GleekFramework.RedisSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.NacosSdk\Com.GleekFramework.NacosSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.QueueSdk\Com.GleekFramework.QueueSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.KafkaSdk\Com.GleekFramework.KafkaSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.DapperSdk\Com.GleekFramework.DapperSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ObjectSdk\Com.GleekFramework.ObjectSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.CommonSdk\Com.GleekFramework.CommonSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ConfigSdk\Com.GleekFramework.ConfigSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.AutofacSdk\Com.GleekFramework.AutofacSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ContractSdk\Com.GleekFramework.ContractSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.SecuritySdk\Com.GleekFramework.SecuritySdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RabbitMQSdk\Com.GleekFramework.RabbitMQSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.AttributeSdk\Com.GleekFramework.AttributeSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.ConsumerSdk\Com.GleekFramework.ConsumerSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.RocketMQSdk\Com.GleekFramework.RocketMQSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.MigrationSdk\Com.GleekFramework.MigrationSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.MongodbSdk\Com.GleekFramework.MongodbSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.SwaggerSdk\Com.GleekFramework.SwaggerSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.NLogSdk\Com.GleekFramework.NLogSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.GrpcSdk\Com.GleekFramework.GrpcSdk.csproj" />
+		<ProjectReference Include="..\Com.GleekFramework.Tests.Models\Com.GleekFramework.Tests.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Properties\launchSettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Config\**\*.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>
